@@ -1,3 +1,5 @@
+
+
 def calcAvg(grades):
     total = 0
     length = 0
@@ -28,7 +30,7 @@ def main():
     print("Should be [8, 10, 7, 8, 6]:", testList)
     '''
 
-    gradeFile = open("171-48-grades.csv", "r")
+    gradeFile = open("/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/References/171-48-grades.csv", "r")
     gradeStrings = gradeFile.readlines()
     gradeFile.close()
 

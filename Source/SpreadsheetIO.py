@@ -1,8 +1,4 @@
+from SecondaryBias import SequenceBias
+from SecondaryBias import SequenceGroup
 
 
-
-def read_file(path):
-    sequenceFile = open(path, "r")
-    sequenceStrings = sequenceFile.readlines()
-    sequenceFile.close()
-    print(sequenceStrings)

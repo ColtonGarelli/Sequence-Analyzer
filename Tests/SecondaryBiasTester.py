@@ -48,8 +48,6 @@ class BiasFinderTest(unittest.TestCase):
 
     list_q_content = [12, 4, 5, 10, 28, 0, 7, 1, 47]
 
-    assertKey = ["list of integers of expected one_away, two_away vals"]
-
     # def run_pre_bias_test(self):
     #     self.primary_test.primary_bias = "Q"
     #     self.primary_test.sequence_len = len(self.primary_test.sequence_in)
@@ -151,7 +149,6 @@ class CheckAATests(unittest.TestCase):
             self.assertTrue(SequenceBias.check_aa_entry(post_test, post_test.sequence_in))
 
     def test_check_aa_entry(self):
-        self.assertTrue(SequenceBias.check_aa_entry(self.seq_1, self.seq_1.sequence_in))
         self.assertFalse(SequenceBias.check_aa_entry(self.seq_2, self.seq_2.sequence_in))
         self.assertFalse(SequenceBias.check_aa_entry(self.seq_3, self.seq_3.sequence_in))
         self.assertFalse(SequenceBias.check_aa_entry(self.seq_4, self.seq_4.sequence_in))
