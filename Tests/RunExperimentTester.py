@@ -2,28 +2,30 @@ import unittest
 import RunExperiment
 
 
-class TestSequenceGroups(unittest.TestCase):
-
-    def test_something(self):
-        self.assertEqual(True, True)
-
 class TestRunExperiment(unittest.TestCase):
 
-    def test_something(self):
-        self.assertEqual(True, True)
+    test_experiment1 = RunExperiment.RunExperiment()
+    test_experiment2 = RunExperiment.RunExperiment()
+    test_experiment3 = RunExperiment.RunExperiment()
 
-    def test_create_SequenceBias_object(self):
-        self.assertEqual(True, True)
+    test_file_in = "/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/Tests/TestSpreadsheetIn"
 
-    def test_analyze_group(self):
+    # Should test
+    def test_input_spreadsheet(self):
         self.assertEqual(True, True)
 
     def test_output_spreadsheet(self):
         self.assertEqual(True, True)
 
-    def test_input_spreadsheet(self):
+    def test_analyze_group(self):
         self.assertEqual(True, True)
 
+
+class TestSequenceGroups(unittest.TestCase):
+
+    # appends sequences to SequenceGroup
+    def test_populate_group_list(self):
+        self.assertEqual()
 
 
 if __name__ == '__main__':
