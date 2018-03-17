@@ -10,7 +10,7 @@ class TestRunExperiment(unittest.TestCase):
 
     test_file_in = "/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/Tests/TestSpreadsheetIn"
 
-    # Should test
+    # pretest: should take file in. Have hardcoded list for each test case
     def test_input_spreadsheet(self):
         self.assertEqual(True, True)
 
