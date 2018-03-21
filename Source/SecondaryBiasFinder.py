@@ -1,5 +1,6 @@
 import abc
 import SpreadsheetIO
+from SpreadsheetIO import write_list_to_file
 
 
 '''
@@ -102,9 +103,6 @@ class SecondaryBias(Sequence):
                     # the first three and last three indexes. Range b/t could be very large
                     if 2 < i < self.sequence_len-4:
                         self.Q_index.append(i)
-        # else:
-        #     print("No" + self.primary_bias + " in the sequence ")
-        # print(self.Q_index)
 
     def secondary_bias_finder(self):
         """
@@ -170,6 +168,7 @@ class SecondaryBias(Sequence):
         # change user in
         # self.primary_bias = self.choose_primary_bias()
         # self.seq_in = self.prompt_sequence_input()
+        # self.sequence = self.remove_spaces(self.sequence)
         self.sequence = self.sequence.upper()
         self.sequence_len = len(self.sequence)
         self.find_primary_bias()
@@ -179,9 +178,21 @@ class SecondaryBias(Sequence):
         # arrays are ordered in single letter code alphabetical order
         self.secondary_bias_finder()
         self.find_avg_occurrence()
-        self.print_q_normalized()
         # self.print_q_normalized()
         return True
+
+    #
+    # def remove_spaces(self, string_to_check):
+    #
+    #     if " " in string_to_check:
+    #         for i in range(len(string_to_check)-1):
+    #             if string_to_check[i] == " " or string_to_check[i]+string_to_check[i+1] == "\n":
+    #                 pass
+    #             else:
+    #                 return_string = string_to_check[i]
+    #
+    #     return return_string
+
 
     def user_set_ID(self):
         self.ID = input("Input ID:")
@@ -192,45 +203,46 @@ class SecondaryBias(Sequence):
     def get_ID(self):
         return self.ID
 
-    def check_aa_entry(self, sequence_in):
-        """
-        Ensures only natural amino acids are entered when user inputs a sequence manually.
 
-        :param sequence_in: String of characters
-        :return: True if all characters entered are natural amino acids, otherwise False
-        """
+def check_aa_entry(sequence_in):
+    """`
+    Ensures only natural amino acids are entered when user inputs a sequence manually.
+    :param sequence_in: String of characters
+    :return: True if all characters entered are natural amino acids, otherwise False
+    """
 
-        not_aa = "BJOUXZ"
-        alpha = sequence_in.isalpha()
-        if alpha:
-            sequence_in = sequence_in.upper()
-            bad_count = 0
-            for i in range(0, 6):
-                if not_aa[i] in sequence_in:
-                    bad_count = bad_count + 1
-            if bad_count == 0:
-                good_entry = True
-            else:
-                good_entry = False
-
+    not_aa = "BJOUXZ"
+    alpha = sequence_in.isalpha()
+    if alpha:
+        sequence_in = sequence_in.upper()
+        bad_count = 0
+        for i in range(0, 6):
+            if not_aa[i] in sequence_in:
+                bad_count = bad_count + 1
+        if bad_count == 0:
+            good_entry = True
         else:
             good_entry = False
-        return good_entry
 
-    def print_q_normalized(self):
-        if self.Q_content != 0:
-            print("\n\nOne Away\t\t\t\t\t Two Away\t\t\t\t\t Three Away\t\t\t\t\t Local")
-            for i in range(0, 19):
-                print(self.amino_acids[i],
-                      round(self.one_away_avg[i], 3), "per", self.primary_bias,
-                      "\t\t\t\t", self.amino_acids[i],
-                      round(self.two_away_avg[i], 3), "per", self.primary_bias,
-                      "\t\t\t\t", self.amino_acids[i],
-                      round(self.three_away_avg[i], 3), "per", self.primary_bias,
-                      "\t\t\t\t", self.amino_acids[i],
-                      round(self.local_avg[i], 3), "per", self.primary_bias)
-        else:
-            print("\n\nNo primary bias\n")
+    else:
+        good_entry = False
+    return good_entry
+
+
+def print_q_normalized(secbias_in):
+    if secbias_in.Q_content != 0:
+        print("\n\nOne Away\t\t\t\t\t Two Away\t\t\t\t\t Three Away\t\t\t\t\t Local")
+        for i in range(0, 19):
+            print(secbias_in.amino_acids[i],
+                  round(secbias_in.one_away_avg[i], 3), "per", secbias_in.primary_bias,
+                    "\t\t\t\t", secbias_in.amino_acids[i],
+                  round(secbias_in.two_away_avg[i], 3), "per", secbias_in.primary_bias,
+                  "\t\t\t\t", secbias_in.amino_acids[i],
+                  round(secbias_in.three_away_avg[i], 3), "per", secbias_in.primary_bias,
+                  "\t\t\t\t", secbias_in.amino_acids[i],
+                  round(secbias_in.local_avg[i], 3), "per", secbias_in.primary_bias)
+    else:
+        print("\n\nNo primary bias\n")
 
 
 def create_SeqBias_object(seq_string):
@@ -246,14 +258,6 @@ def create_SeqBias_object(seq_string):
     return seq_object_list
 
 
-def parse_to_string_list(file_string):
-    if "\n" in file_string:
-        sequence_strings = file_string.split("\n")
-    else:
-        sequence_strings = file_string
-    return sequence_strings
-
-
 def sec_bias_to_string(obj_to_copy, list_to_copy):
     string_to_return = obj_to_copy.ID
     string_to_return += ","
@@ -262,15 +266,6 @@ def sec_bias_to_string(obj_to_copy, list_to_copy):
         string_to_return += ","
 
     return string_to_return
-
-
-def write_list_to_file(ID, copy_list, file_name):
-    file_to_write = open(file_name, "a+")
-    file_to_write.write(str(ID)+",")
-    for i in range(len(copy_list)):
-        file_to_write.write(str(copy_list[i]) + ",")
-    file_to_write.write("\n")
-    file_to_write.close()
 
 
 def export_sec_bias_files(sequence_list):

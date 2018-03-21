@@ -1,6 +1,5 @@
 
 
-
 def prompt_sequence_input(self):
         """
         Prompts user to enter a sequence manually, and calls Sequence.check_aa_entry to ensure valid entry=

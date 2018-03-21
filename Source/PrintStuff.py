@@ -1,7 +1,7 @@
-import SecondaryBias
+import SecondaryBiasFinder
 
 
-def print_secondarybias_info(seqbiasobj) -> SecondaryBias:
+def print_secondarybias_info(seqbiasobj) -> SecondaryBiasFinder:
 
     if seqbiasobj.Q_content != 0:
         print("\n\nOne Away\t\t\t\t\t Two Away\t\t\t\t\t Three Away\t\t\t\t\t Local")

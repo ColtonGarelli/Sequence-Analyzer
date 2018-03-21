@@ -1,5 +1,5 @@
-from SecondaryBias import Sequence, SecondaryBias
-import SecondaryBias, SpreadsheetIO
+from SecondaryBiasFinder import Sequence, SecondaryBias
+import SecondaryBiasFinder, SpreadsheetIO
 import abc
 
 
@@ -44,7 +44,7 @@ class AnalysisImpl:
         super(AnalysisImpl, self).__init__()
         self.file_in = path_in
         self.file_out_path = ""
-        self.seq_list = [Sequence]
+        self.seq_list = []
 
     def build_list_from_file(self):
         pass
@@ -58,16 +58,14 @@ class AnalysisImpl:
     def build_sec_bias(self):
         file_string = SpreadsheetIO.read_file(self.file_in)
         # each string in string_list represents a sequence
-        string_list = SecondaryBias.parse_to_string_list(file_string)
-
+        string_list = SpreadsheetIO.parse_to_string_list(file_string)
         sequence_list = []
         for i in range(len(string_list)):
-            sequence_list.extend(SecondaryBias.create_SeqBias_object(string_list[i]))
+            self.seq_list.extend(SecondaryBiasFinder.create_SeqBias_object(string_list[i]))
         return_list = []
         for i1 in range(len(sequence_list)):
             finding = sequence_list[i1]
             done = finding.bias_finder()
             return_list.append(finding)
-            del finding
 
         return return_list

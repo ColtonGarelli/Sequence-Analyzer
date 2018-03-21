@@ -1,8 +1,9 @@
 import unittest
 import sys
-sys.path.append('/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzerProject/Source')
-from SecondaryBias import Sequence
-from SecondaryBias import SecondaryBias
+
+import SecondaryBiasFinder
+from SecondaryBiasFinder import SecondaryBias, Sequence
+from Operation import Director, AnalysisImpl
 
 
 class BiasFinderTest(unittest.TestCase):
@@ -19,9 +20,9 @@ class BiasFinderTest(unittest.TestCase):
 
     key2 = "C"
     test_two_away.sequence = "TTNIISELRCTQTCGNAMDNWMGEVLDGTPAFHFGVHCGDTAGPASKRFLLVCLEFSLR" \
-                "GYDLLVRLLLIKDEDANDVHCNQKCSQCCQKCMAHLALGPVTCSSSFNVHYSPGIGAL" \
-                "WACIQTCEIDYCIQPCKACVQSCEERSLKVIKADGITAKSFAPMPNGAVDPSTVEYMV" \
-                "KTLIVCLQTCYDENRTVRRFPEKAL"
+                             "GYDLLVRLLLIKDEDANDVHCNQKCSQCCQKCMAHLALGPVTCSSSFNVHYSPGIGAL" \
+                             "WACIQTCEIDYCIQPCKACVQSCEERSLKVIKADGITAKSFAPMPNGAVDPSTVEYMV" \
+                             "KTLIVCLQTCYDENRTVRRFPEKAL"
 
     key3 = "S"
     test_three_away.sequence = "YPSSALQGGSMSRFLSPTMLRVRASLGFLGINLLPWTLFVIAALPSKSDAQLSSTQPLSAMGME" \
@@ -48,20 +49,6 @@ class BiasFinderTest(unittest.TestCase):
                 sequence6, sequence7, sequence8, sequence9, sequence10]
 
     list_q_content = [12, 4, 5, 10, 28, 0, 7, 1, 47]
-
-    # def run_pre_bias_test(self):
-    #     self.primary_test.primary_bias = "Q"
-    #     self.primary_test.sequence_len = len(self.primary_test.sequence_in)
-    #     self.primary_test.find_primary_bias()
-    #     self.primary_test.Q_content = len(self.primary_test.Q_index)
-    #     self.primary_test.secondary_bias_finder()
-    #
-    # def test_find_primary_bias(self):
-    #     for i in range(0, 9):
-    #         self.primary_test.sequence_in = self.seq_list[i]
-    #         self.run_pre_bias_test()
-    #         self.assertEqual(BiasFinderTest.list_q_content[i], self.primary_test.Q_content)
-    #         self.primary_test.Q_index = []
 
     def run_pre_sec_bias1_test(self):
         self.test_one_away.primary_bias = "Q"
@@ -100,23 +87,44 @@ class BiasFinderTest(unittest.TestCase):
         self.run_pre_sec_bias3_test()
         threeaway = self.test_three_away.three_away[15]
         self.assertEqual(2, (threeaway / self.test_three_away.Q_content))
-    '''
-    Write tests for both functions. Tests to make sure nothing but one of the 20 a.a.
-    get past checkaa
 
-    write test for secondary bias.
 
-    '''
-    # def test_check_if_first_bias(self):
-    #     self.assertFalse(False, False)
-    #
-    # def test_calculate_biases(self):
-    #     self.assertFalse(False)
+class SequenceBiasIOTests(unittest.TestCase):
+
+    def test_file_to_seqbias(self):
+        seq_list = ["IKAAESFLPSPVLRTDVMFLVPALKYNPLHRLLIQILGGHETMIQIGHAETATVKFEERLVERIFDKRAGTSSLILIQIDYDEIQIWPGYSILRLGMPEKDEIQIAIITEMKRGAPHIQIQILDFGPAISFKESWLDCVMGNCYNDIASEIKVRGSDLNKVGVRARKECGVATSPINAFINRLLSATYSVGVNFLAVIQISTGIDKVHTNYDKA",
+                    "TTNIISELRCTQTCGNAMDNWMGEVLDGTPAFHFGVHCGDTAGPASKRFLLVCLEFSLRGYDLLVRLLLIKDEDANDVHCNQKCSQCCQKCMAHLALGPVTCSSSFNVHYSPGIGALWACIQTCEIDYCIQPCKACVQSCEERSLKVIKADGITAKSFAPMPNGAVDPSTVEYMVKTLIVCLQTCYDENRTVRRFPEKAL",
+                    "YPSSALQGGSMSRFLSPTMLRVRASLGFLGINLLPWTLFVIAALPSKSDAQLSSTQPLSAMGMEFIRANTESEINFVDKIHYAYHNLVVDPRKVDSEIAKERCKLLKSIVQVGSVTFATVPGDSYIGISSRSLMFVSEKNTGRELGNKCSAEQDDSSDQKNSGTAECGKLYSYEQWESTREGVDIIRKKTAVTHSNRQIPSVADHPLFLADAHEG"]
+
+        path_in = "/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/Tests/SequenceBiasIOTestFile"
+        analysis = AnalysisImpl(path_in)
+        director = Director()
+        processed = director.run_analysis(analysis)
+        for i in range(len(analysis.seq_list)):
+            check_seq = analysis.seq_list[i]
+            self.assertEqual(seq_list[i], check_seq.sequence)
+
+    def test_seqbias_to_file(self):
+        list_q_content = [12, 4, 5, 10, 28, 0, 7, 1, 47]
+        # one_away I = 16
+        # two_away C =
+        seq_list = ["IKAAESFLPSPVLRTDVMFLVPALKYNPLHRLLIQILGGHETMIQIGHAETATVKFEERLVERIFDKRAGTSSLILIQIDYDEIQIWPGYSILRLGMPEKDEIQIAIITEMKRGAPHIQIQILDFGPAISFKESWLDCVMGNCYNDIASEIKVRGSDLNKVGVRARKECGVATSPINAFINRLLSATYSVGVNFLAVIQISTGIDKVHTNYDKA",
+                    "TTNIISELRCTQTCGNAMDNWMGEVLDGTPAFHFGVHCGDTAGPASKRFLLVCLEFSLRGYDLLVRLLLIKDEDANDVHCNQKCSQCCQKCMAHLALGPVTCSSSFNVHYSPGIGALWACIQTCEIDYCIQPCKACVQSCEERSLKVIKADGITAKSFAPMPNGAVDPSTVEYMVKTLIVCLQTCYDENRTVRRFPEKAL",
+                    "YPSSALQGGSMSRFLSPTMLRVRASLGFLGINLLPWTLFVIAALPSKSDAQLSSTQPLSAMGMEFIRANTESEINFVDKIHYAYHNLVVDPRKVDSEIAKERCKLLKSIVQVGSVTFATVPGDSYIGISSRSLMFVSEKNTGRELGNKCSAEQDDSSDQKNSGTAECGKLYSYEQWESTREGVDIIRKKTAVTHSNRQIPSVADHPLFLADAHEG"]
+
+        seq_objs = []
+        # test file in by checking read_file strings are equal
+        # write one file manually and read it in, check to see it's equal to the read in from the exported file
+        for i in range(len(seq_list)):
+            seq = SecondaryBias()
+            seq.initialize_sec_bias("tester" + str(i), seq_list[i])
+            seq.bias_finder()
+            seq_objs.append(seq)
+        SecondaryBiasFinder.export_sec_bias_files(seq_objs)
 
 
 class CheckAATests(unittest.TestCase):
     # tests for checkaaentry method
-
     seq_1 = SecondaryBias()
     seq_1.sequence = "SAQHHFRQTYQYWWTPQLFVPYQDNRQAMNCQKLQAEVQSISQNTQKMPFPNQYQQKMDIKQIQQC"
     seq_2 = SecondaryBias()
@@ -132,34 +140,34 @@ class CheckAATests(unittest.TestCase):
     seq_7 = SecondaryBias()
     seq_7.sequence = "WPNVQKECQQVKQDSHCCLQQQSTLFQ*"
     seq_8 = SecondaryBias()
-    seq_8.sequence = "*GVMWHDGTWDSAQHHFRQTY"
+    seq_8.sequence = "%GVMWHDGTWDSAQHHFRQTY"
     seq_9 = SecondaryBias()
     seq_9.sequence = "ASSD SDS"
     seq_10 = SecondaryBias()
     seq_10.sequence = "JJJJJJJJJJJ"
     seq_11 = SecondaryBias()
     seq_11.sequence = "GQNQRWWYVTVQRSNFHQQKIRPQQPLGDKAHLLMQQMGGQQRAFYMPEQTQCFEYRI" \
-                         "DQCVWQEGFQEQAHAWPNVQKECQQVKQDSHCCLQQQSTLFQQQSERSQEIQMADIQTQ" \
-                         "CIGQNHQGVMWHDGTWDXSAQHHFRQTYQYWWTPQLFVPYQDNRQAMNCQKLQAEVQSIS" \
-                         "QNTQKMPFPNQYQQKMDIKQIQQC"
+                      "DQCVWQEGFQEQAHAWPNVQKECQQVKQDSHCCLQQQSTLFQQQSERSQEIQMADIQTQ" \
+                      "CIGQNHQGVMWHDGTWDXSAQHHFRQTYQYWWTPQLFVPYQDNRQAMNCQKLQAEVQSIS" \
+                      "QNTQKMPFPNQYQQKMDIKQIQQC"
 
     def test_check_aa_entry_pass(self):
         post_test = SecondaryBias()
         for i in range(10):
             post_test.sequence = BiasFinderTest.seq_list[i]
-            self.assertTrue(SecondaryBias.check_aa_entry(post_test, post_test.sequence))
+            self.assertTrue(SecondaryBiasFinder.check_aa_entry(post_test.sequence))
 
-    def test_check_aa_entry(self):
-        self.assertFalse(SecondaryBias.check_aa_entry(self.seq_2, self.seq_2.sequence))
-        self.assertFalse(SecondaryBias.check_aa_entry(self.seq_3, self.seq_3.sequence))
-        self.assertFalse(SecondaryBias.check_aa_entry(self.seq_4, self.seq_4.sequence))
-        self.assertFalse(SecondaryBias.check_aa_entry(self.seq_5, self.seq_5.sequence))
-        self.assertFalse(SecondaryBias.check_aa_entry(self.seq_6, self.seq_6.sequence))
-        self.assertFalse(SecondaryBias.check_aa_entry(self.seq_7, self.seq_7.sequence))
-        self.assertFalse(SecondaryBias.check_aa_entry(self.seq_8, self.seq_8.sequence))
-        self.assertFalse(SecondaryBias.check_aa_entry(self.seq_9, self.seq_9.sequence))
-        self.assertFalse(SecondaryBias.check_aa_entry(self.seq_10, self.seq_10.sequence))
-        self.assertFalse(SecondaryBias.check_aa_entry(self.seq_11, self.seq_11.sequence))
+    def test_check_aa_entry_fail(self):
+        self.assertFalse(SecondaryBiasFinder.check_aa_entry(self.seq_2.sequence))
+        self.assertFalse(SecondaryBiasFinder.check_aa_entry(self.seq_3.sequence))
+        self.assertFalse(SecondaryBiasFinder.check_aa_entry(self.seq_4.sequence))
+        self.assertFalse(SecondaryBiasFinder.check_aa_entry(self.seq_5.sequence))
+        self.assertFalse(SecondaryBiasFinder.check_aa_entry(self.seq_6.sequence))
+        self.assertFalse(SecondaryBiasFinder.check_aa_entry(self.seq_7.sequence))
+        self.assertFalse(SecondaryBiasFinder.check_aa_entry(self.seq_8.sequence))
+        self.assertFalse(SecondaryBiasFinder.check_aa_entry(self.seq_9.sequence))
+        self.assertFalse(SecondaryBiasFinder.check_aa_entry(self.seq_10.sequence))
+        self.assertFalse(SecondaryBiasFinder.check_aa_entry(self.seq_11.sequence))
 
 
 if __name__ == '__main__':

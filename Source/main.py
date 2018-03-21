@@ -1,7 +1,7 @@
-import SecondaryBias
+import SecondaryBiasFinder
 from Operation import Director, AnalysisImpl, Representation
 from os.path import join
-
+import PredictionRelay
 
 # Colton Garelli
 
@@ -40,17 +40,12 @@ def run_experiment(self, path_in, path_out):
 
 def main():
 
-    # APIHandler.UniProtAPI()
-    # change to test symlink again
-    # sequence = SecondaryBias()
-    # SecondaryBias.bias_finder(sequence)
     path_in = "/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/Source/csv_key"
     file_representation = Representation()
     analysis = AnalysisImpl(path_in)
     director = Director()
     processed = director.run_analysis(analysis)
-    SecondaryBias.export_sec_bias_files(processed)
-
+    SecondaryBiasFinder.export_sec_bias_files(processed)
 
 
 

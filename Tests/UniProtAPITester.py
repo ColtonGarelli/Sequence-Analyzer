@@ -1,7 +1,7 @@
 import unittest
 import sys
 sys.path.append('/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzerProject')
-import Source.SecondaryBias
+import Source.SecondaryBiasFinder
 
 
 class MyTestCase(unittest.TestCase):
