@@ -3,18 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d7bbb029-bcaf-48ad-b10b-48c7b7feb115" name="Default" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Source/Operation.py" afterPath="$PROJECT_DIR$/Source/Operation.py" />
-      <change beforePath="$PROJECT_DIR$/Source/PredictionRelay.py" afterPath="$PROJECT_DIR$/Source/PredictionRelay.py" />
-      <change beforePath="$PROJECT_DIR$/Source/PrintStuff.py" afterPath="$PROJECT_DIR$/Source/PrintStuff.py" />
-      <change beforePath="$PROJECT_DIR$/Source/RunExperiment.py" afterPath="$PROJECT_DIR$/Source/RunExperiment.py" />
-      <change beforePath="$PROJECT_DIR$/Source/SecondaryBias.py" afterPath="$PROJECT_DIR$/Source/SecondaryBiasFinder.py" />
-      <change beforePath="$PROJECT_DIR$/Source/Sequence.py" afterPath="$PROJECT_DIR$/Source/Sequence.py" />
-      <change beforePath="$PROJECT_DIR$/Source/SpreadsheetIO.py" afterPath="$PROJECT_DIR$/Source/SpreadsheetIO.py" />
-      <change beforePath="$PROJECT_DIR$/Source/UserInterface.py" afterPath="$PROJECT_DIR$/Tests/SequenceBiasIOTestFile" />
+      <change beforePath="$PROJECT_DIR$/Source/SecondaryBiasFinder.py" afterPath="$PROJECT_DIR$/Source/SecondaryBiasFinder.py" />
       <change beforePath="$PROJECT_DIR$/Source/main.py" afterPath="$PROJECT_DIR$/Source/main.py" />
       <change beforePath="$PROJECT_DIR$/Tests/SecondaryBiasTester.py" afterPath="$PROJECT_DIR$/Tests/SecondaryBiasTester.py" />
-      <change beforePath="$PROJECT_DIR$/Tests/SequenceBiasIOTester.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Tests/UniProtAPITester.py" afterPath="$PROJECT_DIR$/Tests/UniProtAPITester.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,21 +16,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Source/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SecondaryBiasTester.py" pinned="false" current-in-tab="false">
+      <file leaf-file-name="SecondaryBiasTester.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Tests/SecondaryBiasTester.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
-              <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
+            <state relative-caret-position="15">
+              <caret line="95" column="54" lean-forward="false" selection-start-line="95" selection-start-column="54" selection-end-line="95" selection-end-column="54" />
               <folding>
                 <element signature="e#0#15#0" expanded="true" />
               </folding>
@@ -50,45 +31,17 @@
       <file leaf-file-name="SecondaryBiasFinder.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/SecondaryBiasFinder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="3210">
-              <caret line="244" column="13" lean-forward="false" selection-start-line="244" selection-start-column="8" selection-end-line="244" selection-end-column="13" />
+            <state relative-caret-position="990">
+              <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
               <folding>
                 <element signature="e#1967#2045#0" expanded="false" />
                 <element signature="e#2636#3415#0" expanded="false" />
-                <element signature="e#7823#7851#0" expanded="false" />
-                <element signature="e#7890#7905#0" expanded="false" />
-                <element signature="e#7937#7951#0" expanded="false" />
+                <element signature="e#3459#4152#0" expanded="false" />
+                <element signature="e#6033#6443#0" expanded="false" />
+                <element signature="e#7887#7915#0" expanded="false" />
+                <element signature="e#7954#7969#0" expanded="false" />
+                <element signature="e#8001#8015#0" expanded="false" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Operation.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Source/Operation.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="525">
-              <caret line="37" column="16" lean-forward="false" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="RunExperiment.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Source/RunExperiment.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="13" lean-forward="true" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="SpreadsheetIO.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Source/SpreadsheetIO.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="25" lean-forward="false" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -119,6 +72,11 @@
       <find>parse</find>
       <find>check</find>
       <find>print</find>
+      <find>Sequence</find>
+      <find>SequenceBias</find>
+      <find>primary</find>
+      <find>file</find>
+      <find>q</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -139,19 +97,19 @@
         <option value="$PROJECT_DIR$/Source/Operation.py" />
         <option value="$PROJECT_DIR$/Tests/SequenceBiasIOTestFile" />
         <option value="$PROJECT_DIR$/Source/PredictionRelay.py" />
+        <option value="$PROJECT_DIR$/Source/SpreadsheetIO.py" />
+        <option value="$PROJECT_DIR$/Source/RunExperiment.py" />
         <option value="$PROJECT_DIR$/Source/main.py" />
         <option value="$PROJECT_DIR$/Source/SecondaryBiasFinder.py" />
-        <option value="$PROJECT_DIR$/Source/SpreadsheetIO.py" />
         <option value="$PROJECT_DIR$/Tests/SecondaryBiasTester.py" />
-        <option value="$PROJECT_DIR$/Source/RunExperiment.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="422" />
-    <option name="y" value="23" />
-    <option name="width" value="1109" />
-    <option name="height" value="877" />
+    <option name="x" value="532" />
+    <option name="y" value="25" />
+    <option name="width" value="897" />
+    <option name="height" value="875" />
   </component>
   <component name="ProjectLevelVcsManager" settingsEditedManually="true" />
   <component name="ProjectView">
@@ -170,7 +128,6 @@
     </navigator>
     <panes>
       <pane id="Scratches" />
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -197,10 +154,12 @@
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
+    <property name="SearchEverywhereHistoryKey" value="{&#9;null&#9;null" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
@@ -310,50 +269,50 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SecondaryBiasTester - 2018.03.19 at 10h 14m 15s.xml">
+    <history-entry file="SecondaryBiasTester - 2018.03.28 at 19h 07m 32s.xml">
       <configuration name="SecondaryBiasTester" configurationId="tests" />
     </history-entry>
-    <history-entry file="SecondaryBiasTester - 2018.03.19 at 10h 14m 35s.xml">
+    <history-entry file="SecondaryBiasTester - 2018.03.28 at 19h 08m 43s.xml">
       <configuration name="SecondaryBiasTester" configurationId="tests" />
     </history-entry>
-    <history-entry file="SecondaryBiasTester - 2018.03.19 at 10h 16m 07s.xml">
+    <history-entry file="SecondaryBiasTester - 2018.03.28 at 19h 08m 44s.xml">
       <configuration name="SecondaryBiasTester" configurationId="tests" />
     </history-entry>
-    <history-entry file="SecondaryBiasTester - 2018.03.19 at 10h 33m 57s.xml">
+    <history-entry file="SecondaryBiasTester - 2018.03.28 at 19h 09m 35s.xml">
       <configuration name="SecondaryBiasTester" configurationId="tests" />
     </history-entry>
-    <history-entry file="SecondaryBiasTester - 2018.03.19 at 10h 43m 02s.xml">
+    <history-entry file="SecondaryBiasTester - 2018.03.28 at 19h 10m 04s.xml">
       <configuration name="SecondaryBiasTester" configurationId="tests" />
     </history-entry>
-    <history-entry file="SecondaryBiasTester - 2018.03.21 at 11h 20m 16s.xml">
+    <history-entry file="SecondaryBiasTester - 2018.03.28 at 19h 10m 05s.xml">
       <configuration name="SecondaryBiasTester" configurationId="tests" />
     </history-entry>
-    <history-entry file="SecondaryBiasTester - 2018.03.21 at 11h 20m 24s.xml">
+    <history-entry file="SecondaryBiasTester - 2018.03.28 at 19h 11m 24s.xml">
       <configuration name="SecondaryBiasTester" configurationId="tests" />
     </history-entry>
-    <history-entry file="SecondaryBiasTester - 2018.03.21 at 11h 20m 57s.xml">
+    <history-entry file="SecondaryBiasTester - 2018.03.28 at 19h 12m 59s.xml">
       <configuration name="SecondaryBiasTester" configurationId="tests" />
     </history-entry>
-    <history-entry file="SecondaryBiasTester - 2018.03.21 at 11h 21m 31s.xml">
+    <history-entry file="SecondaryBiasTester - 2018.03.28 at 19h 13m 53s.xml">
       <configuration name="SecondaryBiasTester" configurationId="tests" />
     </history-entry>
-    <history-entry file="SecondaryBiasTester - 2018.03.21 at 11h 24m 35s.xml">
+    <history-entry file="SecondaryBiasTester - 2018.03.28 at 19h 15m 01s.xml">
       <configuration name="SecondaryBiasTester" configurationId="tests" />
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="422" y="23" width="1109" height="877" extended-state="0" />
+    <frame x="532" y="25" width="897" height="875" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.1307578" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.13051471" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21483377" sideWeight="0.50739956" order="7" side_tool="true" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24296676" sideWeight="0.4926004" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.23717949" sideWeight="0.4926004" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2455243" sideWeight="0.49524942" order="7" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3005115" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4653846" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
@@ -370,16 +329,16 @@
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.21483377" sideWeight="0.50739956" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
-      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.2647059" sideWeight="0.4926004" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24296676" sideWeight="0.4926004" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.2455243" sideWeight="0.49524942" order="10" side_tool="false" content_ui="tabs" />
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.22811918" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.13051471" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992327" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3005115" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3005115" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout-to-restore>
   </component>
@@ -390,30 +349,31 @@
     <breakpoint-manager>
       <breakpoints>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Operation.py</url>
-          <line>61</line>
-          <option name="timeStamp" value="35" />
+          <url>file://$PROJECT_DIR$/Tests/SecondaryBiasTester.py</url>
+          <line>73</line>
+          <option name="timeStamp" value="66" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Tests/SecondaryBiasTester.py</url>
+          <line>75</line>
+          <option name="timeStamp" value="67" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Tests/SecondaryBiasTester.py</url>
+          <line>74</line>
+          <option name="timeStamp" value="68" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Tests/SecondaryBiasTester.py</url>
+          <line>76</line>
+          <option name="timeStamp" value="69" />
         </line-breakpoint>
       </breakpoints>
-      <option name="time" value="46" />
+      <option name="time" value="71" />
     </breakpoint-manager>
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Source/SpreadsheetIO.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="675">
-          <caret line="46" column="17" lean-forward="false" selection-start-line="46" selection-start-column="17" selection-end-line="46" selection-end-column="17" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/References/FileIn">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="330">
-          <caret line="22" column="9" lean-forward="false" selection-start-line="22" selection-start-column="9" selection-end-line="22" selection-end-column="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Source/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
@@ -428,9 +388,11 @@
           <folding>
             <element signature="e#1967#2045#0" expanded="false" />
             <element signature="e#2636#3415#0" expanded="false" />
-            <element signature="e#7823#7851#0" expanded="false" />
-            <element signature="e#7890#7905#0" expanded="false" />
-            <element signature="e#7937#7951#0" expanded="false" />
+            <element signature="e#3459#4152#0" expanded="false" />
+            <element signature="e#6033#6443#0" expanded="false" />
+            <element signature="e#7887#7915#0" expanded="false" />
+            <element signature="e#7954#7969#0" expanded="false" />
+            <element signature="e#8001#8015#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -505,9 +467,11 @@
           <folding>
             <element signature="e#1967#2045#0" expanded="false" />
             <element signature="e#2636#3415#0" expanded="false" />
-            <element signature="e#7823#7851#0" expanded="false" />
-            <element signature="e#7890#7905#0" expanded="false" />
-            <element signature="e#7937#7951#0" expanded="false" />
+            <element signature="e#3459#4152#0" expanded="false" />
+            <element signature="e#6033#6443#0" expanded="false" />
+            <element signature="e#7887#7915#0" expanded="false" />
+            <element signature="e#7954#7969#0" expanded="false" />
+            <element signature="e#8001#8015#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -554,9 +518,11 @@
           <folding>
             <element signature="e#1967#2045#0" expanded="false" />
             <element signature="e#2636#3415#0" expanded="false" />
-            <element signature="e#7823#7851#0" expanded="false" />
-            <element signature="e#7890#7905#0" expanded="false" />
-            <element signature="e#7937#7951#0" expanded="false" />
+            <element signature="e#3459#4152#0" expanded="false" />
+            <element signature="e#6033#6443#0" expanded="false" />
+            <element signature="e#7887#7915#0" expanded="false" />
+            <element signature="e#7954#7969#0" expanded="false" />
+            <element signature="e#8001#8015#0" expanded="false" />
           </folding>
         </state>
       </provider>
@@ -704,59 +670,10 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Tests/SequenceBiasIOTester.py" />
-    <entry file="file://$PROJECT_DIR$/Source/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="48" column="0" lean-forward="false" selection-start-line="48" selection-start-column="0" selection-end-line="48" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Source/PrintStuff.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="0">
           <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Operation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="37" column="16" lean-forward="false" selection-start-line="37" selection-start-column="16" selection-end-line="37" selection-end-column="16" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/SpreadsheetIO.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="25" lean-forward="false" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tests/SecondaryBiasTester.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="13" column="0" lean-forward="true" selection-start-line="13" selection-start-column="0" selection-end-line="13" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/SecondaryBiasFinder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="3210">
-          <caret line="244" column="13" lean-forward="false" selection-start-line="244" selection-start-column="8" selection-end-line="244" selection-end-column="13" />
-          <folding>
-            <element signature="e#1967#2045#0" expanded="false" />
-            <element signature="e#2636#3415#0" expanded="false" />
-            <element signature="e#7823#7851#0" expanded="false" />
-            <element signature="e#7890#7905#0" expanded="false" />
-            <element signature="e#7937#7951#0" expanded="false" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -764,17 +681,75 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="31" lean-forward="false" selection-start-line="19" selection-start-column="31" selection-end-line="19" selection-end-column="31" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/RunExperiment.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="285">
-          <caret line="19" column="13" lean-forward="true" selection-start-line="19" selection-start-column="13" selection-end-line="19" selection-end-column="13" />
+        <state relative-caret-position="165">
+          <caret line="11" column="26" lean-forward="false" selection-start-line="11" selection-start-column="26" selection-end-line="11" selection-end-column="26" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Operation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="225">
+          <caret line="17" column="17" lean-forward="false" selection-start-line="17" selection-start-column="17" selection-end-line="17" selection-end-column="17" />
           <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/unittest/case.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="252">
+          <caret line="823" column="8" lean-forward="false" selection-start-line="823" selection-start-column="8" selection-end-line="823" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="0">
+          <caret line="42" column="0" lean-forward="false" selection-start-line="42" selection-start-column="0" selection-end-line="42" selection-end-column="88" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/SpreadsheetIO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="25" lean-forward="false" selection-start-line="7" selection-start-column="25" selection-end-line="7" selection-end-column="25" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/SecondaryBiasFinder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="990">
+          <caret line="93" column="0" lean-forward="false" selection-start-line="93" selection-start-column="0" selection-end-line="93" selection-end-column="0" />
+          <folding>
+            <element signature="e#1967#2045#0" expanded="false" />
+            <element signature="e#2636#3415#0" expanded="false" />
+            <element signature="e#3459#4152#0" expanded="false" />
+            <element signature="e#6033#6443#0" expanded="false" />
+            <element signature="e#7887#7915#0" expanded="false" />
+            <element signature="e#7954#7969#0" expanded="false" />
+            <element signature="e#8001#8015#0" expanded="false" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.5/lib/python3.5/unittest/suite.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="130">
+          <caret line="121" column="0" lean-forward="false" selection-start-line="121" selection-start-column="0" selection-end-line="121" selection-end-column="0" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/SecondaryBiasTester.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="15">
+          <caret line="95" column="54" lean-forward="false" selection-start-line="95" selection-start-column="54" selection-end-line="95" selection-end-column="54" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
         </state>
       </provider>
     </entry>

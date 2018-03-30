@@ -1,9 +1,124 @@
 import unittest
-import sys
-
 import SecondaryBiasFinder
 from SecondaryBiasFinder import SecondaryBias, Sequence
 from Operation import Director, AnalysisImpl
+
+
+class InductiveBiasFinderTest(unittest.TestCase):
+    # make dictionary - sequence:sec value
+    # or try with tuples
+    # make sure tests that pass also fail if data is incorrect
+    test_sequences_dict = {"LGVQVKG": 2, "GSVQHAW": 1, "LFYQVFL": 1, "DEHQANI": 0, "SVNQGVY": 2, "FEIQDVP": 1,
+                           "DVKQKDN": 1, "SLEQEIR": 0, "VEPQRIV": 2, "LAFQNHV": 1, "VKMQCLT": 1, "GKAQSGP": 0,
+                           "YAMAFLP": 0, "VKGRTCT": 0}
+    test_sequences_list = ["LGVQVKG", "GSVQHAW", "LFYQVFL", "DEHQANI", "SVNQGVY", "FEIQDVP",
+                           "DVKQKDN", "VEPQRIV", "LLAQNGV", "VKMQCLT", "GKALSGP", "YAMAFLP", "VKGRTCT"]
+
+    test_sequences_dict_one = {"LGVQVKG": 2, "GSVQHAW": 1, "LFYQVFL": 1, "DEHQANI": 0, "VKGRTCT": 0}
+    test_sequences_list_one = ["LGVQVKG", "GSVQHAW", "LFYQVFL", "DEHQANI", "VKGRTCT"]
+
+    test_sequences_dict_two = {"SVNQGVY": 2, "FEIQDVP": 1, "DVKQKDN": 1, "SLEQEIR": 0, "VKGRTCT": 0}
+    test_sequences_list_two = ["SVNQGVY", "FEIQDVP", "DVKQKDN", "SLEQEIR", "VKGRTCT"]
+
+    test_sequences_dict_three = {"VEPQRIV": 2, "LAFQNHV": 1, "VKMQCLT": 1, "GKAQSGP": 0, "YAMAFLP": 0, "VKGRTCT": 0}
+    test_sequences_list_three = ["VEPQRIV", "LAFQNHV", "VKMQCLT", "GKAQSGP", "YAMAFLP", "VKGRTCT"]
+
+    def test_concat_aa(self):
+        for i1 in range(len(self.test_sequences_list)-1):
+            if i1 < 3:
+                for i2 in range(len(self.test_sequences_dict_one)-1):
+                    seq_to_scan = SecondaryBias()
+                    original_seq = self.test_sequences_list_one[i2]
+                    seq_to_scan.sequence = original_seq
+                    append_sequence = self.test_sequences_list_one[i2 + 1]
+                    for i3 in range(len(original_seq)-1):
+                        seq_to_scan.bias_finder()
+                        self.assertEqual(seq_to_scan.one_away[17], self.test_sequences_dict_one[original_seq])
+                        self.assertEqual(int(seq_to_scan.local_sequence[17]), self.test_sequences_dict_one[original_seq])
+                        seq_to_scan = SecondaryBias()
+                        seq_to_scan.sequence = original_seq + append_sequence[0:i3]
+            elif 2 < i1 < 10:
+                for i2 in range(len(self.test_sequences_dict_two)-1):
+                    seq_to_scan = SecondaryBias()
+                    original_seq = self.test_sequences_list_two[i2]
+                    seq_to_scan.sequence = original_seq
+                    append_sequence = self.test_sequences_list_two[i2 + 1]
+                    for i3 in range(len(original_seq)-1):
+                        seq_to_scan.bias_finder()
+                        self.assertEqual(seq_to_scan.two_away[17], self.test_sequences_dict_two[original_seq])
+                        self.assertEqual(int(seq_to_scan.local_sequence[17]), self.test_sequences_dict_two[original_seq])
+                        seq_to_scan = SecondaryBias()
+                        seq_to_scan.sequence = original_seq + append_sequence[0:i3]
+
+            else:
+                for i2 in range(len(self.test_sequences_dict_three)-1):
+                    seq_to_scan = SecondaryBias()
+                    original_seq = self.test_sequences_list_three[i2]
+                    seq_to_scan.sequence = original_seq
+                    append_sequence = self.test_sequences_list_three[i2 + 1]
+                    for i3 in range(len(original_seq)-1):
+                        seq_to_scan.bias_finder()
+                        self.assertEqual(seq_to_scan.three_away[17], self.test_sequences_dict_three[original_seq])
+                        self.assertEqual(int(seq_to_scan.local_sequence[17]), self.test_sequences_dict_three[original_seq])
+                        seq_to_scan = SecondaryBias()
+                        seq_to_scan.sequence = original_seq + append_sequence[0:i3]
+
+    def test_rev_concat_aa(self):
+        for i1 in range(len(self.test_sequences_list)-1):
+            if i1 < 3:
+                for i2 in range(len(self.test_sequences_dict_one)-1):
+                    seq_to_scan = SecondaryBias()
+                    original_seq = self.test_sequences_list_one[i2]
+                    seq_to_scan.sequence = original_seq
+                    append_sequence = self.test_sequences_list_one[i2 + 1]
+                    for i3 in range(len(original_seq)-1):
+                        seq_to_scan.bias_finder()
+                        self.assertEqual(seq_to_scan.one_away[17], self.test_sequences_dict_one[original_seq])
+                        self.assertEqual(int(seq_to_scan.local_sequence[17]), self.test_sequences_dict_one[original_seq])
+                        seq_to_scan = SecondaryBias()
+                        holder = ""
+                        for i in append_sequence[:i3]:
+                            holder = i + holder
+                        seq_to_scan.sequence = holder + original_seq
+
+            elif 2 < i1 < 10:
+                for i2 in range(len(self.test_sequences_dict_two)-1):
+                    seq_to_scan = SecondaryBias()
+                    original_seq = self.test_sequences_list_two[i2]
+                    seq_to_scan.sequence = original_seq
+                    append_sequence = self.test_sequences_list_two[i2 + 1]
+                    for i3 in range(len(original_seq)-1):
+                        seq_to_scan.bias_finder()
+                        self.assertEqual(seq_to_scan.two_away[17], self.test_sequences_dict_two[original_seq])
+                        self.assertEqual(int(seq_to_scan.local_sequence[17]), self.test_sequences_dict_two[original_seq])
+                        seq_to_scan = SecondaryBias()
+                        holder = ""
+                        for i in append_sequence[:i3]:
+                            holder = i + holder
+                        seq_to_scan.sequence = holder + original_seq
+            else:
+                for i2 in range(len(self.test_sequences_dict_three)-1):
+                    seq_to_scan = SecondaryBias()
+                    original_seq = self.test_sequences_list_three[i2]
+                    seq_to_scan.sequence = original_seq
+                    append_sequence = self.test_sequences_list_three[i2 + 1]
+                    for i3 in range(len(original_seq)-1):
+                        seq_to_scan.bias_finder()
+                        self.assertEqual(seq_to_scan.three_away[17], self.test_sequences_dict_three[original_seq])
+                        self.assertEqual(int(seq_to_scan.local_sequence[17]), self.test_sequences_dict_three[original_seq])
+                        seq_to_scan = SecondaryBias()
+                        holder = ""
+                        for i in append_sequence[:i3]:
+                            holder = i + holder
+                        seq_to_scan.sequence = holder + original_seq
+
+
+    def test_concat_whole_sequences(self):
+        seq_to_scan = SecondaryBias()
+
+
+
+
 
 
 class BiasFinderTest(unittest.TestCase):

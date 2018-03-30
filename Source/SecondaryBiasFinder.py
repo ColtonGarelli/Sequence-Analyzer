@@ -92,6 +92,7 @@ class SecondaryBias(Sequence):
         return firstbias
 
     def find_primary_bias(self):
+
         """
         Finds the primary bias defined by the user. Ignores first and last three aa in seq for primary bias calculation
         :return: updates self.Q_index list (no return)
@@ -101,8 +102,12 @@ class SecondaryBias(Sequence):
                 if self.sequence[i] == self.primary_bias:
                     # if statement should ignore Q. Could split loops so if isn't read outside
                     # the first three and last three indexes. Range b/t could be very large
-                    if 2 < i < self.sequence_len-4:
+                    if 2 < i < self.sequence_len-3:
                         self.Q_index.append(i)
+            return True
+
+        else:
+            return False
 
     def secondary_bias_finder(self):
         """
@@ -192,7 +197,6 @@ class SecondaryBias(Sequence):
     #                 return_string = string_to_check[i]
     #
     #     return return_string
-
 
     def user_set_ID(self):
         self.ID = input("Input ID:")
