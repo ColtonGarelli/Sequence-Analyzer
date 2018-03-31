@@ -250,7 +250,7 @@ class SequenceBiasIOTests(unittest.TestCase):
     def test_seqbias_to_file(self):
         list_q_content = [12, 4, 5, 10, 28, 0, 7, 1, 47]
         # one_away I = 16
-        # two_away C =
+        # two_away C =16
         seq_list = ["IKAAESFLPSPVLRTDVMFLVPALKYNPLHRLLIQILGGHETMIQIGHAETATVKFEERLVERIFDKRAGTSSLILIQIDYDEIQIWPGYSILRLGMPEKDEIQIAIITEMKRGAPHIQIQILDFGPAISFKESWLDCVMGNCYNDIASEIKVRGSDLNKVGVRARKECGVATSPINAFINRLLSATYSVGVNFLAVIQISTGIDKVHTNYDKA",
                     "TTNIISELRCTQTCGNAMDNWMGEVLDGTPAFHFGVHCGDTAGPASKRFLLVCLEFSLRGYDLLVRLLLIKDEDANDVHCNQKCSQCCQKCMAHLALGPVTCSSSFNVHYSPGIGALWACIQTCEIDYCIQPCKACVQSCEERSLKVIKADGITAKSFAPMPNGAVDPSTVEYMVKTLIVCLQTCYDENRTVRRFPEKAL",
                     "YPSSALQGGSMSRFLSPTMLRVRASLGFLGINLLPWTLFVIAALPSKSDAQLSSTQPLSAMGMEFIRANTESEINFVDKIHYAYHNLVVDPRKVDSEIAKERCKLLKSIVQVGSVTFATVPGDSYIGISSRSLMFVSEKNTGRELGNKCSAEQDDSSDQKNSGTAECGKLYSYEQWESTREGVDIIRKKTAVTHSNRQIPSVADHPLFLADAHEG"]
@@ -260,10 +260,18 @@ class SequenceBiasIOTests(unittest.TestCase):
         # write one file manually and read it in, check to see it's equal to the read in from the exported file
         for i in range(len(seq_list)):
             seq = SecondaryBias()
-            seq.initialize_sec_bias("tester" + str(i), seq_list[i])
+            seq.initialize_sec_bias("tester", seq_list[i])
             seq.bias_finder()
             seq_objs.append(seq)
         SecondaryBiasFinder.export_sec_bias_files(seq_objs)
+        test_seq_list = SecondaryBiasFinder.processed_data_in("/Users/coltongarelli/Desktop/", "tester")
+        for i in range(len(seq_objs)):
+            self.assertEqual(seq_objs[i].ID, test_seq_list[i].ID)
+            for i1 in range(0,19):
+                self.assertEqual(seq_objs[i].one_away[i1], test_seq_list[i].one_away[i1], )
+                self.assertEqual(seq_objs[i].two_away[i1], test_seq_list[i].two_away[i1])
+                self.assertEqual(seq_objs[i].three_away[i1], test_seq_list[i].three_away[i1])
+                self.assertEqual(seq_objs[i].local_sequence[i1], test_seq_list[i].local_sequence[i1])
 
 
 class CheckAATests(unittest.TestCase):

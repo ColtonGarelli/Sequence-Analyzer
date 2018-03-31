@@ -70,6 +70,7 @@ class SecondaryBias(Sequence):
     def initialize_sec_bias(self, seq_name, seq_in):
         self.ID = seq_name
         self.sequence = seq_in
+        return self
 
     def choose_primary_bias(self):
         """
@@ -250,18 +251,50 @@ def create_SeqBias_object(seq_string):
     seq_object_list.append(new_seq)
     return seq_object_list
 
-def parse_processed_data(seq_objs):
-    stripped = SpreadsheetIO.parse_to_string_list(seq_objs)
+
+def processed_data_in(general_path, file_beginning):
+    general_path = general_path + file_beginning
+    file_string_one = SpreadsheetIO.read_file(general_path+"one_away.csv")
+    file_string_two = SpreadsheetIO.read_file(general_path+"two_away.csv")
+    file_string_three = SpreadsheetIO.read_file(general_path+"three_away.csv")
+    file_string_local = SpreadsheetIO.read_file(general_path+"local_seq.csv")
+    string_list_one = SpreadsheetIO.parse_to_string_list(file_string_one)
+    string_list_two = SpreadsheetIO.parse_to_string_list(file_string_two)
+    string_list_three = SpreadsheetIO.parse_to_string_list(file_string_three)
+    string_list_local = SpreadsheetIO.parse_to_string_list(file_string_local)
     seq_object_list = []
-
     # convert to 2D list of ints (other than first index
-    new_seq = SecondaryBias()
-    seq_param_list = stripped.split(",")
-    new_seq.initialize_processed_sec_bias(seq_param_list[0], seq_param_list[1])
-    seq_object_list.append(new_seq)
+    one_away_list = []
+    two_away_list = []
+    three_away_list = []
+    local_away_list = []
+    for i in range(len(string_list_one)):
+        one_away_list.append(string_list_one[i].split(","))
+        two_away_list.append(string_list_two[i].split(","))
+        three_away_list.append(string_list_three[i].split(","))
+        local_away_list.append(string_list_local[i].split(","))
+    for i1 in range(len(string_list_one)):
+        new_seq = SecondaryBias()
+        new_seq.ID = one_away_list[i1][0]
+        seq_object_list.append(new_seq)
+        index = 0
+        for i2 in range(1, 20):
+            one_away = float(one_away_list[i1][i2])
+            seq_object_list[i1].one_away[index] = one_away
+            seq_object_list[i1].two_away[index] = float(two_away_list[i1][i2])
+            seq_object_list[i1].three_away[index] = float(three_away_list[i1][i2])
+            seq_object_list[i1].local_sequence[index] = float(local_away_list[i1][i2])
+            index += 1
+    return seq_object_list
 
-#
-# def initialize_processed_sec_bias:
+
+# def initialize_processed_sec_bias(ID_list, seq_list, one_away, two_away, three_away, local_seq):
+#     seq_obj_list = []
+#     for i in range(len(seq_list)):
+#         create_obj = SecondaryBias()
+#         create_obj.ID = ID_list[i]
+#     return seq_obj_list
+
 
 def sec_bias_to_string(obj_to_copy, list_to_copy):
     string_to_return = obj_to_copy.ID
