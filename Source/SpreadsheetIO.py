@@ -13,6 +13,9 @@ def read_file(path):
     return sequence_strings
 
 
+
+
+
 def parse_to_string_list(file_strings):
     string = ""
     strip_string = []
@@ -26,7 +29,7 @@ def parse_to_string_list(file_strings):
 
 
 def write_list_to_file(ID, copy_list, file_name):
-    file_to_write = open(file_name, "a+")
+    file_to_write = open(file_name, "w+")
     file_to_write.write(str(ID)+",")
     for i in range(len(copy_list)):
         file_to_write.write(str(copy_list[i]) + ",")

@@ -156,9 +156,7 @@ class SecondaryBias(Sequence):
                 self.one_away_avg[i] = self.one_away[i] / self.Q_content
                 self.two_away_avg[i] = self.two_away[i] / self.Q_content
                 self.three_away_avg[i] = self.three_away[i] / self.Q_content
-                self.local_sequence[i] = self.local_sequence[i] / self.Q_content
-        else:
-            print("no glutamine")
+                self.local_avg[i] = self.local_sequence[i] / self.Q_content
 
     def bias_finder(self):
         """
@@ -197,15 +195,6 @@ class SecondaryBias(Sequence):
     #                 return_string = string_to_check[i]
     #
     #     return return_string
-
-    def user_set_ID(self):
-        self.ID = input("Input ID:")
-
-    def set_ID(self, ID_in):
-        self.ID = ID_in
-
-    def get_ID(self):
-        return self.ID
 
 
 def check_aa_entry(sequence_in):
@@ -261,6 +250,18 @@ def create_SeqBias_object(seq_string):
     seq_object_list.append(new_seq)
     return seq_object_list
 
+def parse_processed_data(seq_objs):
+    stripped = SpreadsheetIO.parse_to_string_list(seq_objs)
+    seq_object_list = []
+
+    # convert to 2D list of ints (other than first index
+    new_seq = SecondaryBias()
+    seq_param_list = stripped.split(",")
+    new_seq.initialize_processed_sec_bias(seq_param_list[0], seq_param_list[1])
+    seq_object_list.append(new_seq)
+
+#
+# def initialize_processed_sec_bias:
 
 def sec_bias_to_string(obj_to_copy, list_to_copy):
     string_to_return = obj_to_copy.ID
