@@ -16,12 +16,15 @@ def read_file(path):
 def parse_to_string_list(file_strings):
     string = ""
     strip_string = []
-    for i in range(len(file_strings)):
+    for i in range(len(file_strings)-1):
         if "\n" in file_strings[i]:
             newstring = file_strings[i]
             strip_string.append(newstring.strip("\n"))
         else:
             strip_string[i].append(file_strings[i])
+    newstring = file_strings[len(file_strings)-1]
+    strip_string.append(newstring)
+    # need something to do add last sequence
     return strip_string
 
 
@@ -29,7 +32,7 @@ def write_list_to_file(ID, copy_list, file_name):
     file_to_write = open(file_name, "a+")
     file_to_write.write(str(ID)+",")
     for i in range(len(copy_list)):
-        file_to_write.write(str(copy_list[i]) + ",")
+        file_to_write.write((str(copy_list[i]) + ","))
     file_to_write.write("\n")
     file_to_write.close()
 

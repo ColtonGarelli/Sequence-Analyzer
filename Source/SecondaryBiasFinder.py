@@ -1,6 +1,7 @@
 import abc
 import SpreadsheetIO
 from SpreadsheetIO import write_list_to_file
+import os
 
 
 '''
@@ -308,27 +309,43 @@ def sec_bias_to_string(obj_to_copy, list_to_copy):
 
 def export_sec_bias_files(sequence_list):
     path = "/Users/coltongarelli/Desktop/"
-    file_name = path + sequence_list[0].ID
+    file_name = sequence_list[1].ID
 
     this_file = file_name + "one_away" + ".csv"
+    file = os.path.join(path, this_file)
+    this_file = file
+    # file_to_write = open(file_path, "x")
+    # file_to_write.close()
     for i in range(len(sequence_list)):
         write_list_to_file(sequence_list[i].ID, sequence_list[i].one_away, this_file)
     for i in range(len(sequence_list)):
         write_list_to_file(sequence_list[i].ID, sequence_list[i].one_away_avg, this_file)
 
     this_file = file_name + "two_away" + ".csv"
+    file = os.path.join(path, this_file)
+    this_file = file
+    # file_to_write = open(os.path.join(path, this_file), "x")
+    # file_to_write.close()
     for i in range(len(sequence_list)):
         write_list_to_file(sequence_list[i].ID, sequence_list[i].two_away, this_file)
     for i in range(len(sequence_list)):
         write_list_to_file(sequence_list[i].ID, sequence_list[i].two_away_avg, this_file)
 
     this_file = file_name + "three_away" + ".csv"
+    file = os.path.join(path, this_file)
+    this_file = file
+    # file_to_write = open(os.path.join(path, this_file), "x")
+    # file_to_write.close()
     for i in range(len(sequence_list)):
         write_list_to_file(sequence_list[i].ID, sequence_list[i].three_away, this_file)
     for i in range(len(sequence_list)):
         write_list_to_file(sequence_list[i].ID, sequence_list[i].three_away_avg, this_file)
 
     this_file = file_name + "local_seq" + ".csv"
+    file = os.path.join(path, this_file)
+    this_file = file
+    # file_to_write = open(os.path.join(path, this_file), "x")
+    # file_to_write.close()
     for i in range(len(sequence_list)):
         write_list_to_file(sequence_list[i].ID, sequence_list[i].local_sequence, this_file)
     for i in range(len(sequence_list)):

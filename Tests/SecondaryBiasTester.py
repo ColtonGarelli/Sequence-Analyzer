@@ -267,7 +267,7 @@ class SequenceBiasIOTests(unittest.TestCase):
         test_seq_list = SecondaryBiasFinder.processed_data_in("/Users/coltongarelli/Desktop/", "tester")
         for i in range(len(seq_objs)):
             self.assertEqual(seq_objs[i].ID, test_seq_list[i].ID)
-            for i1 in range(0,19):
+            for i1 in range(0, 19):
                 self.assertEqual(seq_objs[i].one_away[i1], test_seq_list[i].one_away[i1], )
                 self.assertEqual(seq_objs[i].two_away[i1], test_seq_list[i].two_away[i1])
                 self.assertEqual(seq_objs[i].three_away[i1], test_seq_list[i].three_away[i1])

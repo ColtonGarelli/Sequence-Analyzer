@@ -11,6 +11,7 @@ class Director:
     def run_analysis(self, analyze):
         self._sequence = analyze
         processed = self._sequence.build_sec_bias()
+
         return processed
 
 
@@ -61,7 +62,7 @@ class AnalysisImpl:
         string_list = SpreadsheetIO.parse_to_string_list(file_string)
         sequence_list = []
         for i in range(len(string_list)):
-            self.seq_list.extend(SecondaryBiasFinder.create_SeqBias_object(string_list[i]))
+            sequence_list.extend(SecondaryBiasFinder.create_SeqBias_object(string_list[i]))
         return_list = []
         for i1 in range(len(sequence_list)):
             finding = sequence_list[i1]
