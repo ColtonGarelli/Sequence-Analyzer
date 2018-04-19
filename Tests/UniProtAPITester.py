@@ -1,21 +1,28 @@
 import unittest
 import sys
 sys.path.append('/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzerProject')
-import Source.SecondaryBiasFinder
+import SecondaryBiasFinder
 
 
 class MyTestCase(unittest.TestCase):
-    def test_something(self):
-        self.assertEqual(True, True)
+    def test_create_url(self):
+        self.assertEqual(True, False)
 
-    def test_make_correct_call(self):
-        self.assertTrue(True)
+    def test_send_request(self):
+        # second is actual
+        self.assertEqual(True, False)
 
-    def test_parsed_info(self):
-        self.assertTrue(True)
+    def test_update_job_list(self):
+        self.assertEqual(True, False)
 
-    def test_something_else(self):
-        self.assertTrue(True)
+    def test_check_status(self):
+        self.assertEqual(True, False)
+
+    def test_update_stored_data(self):
+        self.assertEqual(True, False)
+
+    def test_export_stored_data(self):
+        self.assertEqual(True, False)
 
 
 if __name__ == '__main__':

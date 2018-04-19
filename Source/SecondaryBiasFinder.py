@@ -24,7 +24,6 @@ very much work in function
 
 
 class Sequence:
-
     def __init__(self):
         self.ID = ""
         self.sequence = ""
@@ -154,7 +153,7 @@ class SecondaryBias(Sequence):
 
     def find_avg_occurrence(self):
         if self.Q_content != 0:
-            for i in range(0, 19):
+            for i in range(20):
                 self.one_away_avg[i] = self.one_away[i] / self.Q_content
                 self.two_away_avg[i] = self.two_away[i] / self.Q_content
                 self.three_away_avg[i] = self.three_away[i] / self.Q_content

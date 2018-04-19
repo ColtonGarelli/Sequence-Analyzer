@@ -1,7 +1,7 @@
 import SecondaryBiasFinder
 from Operation import Director, AnalysisImpl, Representation
 from os.path import join
-import PredictionRelay
+import SpreadsheetIO
 import requests
 # Colton Garelli
 
@@ -44,14 +44,15 @@ def remove_line_break(sequence):
 
 
 def main():
-    sequence = ""
+    # sequence = ""
     # request = requests.post("https://www.uniprot.org/uniprot/?query=reviewed:yes&random=yes")
-    # print(request.content.decode('utf-8'))
-    path_in = "/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/References/SEQUENCEANALYZER_Experiment1_inputfile_ACTUAL.csv"
-    # file_representation = Representation()
-    analysis = AnalysisImpl(path_in)
-    director = Director()
-    processed = director.run_analysis(analysis)
-    SecondaryBiasFinder.export_sec_bias_files(processed)
+    # print(request.status_code)
+    SpreadsheetIO.fasta_parser()
+    # path_in = "/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/References/SEQUENCEANALYZER_Experiment1_inputfile_ACTUAL.csv"
+    # # file_representation = Representation()
+    # analysis = AnalysisImpl(path_in)
+    # director = Director()
+    # processed = director.run_analysis(analysis)
+    # SecondaryBiasFinder.export_sec_bias_files(processed)
 
 main()

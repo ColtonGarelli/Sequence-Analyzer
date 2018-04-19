@@ -1,4 +1,5 @@
 from os.path import join
+from threading import Timer
 
 
 def read_file(path):
@@ -62,10 +63,19 @@ def write_list_to_file(ID, copy_list, file_name):
 #
 
 # implement later
-def fasta_parser(self):
-    something = True
+def fasta_parser():
+    n = 0
+    file = join("/Users/coltongarelli/", "SequenceAnalyzer/SequenceAnalyzer2.1/References/SEQUENCEANALYZER_Experiment1_inputfile_ACTUAL.csv")
+    new_file =join("/Users/coltongarelli/Desktop/", "SEQUENCEANALYZER_Experiment1_inputfile_fasta.txt")
+    fasta_formatted = open(new_file, 'w+')
+    with open(file, 'r') as f:
+        for line in f:
+            split = line.split(',')
+            string_to_write = '>' + split[0] + '\n' + split[1]
+            fasta_formatted.write(string_to_write)
 
-    return something
+    f.close()
+    fasta_formatted.close()
 
 
 def convert_to_ints(string_in):
@@ -75,3 +85,13 @@ def convert_to_ints(string_in):
         return_list = int(return_list)
     return return_list
 
+    def timer(status, url):
+        t = Timer(10, self.get_update(url))
+        t.run()
+        t.start()
+        while status != "done":
+            t.run()
+            status = t.start()
+            print(status)
+
+        t.cancel()
