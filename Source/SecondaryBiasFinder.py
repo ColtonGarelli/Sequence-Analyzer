@@ -23,11 +23,16 @@ very much work in function
 '''
 
 
-class Sequence:
+class Sequence(abc.ABCMeta):
+
     def __init__(self):
-        self.ID = ""
-        self.sequence = ""
-        self.amino_acids = "ACDEFGHIKLMNPQRSTVWY"
+        super().__init__(o)
+        self.sequence = None
+        self.ID = None
+
+    @abc.abstractmethod
+    def initialize_sec_bias(self, seq_name, seq_in):
+        raise NotImplementedError
 
 
 class SecondaryBias(Sequence):
@@ -68,6 +73,12 @@ class SecondaryBias(Sequence):
     #  localseq is the aggregate
 
     def initialize_sec_bias(self, seq_name, seq_in):
+        """
+        Sets the sequence and sequence ID of a sequence object
+        :param seq_name:
+        :param seq_in:
+        :return:
+        """
         self.ID = seq_name
         self.sequence = seq_in
         return self

@@ -1,5 +1,6 @@
-from SecondaryBiasFinder import Sequence, SecondaryBias
-import SecondaryBiasFinder, SpreadsheetIO
+
+import SecondaryBiasFinder
+import SpreadsheetIO
 import abc
 
 
@@ -11,7 +12,6 @@ class Director:
     def run_analysis(self, analyze):
         self._sequence = analyze
         processed = self._sequence.build_sec_bias()
-
         return processed
 
 

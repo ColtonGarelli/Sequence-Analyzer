@@ -42,7 +42,6 @@ def UniProt_url_creator(self):
 def FELLS_url_creator():
     pass
 
-
 def FELLS_send_request():
     pass
 
