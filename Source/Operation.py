@@ -16,7 +16,6 @@ class Director:
 
 
 class Representation:
-    something = 0
 
     def __init__(self):
         self.file_out_path = ""
@@ -29,15 +28,15 @@ class Analysis(abc.ABCMeta):
 
     @abc.abstractmethod
     def build_sec_bias(self):
-        pass
+        raise NotImplementedError
 
     @abc.abstractmethod
     def build_prediciton_A(self):
-        pass
+        raise NotImplementedError
 
     @abc.abstractmethod
     def build_prediction_B(self):
-        pass
+        raise NotImplementedError
 
 
 class AnalysisImpl:

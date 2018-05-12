@@ -85,7 +85,7 @@ def convert_to_ints(string_in):
         return_list = int(return_list)
     return return_list
 
-    def timer(status, url):
+def timer(status, url):
         t = Timer(10, self.get_update(url))
         t.run()
         t.start()
