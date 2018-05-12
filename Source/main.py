@@ -2,7 +2,7 @@ import SecondaryBiasFinder
 from Operation import Director, AnalysisImpl, Representation
 from os.path import join
 import SpreadsheetIO
-import requests
+
 # Colton Garelli
 
 def analyze_group(self, list_index):
@@ -48,11 +48,11 @@ def main():
     # request = requests.post("https://www.uniprot.org/uniprot/?query=reviewed:yes&random=yes")
     # print(request.status_code)
     SpreadsheetIO.fasta_parser()
-    # path_in = "/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/References/SEQUENCEANALYZER_Experiment1_inputfile_ACTUAL.csv"
+    path_in = "/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/References/SEQUENCEANALYZER_Experiment1_inputfile_ACTUAL.csv"
     # # file_representation = Representation()
-    # analysis = AnalysisImpl(path_in)
-    # director = Director()
-    # processed = director.run_analysis(analysis)
-    # SecondaryBiasFinder.export_sec_bias_files(processed)
+    analysis = AnalysisImpl(path_in)
+    director = Director()
+    processed = director.run_analysis(analysis)
+    SecondaryBiasFinder.export_sec_bias_files(processed)
 
 main()

@@ -2,17 +2,17 @@ import unittest
 import sys
 sys.path.append('/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzerProject')
 import SecondaryBiasFinder
-import UniProtAPI
+import DatabaseAPI
 
 
 class UniProtTester(unittest.TestCase):
 
     def test_create_url_test(self):
-        test_database = UniProtAPI.UniProtDatabase()
+        test_database = DatabaseAPI.UniProtDatabase()
         query_string = "insulin"
         query = test_database.create_request_url(query_string, "protein names, organism")
 
-        self.assertEqual(True, False)
+        self.assertEqual(query, "")
 
     def test_send_request_test(self):
         # second is actual

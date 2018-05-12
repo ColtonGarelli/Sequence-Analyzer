@@ -25,11 +25,6 @@ very much work in function
 
 class Sequence(abc.ABCMeta):
 
-    def __init__(self):
-        super().__init__(o)
-        self.sequence = None
-        self.ID = None
-
     @abc.abstractmethod
     def initialize_sec_bias(self, seq_name, seq_in):
         raise NotImplementedError
