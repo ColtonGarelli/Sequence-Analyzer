@@ -3,7 +3,11 @@ from threading import Timer
 
 
 def read_file(path):
-
+    """
+    Reads files in from the given path
+    :param path: the full path of the desired file
+    :return: a list of id,sequence formatted strings
+    """
     sequence_file = open(path, "r")
     sequence_strings = sequence_file.readlines()
     sequence_file.close()
@@ -14,28 +18,49 @@ def read_file(path):
     return sequence_strings
 
 
-def parse_to_string_list(file_strings):
-    string = ""
-    strip_string = []
-    for i in range(len(file_strings)-1):
-        if "\n" in file_strings[i]:
-            newstring = file_strings[i]
-            strip_string.append(newstring.strip("\n"))
-        else:
-            strip_string[i].append(file_strings[i])
-    newstring = file_strings[len(file_strings)-1]
-    strip_string.append(newstring)
+def parse_to_string_list(file_string):
+    """
+    Formats file strings to a list of ["id","sequence"] lists (ex. [[id1, sequence1],[id2, sequence2], [id3, sequence3]]
+    :param file_string: a list of "id,sequence" strings from a file
+    :return: a list formatted as in the example above
+    """
+    new_list = []
+    for i in range(len(file_string)):
+        file_string[i] = file_string[i].strip("\n")
+        new_list.append(file_string[i].split(","))
     # need something to do add last sequence
-    return strip_string
+    return new_list
 
 
-def write_list_to_file(ID, copy_list, file_name):
-    file_to_write = open(file_name, "a+")
+def export_sec_bias_helper(ID, copy_list, path):
+    """
+    Writes the file for exporting secondary bias data.
+    :param ID: The id associated with the sequence being processed
+    :param copy_list: a list to be written in csv format
+    :param path: the file path writing to
+    :return: nothing
+    """
+    file_to_write = open(path, "a+")
     file_to_write.write(str(ID)+",")
     for i in range(len(copy_list)):
         file_to_write.write((str(copy_list[i]) + ","))
     file_to_write.write("\n")
     file_to_write.close()
+
+
+'''
+********************************************************************
+
+
+
+
+Scratch work below
+
+
+
+
+********************************************************************
+'''
 
 
 # def format_for_file(group_list):
@@ -48,8 +73,8 @@ def write_list_to_file(ID, copy_list, file_name):
 #             line += seq_to_format.primarybias + ","
 #             # format lists for output
 #             line += "\n"
-#
-#
+
+
 # def write(filename):
 #
 #     path = "/Users/coltongarelli/"
@@ -85,13 +110,24 @@ def convert_to_ints(string_in):
         return_list = int(return_list)
     return return_list
 
-def timer(status, url):
-        t = Timer(10, self.get_update(url))
-        t.run()
-        t.start()
-        while status != "done":
-            t.run()
-            status = t.start()
-            print(status)
 
-        t.cancel()
+def remove_spaces(self, string_to_check):
+    if " " in string_to_check:
+        for i in range(len(string_to_check)-1):
+            if string_to_check[i] == " " or string_to_check[i]+string_to_check[i+1] == "\n":
+                pass
+            else:
+                return_string = string_to_check[i]
+
+    return return_string
+
+# def timer(status, url):
+#         t = Timer(10, self.get_update(url))
+#         t.run()
+#         t.start()
+#         while status != "done":
+#             t.run()
+#             status = t.start()
+#             print(status)
+#
+#         t.cancel()

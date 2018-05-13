@@ -1,7 +1,9 @@
-import abc
+
 import SpreadsheetIO
-from SpreadsheetIO import write_list_to_file
+import abc
+from SpreadsheetIO import export_sec_bias_helper
 import os
+
 
 
 '''
@@ -23,28 +25,54 @@ very much work in function
 '''
 
 
-class Sequence:
+class SequenceInterface(abc.ABCMeta):
+    """
+    Still trying to decide whether abstraction is worth it for this part. It probably is but I need to think about it
+    """
+    @abc.abstractmethod
+    def get_id(cls):
+        raise NotImplementedError
+
+
+class SequenceImpl:
+    """
+    Parent class for all of the sequence analysis classes. They inherit from this class in an effort to enforce some
+    uniformity and promote flexibility in the case that this program begins to chew up substantial overhead.
+
+    :var self.amino_acids: should probably be a class variable. need to refactor.
+    
+    :var self.id: an id associated with the given sequence
+    :var self.sequence: the sequence associated with the provided id
+    """
     def __init__(self):
-        self.ID = ""
-        self.sequence = ""
+        self.id = None
+        self.sequence = None
         self.amino_acids = "ACDEFGHIKLMNPQRSTVWY"
 
+    def initialize_sequence_object(self, ID, sequence):
+        self.id = ID
+        self.sequence = sequence
 
-class SecondaryBias(Sequence):
+    def get_id(self):
+        return self.id
+
+    def get_sequence(self):
+        return self.sequence
+
+
+class SecondaryBias(SequenceImpl):
     """
-    SequenceBias extends the Sequence class. SequenceBias has methods prompt input determines primary
+    SecondaryBias extends the Sequence class. SecondaryBias has methods prompt input determines primary
     and secondary sequence biases. Is used primarily to find primary glutamine bias, and secondary
-    biases at the +/- 1,2,3, and an average of these 6 positions, for each Q.
+    biases at the +/- 1,2,3, and a total of these 6 positions, for each Q.
     """
 
     def __init__(self):
-        super(Sequence).__init__()
+        super().__init__()
         self.ID = ""
         self.sequence = ""
-        self.amino_acids = "ACDEFGHIKLMNPQRSTVWY"
         self.amino_acid_dict = dict(A=0, C=1, D=2, E=3, F=4, G=5, H=6, I=7, K=8, L=9,
                                     M=10, N=11, P=12, Q=13, R=14, S=15, T=16, V=17, W=18, Y=19)
-
         self.primary_bias = "Q"
         self.sequence_len = 0
         self.Q_index = []
@@ -68,34 +96,18 @@ class SecondaryBias(Sequence):
     #  localseq is the aggregate
 
     def initialize_sec_bias(self, seq_name, seq_in):
+        """
+        Effectively a constructor to create a SecondaryBias object from an id-sequence pair
+        :param seq_name: a sequence id
+        :param seq_in: the sequence
+        """
         self.ID = seq_name
         self.sequence = seq_in
-        return self
-
-    def choose_primary_bias(self):
-        """
-        Allows the user to select a primary amino acid to search for secondary biases around.
-
-        :return: A valid amino acid single letter code as a String object
-        """
-        # have a UI method to interact w user
-        input_mode = input('1 for glutamine 2 for other ')
-        while (input_mode != '1') and (input_mode != '2'):
-            input_mode = input('1 for glutamine 2 for other ')
-        input_aa = int(input_mode)
-        if input_aa == 2:
-            firstbias = input('Please enter a primary bias to search ')
-            check_bias_entry = self.check_aa_entry(firstbias)
-            while not check_bias_entry:
-                check_bias_entry = self.check_aa_entry(firstbias)
-        else:
-            firstbias = "Q"
-        return firstbias
 
     def find_primary_bias(self):
-
         """
-        Finds the primary bias defined by the user. Ignores first and last three aa in seq for primary bias calculation
+        Finds the primary bias defined by the user. Ignores first and last three aa in seq for primary bias calculation.
+        Stores the index of each primary bias residue in the sequence string in self.primary_bias
         :return: updates self.Q_index list (no return)
         """
         if self.primary_bias in self.sequence:
@@ -112,8 +124,8 @@ class SecondaryBias(Sequence):
 
     def secondary_bias_finder(self):
         """
-        Finds amino acids adjacent to
-        :return:
+        Finds amino acids at one, two, and three residues from the desired primary bias. A local tally is also computed.
+        :ivar self.one_away, self.two_away,self.three_away, self.three_away_avg, self.local_sequence: get updated
         """
 
         for i in range(self.Q_content):
@@ -152,6 +164,10 @@ class SecondaryBias(Sequence):
             self.local_sequence[self.amino_acid_dict[self.sequence[Q_plus3]]] += 1
 
     def find_avg_occurrence(self):
+        """
+        Divides each index of +/- 1, 2, 3 and local lists by the total primary bias residue content (average)
+        :ivar: updates +/- 1, 2, 3, and local avg lists
+        """
         if self.Q_content != 0:
             for i in range(20):
                 self.one_away_avg[i] = self.one_away[i] / self.Q_content
@@ -161,12 +177,11 @@ class SecondaryBias(Sequence):
 
     def bias_finder(self):
         """
-        Is effectively a constructor for the SequenceBias class.  bias_finder calls UI functions,
-        runs bias finders on the sequence input, and updates SequenceBias object.
-        :ivar:
-        :ivar:
-        :ivar:
-        :cvar:
+        Runs the bias finding analysis. Capitalizes self.sequence string;
+        calls: find_primary_bias(), secondary_bias_finder(), find_avg_occurrence()
+        :ivar self.sequence: updated with uppercase sequence
+        :ivar self.Q_content: length of self.Q_index list
+        :ivar self.sequence_len:
         """
 
         # change user in
@@ -185,74 +200,50 @@ class SecondaryBias(Sequence):
         # self.print_q_normalized()
         return True
 
-    #
-    # def remove_spaces(self, string_to_check):
-    #
-    #     if " " in string_to_check:
-    #         for i in range(len(string_to_check)-1):
-    #             if string_to_check[i] == " " or string_to_check[i]+string_to_check[i+1] == "\n":
-    #                 pass
-    #             else:
-    #                 return_string = string_to_check[i]
-    #
-    #     return return_string
-
-
-def check_aa_entry(sequence_in):
-    """`
-    Ensures only natural amino acids are entered when user inputs a sequence manually.
-    :param sequence_in: String of characters
-    :return: True if all characters entered are natural amino acids, otherwise False
-    """
-
-    not_aa = "BJOUXZ"
-    alpha = sequence_in.isalpha()
-    if alpha:
-        sequence_in = sequence_in.upper()
-        bad_count = 0
-        for i in range(0, 6):
-            if not_aa[i] in sequence_in:
-                bad_count = bad_count + 1
-        if bad_count == 0:
-            good_entry = True
-        else:
-            good_entry = False
-
-    else:
-        good_entry = False
-    return good_entry
-
-
-def print_q_normalized(secbias_in):
-    if secbias_in.Q_content != 0:
-        print("\n\nOne Away\t\t\t\t\t Two Away\t\t\t\t\t Three Away\t\t\t\t\t Local")
-        for i in range(0, 19):
-            print(secbias_in.amino_acids[i],
-                  round(secbias_in.one_away_avg[i], 3), "per", secbias_in.primary_bias,
-                    "\t\t\t\t", secbias_in.amino_acids[i],
-                  round(secbias_in.two_away_avg[i], 3), "per", secbias_in.primary_bias,
-                  "\t\t\t\t", secbias_in.amino_acids[i],
-                  round(secbias_in.three_away_avg[i], 3), "per", secbias_in.primary_bias,
-                  "\t\t\t\t", secbias_in.amino_acids[i],
-                  round(secbias_in.local_avg[i], 3), "per", secbias_in.primary_bias)
-    else:
-        print("\n\nNo primary bias\n")
-
 
 def create_SeqBias_object(seq_string):
+    """
+    Creates SecondaryBias objects from a sequence by splitting an id-sequence pair  (ex. "id,sequence")
+    :param seq_string: "id,sequence"
+    :return: a new SecondaryBias object with id and sequence initialized to id and sequence from the in_string
+    """
     # 2D string array[i][0] --from reading csv
     # call create obj between each
-    seq_object_list = []
-
     # convert to 2D list of ints (other than first index
     new_seq = SecondaryBias()
     seq_param_list = seq_string.split(",")
     new_seq.initialize_sec_bias(seq_param_list[0], seq_param_list[1])
-    seq_object_list.append(new_seq)
-    return seq_object_list
+    return new_seq
+
+
+def create_sequence_objects(string_list):
+    """
+    Creates a sequence object from a pre-split string list
+    :param string_list: ["id", "sequence"
+    :return: SequenceImpl object (parent for the various sequence data objects)
+    """
+
+    new_seq = SequenceImpl()
+    new_seq.initialize_sequence_object(string_list[0], string_list[1])
+    return new_seq
 
 
 def processed_data_in(general_path, file_beginning):
+    """
+    Creates a list of SecondaryBias objects from file.
+
+    ****
+    ****
+    ****
+    NOT TESTED
+    ****
+    ****
+    ****
+
+    :param general_path:
+    :param file_beginning:
+    :return: List of SecondaryBias objects
+    """
     general_path = general_path + file_beginning
     file_string_one = SpreadsheetIO.read_file(general_path+"one_away.csv")
     file_string_two = SpreadsheetIO.read_file(general_path+"two_away.csv")
@@ -269,10 +260,10 @@ def processed_data_in(general_path, file_beginning):
     three_away_list = []
     local_away_list = []
     for i in range(len(string_list_one)):
-        one_away_list.append(string_list_one[i].split(","))
-        two_away_list.append(string_list_two[i].split(","))
-        three_away_list.append(string_list_three[i].split(","))
-        local_away_list.append(string_list_local[i].split(","))
+        one_away_list.append(string_list_one[i])
+        two_away_list.append(string_list_two[i])
+        three_away_list.append(string_list_three[i])
+        local_away_list.append(string_list_local[i])
     for i1 in range(len(string_list_one)):
         new_seq = SecondaryBias()
         new_seq.ID = one_away_list[i1][0]
@@ -316,9 +307,9 @@ def export_sec_bias_files(sequence_list):
     # file_to_write = open(file_path, "x")
     # file_to_write.close()
     for i in range(len(sequence_list)):
-        write_list_to_file(sequence_list[i].ID, sequence_list[i].one_away, this_file)
+        export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].one_away, this_file)
     for i in range(len(sequence_list)):
-        write_list_to_file(sequence_list[i].ID, sequence_list[i].one_away_avg, this_file)
+        export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].one_away_avg, this_file)
 
     this_file = file_name + "two_away" + ".csv"
     file = os.path.join(path, this_file)
@@ -326,9 +317,9 @@ def export_sec_bias_files(sequence_list):
     # file_to_write = open(os.path.join(path, this_file), "x")
     # file_to_write.close()
     for i in range(len(sequence_list)):
-        write_list_to_file(sequence_list[i].ID, sequence_list[i].two_away, this_file)
+        export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].two_away, this_file)
     for i in range(len(sequence_list)):
-        write_list_to_file(sequence_list[i].ID, sequence_list[i].two_away_avg, this_file)
+        export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].two_away_avg, this_file)
 
     this_file = file_name + "three_away" + ".csv"
     file = os.path.join(path, this_file)
@@ -336,9 +327,9 @@ def export_sec_bias_files(sequence_list):
     # file_to_write = open(os.path.join(path, this_file), "x")
     # file_to_write.close()
     for i in range(len(sequence_list)):
-        write_list_to_file(sequence_list[i].ID, sequence_list[i].three_away, this_file)
+        export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].three_away, this_file)
     for i in range(len(sequence_list)):
-        write_list_to_file(sequence_list[i].ID, sequence_list[i].three_away_avg, this_file)
+        export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].three_away_avg, this_file)
 
     this_file = file_name + "local_seq" + ".csv"
     file = os.path.join(path, this_file)
@@ -346,9 +337,9 @@ def export_sec_bias_files(sequence_list):
     # file_to_write = open(os.path.join(path, this_file), "x")
     # file_to_write.close()
     for i in range(len(sequence_list)):
-        write_list_to_file(sequence_list[i].ID, sequence_list[i].local_sequence, this_file)
+        export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].local_sequence, this_file)
     for i in range(len(sequence_list)):
-        write_list_to_file(sequence_list[i].ID, sequence_list[i].local_avg, this_file)
+        export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].local_avg, this_file)
 
     return path + file_name
 

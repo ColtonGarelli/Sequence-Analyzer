@@ -51,9 +51,10 @@ def main():
     SpreadsheetIO.fasta_parser()
     path_in = "/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/References/SEQUENCEANALYZER_Experiment1_inputfile_ACTUAL.csv"
     # # file_representation = Representation()
-    analysis = AnalysisImpl(path_in)
+
     director = Director()
-    processed = director.run_analysis(analysis)
+    director.analysis_helper(path_in)
+    processed = director.run_analysis()
     SecondaryBiasFinder.export_sec_bias_files(processed)
 
 main()

@@ -1,7 +1,8 @@
 import unittest
 import SecondaryBiasFinder
-from SecondaryBiasFinder import SecondaryBias, Sequence
+from SecondaryBiasFinder import SecondaryBias, SequenceImpl
 from Operation import Director, AnalysisImpl
+import UserInterface
 
 
 class InductiveBiasFinderTest(unittest.TestCase):
@@ -235,17 +236,18 @@ class BiasFinderTest(unittest.TestCase):
 class SequenceBiasIOTests(unittest.TestCase):
 
     def test_file_to_seqbias(self):
-        seq_list = ["IKAAESFLPSPVLRTDVMFLVPALKYNPLHRLLIQILGGHETMIQIGHAETATVKFEERLVERIFDKRAGTSSLILIQIDYDEIQIWPGYSILRLGMPEKDEIQIAIITEMKRGAPHIQIQILDFGPAISFKESWLDCVMGNCYNDIASEIKVRGSDLNKVGVRARKECGVATSPINAFINRLLSATYSVGVNFLAVIQISTGIDKVHTNYDKA",
-                    "TTNIISELRCTQTCGNAMDNWMGEVLDGTPAFHFGVHCGDTAGPASKRFLLVCLEFSLRGYDLLVRLLLIKDEDANDVHCNQKCSQCCQKCMAHLALGPVTCSSSFNVHYSPGIGALWACIQTCEIDYCIQPCKACVQSCEERSLKVIKADGITAKSFAPMPNGAVDPSTVEYMVKTLIVCLQTCYDENRTVRRFPEKAL",
-                    "YPSSALQGGSMSRFLSPTMLRVRASLGFLGINLLPWTLFVIAALPSKSDAQLSSTQPLSAMGMEFIRANTESEINFVDKIHYAYHNLVVDPRKVDSEIAKERCKLLKSIVQVGSVTFATVPGDSYIGISSRSLMFVSEKNTGRELGNKCSAEQDDSSDQKNSGTAECGKLYSYEQWESTREGVDIIRKKTAVTHSNRQIPSVADHPLFLADAHEG"]
+        seq_list = [["test1", "IKAAESFLPSPVLRTDVMFLVPALKYNPLHRLLIQILGGHETMIQIGHAETATVKFEERLVERIFDKRAGTSSLILIQIDYDEIQIWPGYSILRLGMPEKDEIQIAIITEMKRGAPHIQIQILDFGPAISFKESWLDCVMGNCYNDIASEIKVRGSDLNKVGVRARKECGVATSPINAFINRLLSATYSVGVNFLAVIQISTGIDKVHTNYDKA"],
+                    ["test2", "TTNIISELRCTQTCGNAMDNWMGEVLDGTPAFHFGVHCGDTAGPASKRFLLVCLEFSLRGYDLLVRLLLIKDEDANDVHCNQKCSQCCQKCMAHLALGPVTCSSSFNVHYSPGIGALWACIQTCEIDYCIQPCKACVQSCEERSLKVIKADGITAKSFAPMPNGAVDPSTVEYMVKTLIVCLQTCYDENRTVRRFPEKAL"],
+                    ["test3", "YPSSALQGGSMSRFLSPTMLRVRASLGFLGINLLPWTLFVIAALPSKSDAQLSSTQPLSAMGMEFIRANTESEINFVDKIHYAYHNLVVDPRKVDSEIAKERCKLLKSIVQVGSVTFATVPGDSYIGISSRSLMFVSEKNTGRELGNKCSAEQDDSSDQKNSGTAECGKLYSYEQWESTREGVDIIRKKTAVTHSNRQIPSVADHPLFLADAHEG"]]
 
-        path_in = "/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/Tests/SequenceBiasIOTestFile"
-        analysis = AnalysisImpl(path_in)
+        path_in = "/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/Tests/Resources/SequenceBiasIOTestFile"
+
         director = Director()
-        processed = director.run_analysis(analysis)
-        for i in range(len(analysis.seq_list)):
-            check_seq = analysis.seq_list[i]
-            self.assertEqual(seq_list[i], check_seq.sequence)
+        director.file_in_path = path_in
+        returned = director.analysis_helper(path_in)
+        director.run_analysis()
+        for i in range(len(seq_list)):
+            self.assertEqual(director.master_list[i], seq_list[i])
 
     def test_seqbias_to_file(self):
         list_q_content = [12, 4, 5, 10, 28, 0, 7, 1, 47]
@@ -306,19 +308,19 @@ class CheckAATests(unittest.TestCase):
         post_test = SecondaryBias()
         for i in range(10):
             post_test.sequence = BiasFinderTest.seq_list[i]
-            self.assertTrue(SecondaryBiasFinder.check_aa_entry(post_test.sequence))
+            self.assertTrue(UserInterface.check_aa_entry(post_test.sequence))
 
     def test_check_aa_entry_fail(self):
-        self.assertFalse(SecondaryBiasFinder.check_aa_entry(self.seq_2.sequence))
-        self.assertFalse(SecondaryBiasFinder.check_aa_entry(self.seq_3.sequence))
-        self.assertFalse(SecondaryBiasFinder.check_aa_entry(self.seq_4.sequence))
-        self.assertFalse(SecondaryBiasFinder.check_aa_entry(self.seq_5.sequence))
-        self.assertFalse(SecondaryBiasFinder.check_aa_entry(self.seq_6.sequence))
-        self.assertFalse(SecondaryBiasFinder.check_aa_entry(self.seq_7.sequence))
-        self.assertFalse(SecondaryBiasFinder.check_aa_entry(self.seq_8.sequence))
-        self.assertFalse(SecondaryBiasFinder.check_aa_entry(self.seq_9.sequence))
-        self.assertFalse(SecondaryBiasFinder.check_aa_entry(self.seq_10.sequence))
-        self.assertFalse(SecondaryBiasFinder.check_aa_entry(self.seq_11.sequence))
+        self.assertFalse(UserInterface.check_aa_entry(self.seq_2.sequence))
+        self.assertFalse(UserInterface.check_aa_entry(self.seq_3.sequence))
+        self.assertFalse(UserInterface.check_aa_entry(self.seq_4.sequence))
+        self.assertFalse(UserInterface.check_aa_entry(self.seq_5.sequence))
+        self.assertFalse(UserInterface.check_aa_entry(self.seq_6.sequence))
+        self.assertFalse(UserInterface.check_aa_entry(self.seq_7.sequence))
+        self.assertFalse(UserInterface.check_aa_entry(self.seq_8.sequence))
+        self.assertFalse(UserInterface.check_aa_entry(self.seq_9.sequence))
+        self.assertFalse(UserInterface.check_aa_entry(self.seq_10.sequence))
+        self.assertFalse(UserInterface.check_aa_entry(self.seq_11.sequence))
 
 
 if __name__ == '__main__':
