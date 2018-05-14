@@ -3,4 +3,9 @@
 
 [User Guide](https://docs.google.com/document/d/1DbUXA-N5BZDuwBSAe-zx5VL8K-RHFfGzjeIwuc6bsDE/edit?usp=sharing)
 
-https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet
+
+[Use-Case Diagram](https://www.lucidchart.com/invitations/accept/8e87e329-23d9-4da9-b7e5-a0e690feed05)
+
+
+
+[markdown resource](https://github.com/adam-p/markdown-here/wiki/Markdown-Cheatsheet)
