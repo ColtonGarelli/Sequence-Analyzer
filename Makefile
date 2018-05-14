@@ -7,6 +7,7 @@ SPHINXBUILD   = sphinx-build
 SPHINXPROJ    = SequenceAnalyzer
 SOURCEDIR     = source
 BUILDDIR      = .
+GH_PAGES_SOURCES = source code libuv Makefile
 
 # Put it first so that "make" without argument is like "make help".
 help:
