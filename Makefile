@@ -5,7 +5,7 @@
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 SPHINXPROJ    = SequenceAnalyzer
-SOURCEDIR     = source
+SOURCEDIR     = Source
 BUILDDIR      = .
 GH_PAGES_SOURCES = source code libuv Makefile
 
