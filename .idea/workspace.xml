@@ -1,48 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d7bbb029-bcaf-48ad-b10b-48c7b7feb115" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/SequenceAnalyzer2.1.iml" afterPath="$PROJECT_DIR$/.idea/SequenceAnalyzer2.1.iml" />
-      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" afterPath="$PROJECT_DIR$/.idea/misc.xml" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Makefile" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Source/Sequence Analyzer Documentation Guide.rst" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/Source/conf.py" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/Sequence Analyzer Documentation Guide.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/.buildinfo" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/.nojekyll" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_sources/Sequence Analyzer Documentation Guide.rst.txt" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/ajax-loader.gif" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/alabaster.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/basic.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/comment-bright.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/comment-close.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/comment.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/custom.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/doctools.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/documentation_options.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/down-pressed.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/down.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/file.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/jquery-3.2.1.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/jquery.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/minus.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/plus.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/pygments.css" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/searchtools.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/underscore-1.3.1.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/underscore.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/up-pressed.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/up.png" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/_static/websupport.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/genindex.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/objects.inv" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/search.html" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/docs/html/searchindex.js" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/doctrees/Sequence Analyzer Documentation Guide.doctree" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/doctrees/environment.pickle" afterPath="" />
-      <change beforePath="$PROJECT_DIR$/make.bat" afterPath="" />
-    </list>
+    <list default="true" id="d7bbb029-bcaf-48ad-b10b-48c7b7feb115" name="Default" comment="" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -55,21 +14,11 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Source/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+            <state relative-caret-position="225">
+              <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
               <folding>
                 <element signature="e#0#26#0" expanded="true" />
               </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="masterdocfile.rst" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Source/masterdocfile.rst">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="300">
-              <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-              <folding />
             </state>
           </provider>
         </entry>
@@ -300,7 +249,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Python6 interpreter">
+  <component name="RunManager" selected="Python docs.documentation">
     <configuration name="Python6 interpreter" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -371,6 +320,22 @@
       <option name="docutils_task" value="html" />
       <option name="docutils_open_in_browser" value="false" />
     </configuration>
+    <configuration name="documentation" type="docs" factoryName="Sphinx task">
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <envs />
+      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
+      <option name="WORKING_DIRECTORY" value="" />
+      <option name="IS_MODULE_SDK" value="false" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <module name="SequenceAnalyzer2.1" />
+      <option name="docutils_input_file" value="$PROJECT_DIR$" />
+      <option name="docutils_output_file" value="$USER_HOME$/Desktop" />
+      <option name="docutils_params" value="" />
+      <option name="docutils_task" value="html" />
+      <option name="docutils_open_in_browser" value="false" />
+    </configuration>
     <configuration name="FellsAPITest" type="tests" factoryName="Unittests">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -401,12 +366,13 @@
       <option name="_new_target" value="&quot;$PROJECT_DIR$/Tests/SecondaryBiasTester.py&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
     </configuration>
-    <list size="5">
+    <list size="6">
       <item index="0" class="java.lang.String" itemvalue="Python.Python6 interpreter" />
       <item index="1" class="java.lang.String" itemvalue="Python.csvIO" />
       <item index="2" class="java.lang.String" itemvalue="Python.main" />
-      <item index="3" class="java.lang.String" itemvalue="Python tests.SecondaryBiasTester" />
-      <item index="4" class="java.lang.String" itemvalue="Python tests.FellsAPITest" />
+      <item index="3" class="java.lang.String" itemvalue="Python docs.documentation" />
+      <item index="4" class="java.lang.String" itemvalue="Python tests.SecondaryBiasTester" />
+      <item index="5" class="java.lang.String" itemvalue="Python tests.FellsAPITest" />
     </list>
   </component>
   <component name="ShelveChangesManager" show_recycled="false">
@@ -459,7 +425,6 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="7" y="23" width="832" height="877" extended-state="0" />
-    <editor active="true" />
     <layout>
       <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39950678" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -468,17 +433,27 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992327" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992327" sideWeight="0.49598163" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24907522" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.57544756" sideWeight="0.49524942" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.57544756" sideWeight="0.49524942" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29411766" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
+      <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Message" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
       <window_info id="Commander" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="0" side_tool="false" content_ui="tabs" />
+      <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992327" sideWeight="0.50401837" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Inspection" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.4" sideWeight="0.5" order="5" side_tool="false" content_ui="tabs" />
+      <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30306906" sideWeight="0.4856487" order="2" side_tool="false" content_ui="tabs" />
+      <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992327" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992327" sideWeight="0.49598163" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.57544756" sideWeight="0.49524942" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Hierarchy" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="2" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.39950678" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="Inspection Results" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3286445" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24907522" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
       <window_info id="Ant Build" active="false" anchor="right" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
+      <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29411766" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
+      <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
     </layout>
     <layout-to-restore>
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -860,7 +835,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-1941">
           <caret line="22" column="0" lean-forward="false" selection-start-line="22" selection-start-column="0" selection-end-line="22" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -875,14 +849,13 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="300">
           <caret line="20" column="0" lean-forward="false" selection-start-line="20" selection-start-column="0" selection-end-line="20" selection-end-column="0" />
-          <folding />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+        <state relative-caret-position="225">
+          <caret line="15" column="0" lean-forward="true" selection-start-line="15" selection-start-column="0" selection-end-line="15" selection-end-column="0" />
           <folding>
             <element signature="e#0#26#0" expanded="true" />
           </folding>

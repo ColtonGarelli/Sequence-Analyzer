@@ -1,0 +1,1 @@
+Search.setIndex({docnames:["masterdocfile"],envversion:53,filenames:["masterdocfile.rst"],objects:{},objnames:{},objtypes:{},terms:{index:0,modul:0,page:0,search:0},titles:["Welcome to Sequence Analyzer\u2019s documentation!"],titleterms:{analyz:0,document:0,indic:0,sequenc:0,tabl:0,welcom:0}})
