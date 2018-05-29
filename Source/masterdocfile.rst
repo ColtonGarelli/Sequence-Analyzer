@@ -1,5 +1,5 @@
 .. Sequence Analyzer documentation master file, created by
-   sphinx-quickstart on Sun May 13 20:33:06 2018.
+   sphinx-quickstart on Tue May 29 13:45:49 2018.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 

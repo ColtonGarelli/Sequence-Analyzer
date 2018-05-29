@@ -1,1 +1,0 @@
-Search.setIndex({docnames:["Sequence Analyzer Documentation Guide"],envversion:53,filenames:["Sequence Analyzer Documentation Guide.rst"],objects:{},objnames:{},objtypes:{},terms:{index:0,modul:0,page:0,search:0},titles:["Welcome to Sequence Analyzer\u2019s documentation!"],titleterms:{analyz:0,document:0,indic:0,sequenc:0,tabl:0,welcom:0}})
