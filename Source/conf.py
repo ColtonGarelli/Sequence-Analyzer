@@ -12,20 +12,21 @@
 # add these directories to sys.path here. If the directory is relative to the
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 #
-import os
-import sys
-sys.path.insert(0, os.path.abspath('../'))
+# import os
+# import sys
+# sys.path.insert(0, os.path.abspath('.'))
+
 
 # -- Project information -----------------------------------------------------
 
 project = 'Sequence Analyzer'
-copyright = '2018, Colton Garelli, Toby Dragon, Jamie Paule Ellis'
-author = 'Colton Garelli, Toby Dragon, Jamie Paule Ellis'
+copyright = '2018, Colton Garelli and Jamie Paule Ellis'
+author = 'Colton Garelli and Jamie Paule Ellis'
 
 # The short X.Y version
 version = ''
 # The full version, including alpha/beta/rc tags
-release = '1'
+release = '1.0'
 
 
 # -- General configuration ---------------------------------------------------
@@ -38,11 +39,7 @@ release = '1'
 # extensions coming with Sphinx (named 'sphinx.ext.*') or your custom
 # ones.
 extensions = [
-    'sphinx.ext.doctest',
     'sphinx.ext.todo',
-    'sphinx.ext.coverage',
-    'sphinx.ext.imgmath',
-    'sphinx.ext.ifconfig',
     'sphinx.ext.viewcode',
     'sphinx.ext.githubpages',
 ]
@@ -69,7 +66,7 @@ language = None
 # List of patterns, relative to source directory, that match files and
 # directories to ignore when looking for source files.
 # This pattern also affects html_static_path and html_extra_path .
-exclude_patterns = ['_build', 'Thumbs.db', '.DS_Store']
+exclude_patterns = []
 
 # The name of the Pygments (syntax highlighting) style to use.
 pygments_style = 'sphinx'
@@ -80,7 +77,7 @@ pygments_style = 'sphinx'
 # The theme to use for HTML and HTML Help pages.  See the documentation for
 # a list of builtin themes.
 #
-html_theme = 'alabaster'
+html_theme = 'default'
 
 # Theme options are theme-specific and customize the look and feel of a theme
 # further.  For a list of options available for each theme, see the
@@ -135,7 +132,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'SequenceAnalyzer.tex', 'Sequence Analyzer Documentation',
-     'Colton Garelli, Toby Dragon, Jamie Paule Ellis', 'manual'),
+     'Colton Garelli and Jamie Paule Ellis', 'manual'),
 ]
 
 

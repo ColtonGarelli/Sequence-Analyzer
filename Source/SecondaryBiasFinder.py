@@ -219,7 +219,7 @@ def create_SeqBias_object(seq_string):
 def create_sequence_objects(string_list):
     """
     Creates a sequence object from a pre-split string list
-    :param string_list: ["id", "sequence"
+    :param: string_list: ["id", "sequence"
     :return: SequenceImpl object (parent for the various sequence data objects)
     """
 
@@ -240,8 +240,8 @@ def processed_data_in(general_path, file_beginning):
     ****
     ****
 
-    :param general_path:
-    :param file_beginning:
+    :param: general_path:
+    :param: file_beginning:
     :return: List of SecondaryBias objects
     """
     general_path = general_path + file_beginning

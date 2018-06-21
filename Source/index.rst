@@ -1,19 +1,27 @@
 .. Sequence Analyzer documentation master file, created by
-   sphinx-quickstart on Thu May 31 21:19:47 2018.
+   sphinx-quickstart on Thu Jun 21 13:32:25 2018.
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
 Welcome to Sequence Analyzer's documentation!
 =============================================
 
+Trying to get this set up for easy and useful documentation!
+
 .. toctree::
-   :maxdepth: 5
-   :Contents:
-    Contents:
-    Use:
-    Modification:
-    Try again:
-    Something else:
+   :maxdepth: 2
+   :Caption: Contents:
+   :numbered:
+   :titlesonly:
+   :glob:
+   :hidden:
+
+   intro.rst
+
+
+.. autofunction:: SecondaryBiasFinder
+
+
 
 Indices and tables
 ==================
