@@ -7,11 +7,13 @@ Welcome to Sequence Analyzer's documentation!
 =============================================
 
 .. toctree::
-   :maxdepth: 2
-   :caption: Contents:
-        :caption: Installation
-        :caption: Use
-
+   :maxdepth: 5
+   :Contents:
+    Contents:
+    Use:
+    Modification:
+    Try again:
+    Something else:
 
 Indices and tables
 ==================
