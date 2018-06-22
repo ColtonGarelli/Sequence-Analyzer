@@ -1,0 +1,20 @@
+Doucmentation Resources
+
+Autodoc: https://codeandchaos.wordpress.com/2012/07/30/sphinx-autodoc-tutorial-for-dummies/
+         https://www.youtube.com/watch?v=zSZpCrwgVOM
+         http://www.sphinx-doc.org/en/master/ext/autodoc.html
+         https://samnicholls.net/2016/06/15/how-to-sphinx-readthedocs/
+
+         Setup html: https://www.youtube.com/watch?v=uPTSTQRoluw
+
+
+Quick reStructuredText:
+         http://docutils.sourceforge.net/docs/user/rst/quickref.html#paragraphs
+
+
+Make sure you're in the directory with the makefile (cd sphinx) to run make html
+or
+use sphinx-apidoc [OPTIONS] -o <OUTPUT_PATH> <MODULE_PATH> [EXCLUDE_PATTERN, …] command
+and
+define output_path as docs and modules path as Source. command must be from root folder (cd .. to go out a directory)
+    -this command updates module auto-documentation

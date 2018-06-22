@@ -200,146 +200,146 @@ class SecondaryBias(SequenceImpl):
         # self.print_q_normalized()
         return True
 
-#
-# def create_SeqBias_object(seq_string):
-#     """
-#     Creates SecondaryBias objects from a sequence by splitting an id-sequence pair  (ex. "id,sequence")
-#     :param seq_string: "id,sequence"
-#     :return: a new SecondaryBias object with id and sequence initialized to id and sequence from the in_string
-#     """
-#     # 2D string array[i][0] --from reading csv
-#     # call create obj between each
-#     # convert to 2D list of ints (other than first index
-#     new_seq = SecondaryBias()
-#     seq_param_list = seq_string.split(",")
-#     new_seq.initialize_sec_bias(seq_param_list[0], seq_param_list[1])
-#     return new_seq
-#
-#
-# def create_sequence_objects(string_list):
-#     """
-#     Creates a sequence object from a pre-split string list
-#     :param: string_list: ["id", "sequence"
-#     :return: SequenceImpl object (parent for the various sequence data objects)
-#     """
-#
-#     new_seq = SequenceImpl()
-#     new_seq.initialize_sequence_object(string_list[0], string_list[1])
-#     return new_seq
-#
-#
-# def processed_data_in(general_path, file_beginning):
-#     """
-#     Creates a list of SecondaryBias objects from file.
-#
-#     ****
-#     ****
-#     ****
-#     NOT TESTED
-#     ****
-#     ****
-#     ****
-#
-#     :param: general_path:
-#     :param: file_beginning:
-#     :return: List of SecondaryBias objects
-#     """
-#     general_path = general_path + file_beginning
-#     file_string_one = SpreadsheetIO.read_file(general_path+"one_away.csv")
-#     file_string_two = SpreadsheetIO.read_file(general_path+"two_away.csv")
-#     file_string_three = SpreadsheetIO.read_file(general_path+"three_away.csv")
-#     file_string_local = SpreadsheetIO.read_file(general_path+"local_seq.csv")
-#     string_list_one = SpreadsheetIO.parse_to_string_list(file_string_one)
-#     string_list_two = SpreadsheetIO.parse_to_string_list(file_string_two)
-#     string_list_three = SpreadsheetIO.parse_to_string_list(file_string_three)
-#     string_list_local = SpreadsheetIO.parse_to_string_list(file_string_local)
-#     seq_object_list = []
-#     # convert to 2D list of ints (other than first index
-#     one_away_list = []
-#     two_away_list = []
-#     three_away_list = []
-#     local_away_list = []
-#     for i in range(len(string_list_one)):
-#         one_away_list.append(string_list_one[i])
-#         two_away_list.append(string_list_two[i])
-#         three_away_list.append(string_list_three[i])
-#         local_away_list.append(string_list_local[i])
-#     for i1 in range(len(string_list_one)):
-#         new_seq = SecondaryBias()
-#         new_seq.ID = one_away_list[i1][0]
-#         seq_object_list.append(new_seq)
-#         index = 0
-#         for i2 in range(1, 20):
-#             one_away = float(one_away_list[i1][i2])
-#             seq_object_list[i1].one_away[index] = one_away
-#             seq_object_list[i1].two_away[index] = float(two_away_list[i1][i2])
-#             seq_object_list[i1].three_away[index] = float(three_away_list[i1][i2])
-#             seq_object_list[i1].local_sequence[index] = float(local_away_list[i1][i2])
-#             index += 1
-#     return seq_object_list
-#
-#
-# # def initialize_processed_sec_bias(ID_list, seq_list, one_away, two_away, three_away, local_seq):
-# #     seq_obj_list = []
-# #     for i in range(len(seq_list)):
-# #         create_obj = SecondaryBias()
-# #         create_obj.ID = ID_list[i]
-# #     return seq_obj_list
-#
-#
-# def sec_bias_to_string(obj_to_copy, list_to_copy):
-#     string_to_return = obj_to_copy.ID
-#     string_to_return += ","
-#     for i in range(len(list_to_copy)):
-#         string_to_return += list_to_copy[i]
-#         string_to_return += ","
-#
-#     return string_to_return
-#
-#
-# def export_sec_bias_files(sequence_list):
-#     path = "/Users/coltongarelli/Desktop/"
-#     file_name = sequence_list[1].ID
-#
-#     this_file = file_name + "one_away" + ".csv"
-#     file = os.path.join(path, this_file)
-#     this_file = file
-#     # file_to_write = open(file_path, "x")
-#     # file_to_write.close()
-#     for i in range(len(sequence_list)):
-#         export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].one_away, this_file)
-#     for i in range(len(sequence_list)):
-#         export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].one_away_avg, this_file)
-#
-#     this_file = file_name + "two_away" + ".csv"
-#     file = os.path.join(path, this_file)
-#     this_file = file
-#     # file_to_write = open(os.path.join(path, this_file), "x")
-#     # file_to_write.close()
-#     for i in range(len(sequence_list)):
-#         export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].two_away, this_file)
-#     for i in range(len(sequence_list)):
-#         export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].two_away_avg, this_file)
-#
-#     this_file = file_name + "three_away" + ".csv"
-#     file = os.path.join(path, this_file)
-#     this_file = file
-#     # file_to_write = open(os.path.join(path, this_file), "x")
-#     # file_to_write.close()
-#     for i in range(len(sequence_list)):
-#         export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].three_away, this_file)
-#     for i in range(len(sequence_list)):
-#         export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].three_away_avg, this_file)
-#
-#     this_file = file_name + "local_seq" + ".csv"
-#     file = os.path.join(path, this_file)
-#     this_file = file
-#     # file_to_write = open(os.path.join(path, this_file), "x")
-#     # file_to_write.close()
-#     for i in range(len(sequence_list)):
-#         export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].local_sequence, this_file)
-#     for i in range(len(sequence_list)):
-#         export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].local_avg, this_file)
-#
-#     return path + file_name
-#
+
+def create_SeqBias_object(seq_string):
+    """
+    Creates SecondaryBias objects from a sequence by splitting an id-sequence pair  (ex. "id,sequence")
+    :param seq_string: "id,sequence"
+    :return: a new SecondaryBias object with id and sequence initialized to id and sequence from the in_string
+    """
+    # 2D string array[i][0] --from reading csv
+    # call create obj between each
+    # convert to 2D list of ints (other than first index
+    new_seq = SecondaryBias()
+    seq_param_list = seq_string.split(",")
+    new_seq.initialize_sec_bias(seq_param_list[0], seq_param_list[1])
+    return new_seq
+
+
+def create_sequence_objects(string_list):
+    """
+    Creates a sequence object from a pre-split string list
+    :param: string_list: ["id", "sequence"
+    :return: SequenceImpl object (parent for the various sequence data objects)
+    """
+
+    new_seq = SequenceImpl()
+    new_seq.initialize_sequence_object(string_list[0], string_list[1])
+    return new_seq
+
+
+def processed_data_in(general_path, file_beginning):
+    """
+    Creates a list of SecondaryBias objects from file.
+
+    ****
+    ****
+    ****
+    NOT TESTED
+    ****
+    ****
+    ****
+
+    :param: general_path:
+    :param: file_beginning:
+    :return: List of SecondaryBias objects
+    """
+    general_path = general_path + file_beginning
+    file_string_one = SpreadsheetIO.read_file(general_path+"one_away.csv")
+    file_string_two = SpreadsheetIO.read_file(general_path+"two_away.csv")
+    file_string_three = SpreadsheetIO.read_file(general_path+"three_away.csv")
+    file_string_local = SpreadsheetIO.read_file(general_path+"local_seq.csv")
+    string_list_one = SpreadsheetIO.parse_to_string_list(file_string_one)
+    string_list_two = SpreadsheetIO.parse_to_string_list(file_string_two)
+    string_list_three = SpreadsheetIO.parse_to_string_list(file_string_three)
+    string_list_local = SpreadsheetIO.parse_to_string_list(file_string_local)
+    seq_object_list = []
+    # convert to 2D list of ints (other than first index
+    one_away_list = []
+    two_away_list = []
+    three_away_list = []
+    local_away_list = []
+    for i in range(len(string_list_one)):
+        one_away_list.append(string_list_one[i])
+        two_away_list.append(string_list_two[i])
+        three_away_list.append(string_list_three[i])
+        local_away_list.append(string_list_local[i])
+    for i1 in range(len(string_list_one)):
+        new_seq = SecondaryBias()
+        new_seq.ID = one_away_list[i1][0]
+        seq_object_list.append(new_seq)
+        index = 0
+        for i2 in range(1, 20):
+            one_away = float(one_away_list[i1][i2])
+            seq_object_list[i1].one_away[index] = one_away
+            seq_object_list[i1].two_away[index] = float(two_away_list[i1][i2])
+            seq_object_list[i1].three_away[index] = float(three_away_list[i1][i2])
+            seq_object_list[i1].local_sequence[index] = float(local_away_list[i1][i2])
+            index += 1
+    return seq_object_list
+
+
+# def initialize_processed_sec_bias(ID_list, seq_list, one_away, two_away, three_away, local_seq):
+#     seq_obj_list = []
+#     for i in range(len(seq_list)):
+#         create_obj = SecondaryBias()
+#         create_obj.ID = ID_list[i]
+#     return seq_obj_list
+
+
+def sec_bias_to_string(obj_to_copy, list_to_copy):
+    string_to_return = obj_to_copy.ID
+    string_to_return += ","
+    for i in range(len(list_to_copy)):
+        string_to_return += list_to_copy[i]
+        string_to_return += ","
+
+    return string_to_return
+
+
+def export_sec_bias_files(sequence_list):
+    path = "/Users/coltongarelli/Desktop/"
+    file_name = sequence_list[1].ID
+
+    this_file = file_name + "one_away" + ".csv"
+    file = os.path.join(path, this_file)
+    this_file = file
+    # file_to_write = open(file_path, "x")
+    # file_to_write.close()
+    for i in range(len(sequence_list)):
+        export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].one_away, this_file)
+    for i in range(len(sequence_list)):
+        export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].one_away_avg, this_file)
+
+    this_file = file_name + "two_away" + ".csv"
+    file = os.path.join(path, this_file)
+    this_file = file
+    # file_to_write = open(os.path.join(path, this_file), "x")
+    # file_to_write.close()
+    for i in range(len(sequence_list)):
+        export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].two_away, this_file)
+    for i in range(len(sequence_list)):
+        export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].two_away_avg, this_file)
+
+    this_file = file_name + "three_away" + ".csv"
+    file = os.path.join(path, this_file)
+    this_file = file
+    # file_to_write = open(os.path.join(path, this_file), "x")
+    # file_to_write.close()
+    for i in range(len(sequence_list)):
+        export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].three_away, this_file)
+    for i in range(len(sequence_list)):
+        export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].three_away_avg, this_file)
+
+    this_file = file_name + "local_seq" + ".csv"
+    file = os.path.join(path, this_file)
+    this_file = file
+    # file_to_write = open(os.path.join(path, this_file), "x")
+    # file_to_write.close()
+    for i in range(len(sequence_list)):
+        export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].local_sequence, this_file)
+    for i in range(len(sequence_list)):
+        export_sec_bias_helper(sequence_list[i].ID, sequence_list[i].local_avg, this_file)
+
+    return path + file_name
+
