@@ -5,6 +5,7 @@ import SpreadsheetIO
 
 # Colton Garelli
 
+
 def analyze_group(self, list_index):
     group_to_analyze = self.group_list[list_index]
     for i in range(len(group_to_analyze)):
@@ -43,16 +44,17 @@ def remove_line_break(sequence):
     print(new_seq)
 
 
-def main():
+if __name__ == '__main__':
     # sequence = ""
     # request = requests.post("https://www.uniprot.org/uniprot/?query=reviewed:yes&random=yes")
     # print(request.status_code)
     SpreadsheetIO.fasta_parser()
     path_in = "/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/References/SEQUENCEANALYZER_Experiment1_inputfile_ACTUAL.csv"
     # # file_representation = Representation()
-    analysis = AnalysisImpl(path_in)
+
     director = Director()
-    processed = director.run_analysis(analysis)
+    director.analysis_helper(path_in)
+    processed = director.run_analysis()
     SecondaryBiasFinder.export_sec_bias_files(processed)
 
-main()
+
