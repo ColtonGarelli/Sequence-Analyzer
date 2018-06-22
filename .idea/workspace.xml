@@ -2,9 +2,7 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7bbb029-bcaf-48ad-b10b-48c7b7feb115" name="Default" comment="">
-      <change beforePath="$PROJECT_DIR$/.idea/SequenceAnalyzer2.1.iml" afterPath="$PROJECT_DIR$/.idea/SequenceAnalyzer2.1.iml" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
-      <change beforePath="$PROJECT_DIR$/Source/SecondaryBiasFinder.py" afterPath="$PROJECT_DIR$/Source/SecondaryBiasFinder.py" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -15,11 +13,21 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="DocRefs" pinned="false" current-in-tab="true">
+      <file leaf-file-name="DocRefs" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/docs/References/DocRefs">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="285">
               <caret line="19" column="51" lean-forward="false" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="FELLSAPITester.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Tests/FELLSAPITester.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="300">
+              <caret line="25" column="32" lean-forward="false" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
               <folding />
             </state>
           </provider>
@@ -178,6 +186,21 @@
               <item name="SequenceAnalyzer2.1" type="b2602c69:ProjectViewProjectNode" />
               <item name="SequenceAnalyzer2.1" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="SequenceAnalyzer2.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SequenceAnalyzer2.1" type="462c0819:PsiDirectoryNode" />
+              <item name="Source" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SequenceAnalyzer2.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SequenceAnalyzer2.1" type="462c0819:PsiDirectoryNode" />
+              <item name="sphinx" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SequenceAnalyzer2.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SequenceAnalyzer2.1" type="462c0819:PsiDirectoryNode" />
+              <item name="Tests" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -263,7 +286,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Python3.6 interpreter">
+  <component name="RunManager" selected="Python tests.FellsAPITest">
     <configuration name="Python3.6 interpreter" type="PythonConfigurationType" factoryName="Python">
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
@@ -389,11 +412,8 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SecondaryBiasTester - 2018.05.13 at 17h 44m 33s.xml">
-      <configuration name="SecondaryBiasTester" configurationId="tests" />
-    </history-entry>
-    <history-entry file="SecondaryBiasTester - 2018.05.13 at 17h 45m 47s.xml">
-      <configuration name="SecondaryBiasTester" configurationId="tests" />
+    <history-entry file="FellsAPITest - 2018.06.22 at 17h 38m 32s.xml">
+      <configuration name="FellsAPITest" configurationId="tests" />
     </history-entry>
     <history-entry file="SecondaryBiasTester - 2018.05.13 at 17h 46m 38s.xml">
       <configuration name="SecondaryBiasTester" configurationId="tests" />
@@ -419,18 +439,21 @@
     <history-entry file="SecondaryBiasTester - 2018.05.29 at 22h 25m 15s.xml">
       <configuration name="SecondaryBiasTester" configurationId="tests" />
     </history-entry>
+    <history-entry file="SecondaryBiasTester - 2018.06.22 at 17h 38m 22s.xml">
+      <configuration name="SecondaryBiasTester" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
     <frame x="73" y="23" width="1185" height="877" extended-state="0" />
     <layout>
-      <window_info id="Project" active="true" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21735395" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.21735395" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.36189258" sideWeight="0.5090909" order="7" side_tool="true" content_ui="tabs" />
       <window_info id="Run" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.30306906" sideWeight="0.4856487" order="2" side_tool="false" content_ui="tabs" />
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992327" sideWeight="0.5" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992327" sideWeight="0.49598163" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24907522" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4398977" sideWeight="0.4909091" order="7" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.4398977" sideWeight="0.4909091" order="7" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29411766" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="4" side_tool="false" content_ui="tabs" />
@@ -562,13 +585,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="255">
           <caret line="18" column="37" lean-forward="false" selection-start-line="18" selection-start-column="37" selection-end-line="18" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tests/FELLSAPITester.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="25" column="32" lean-forward="false" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
         </state>
       </provider>
     </entry>
@@ -820,6 +836,14 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="285">
           <caret line="19" column="51" lean-forward="false" selection-start-line="19" selection-start-column="51" selection-end-line="19" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/FELLSAPITester.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="25" column="32" lean-forward="false" selection-start-line="25" selection-start-column="32" selection-end-line="25" selection-end-column="32" />
           <folding />
         </state>
       </provider>
