@@ -11,15 +11,13 @@ Trying to get this set up for easy and useful documentation!
 .. toctree::
    :maxdepth: 2
    :Caption: Contents:
-   :numbered:
-   :titlesonly:
-   :glob:
-   :hidden:
 
-   intro.rst
+   intro
+
+.. py:class:: SecondaryBias
 
 
-.. autofunction:: SecondaryBiasFinder
+
 
 
 
