@@ -44,7 +44,7 @@ def remove_line_break(sequence):
     print(new_seq)
 
 
-def main():
+if __name__ == '__main__':
     # sequence = ""
     # request = requests.post("https://www.uniprot.org/uniprot/?query=reviewed:yes&random=yes")
     # print(request.status_code)
@@ -57,6 +57,4 @@ def main():
     processed = director.run_analysis()
     SecondaryBiasFinder.export_sec_bias_files(processed)
 
-
-main()
 
