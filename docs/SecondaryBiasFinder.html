@@ -1,0 +1,172 @@
+
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN"
+  "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>SecondaryBiasFinder module &#8212; Sequence Analyzer 1.0 documentation</title>
+    <link rel="stylesheet" href="_static/classic.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" /> 
+  </head><body>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             accesskey="I">index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Sequence Analyzer 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>  
+
+    <div class="document">
+      <div class="documentwrapper">
+        <div class="bodywrapper">
+          <div class="body" role="main">
+            
+  <div class="section" id="module-SecondaryBiasFinder">
+<span id="secondarybiasfinder-module"></span><h1>SecondaryBiasFinder module<a class="headerlink" href="#module-SecondaryBiasFinder" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="SecondaryBiasFinder.SecondaryBias">
+<em class="property">class </em><code class="descclassname">SecondaryBiasFinder.</code><code class="descname">SecondaryBias</code><a class="reference internal" href="_modules/SecondaryBiasFinder.html#SecondaryBias"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.SecondaryBias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#SecondaryBiasFinder.SequenceImpl" title="SecondaryBiasFinder.SequenceImpl"><code class="xref py py-class docutils literal notranslate"><span class="pre">SecondaryBiasFinder.SequenceImpl</span></code></a></p>
+<p>SecondaryBias extends the Sequence class. SecondaryBias has methods prompt input determines primary
+and secondary sequence biases. Is used primarily to find primary glutamine bias, and secondary
+biases at the +/- 1,2,3, and a total of these 6 positions, for each Q.</p>
+<dl class="method">
+<dt id="SecondaryBiasFinder.SecondaryBias.bias_finder">
+<code class="descname">bias_finder</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/SecondaryBiasFinder.html#SecondaryBias.bias_finder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.SecondaryBias.bias_finder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Runs the bias finding analysis. Capitalizes self.sequence string;
+calls: find_primary_bias(), secondary_bias_finder(), find_avg_occurrence()
+:ivar self.sequence: updated with uppercase sequence
+:ivar self.Q_content: length of self.Q_index list
+:ivar self.sequence_len:</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="SecondaryBiasFinder.SecondaryBias.find_avg_occurrence">
+<code class="descname">find_avg_occurrence</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/SecondaryBiasFinder.html#SecondaryBias.find_avg_occurrence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.SecondaryBias.find_avg_occurrence" title="Permalink to this definition">¶</a></dt>
+<dd><p>Divides each index of +/- 1, 2, 3 and local lists by the total primary bias residue content (average)
+:ivar: updates +/- 1, 2, 3, and local avg lists</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="SecondaryBiasFinder.SecondaryBias.find_primary_bias">
+<code class="descname">find_primary_bias</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/SecondaryBiasFinder.html#SecondaryBias.find_primary_bias"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.SecondaryBias.find_primary_bias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds the primary bias defined by the user. Ignores first and last three aa in seq for primary bias calculation.
+Stores the index of each primary bias residue in the sequence string in self.primary_bias
+:return: updates self.Q_index list (no return)</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="SecondaryBiasFinder.SecondaryBias.initialize_sec_bias">
+<code class="descname">initialize_sec_bias</code><span class="sig-paren">(</span><em>seq_name</em>, <em>seq_in</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/SecondaryBiasFinder.html#SecondaryBias.initialize_sec_bias"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.SecondaryBias.initialize_sec_bias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Effectively a constructor to create a SecondaryBias object from an id-sequence pair
+:param seq_name: a sequence id
+:param seq_in: the sequence</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="SecondaryBiasFinder.SecondaryBias.secondary_bias_finder">
+<code class="descname">secondary_bias_finder</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/SecondaryBiasFinder.html#SecondaryBias.secondary_bias_finder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.SecondaryBias.secondary_bias_finder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds amino acids at one, two, and three residues from the desired primary bias. A local tally is also computed.
+:ivar self.one_away, self.two_away,self.three_away, self.three_away_avg, self.local_sequence: get updated</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="SecondaryBiasFinder.SequenceImpl">
+<em class="property">class </em><code class="descclassname">SecondaryBiasFinder.</code><code class="descname">SequenceImpl</code><a class="reference internal" href="_modules/SecondaryBiasFinder.html#SequenceImpl"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.SequenceImpl" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Parent class for all of the sequence analysis classes. They inherit from this class in an effort to enforce some
+uniformity and promote flexibility in the case that this program begins to chew up substantial overhead.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Variables:</th><td class="field-body"><ul class="first last simple">
+<li><strong>self.amino_acids</strong> – should probably be a class variable. need to refactor.</li>
+<li><strong>self.id</strong> – an id associated with the given sequence</li>
+<li><strong>self.sequence</strong> – the sequence associated with the provided id</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="method">
+<dt id="SecondaryBiasFinder.SequenceImpl.get_id">
+<code class="descname">get_id</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/SecondaryBiasFinder.html#SequenceImpl.get_id"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.SequenceImpl.get_id" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="SecondaryBiasFinder.SequenceImpl.get_sequence">
+<code class="descname">get_sequence</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/SecondaryBiasFinder.html#SequenceImpl.get_sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.SequenceImpl.get_sequence" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="SecondaryBiasFinder.SequenceImpl.initialize_sequence_object">
+<code class="descname">initialize_sequence_object</code><span class="sig-paren">(</span><em>ID</em>, <em>sequence</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/SecondaryBiasFinder.html#SequenceImpl.initialize_sequence_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.SequenceImpl.initialize_sequence_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+          </div>
+        </div>
+      </div>
+      <div class="sphinxsidebar" role="navigation" aria-label="main navigation">
+        <div class="sphinxsidebarwrapper">
+  <div role="note" aria-label="source link">
+    <h3>This Page</h3>
+    <ul class="this-page-menu">
+      <li><a href="_sources/SecondaryBiasFinder.rst.txt"
+            rel="nofollow">Show Source</a></li>
+    </ul>
+   </div>
+<div id="searchbox" style="display: none" role="search">
+  <h3>Quick search</h3>
+    <div class="searchformwrapper">
+    <form class="search" action="search.html" method="get">
+      <input type="text" name="q" />
+      <input type="submit" value="Go" />
+      <input type="hidden" name="check_keywords" value="yes" />
+      <input type="hidden" name="area" value="default" />
+    </form>
+    </div>
+</div>
+<script type="text/javascript">$('#searchbox').show(0);</script>
+        </div>
+      </div>
+      <div class="clearer"></div>
+    </div>
+    <div class="related" role="navigation" aria-label="related navigation">
+      <h3>Navigation</h3>
+      <ul>
+        <li class="right" style="margin-right: 10px">
+          <a href="genindex.html" title="General Index"
+             >index</a></li>
+        <li class="right" >
+          <a href="py-modindex.html" title="Python Module Index"
+             >modules</a> |</li>
+        <li class="nav-item nav-item-0"><a href="index.html">Sequence Analyzer 1.0 documentation</a> &#187;</li> 
+      </ul>
+    </div>
+    <div class="footer" role="contentinfo">
+        &#169; Copyright 2018, Colton Garelli and Jamie Paule Ellis.
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.5.
+    </div>
+  </body>
+</html>
