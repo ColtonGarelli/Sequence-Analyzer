@@ -16,7 +16,7 @@ class DatabaseAPI(ABCMeta):
     def create_sequence_object(cls): raise NotImplementedError
 
 #   returns a tuple (ID, sequence)
-    def fasta_parser(cls, fasta_string):
+    def fasta_parser(self, fasta_string):
         split_string = fasta_string.split("\n")
         id_stirng = split_string[0]
         seq_string = split_string[1]

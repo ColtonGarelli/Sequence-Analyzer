@@ -5,6 +5,11 @@ import SecondaryBiasFinder
 import DatabaseAPI
 
 
+
+# test sending request, checking request,
+# receiving request, converting to object
+
+
 class UniProtTester(unittest.TestCase):
 
     def test_create_url_test(self):
