@@ -23,14 +23,14 @@ def makeNumList(aStr):
     return myList
 
 
-def main():
+if __name__ == '__main__':
     '''
     testStr = "8,10,7,8,6\n"
     testList = makeNumList(testStr)
     print("Should be [8, 10, 7, 8, 6]:", testList)
     '''
 
-    gradeFile = open("/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/References/171-48-grades.csv", "r")
+    gradeFile = open("/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/References/FileIn.csv", "r")
     gradeStrings = gradeFile.readlines()
     gradeFile.close()
 
@@ -57,5 +57,3 @@ def main():
     myAvg = calcAvg(gradeInts)
     print(myAvg)
 
-
-main()

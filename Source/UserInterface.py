@@ -117,5 +117,11 @@ def prompt_sequence_input(self):
             good_sequence = self.check_aa_entry(sequence_in)
         return sequence_in
 
+# user interface class prompts user for necessary info
+# sends info to
 
 
+class UI:
+
+    def __init__(self):
+        self.this = None
