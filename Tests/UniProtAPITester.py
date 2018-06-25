@@ -6,6 +6,7 @@ import DatabaseAPI
 
 
 
+
 # test sending request, checking request,
 # receiving request, converting to object
 
@@ -13,6 +14,7 @@ import DatabaseAPI
 class UniProtTester(unittest.TestCase):
 
     def test_create_url_test(self):
+        # test querystring creator
         test_database = DatabaseAPI.UniProtDatabase()
         query_string = "insulin"
         query = test_database.create_request_url(query_string, "protein names, organism")

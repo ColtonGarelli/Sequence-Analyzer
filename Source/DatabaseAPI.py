@@ -1,6 +1,7 @@
 from abc import ABCMeta
 
 
+
 class DatabaseAPI(ABCMeta):
 
     @abs
@@ -58,6 +59,7 @@ class UniProtDatabase(DatabaseAPI):
         # url = "https://www.uniprot.org/uniprot/?query=insulin&sort=score&columns=entry name,protein names,length&format=tab"
         # request = requests.get(url)
         # print(request.text)
+
     def make_database_query(self):
         pass
 
