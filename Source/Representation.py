@@ -1,5 +1,38 @@
 from os.path import join
-from threading import Timer
+import UserInterface
+
+
+class Representation:
+    """
+    -Runs user interface using the UI class. May move those functions to this module (eliminate class)
+    -Handles file-output. Raw data should be output as a csv file. Graphical representations may be implemented later.
+    -Runs all interaction with user and computer (display/fileio)
+    :var self.file_out_path: file out path to the desired directory
+    :var self.base_name: base file name to maintain consistency in output
+    """
+    def __init__(self):
+        self.file_out_path = ""
+        self.base_name = None
+        self.UI = UserInterface.UI()
+
+    def introduction(self):
+        self.UI.welcome()
+
+    def manual_options(self):
+        self.UI.manual_sequence_input()
+
+    # handles calling desired DB, representing responses,
+    def DB_options(self):
+        print("something")
+
+
+def write_sequence_to_file(ID, copy_list, file_name):
+    file_to_write = open(file_name, "a+")
+    file_to_write.write(str(ID) + ",")
+    for i in range(len(copy_list)):
+        file_to_write.write((str(copy_list[i]) + ","))
+        file_to_write.write("\n")
+        file_to_write.close()
 
 
 def read_file(path):
@@ -48,6 +81,46 @@ def export_sec_bias_helper(ID, copy_list, path):
     file_to_write.close()
 
 
+def fasta_parser():
+    n = 0
+    file = join("/Users/coltongarelli/", "SequenceAnalyzer/SequenceAnalyzer2.1/References/SEQUENCEANALYZER_Experiment1_inputfile_ACTUAL.csv")
+    new_file =join("/Users/coltongarelli/Desktop/", "SEQUENCEANALYZER_Experiment1_inputfile_fasta.txt")
+    fasta_formatted = open(new_file, 'w+')
+    with open(file, 'r') as f:
+        for line in f:
+            split = line.split(',')
+            string_to_write = '>' + split[0] + '\n' + split[1]
+            fasta_formatted.write(string_to_write)
+    f.close()
+    fasta_formatted.close()
+
+
+def convert_to_ints(string_in):
+    return_list = string_in.split(",")
+    for i in range(1, len(return_list)-1):
+        return_list = int(return_list)
+    return return_list
+
+
+def remove_spaces(string_to_check):
+    if " " in string_to_check or "\n" in string_to_check:
+        for i in range(len(string_to_check)-1):
+            if string_to_check[i] == " " or (string_to_check[i]+string_to_check[i+1]) == "\n":
+                pass
+            else:
+                return_string = string_to_check[i]
+    else:
+        return_string = string_to_check
+
+    return return_string
+
+
+
+
+
+
+
+
 '''
 ********************************************************************
 
@@ -88,38 +161,7 @@ Scratch work below
 #
 
 # implement later
-def fasta_parser():
-    n = 0
-    file = join("/Users/coltongarelli/", "SequenceAnalyzer/SequenceAnalyzer2.1/References/SEQUENCEANALYZER_Experiment1_inputfile_ACTUAL.csv")
-    new_file =join("/Users/coltongarelli/Desktop/", "SEQUENCEANALYZER_Experiment1_inputfile_fasta.txt")
-    fasta_formatted = open(new_file, 'w+')
-    with open(file, 'r') as f:
-        for line in f:
-            split = line.split(',')
-            string_to_write = '>' + split[0] + '\n' + split[1]
-            fasta_formatted.write(string_to_write)
 
-    f.close()
-    fasta_formatted.close()
-
-
-def convert_to_ints(string_in):
-
-    return_list = string_in.split(",")
-    for i in range(1, len(return_list)-1):
-        return_list = int(return_list)
-    return return_list
-
-
-def remove_spaces(self, string_to_check):
-    if " " in string_to_check:
-        for i in range(len(string_to_check)-1):
-            if string_to_check[i] == " " or string_to_check[i]+string_to_check[i+1] == "\n":
-                pass
-            else:
-                return_string = string_to_check[i]
-
-    return return_string
 
 # def timer(status, url):
 #         t = Timer(10, self.get_update(url))

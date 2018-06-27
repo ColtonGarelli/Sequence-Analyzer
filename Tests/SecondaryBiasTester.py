@@ -1,7 +1,7 @@
 import unittest
 import SecondaryBiasFinder
 from SecondaryBiasFinder import SecondaryBias, SequenceImpl
-from Operation import Director, AnalysisImpl
+from Director import Director, AnalysisBuilder
 import UserInterface
 
 
