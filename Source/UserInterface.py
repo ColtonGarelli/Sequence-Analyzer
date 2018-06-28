@@ -1,6 +1,113 @@
 import SecondaryBiasFinder
 
 
+def welcome():
+    print("Welcome to the Sequence Analyzer\n")
+    print("Please refer to documentation at https://github.com/ColtonGarelli/Sequence-Analyzer/ before using.\n\n")
+
+
+def main_page():
+    usage = input("\n\nWould you like to access databases (1)\n"
+                  "or input by file/manually (2)\nOf course you could quit as well (0)\n\nEnter:")
+    # add options for other uses. main page. should store current info somewhere during session
+    # access database, return to homepage, add more from another database
+    return usage
+
+
+def access_databases():
+    print("Enter the corresponding number to access a database:\n\n")
+    database_choice = input("1. UniProt\n2. EMBL-EBI\n3. Some other one??\n\n0. Return to start")
+    return database_choice
+
+
+def database_response_options():
+    print("What do you want to do with the information?\n")
+    database_option = input("1. View\n2. Process\n3. Output to file\n 0. Return to start")
+    return database_option
+
+
+def view_database_information(prepped_string):
+    print("Would you like to view all of the information or a subset?")
+    view_option = input("1. All\n2. Some")
+    view = True
+    while view:
+
+        if view_option == "1":
+            print(prepped_string)
+        elif view_option == "2":
+            print("Sorry! Not implemented yet")
+        else:
+            print("wrong!")
+
+        keep_viewing = input("Would you like to review data? (y/n)")
+        if keep_viewing == "y":
+            print("\n\n\n(You may want to clear the window)")
+        elif keep_viewing == "n":
+            view = False
+
+
+def keyword_query_uniprot():
+    query = input("Search something: ")
+    return query
+
+
+def data_options(self):
+    print("Available data options:\n")
+    reviewed = input("Reviewed? (y/n)")
+    print("Select columns to display: (y/n)\n")
+    id = input("UniProt ID?")
+    entry_name = input("Entry name?")
+    protein_names = input("Protein name(s)?")
+    genes = input("Genes?")
+    absorption = input("Absorption?")
+    temp_depend = input("Temperature dependence?")
+    ph = input("pH dependence?")
+    binding_site = input("Binding site?")
+    dna_domain = input("DNA-binding domain?")
+    redox_pot = input("Redox potential? (disulfides)")
+    subunits = input("Subunits?")
+    structure = input("3D structure?")
+    domain = input("Domain?")
+    comp_bias = input("Compositional bias(es)?")
+    sequence = input("Sequence?")
+    mass = input("Mass?")
+    organism = "Organism?"
+    limit_entries = input("Limit the number of sequences returned: ")
+    offset_entries = "offset????"
+
+
+def manual_sequence_input():
+    # Option to query sequence/id in databases????
+    print("Refer to ***documentation_url*** for proper formatting\n\n")
+    file_in_path = input("Please enter a file path")
+    return file_in_path
+
+    # return a tuple containing answers to options
+
+
+def gene_options(self):
+    print("Select the various genetic information to gather:\n")
+    input("")
+
+    # return a tuple containing answers to options
+    #
+
+
+def query_by_organism():
+    nothing = None
+
+
+def prediction_options():
+    print("Refer to ***Predictor documentation*** for predictor documentation" /
+          "and ***local module documentation*** for local modules")
+    print("Choose analysis sources: (y/n)\n")
+    FELLS = input("FELLS predictor?")
+    SODA = input("SODA predictor?")
+    bias = input("Primary/Secondary biases?")
+    return None
+    # return a tuple containing answers to options
+
+
 def print_secondarybias_info(seqbiasobj) -> SecondaryBiasFinder:
 
     if seqbiasobj.Q_content != 0:
@@ -33,112 +140,6 @@ def prompt_sequence_input():
 
 # user interface functions prompts user for necessary info
 # sends info to
-
-
-def access_databases():
-    print("Enter the corresponding number to access a database:\n\n")
-    database_choice = input("1. UniProt\n2. EMBL-EBI\n3. Some other one??\n\n0. Return to start")
-    return database_choice
-
-
-def database_response_options():
-    print("What do you want to do with the information?\n")
-    database_option = input("1. View\n2. Process\n3. Output to file\n 0. Return to start")
-
-
-def view_database_information(self, prepped_string):
-    print("Would you like to view all of the information or a subset?")
-    view_option = input("1. All\n2. Some")
-    view = True
-    while view:
-
-        if view_option == "1":
-            print(prepped_string)
-        elif view_option == "2":
-            print("Sorry! Not implemented yet")
-        else:
-            print("wrong!")
-
-        keep_viewing = input("Would you like to review data? (y/n)")
-        if keep_viewing == "y":
-            print("\n\n\n(You may want to clear the window)")
-        elif keep_viewing == "n":
-            view = False
-
-
-def main_page():
-    usage = input("\n\nWould you like to access databases (1)\n"
-                  "or input by file/manually (2)\nOf course you could quit as well (0)\n\nEnter:")
-    # add options for other uses. main page. should store current info somewhere during session
-    # access database, return to homepage, add more from another database
-    return usage
-
-
-def manual_sequence_input():
-    # Option to query sequence/id in databases????
-    print("Refer to ***documentation_url*** for proper formatting\n\n")
-    file_in_path = input("Please enter a file path")
-    return file_in_path
-
-
-def keyword_query_uniprot():
-    query = input("Search something: ")
-    return query
-
-
-def data_options(self):
-    print("Available data options:\n")
-    reviewed = input("Reviewed? (y/n)")
-    print("Select columns to display: (y/n)\n")
-    id = input("UniProt ID?")
-    entry_name = input("Entry name?")
-    protein_names = input("Protein name(s)?")
-    genes = input("Genes?")
-    absorption = input("Absorption?")
-    temp_depend = input("Temperature dependence?")
-    ph = input("pH dependence?")
-    binding_site = input("Binding site?")
-    dna_domain = input("DNA-binding domain?")
-    redox_pot = input("Redox potential? (disulfides)")
-    subunits = input("Subunits?")
-    structure = input("3D structure?")
-    domain = input("Domain?")
-    comp_bias = input("Compositional bias(es)?")
-    sequence = input("Sequence?")
-    mass = input("Mass?")
-    organism = "Organism?"
-    limit_entries = input("Limit the number of sequences returned: ")
-    offset_entries = "offset????"
-
-    # return a tuple containing answers to options
-
-
-def gene_options(self):
-    print("Select the various genetic information to gather:\n")
-    input("")
-
-    # return a tuple containing answers to options
-    #
-
-
-def query_by_organism():
-    nothing = None
-
-
-def prediction_options():
-    print("Refer to ***Predictor documentation*** for predictor documentation" /
-          "and ***local module documentation*** for local modules")
-    print("Choose analysis sources: (y/n)\n")
-    FELLS = input("FELLS predictor?")
-    SODA = input("SODA predictor?")
-    bias = input("Primary/Secondary biases?")
-    return None
-        # return a tuple containing answers to options
-
-
-def welcome():
-    print("Welcome to the Sequence Analyzer\n")
-    print("Please refer to documentation at https://github.com/ColtonGarelli/Sequence-Analyzer/ before using.\n\n")
 
 
 def prompt_make_a_new_file():
@@ -186,22 +187,6 @@ def check_aa_entry(sequence_in):
     return good_entry
 
 
-def print_q_normalized(secbias_in):
-    if secbias_in.Q_content != 0:
-        print("\n\nOne Away\t\t\t\t\t Two Away\t\t\t\t\t Three Away\t\t\t\t\t Local")
-        for i in range(0, 19):
-            print(secbias_in.amino_acids[i],
-                  round(secbias_in.one_away_avg[i], 3), "per", secbias_in.primary_bias,
-                    "\t\t\t\t", secbias_in.amino_acids[i],
-                  round(secbias_in.two_away_avg[i], 3), "per", secbias_in.primary_bias,
-                  "\t\t\t\t", secbias_in.amino_acids[i],
-                  round(secbias_in.three_away_avg[i], 3), "per", secbias_in.primary_bias,
-                  "\t\t\t\t", secbias_in.amino_acids[i],
-                  round(secbias_in.local_avg[i], 3), "per", secbias_in.primary_bias)
-    else:
-        print("\n\nNo primary bias\n")
-
-
 def choose_primary_bias():
     """
     Allows the user to select a primary amino acid to search for secondary biases around.
@@ -221,3 +206,19 @@ def choose_primary_bias():
     else:
         firstbias = "Q"
     return firstbias
+
+
+# def print_q_normalized(secbias_in):
+#     if secbias_in.Q_content != 0:
+#         print("\n\nOne Away\t\t\t\t\t Two Away\t\t\t\t\t Three Away\t\t\t\t\t Local")
+#         for i in range(0, 19):
+#             print(secbias_in.amino_acids[i],
+#                   round(secbias_in.one_away_avg[i], 3), "per", secbias_in.primary_bias,
+#                     "\t\t\t\t", secbias_in.amino_acids[i],
+#                   round(secbias_in.two_away_avg[i], 3), "per", secbias_in.primary_bias,
+#                   "\t\t\t\t", secbias_in.amino_acids[i],
+#                   round(secbias_in.three_away_avg[i], 3), "per", secbias_in.primary_bias,
+#                   "\t\t\t\t", secbias_in.amino_acids[i],
+#                   round(secbias_in.local_avg[i], 3), "per", secbias_in.primary_bias)
+#     else:
+#         print("\n\nNo primary bias\n")

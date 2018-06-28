@@ -75,8 +75,9 @@ def run_database_stuff():
     print(request.text)
 
 
-if __name__ == '__main__':
-    # sequence = ""
+def function_for_db_fiddling():
+    none = None
+    #  sequence = ""
     # request = requests.post("https://www.uniprot.org/uniprot/?query=reviewed:yes&random=yes")
     # print(request.status_code)
     # SpreadsheetIO.fasta_parser()
@@ -91,9 +92,24 @@ if __name__ == '__main__':
     # run_database_stuff()
 
 
-        app = QtWidgets.QApplication(sys.argv)
-        window = QtWidgets.QMainWindow()
-        button = QtWidgets.QPushButton("Hello, PyQt!")
-        window.setCentralWidget(button)
-        window.show()
-        app.exec_()
+def function_for_experimenting():
+    app = QtWidgets.QApplication(sys.argv)
+    window = QtWidgets.QMainWindow()
+    button = QtWidgets.QPushButton("Hello, PyQt!")
+    window.setCentralWidget(button)
+    window.show()
+    app.exec_()
+
+
+def UI_main(director):
+    in_source = director.define_input_source()
+    if in_source:
+        director.access_databases()
+    elif in_source:
+        director.define_input_source()
+
+
+if __name__ == '__main__':
+    main_director = Director.Director()
+
+    UI_main(main_director)

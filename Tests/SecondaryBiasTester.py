@@ -245,7 +245,7 @@ class SequenceBiasIOTests(unittest.TestCase):
         director = Director()
         director.file_in_path = path_in
         returned = director.analysis_helper(path_in)
-        director.run_analysis()
+        director.run_bias_analysis()
         for i in range(len(seq_list)):
             self.assertEqual(director.master_list[i], seq_list[i])
 

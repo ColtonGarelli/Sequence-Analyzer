@@ -58,7 +58,7 @@ class AnalysisBuilder(Builder):
             new_obj.initialize_sequence_object(temp_str[0], temp_str[1])
             new_list.append(new_obj)
 
-        self.seq_list = new_list
+        self.set_sequence_list(new_list)
         return new_list
 
     def build_list_from_file(self):

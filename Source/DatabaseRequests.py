@@ -3,6 +3,8 @@ from Bio.SeqIO import UniprotIO
 import sys, requests
 
 
+# creates no objects, just handles requests and string responses
+
 class DatabaseRequests(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
@@ -13,9 +15,6 @@ class DatabaseRequests(metaclass=abc.ABCMeta):
 
     @abc.abstractmethod
     def check_for_updates(self): raise NotImplementedError
-
-    @abc.abstractmethod
-    def create_sequence_object(self): raise NotImplementedError
 
 #   returns a tuple (ID, sequence)
     def fasta_parser(self, fasta_string):
@@ -28,6 +27,9 @@ class DatabaseRequests(metaclass=abc.ABCMeta):
 
 class ebiDatabase(DatabaseRequests):
     def __init__(self):
+        base_url = ""
+        query_options = ""
+
         super(ebiDatabase, self).__init__()
         self.something = None
 
@@ -40,11 +42,21 @@ class ebiDatabase(DatabaseRequests):
     def check_for_updates(self):
         self.something = None
 
-    def create_sequence_object(self):
-        self.something = None
+    def testthings(self):
+        requestURL = "https://www.ebi.ac.uk/proteins/api/proteins?offset=0&size=100&reviewed=true&keywords=keywordsearch&protein=protein%20name&seqLength=10000"
+
+        r = requests.get(requestURL, headers={"Accept": "application/xml"})
+
+        if not r.ok:
+            r.raise_for_status()
+            sys.exit()
+
+        responseBody = r.text
+        print(responseBody)
 
 
 class UniProtDatabase(DatabaseRequests):
+
     base_url = "https://www.uniprot.org/uniprot/?query=reviewed:yes"
     column_options = dict(query="query")
 
@@ -58,24 +70,9 @@ class UniProtDatabase(DatabaseRequests):
         """
         # to get return as fasta for specific entry
 
-
     def make_database_query(self):
         request_parser = UniprotIO.Parser()
 
     def check_for_updates(self):
         pass
 
-    def create_sequence_object(self):
-        pass
-
-    def testthings(self):
-        requestURL = "https://www.ebi.ac.uk/proteins/api/proteins?offset=0&size=100&reviewed=true&keywords=keywordsearch&protein=protein%20name&seqLength=10000"
-
-        r = requests.get(requestURL, headers={"Accept": "application/xml"})
-
-        if not r.ok:
-            r.raise_for_status()
-            sys.exit()
-
-        responseBody = r.text
-        print(responseBody)
