@@ -6,7 +6,7 @@ SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
 SPHINXPROJ    = SequenceAnalyzer2.1
 SOURCEDIR     =
-BUILDDIR      = build
+BUILDDIR      = ../docs
 
 # Put it first so that "make" without argument is like "make help".
 help:
