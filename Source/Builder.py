@@ -17,7 +17,6 @@ class Builder(metaclass=abc.ABCMeta):
     def set_sequence_list(self, new_list):
         raise NotImplementedError
 
-
     # @abc.abstractmethod
     # def build_sec_bias(self):
     #     raise NotImplementedError

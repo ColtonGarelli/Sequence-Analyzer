@@ -1,0 +1,281 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>DatabaseRequests &mdash; Sequence Analyzer 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sequence Analyzer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sequence Analyzer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>DatabaseRequests</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for DatabaseRequests</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">abc</span>
+<span class="kn">from</span> <span class="nn">Bio.SeqIO</span> <span class="k">import</span> <span class="n">UniprotIO</span>
+<span class="kn">import</span> <span class="nn">sys</span><span class="o">,</span> <span class="nn">requests</span>
+
+
+<span class="c1"># creates no objects, just handles requests and string responses</span>
+
+<div class="viewcode-block" id="DatabaseRequests"><a class="viewcode-back" href="../DatabaseRequests.html#DatabaseRequests.DatabaseRequests">[docs]</a><span class="k">class</span> <span class="nc">DatabaseRequests</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">abc</span><span class="o">.</span><span class="n">ABCMeta</span><span class="p">):</span>
+
+<div class="viewcode-block" id="DatabaseRequests.create_request_url"><a class="viewcode-back" href="../DatabaseRequests.html#DatabaseRequests.DatabaseRequests.create_request_url">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">create_request_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">param_list</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="DatabaseRequests.make_database_query"><a class="viewcode-back" href="../DatabaseRequests.html#DatabaseRequests.DatabaseRequests.make_database_query">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">make_database_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<div class="viewcode-block" id="DatabaseRequests.check_for_updates"><a class="viewcode-back" href="../DatabaseRequests.html#DatabaseRequests.DatabaseRequests.check_for_updates">[docs]</a>    <span class="nd">@abc</span><span class="o">.</span><span class="n">abstractmethod</span>
+    <span class="k">def</span> <span class="nf">check_for_updates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span> <span class="k">raise</span> <span class="ne">NotImplementedError</span></div>
+
+<span class="c1">#   returns a tuple (ID, sequence)</span>
+<div class="viewcode-block" id="DatabaseRequests.fasta_parser"><a class="viewcode-back" href="../DatabaseRequests.html#DatabaseRequests.DatabaseRequests.fasta_parser">[docs]</a>    <span class="k">def</span> <span class="nf">fasta_parser</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fasta_string</span><span class="p">):</span>
+        <span class="n">split_string</span> <span class="o">=</span> <span class="n">fasta_string</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+        <span class="n">id_stirng</span> <span class="o">=</span> <span class="n">split_string</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">seq_string</span> <span class="o">=</span> <span class="n">split_string</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+        <span class="n">prot_tuple</span> <span class="o">=</span> <span class="p">(</span><span class="n">id_stirng</span><span class="p">,</span> <span class="n">seq_string</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">prot_tuple</span></div></div>
+
+
+<div class="viewcode-block" id="ebiDatabase"><a class="viewcode-back" href="../DatabaseRequests.html#DatabaseRequests.ebiDatabase">[docs]</a><span class="k">class</span> <span class="nc">ebiDatabase</span><span class="p">(</span><span class="n">DatabaseRequests</span><span class="p">):</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">query_options</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+
+        <span class="nb">super</span><span class="p">(</span><span class="n">ebiDatabase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">something</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="ebiDatabase.create_request_url"><a class="viewcode-back" href="../DatabaseRequests.html#DatabaseRequests.ebiDatabase.create_request_url">[docs]</a>    <span class="k">def</span> <span class="nf">create_request_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">param_list</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">something</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="ebiDatabase.make_database_query"><a class="viewcode-back" href="../DatabaseRequests.html#DatabaseRequests.ebiDatabase.make_database_query">[docs]</a>    <span class="k">def</span> <span class="nf">make_database_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">something</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="ebiDatabase.check_for_updates"><a class="viewcode-back" href="../DatabaseRequests.html#DatabaseRequests.ebiDatabase.check_for_updates">[docs]</a>    <span class="k">def</span> <span class="nf">check_for_updates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">something</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="ebiDatabase.testthings"><a class="viewcode-back" href="../DatabaseRequests.html#DatabaseRequests.ebiDatabase.testthings">[docs]</a>    <span class="k">def</span> <span class="nf">testthings</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">requestURL</span> <span class="o">=</span> <span class="s2">&quot;https://www.ebi.ac.uk/proteins/api/proteins?offset=0&amp;size=100&amp;reviewed=true&amp;keywords=keywordsearch&amp;protein=protein%20name&amp;seqLength=10000&quot;</span>
+
+        <span class="n">r</span> <span class="o">=</span> <span class="n">requests</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">requestURL</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="p">{</span><span class="s2">&quot;Accept&quot;</span><span class="p">:</span> <span class="s2">&quot;application/xml&quot;</span><span class="p">})</span>
+
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">r</span><span class="o">.</span><span class="n">ok</span><span class="p">:</span>
+            <span class="n">r</span><span class="o">.</span><span class="n">raise_for_status</span><span class="p">()</span>
+            <span class="n">sys</span><span class="o">.</span><span class="n">exit</span><span class="p">()</span>
+
+        <span class="n">responseBody</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">text</span>
+        <span class="nb">print</span><span class="p">(</span><span class="n">responseBody</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="UniProtDatabase"><a class="viewcode-back" href="../DatabaseRequests.html#DatabaseRequests.UniProtDatabase">[docs]</a><span class="k">class</span> <span class="nc">UniProtDatabase</span><span class="p">(</span><span class="n">DatabaseRequests</span><span class="p">):</span>
+
+    <span class="n">base_url</span> <span class="o">=</span> <span class="s2">&quot;https://www.uniprot.org/uniprot/?query=reviewed:yes&quot;</span>
+    <span class="n">column_options</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">query</span><span class="o">=</span><span class="s2">&quot;query&quot;</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">UniProtDatabase</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+<div class="viewcode-block" id="UniProtDatabase.create_request_url"><a class="viewcode-back" href="../DatabaseRequests.html#DatabaseRequests.UniProtDatabase.create_request_url">[docs]</a>    <span class="k">def</span> <span class="nf">create_request_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">query</span><span class="p">,</span> <span class="n">param_list</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Creates a URL based on user input for desired sequence parameters.</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span></div>
+        <span class="c1"># to get return as fasta for specific entry</span>
+
+<div class="viewcode-block" id="UniProtDatabase.make_database_query"><a class="viewcode-back" href="../DatabaseRequests.html#DatabaseRequests.UniProtDatabase.make_database_query">[docs]</a>    <span class="k">def</span> <span class="nf">make_database_query</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">request_parser</span> <span class="o">=</span> <span class="n">UniprotIO</span><span class="o">.</span><span class="n">Parser</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="UniProtDatabase.check_for_updates"><a class="viewcode-back" href="../DatabaseRequests.html#DatabaseRequests.UniProtDatabase.check_for_updates">[docs]</a>    <span class="k">def</span> <span class="nf">check_for_updates</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div></div>
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Colton Garelli and Jamie Paule Ellis.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

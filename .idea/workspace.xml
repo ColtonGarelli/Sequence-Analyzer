@@ -1,7 +1,211 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d7bbb029-bcaf-48ad-b10b-48c7b7feb115" name="Default" comment="commit all" />
+    <list default="true" id="d7bbb029-bcaf-48ad-b10b-48c7b7feb115" name="Default" comment="commit all">
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/doctrees/Builder.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/doctrees/DatabaseRequests.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/doctrees/Director.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/doctrees/Representation.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/doctrees/SecondaryBiasFinder.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/doctrees/SpreadsheetIO.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/doctrees/environment.pickle" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/doctrees/index.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/doctrees/intro.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/doctrees/main.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/doctrees/modules.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/.buildinfo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/.nojekyll" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/Builder.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/DatabaseRequests.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/Director.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/Representation.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/SecondaryBiasFinder.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/SpreadsheetIO.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_modules/Builder.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_modules/DatabaseRequests.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_modules/Director.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_modules/Representation.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_modules/SecondaryBiasFinder.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_modules/SpreadsheetIO.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_modules/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_modules/main.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_sources/Builder.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_sources/DatabaseRequests.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_sources/Director.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_sources/Representation.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_sources/SecondaryBiasFinder.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_sources/SpreadsheetIO.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_sources/index.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_sources/intro.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_sources/main.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_sources/modules.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/ajax-loader.gif" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/basic.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/comment-bright.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/comment-close.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/comment.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/css/badge_only.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/css/theme.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/doctools.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/documentation_options.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/down-pressed.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/down.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/file.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/Lato/lato-bold.eot" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/Lato/lato-bold.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/Lato/lato-bold.woff" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/Lato/lato-bold.woff2" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/Lato/lato-bolditalic.eot" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/Lato/lato-bolditalic.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/Lato/lato-bolditalic.woff" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/Lato/lato-bolditalic.woff2" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/Lato/lato-italic.eot" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/Lato/lato-italic.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/Lato/lato-italic.woff" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/Lato/lato-italic.woff2" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/Lato/lato-regular.eot" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/Lato/lato-regular.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/Lato/lato-regular.woff" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/Lato/lato-regular.woff2" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/RobotoSlab/roboto-slab-v7-bold.eot" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/RobotoSlab/roboto-slab-v7-bold.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/RobotoSlab/roboto-slab-v7-bold.woff" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/RobotoSlab/roboto-slab-v7-bold.woff2" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/RobotoSlab/roboto-slab-v7-regular.eot" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/RobotoSlab/roboto-slab-v7-regular.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/RobotoSlab/roboto-slab-v7-regular.woff" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/RobotoSlab/roboto-slab-v7-regular.woff2" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/fontawesome-webfont.eot" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/fontawesome-webfont.svg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/fontawesome-webfont.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/fontawesome-webfont.woff" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/fonts/fontawesome-webfont.woff2" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/jquery-3.2.1.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/jquery.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/js/modernizr.min.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/js/theme.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/minus.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/plus.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/pygments.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/searchtools.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/underscore-1.3.1.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/underscore.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/up-pressed.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/up.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/_static/websupport.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/doctrees/Builder.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/doctrees/DatabaseRequests.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/doctrees/Director.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/doctrees/Representation.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/doctrees/SecondaryBiasFinder.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/doctrees/SpreadsheetIO.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/doctrees/environment.pickle" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/doctrees/index.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/doctrees/intro.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/doctrees/main.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/doctrees/modules.doctree" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/genindex.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/.buildinfo" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/.nojekyll" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/Builder.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/DatabaseRequests.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/Director.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/Representation.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/SecondaryBiasFinder.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/SpreadsheetIO.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_modules/Builder.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_modules/DatabaseRequests.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_modules/Director.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_modules/Representation.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_modules/SecondaryBiasFinder.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_modules/SpreadsheetIO.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_modules/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_modules/main.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_sources/Builder.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_sources/DatabaseRequests.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_sources/Director.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_sources/Representation.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_sources/SecondaryBiasFinder.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_sources/SpreadsheetIO.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_sources/index.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_sources/intro.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_sources/main.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_sources/modules.rst.txt" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/ajax-loader.gif" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/basic.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/comment-bright.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/comment-close.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/comment.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/css/badge_only.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/css/theme.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/doctools.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/documentation_options.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/down-pressed.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/down.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/file.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/Lato/lato-bold.eot" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/Lato/lato-bold.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/Lato/lato-bold.woff" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/Lato/lato-bold.woff2" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/Lato/lato-bolditalic.eot" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/Lato/lato-bolditalic.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/Lato/lato-bolditalic.woff" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/Lato/lato-bolditalic.woff2" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/Lato/lato-italic.eot" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/Lato/lato-italic.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/Lato/lato-italic.woff" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/Lato/lato-italic.woff2" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/Lato/lato-regular.eot" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/Lato/lato-regular.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/Lato/lato-regular.woff" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/Lato/lato-regular.woff2" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/RobotoSlab/roboto-slab-v7-bold.eot" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/RobotoSlab/roboto-slab-v7-bold.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/RobotoSlab/roboto-slab-v7-bold.woff" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/RobotoSlab/roboto-slab-v7-bold.woff2" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/RobotoSlab/roboto-slab-v7-regular.eot" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/RobotoSlab/roboto-slab-v7-regular.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/RobotoSlab/roboto-slab-v7-regular.woff" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/RobotoSlab/roboto-slab-v7-regular.woff2" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/fontawesome-webfont.eot" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/fontawesome-webfont.svg" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/fontawesome-webfont.ttf" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/fontawesome-webfont.woff" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/fonts/fontawesome-webfont.woff2" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/jquery-3.2.1.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/jquery.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/js/modernizr.min.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/js/theme.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/minus.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/plus.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/pygments.css" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/searchtools.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/underscore-1.3.1.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/underscore.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/up-pressed.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/up.png" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/_static/websupport.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/genindex.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/intro.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/main.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/modules.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/objects.inv" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/py-modindex.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/search.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/html/searchindex.js" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/index.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/intro.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/main.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/modules.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/objects.inv" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/py-modindex.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/search.html" />
+      <change beforePath="" afterPath="$PROJECT_DIR$/docs/html/searchindex.js" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" afterPath="$PROJECT_DIR$/.idea/workspace.xml" />
+      <change beforePath="$PROJECT_DIR$/Source/Builder.py" afterPath="$PROJECT_DIR$/Source/Builder.py" />
+      <change beforePath="$PROJECT_DIR$/Source/Representation.py" afterPath="$PROJECT_DIR$/Source/Representation.py" />
+    </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -11,10 +215,20 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
+      <file leaf-file-name="Representation.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Source/Representation.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="75">
+              <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
+              <folding />
+            </state>
+          </provider>
+        </entry>
+      </file>
       <file leaf-file-name="Director.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/Director.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="195">
+            <state relative-caret-position="28">
               <caret line="14" column="11" lean-forward="false" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
               <folding />
             </state>
@@ -31,78 +245,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="DatabaseRequests.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sphinx/build/html/_modules/DatabaseRequests.html">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="330">
-              <caret line="22" column="4" lean-forward="false" selection-start-line="22" selection-start-column="4" selection-end-line="22" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".buildinfo" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/.buildinfo">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="0">
-              <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Source/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="1245">
-              <caret line="83" column="19" lean-forward="false" selection-start-line="83" selection-start-column="18" selection-end-line="83" selection-end-column="19" />
-              <folding>
-                <element signature="e#0#27#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="conf.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sphinx/conf.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1062">
-              <caret line="62" column="18" lean-forward="false" selection-start-line="62" selection-start-column="18" selection-end-line="62" selection-end-column="18" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Makefile" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sphinx/Makefile">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="285">
-              <caret line="19" column="4" lean-forward="false" selection-start-line="19" selection-start-column="4" selection-end-line="19" selection-end-column="4" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name=".gitignore" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/.gitignore">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="170">
-              <caret line="101" column="1" lean-forward="false" selection-start-line="101" selection-start-column="1" selection-end-line="101" selection-end-column="1" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Builder.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Source/Builder.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="450">
-              <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-              <folding />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="DatabaseRequests.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/DatabaseRequests.py">
           <provider selected="true" editor-type-id="text-editor">
@@ -111,6 +253,16 @@
               <folding>
                 <element signature="e#0#10#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Builder.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Source/Builder.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-969">
+              <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+              <folding />
             </state>
           </provider>
         </entry>
@@ -147,7 +299,6 @@
       <find>this</find>
       <find>SequenceBias</find>
       <find>initialize_sec</find>
-      <find>docs</find>
       <find>UserInter</find>
       <find>UserI</find>
       <find>interfac</find>
@@ -157,6 +308,7 @@
       <find>useri</find>
       <find>Operat</find>
       <find>User</find>
+      <find>docs</find>
       <find>processed</find>
     </findStrings>
   </component>
@@ -201,7 +353,6 @@
         <option value="$PROJECT_DIR$/Source/Operation.py" />
         <option value="$PROJECT_DIR$/Source/Sequence.py" />
         <option value="$PROJECT_DIR$/Source/DatabaseAPIs.py" />
-        <option value="$PROJECT_DIR$/Source/Builder.py" />
         <option value="$PROJECT_DIR$/Source/DatabaseRequests.py" />
         <option value="$PROJECT_DIR$/Source/Director.py" />
         <option value="$PROJECT_DIR$/Source/main.py" />
@@ -213,14 +364,15 @@
         <option value="$PROJECT_DIR$/sphinx/build/html/search.html" />
         <option value="$PROJECT_DIR$/sphinx/build/html/searchindex.js" />
         <option value="$PROJECT_DIR$/sphinx/build/html/_modules/index.html" />
-        <option value="$PROJECT_DIR$/Source/Representation.py" />
         <option value="$PROJECT_DIR$/Source/SecondaryBiasFinder.py" />
         <option value="$PROJECT_DIR$/sphinx/Makefile" />
         <option value="$PROJECT_DIR$/.gitignore" />
+        <option value="$PROJECT_DIR$/Source/Builder.py" />
+        <option value="$PROJECT_DIR$/Source/Representation.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="x" value="66" />
     <option name="y" value="23" />
     <option name="width" value="1322" />
@@ -335,8 +487,8 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/doc" />
       <recent name="$PROJECT_DIR$/docs" />
+      <recent name="$PROJECT_DIR$/doc" />
       <recent name="$PROJECT_DIR$/References" />
       <recent name="$PROJECT_DIR$" />
     </key>
@@ -534,9 +686,10 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="66" y="23" width="1322" height="877" extended-state="0" />
+    <frame x="0" y="0" width="1440" height="900" extended-state="0" />
+    <editor active="true" />
     <layout>
-      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.36894697" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
+      <window_info id="Project" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.11134602" sideWeight="0.5" order="0" side_tool="false" content_ui="combo" />
       <window_info id="TODO" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="8" side_tool="false" content_ui="tabs" />
       <window_info id="Event Log" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.3375959" sideWeight="0.5119139" order="18" side_tool="true" content_ui="tabs" />
       <window_info id="Find" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32769045" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
@@ -544,7 +697,7 @@
       <window_info id="Version Control" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32992327" sideWeight="0.5" order="9" side_tool="false" content_ui="tabs" />
       <window_info id="Python Console" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.32889965" sideWeight="0.49598163" order="10" side_tool="false" content_ui="tabs" />
       <window_info id="Structure" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.24907522" sideWeight="0.5" order="1" side_tool="false" content_ui="tabs" />
-      <window_info id="Terminal" active="true" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.3375959" sideWeight="0.48808607" order="11" side_tool="false" content_ui="tabs" />
+      <window_info id="Terminal" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="true" show_stripe_button="true" weight="0.31922612" sideWeight="0.48808607" order="11" side_tool="false" content_ui="tabs" />
       <window_info id="Debug" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.29411766" sideWeight="0.5" order="3" side_tool="false" content_ui="tabs" />
       <window_info id="Favorites" active="false" anchor="left" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.33" sideWeight="0.5" order="2" side_tool="true" content_ui="tabs" />
       <window_info id="Cvs" active="false" anchor="bottom" auto_hide="false" internal_type="DOCKED" type="DOCKED" visible="false" show_stripe_button="true" weight="0.25" sideWeight="0.5" order="6" side_tool="false" content_ui="tabs" />
@@ -591,15 +744,6 @@
     <watches-manager />
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Source/SpreadsheetIO.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="0">
-          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Sequence.py" />
     <entry file="file://$PROJECT_DIR$/Source/UserInterface.py" />
     <entry file="file://$PROJECT_DIR$/docs/.buildinfo">
       <provider selected="true" editor-type-id="text-editor">
@@ -897,55 +1041,13 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Representation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="0" lean-forward="false" selection-start-line="1" selection-start-column="0" selection-end-line="1" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Source/main.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1245">
           <caret line="83" column="19" lean-forward="false" selection-start-line="83" selection-start-column="18" selection-end-line="83" selection-end-column="19" />
           <folding>
-            <element signature="e#0#27#0" expanded="true" />
+            <element signature="e#0#27#0" expanded="false" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Builder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="450">
-          <caret line="31" column="0" lean-forward="false" selection-start-line="31" selection-start-column="0" selection-end-line="31" selection-end-column="0" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/DatabaseRequests.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="870">
-          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Director.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="195">
-          <caret line="14" column="11" lean-forward="false" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
-          <folding />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/SecondaryBiasFinder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="283">
-          <caret line="239" column="48" lean-forward="false" selection-start-line="239" selection-start-column="48" selection-end-line="239" selection-end-column="48" />
-          <folding />
         </state>
       </provider>
     </entry>
@@ -965,10 +1067,26 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sphinx/conf.py">
+    <entry file="file://$PROJECT_DIR$/docs/doctrees/main.doctree">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1062">
-          <caret line="62" column="18" lean-forward="false" selection-start-line="62" selection-start-column="18" selection-end-line="62" selection-end-column="18" />
+        <state relative-caret-position="0">
+          <caret line="0" column="0" lean-forward="false" selection-start-line="0" selection-start-column="0" selection-end-line="0" selection-end-column="0" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/py-modindex.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="146" column="51" lean-forward="false" selection-start-line="146" selection-start-column="50" selection-end-line="146" selection-end-column="51" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.gitignore">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="269">
+          <caret line="123" column="4" lean-forward="true" selection-start-line="123" selection-start-column="4" selection-end-line="123" selection-end-column="4" />
           <folding />
         </state>
       </provider>
@@ -981,10 +1099,52 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/.gitignore">
+    <entry file="file://$PROJECT_DIR$/sphinx/conf.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="101" column="1" lean-forward="false" selection-start-line="101" selection-start-column="1" selection-end-line="101" selection-end-column="1" />
+        <state relative-caret-position="-155">
+          <caret line="62" column="18" lean-forward="false" selection-start-line="62" selection-start-column="18" selection-end-line="62" selection-end-column="18" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/SecondaryBiasFinder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="283">
+          <caret line="239" column="48" lean-forward="false" selection-start-line="239" selection-start-column="48" selection-end-line="239" selection-end-column="48" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/DatabaseRequests.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="870">
+          <caret line="58" column="0" lean-forward="false" selection-start-line="58" selection-start-column="0" selection-end-line="58" selection-end-column="0" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Director.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="28">
+          <caret line="14" column="11" lean-forward="false" selection-start-line="14" selection-start-column="11" selection-end-line="14" selection-end-column="11" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Builder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-969">
+          <caret line="17" column="33" lean-forward="false" selection-start-line="17" selection-start-column="33" selection-end-line="17" selection-end-column="33" />
+          <folding />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Representation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="75">
+          <caret line="5" column="0" lean-forward="true" selection-start-line="5" selection-start-column="0" selection-end-line="5" selection-end-column="0" />
           <folding />
         </state>
       </provider>
