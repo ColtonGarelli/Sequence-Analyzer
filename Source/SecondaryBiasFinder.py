@@ -232,13 +232,6 @@ def processed_data_in(general_path, file_beginning):
     """
     Creates a list of SecondaryBias objects from file.
 
-    ****
-    ****
-    ****
-    NOT TESTED
-    ****
-    ****
-    ****
 
     :param: general_path:
     :param: file_beginning:

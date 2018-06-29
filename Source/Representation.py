@@ -1,5 +1,5 @@
 from os.path import join
-import UserInterface
+
 
 
 # Product in builder pattern for python (see: https://gist.github.com/pazdera/1121157)

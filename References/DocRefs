@@ -22,3 +22,6 @@ define output_path as docs and modules path as Source. command must be from root
     -this command updates module auto-documentation
 
 git add --all to commit untracked files
+
+sphinx-apidoc -F -o . /Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/Source
+
