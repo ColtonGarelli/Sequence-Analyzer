@@ -1,33 +1,94 @@
 from os.path import join
 
+"""Representation.py contains Representation class and assisting UI functions
+
+Responds to Director by:
+    * Print prompts and relay responses
+    * Print requested data
+    * Present available options for databases, processing, viewing
+
+Functions:
+    * Serve as UI prompts and to augment other printed/file representations
+
+"""
+
 
 # Product in builder pattern for python (see: https://gist.github.com/pazdera/1121157)
 class Representation:
     """
-    -Runs user interface using the UI class. May move those functions to this module (eliminate class)
-    -Handles file-output. Raw data should be output as a csv file. Graphical representations may be implemented later.
-    -Runs all interaction with user and computer (display/fileio)
-    :var self.file_out_path: file out path to the desired directory
-    :var self.base_name: base file name to maintain consistency in output
+    - Runs user interface using the UI class. May move those functions to this module (eliminate class).
+    - Handles file-output. Raw data should be output as a csv file. Graphical representations may be implemented later.
+    - Runs all interaction with user and computer (display/fileio)
     """
     def __init__(self):
-        self.file_out_path = ""
+        """
+        Variables:
+            'self.file_out_path': file out path to the desired directory
+            'self.base_name': base file name to maintain consistency in output
+        """
+        self.file_out_path = None
         self.base_name = None
 
     def introduction(self):
+        """
+        Prints link to documentation and prints welcome message
+
+        Note:
+            this function may be moved to a class variable
+        """
         welcome()
 
-    def manual_options(self):
+    def manual_sequence_entry(self):
+        """
+        Manages file_in entry including providing examples, links to documentation for formatting
+        and passing input file path from user to director
+
+        Return:
+            user inputted path
+        """
         manual_sequence_input()
+
+    def choose_database(self):
+        """
+        Relays which database is being accessed so Director can access that database through its builder
+
+        Returns:
+            database choice
+        """
+        s = None
 
     # handles calling desired DB, representing responses,
     def DB_options(self):
+        """
+        Relays an ordered tuple to the director containing request information.
+        Request information in this tuple contains keywords, query options,
+        and response columns (everything needed to send a request)
+
+        Return:
+            tuple containing database info defined in the director class
+
+        """
         print("something")
 
-    def view_processed_info(self):
+    def manage_processed_info(self):
+        """
+        Prints prompts for viewing info for user
+
+        Return:
+            view type (console, graphical, file out)
+        """
         s = None
 
-    def output_processed_info(self):
+    def output_processed_info(self, print_or_out):
+        """
+        Take the string passed in and prints it or writes it to file. In the future, a separate function for graphing
+
+        Args:
+            print_or_out(str): a string representing file our view
+
+        Return:
+             Completion of file_out or printing (T/F)
+        """
         s = None
 
 
