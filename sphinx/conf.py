@@ -14,7 +14,7 @@
 #
 import os
 import sys
-sys.path.insert(0, '/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/Source')
+sys.path.insert(0, os.path.abspath('../Source'))
 
 
 # -- Project information -----------------------------------------------------
