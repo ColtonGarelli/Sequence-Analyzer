@@ -33,9 +33,9 @@ Todo:
 
 """
 
-module_level_variable1 = 12345
-
-module_level_variable2 = 98765
+# module_level_variable1 = 12345
+#
+# module_level_variable2 = 98765
 """int: Module level variable documented inline.
 
 The docstring may span multiple lines. The type may optionally be specified
