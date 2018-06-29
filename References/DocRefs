@@ -25,3 +25,12 @@ git add --all to commit untracked files
 
 sphinx-apidoc -F -o . /Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/Source
 
+https://docs.readthedocs.io/en/latest/getting_started.html#in-restructuredtext
+
+http://docutils.sourceforge.net/rst.html
+
+https://sphinx-rtd-theme.readthedocs.io/en/latest/configuring.html
+
+CONFIG.PY :  http://www.sphinx-doc.org/en/stable/config.html#confval-html_short_title
+
+http://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html#cmdoption-sphinx-apidoc-full
