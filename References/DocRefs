@@ -20,3 +20,5 @@ use sphinx-apidoc [OPTIONS] -o <OUTPUT_PATH> <MODULE_PATH> [EXCLUDE_PATTERN, …
 and
 define output_path as docs and modules path as Source. command must be from root folder (cd .. to go out a directory)
     -this command updates module auto-documentation
+
+git add --all to commit untracked files
