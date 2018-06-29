@@ -1,0 +1,454 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Representation module &mdash; Sequence Analyzer 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="SecondaryBiasFinder module" href="SecondaryBiasFinder.html" />
+    <link rel="prev" title="docstring_example_google module" href="docstring_example_google.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Sequence Analyzer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents:</span></p>
+<ul class="current">
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Source</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Builder.html">Builder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="DatabaseRequests.html">DatabaseRequests module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Director.html">Director module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docstring_example_google.html">docstring_example_google module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Representation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SecondaryBiasFinder.html">SecondaryBiasFinder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SpreadsheetIO.html">SpreadsheetIO module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Sequence Analyzer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">Source</a> &raquo;</li>
+        
+      <li>Representation module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/Representation.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-Representation">
+<span id="representation-module"></span><h1>Representation module<a class="headerlink" href="#module-Representation" title="Permalink to this headline">¶</a></h1>
+<dl class="class">
+<dt id="Representation.Representation">
+<em class="property">class </em><code class="descclassname">Representation.</code><code class="descname">Representation</code><a class="reference internal" href="_modules/Representation.html#Representation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<ul class="simple">
+<li>Runs user interface using the UI class. May move those functions to this module (eliminate class).</li>
+<li>Handles file-output. Raw data should be output as a csv file. Graphical representations may be implemented later.</li>
+<li>Runs all interaction with user and computer (display/fileio)</li>
+</ul>
+<dl class="method">
+<dt id="Representation.Representation.DB_options">
+<code class="descname">DB_options</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.DB_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.DB_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Relays an ordered tuple to the director containing request information.
+Request information in this tuple contains keywords, query options,
+and response columns (everything needed to send a request)</p>
+<dl class="docutils">
+<dt>Return:</dt>
+<dd>tuple containing database info defined in the director class</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Representation.Representation.choose_database">
+<code class="descname">choose_database</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.choose_database"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.choose_database" title="Permalink to this definition">¶</a></dt>
+<dd><p>Relays which database is being accessed so Director can access that database through its builder</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>database choice</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Representation.Representation.introduction">
+<code class="descname">introduction</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.introduction"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.introduction" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints link to documentation and prints welcome message</p>
+<dl class="docutils">
+<dt>Note:</dt>
+<dd>this function may be moved to a class variable</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Representation.Representation.manage_processed_info">
+<code class="descname">manage_processed_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.manage_processed_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.manage_processed_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prints prompts for viewing info for user</p>
+<dl class="docutils">
+<dt>Return:</dt>
+<dd>view type (console, graphical, file out)</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Representation.Representation.manual_sequence_entry">
+<code class="descname">manual_sequence_entry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.manual_sequence_entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.manual_sequence_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>Manages file_in entry including providing examples, links to documentation for formatting
+and passing input file path from user to director</p>
+<dl class="docutils">
+<dt>Return:</dt>
+<dd>user inputted path</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Representation.Representation.output_processed_info">
+<code class="descname">output_processed_info</code><span class="sig-paren">(</span><em>print_or_out</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.output_processed_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.output_processed_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Take the string passed in and prints it or writes it to file. In the future, a separate function for graphing</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>print_or_out(str): a string representing file our view</dd>
+<dt>Return:</dt>
+<dd>Completion of file_out or printing (T/F)</dd>
+</dl>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="Representation.access_databases">
+<code class="descclassname">Representation.</code><code class="descname">access_databases</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#access_databases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.access_databases" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Representation.check_aa_entry">
+<code class="descclassname">Representation.</code><code class="descname">check_aa_entry</code><span class="sig-paren">(</span><em>sequence_in</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#check_aa_entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.check_aa_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>`
+Ensures only natural amino acids are entered when user inputs a sequence manually.
+:param sequence_in: String of characters
+:return: True if all characters entered are natural amino acids, otherwise False</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Representation.choose_primary_bias">
+<code class="descclassname">Representation.</code><code class="descname">choose_primary_bias</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#choose_primary_bias"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.choose_primary_bias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows the user to select a primary amino acid to search for secondary biases around.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A valid amino acid single letter code as a String object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Representation.convert_to_ints">
+<code class="descclassname">Representation.</code><code class="descname">convert_to_ints</code><span class="sig-paren">(</span><em>string_in</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#convert_to_ints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.convert_to_ints" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Representation.data_options">
+<code class="descclassname">Representation.</code><code class="descname">data_options</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#data_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.data_options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Representation.database_response_options">
+<code class="descclassname">Representation.</code><code class="descname">database_response_options</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#database_response_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.database_response_options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Representation.export_sec_bias_helper">
+<code class="descclassname">Representation.</code><code class="descname">export_sec_bias_helper</code><span class="sig-paren">(</span><em>ID</em>, <em>copy_list</em>, <em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#export_sec_bias_helper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.export_sec_bias_helper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the file for exporting secondary bias data.
+:param ID: The id associated with the sequence being processed
+:param copy_list: a list to be written in csv format
+:param path: the file path writing to
+:return: nothing</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Representation.fasta_parser">
+<code class="descclassname">Representation.</code><code class="descname">fasta_parser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#fasta_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.fasta_parser" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Representation.gene_options">
+<code class="descclassname">Representation.</code><code class="descname">gene_options</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#gene_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.gene_options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Representation.keyword_query_uniprot">
+<code class="descclassname">Representation.</code><code class="descname">keyword_query_uniprot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#keyword_query_uniprot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.keyword_query_uniprot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Representation.main_page">
+<code class="descclassname">Representation.</code><code class="descname">main_page</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#main_page"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.main_page" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Representation.manual_sequence_input">
+<code class="descclassname">Representation.</code><code class="descname">manual_sequence_input</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#manual_sequence_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.manual_sequence_input" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Representation.parse_to_string_list">
+<code class="descclassname">Representation.</code><code class="descname">parse_to_string_list</code><span class="sig-paren">(</span><em>file_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#parse_to_string_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.parse_to_string_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Formats file strings to a list of [“id”,”sequence”] lists (ex. [[id1, sequence1],[id2, sequence2], [id3, sequence3]]
+:param file_string: a list of “id,sequence” strings from a file
+:return: a list formatted as in the example above</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Representation.prediction_options">
+<code class="descclassname">Representation.</code><code class="descname">prediction_options</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#prediction_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.prediction_options" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Representation.print_secondarybias_info">
+<code class="descclassname">Representation.</code><code class="descname">print_secondarybias_info</code><span class="sig-paren">(</span><em>seqbiasobj</em><span class="sig-paren">)</span> &#x2192; &lt;module 'SecondaryBiasFinder' from '/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/Source/SecondaryBiasFinder.py'&gt;<a class="reference internal" href="_modules/Representation.html#print_secondarybias_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.print_secondarybias_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Representation.prompt_make_a_new_file">
+<code class="descclassname">Representation.</code><code class="descname">prompt_make_a_new_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#prompt_make_a_new_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.prompt_make_a_new_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Representation.prompt_sequence_input">
+<code class="descclassname">Representation.</code><code class="descname">prompt_sequence_input</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#prompt_sequence_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.prompt_sequence_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prompts user to enter a sequence manually, and calls Sequence.check_aa_entry to ensure valid entry=</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A valid sequence of natural amino acids as a String object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="Representation.query_by_organism">
+<code class="descclassname">Representation.</code><code class="descname">query_by_organism</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#query_by_organism"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.query_by_organism" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Representation.read_file">
+<code class="descclassname">Representation.</code><code class="descname">read_file</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#read_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.read_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads files in from the given path
+:param path: the full path of the desired file
+:return: a list of id,sequence formatted strings</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="Representation.remove_spaces">
+<code class="descclassname">Representation.</code><code class="descname">remove_spaces</code><span class="sig-paren">(</span><em>string_to_check</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#remove_spaces"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.remove_spaces" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Representation.view_database_information">
+<code class="descclassname">Representation.</code><code class="descname">view_database_information</code><span class="sig-paren">(</span><em>prepped_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#view_database_information"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.view_database_information" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Representation.welcome">
+<code class="descclassname">Representation.</code><code class="descname">welcome</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#welcome"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.welcome" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Representation.write_sequence_to_file">
+<code class="descclassname">Representation.</code><code class="descname">write_sequence_to_file</code><span class="sig-paren">(</span><em>ID</em>, <em>copy_list</em>, <em>file_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#write_sequence_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.write_sequence_to_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="SecondaryBiasFinder.html" class="btn btn-neutral float-right" title="SecondaryBiasFinder module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="docstring_example_google.html" class="btn btn-neutral" title="docstring_example_google module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Colton Garelli and Jamie Paule Ellis.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
