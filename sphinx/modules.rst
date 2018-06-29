@@ -4,9 +4,10 @@ Source
 .. toctree::
    :maxdepth: 4
 
-   Operation
+   Builder
+   DatabaseRequests
+   Director
+   Representation
    SecondaryBiasFinder
-   Sequence
    SpreadsheetIO
-   UserInterface
    main

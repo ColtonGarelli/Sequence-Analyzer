@@ -1,7 +1,7 @@
-Sequence module
+Director module
 ===============
 
-.. automodule:: Sequence
+.. automodule:: Director
     :members:
     :undoc-members:
     :show-inheritance:

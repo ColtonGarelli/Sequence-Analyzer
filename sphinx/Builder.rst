@@ -1,7 +1,7 @@
-Sequence module
-===============
+Builder module
+==============
 
-.. automodule:: Sequence
+.. automodule:: Builder
     :members:
     :undoc-members:
     :show-inheritance:

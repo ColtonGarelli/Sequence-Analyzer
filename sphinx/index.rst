@@ -12,6 +12,8 @@ Trying to get this set up for easy and useful documentation!
    :maxdepth: 2
    :Caption: Contents:
 
+   modules
+
    intro
 
 .. py:class:: SecondaryBias
