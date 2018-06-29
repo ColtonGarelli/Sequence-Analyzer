@@ -145,34 +145,95 @@
   <h1>Source code for Representation</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">os.path</span> <span class="k">import</span> <span class="n">join</span>
 
+<span class="sd">&quot;&quot;&quot;Representation.py contains Representation class and assisting UI functions</span>
+
+<span class="sd">Responds to Director by:</span>
+<span class="sd">    * Print prompts and relay responses</span>
+<span class="sd">    * Print requested data</span>
+<span class="sd">    * Present available options for databases, processing, viewing</span>
+
+<span class="sd">Functions:</span>
+<span class="sd">    * Serve as UI prompts and to augment other printed/file representations</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
 
 <span class="c1"># Product in builder pattern for python (see: https://gist.github.com/pazdera/1121157)</span>
 <div class="viewcode-block" id="Representation"><a class="viewcode-back" href="../Representation.html#Representation.Representation">[docs]</a><span class="k">class</span> <span class="nc">Representation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    -Runs user interface using the UI class. May move those functions to this module (eliminate class)</span>
-<span class="sd">    -Handles file-output. Raw data should be output as a csv file. Graphical representations may be implemented later.</span>
-<span class="sd">    -Runs all interaction with user and computer (display/fileio)</span>
-<span class="sd">    :var self.file_out_path: file out path to the desired directory</span>
-<span class="sd">    :var self.base_name: base file name to maintain consistency in output</span>
+<span class="sd">    - Runs user interface using the UI class. May move those functions to this module (eliminate class).</span>
+<span class="sd">    - Handles file-output. Raw data should be output as a csv file. Graphical representations may be implemented later.</span>
+<span class="sd">    - Runs all interaction with user and computer (display/fileio)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">file_out_path</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Variables:</span>
+<span class="sd">            &#39;self.file_out_path&#39;: file out path to the desired directory</span>
+<span class="sd">            &#39;self.base_name&#39;: base file name to maintain consistency in output</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_out_path</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">base_name</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="Representation.introduction"><a class="viewcode-back" href="../Representation.html#Representation.Representation.introduction">[docs]</a>    <span class="k">def</span> <span class="nf">introduction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prints link to documentation and prints welcome message</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            this function may be moved to a class variable</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">welcome</span><span class="p">()</span></div>
 
-<div class="viewcode-block" id="Representation.manual_options"><a class="viewcode-back" href="../Representation.html#Representation.Representation.manual_options">[docs]</a>    <span class="k">def</span> <span class="nf">manual_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Representation.manual_sequence_entry"><a class="viewcode-back" href="../Representation.html#Representation.Representation.manual_sequence_entry">[docs]</a>    <span class="k">def</span> <span class="nf">manual_sequence_entry</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Manages file_in entry including providing examples, links to documentation for formatting</span>
+<span class="sd">        and passing input file path from user to director</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            user inputted path</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">manual_sequence_input</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Representation.choose_database"><a class="viewcode-back" href="../Representation.html#Representation.Representation.choose_database">[docs]</a>    <span class="k">def</span> <span class="nf">choose_database</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Relays which database is being accessed so Director can access that database through its builder</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            database choice</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="kc">None</span></div>
 
     <span class="c1"># handles calling desired DB, representing responses,</span>
 <div class="viewcode-block" id="Representation.DB_options"><a class="viewcode-back" href="../Representation.html#Representation.Representation.DB_options">[docs]</a>    <span class="k">def</span> <span class="nf">DB_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Relays an ordered tuple to the director containing request information.</span>
+<span class="sd">        Request information in this tuple contains keywords, query options,</span>
+<span class="sd">        and response columns (everything needed to send a request)</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            tuple containing database info defined in the director class</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;something&quot;</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Representation.view_processed_info"><a class="viewcode-back" href="../Representation.html#Representation.Representation.view_processed_info">[docs]</a>    <span class="k">def</span> <span class="nf">view_processed_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Representation.manage_processed_info"><a class="viewcode-back" href="../Representation.html#Representation.Representation.manage_processed_info">[docs]</a>    <span class="k">def</span> <span class="nf">manage_processed_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prints prompts for viewing info for user</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">            view type (console, graphical, file out)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">s</span> <span class="o">=</span> <span class="kc">None</span></div>
 
-<div class="viewcode-block" id="Representation.output_processed_info"><a class="viewcode-back" href="../Representation.html#Representation.Representation.output_processed_info">[docs]</a>    <span class="k">def</span> <span class="nf">output_processed_info</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Representation.output_processed_info"><a class="viewcode-back" href="../Representation.html#Representation.Representation.output_processed_info">[docs]</a>    <span class="k">def</span> <span class="nf">output_processed_info</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">print_or_out</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Take the string passed in and prints it or writes it to file. In the future, a separate function for graphing</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            print_or_out(str): a string representing file our view</span>
+
+<span class="sd">        Return:</span>
+<span class="sd">             Completion of file_out or printing (T/F)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">s</span> <span class="o">=</span> <span class="kc">None</span></div></div>
 
 
