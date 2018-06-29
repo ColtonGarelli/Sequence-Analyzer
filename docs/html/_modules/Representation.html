@@ -146,7 +146,6 @@
 <span></span><span class="kn">from</span> <span class="nn">os.path</span> <span class="k">import</span> <span class="n">join</span>
 
 
-
 <span class="c1"># Product in builder pattern for python (see: https://gist.github.com/pazdera/1121157)</span>
 <div class="viewcode-block" id="Representation"><a class="viewcode-back" href="../Representation.html#Representation.Representation">[docs]</a><span class="k">class</span> <span class="nc">Representation</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -161,10 +160,10 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">base_name</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="Representation.introduction"><a class="viewcode-back" href="../Representation.html#Representation.Representation.introduction">[docs]</a>    <span class="k">def</span> <span class="nf">introduction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">UserInterface</span><span class="o">.</span><span class="n">welcome</span><span class="p">()</span></div>
+        <span class="n">welcome</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Representation.manual_options"><a class="viewcode-back" href="../Representation.html#Representation.Representation.manual_options">[docs]</a>    <span class="k">def</span> <span class="nf">manual_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">UserInterface</span><span class="o">.</span><span class="n">manual_sequence_input</span><span class="p">()</span></div>
+        <span class="n">manual_sequence_input</span><span class="p">()</span></div>
 
     <span class="c1"># handles calling desired DB, representing responses,</span>
 <div class="viewcode-block" id="Representation.DB_options"><a class="viewcode-back" href="../Representation.html#Representation.Representation.DB_options">[docs]</a>    <span class="k">def</span> <span class="nf">DB_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
@@ -266,7 +265,230 @@
     <span class="k">return</span> <span class="n">return_string</span></div>
 
 
+<span class="kn">import</span> <span class="nn">SecondaryBiasFinder</span>
 
+
+<div class="viewcode-block" id="welcome"><a class="viewcode-back" href="../Representation.html#Representation.welcome">[docs]</a><span class="k">def</span> <span class="nf">welcome</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Welcome to the Sequence Analyzer</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please refer to documentation at https://github.com/ColtonGarelli/Sequence-Analyzer/ before using.</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="main_page"><a class="viewcode-back" href="../Representation.html#Representation.main_page">[docs]</a><span class="k">def</span> <span class="nf">main_page</span><span class="p">():</span>
+    <span class="n">usage</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">Would you like to access databases (1)</span><span class="se">\n</span><span class="s2">&quot;</span>
+                  <span class="s2">&quot;or input by file/manually (2)</span><span class="se">\n</span><span class="s2">Of course you could quit as well (0)</span><span class="se">\n\n</span><span class="s2">Enter:&quot;</span><span class="p">)</span>
+    <span class="c1"># add options for other uses. main page. should store current info somewhere during session</span>
+    <span class="c1"># access database, return to homepage, add more from another database</span>
+    <span class="k">return</span> <span class="n">usage</span></div>
+
+
+<div class="viewcode-block" id="access_databases"><a class="viewcode-back" href="../Representation.html#Representation.access_databases">[docs]</a><span class="k">def</span> <span class="nf">access_databases</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Enter the corresponding number to access a database:</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">database_choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;1. UniProt</span><span class="se">\n</span><span class="s2">2. EMBL-EBI</span><span class="se">\n</span><span class="s2">3. Some other one??</span><span class="se">\n\n</span><span class="s2">0. Return to start&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">database_choice</span></div>
+
+
+<div class="viewcode-block" id="database_response_options"><a class="viewcode-back" href="../Representation.html#Representation.database_response_options">[docs]</a><span class="k">def</span> <span class="nf">database_response_options</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;What do you want to do with the information?</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">database_option</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;1. View</span><span class="se">\n</span><span class="s2">2. Process</span><span class="se">\n</span><span class="s2">3. Output to file</span><span class="se">\n</span><span class="s2"> 0. Return to start&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">database_option</span></div>
+
+
+<div class="viewcode-block" id="view_database_information"><a class="viewcode-back" href="../Representation.html#Representation.view_database_information">[docs]</a><span class="k">def</span> <span class="nf">view_database_information</span><span class="p">(</span><span class="n">prepped_string</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Would you like to view all of the information or a subset?&quot;</span><span class="p">)</span>
+    <span class="n">view_option</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;1. All</span><span class="se">\n</span><span class="s2">2. Some&quot;</span><span class="p">)</span>
+    <span class="n">view</span> <span class="o">=</span> <span class="kc">True</span>
+    <span class="k">while</span> <span class="n">view</span><span class="p">:</span>
+
+        <span class="k">if</span> <span class="n">view_option</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">prepped_string</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">view_option</span> <span class="o">==</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sorry! Not implemented yet&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;wrong!&quot;</span><span class="p">)</span>
+
+        <span class="n">keep_viewing</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Would you like to review data? (y/n)&quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">keep_viewing</span> <span class="o">==</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n\n</span><span class="s2">(You may want to clear the window)&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="n">keep_viewing</span> <span class="o">==</span> <span class="s2">&quot;n&quot;</span><span class="p">:</span>
+            <span class="n">view</span> <span class="o">=</span> <span class="kc">False</span></div>
+
+
+<div class="viewcode-block" id="keyword_query_uniprot"><a class="viewcode-back" href="../Representation.html#Representation.keyword_query_uniprot">[docs]</a><span class="k">def</span> <span class="nf">keyword_query_uniprot</span><span class="p">():</span>
+    <span class="n">query</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Search something: &quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">query</span></div>
+
+
+<div class="viewcode-block" id="data_options"><a class="viewcode-back" href="../Representation.html#Representation.data_options">[docs]</a><span class="k">def</span> <span class="nf">data_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Available data options:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">reviewed</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Reviewed? (y/n)&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Select columns to display: (y/n)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">id</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;UniProt ID?&quot;</span><span class="p">)</span>
+    <span class="n">entry_name</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Entry name?&quot;</span><span class="p">)</span>
+    <span class="n">protein_names</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Protein name(s)?&quot;</span><span class="p">)</span>
+    <span class="n">genes</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Genes?&quot;</span><span class="p">)</span>
+    <span class="n">absorption</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Absorption?&quot;</span><span class="p">)</span>
+    <span class="n">temp_depend</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Temperature dependence?&quot;</span><span class="p">)</span>
+    <span class="n">ph</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;pH dependence?&quot;</span><span class="p">)</span>
+    <span class="n">binding_site</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Binding site?&quot;</span><span class="p">)</span>
+    <span class="n">dna_domain</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;DNA-binding domain?&quot;</span><span class="p">)</span>
+    <span class="n">redox_pot</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Redox potential? (disulfides)&quot;</span><span class="p">)</span>
+    <span class="n">subunits</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Subunits?&quot;</span><span class="p">)</span>
+    <span class="n">structure</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;3D structure?&quot;</span><span class="p">)</span>
+    <span class="n">domain</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Domain?&quot;</span><span class="p">)</span>
+    <span class="n">comp_bias</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Compositional bias(es)?&quot;</span><span class="p">)</span>
+    <span class="n">sequence</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Sequence?&quot;</span><span class="p">)</span>
+    <span class="n">mass</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Mass?&quot;</span><span class="p">)</span>
+    <span class="n">organism</span> <span class="o">=</span> <span class="s2">&quot;Organism?&quot;</span>
+    <span class="n">limit_entries</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Limit the number of sequences returned: &quot;</span><span class="p">)</span>
+    <span class="n">offset_entries</span> <span class="o">=</span> <span class="s2">&quot;offset????&quot;</span></div>
+
+
+<div class="viewcode-block" id="manual_sequence_input"><a class="viewcode-back" href="../Representation.html#Representation.manual_sequence_input">[docs]</a><span class="k">def</span> <span class="nf">manual_sequence_input</span><span class="p">():</span>
+    <span class="c1"># Option to query sequence/id in databases????</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Refer to ***documentation_url*** for proper formatting</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">file_in_path</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Please enter a file path&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="n">file_in_path</span></div>
+
+    <span class="c1"># return a tuple containing answers to options</span>
+
+
+<div class="viewcode-block" id="gene_options"><a class="viewcode-back" href="../Representation.html#Representation.gene_options">[docs]</a><span class="k">def</span> <span class="nf">gene_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Select the various genetic information to gather:</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;&quot;</span><span class="p">)</span></div>
+
+    <span class="c1"># return a tuple containing answers to options</span>
+    <span class="c1">#</span>
+
+
+<div class="viewcode-block" id="query_by_organism"><a class="viewcode-back" href="../Representation.html#Representation.query_by_organism">[docs]</a><span class="k">def</span> <span class="nf">query_by_organism</span><span class="p">():</span>
+    <span class="n">nothing</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="prediction_options"><a class="viewcode-back" href="../Representation.html#Representation.prediction_options">[docs]</a><span class="k">def</span> <span class="nf">prediction_options</span><span class="p">():</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Refer to ***Predictor documentation*** for predictor documentation&quot;</span> <span class="o">/</span>
+          <span class="s2">&quot;and ***local module documentation*** for local modules&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Choose analysis sources: (y/n)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="n">FELLS</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;FELLS predictor?&quot;</span><span class="p">)</span>
+    <span class="n">SODA</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;SODA predictor?&quot;</span><span class="p">)</span>
+    <span class="n">bias</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Primary/Secondary biases?&quot;</span><span class="p">)</span>
+    <span class="k">return</span> <span class="kc">None</span></div>
+    <span class="c1"># return a tuple containing answers to options</span>
+
+
+<div class="viewcode-block" id="print_secondarybias_info"><a class="viewcode-back" href="../Representation.html#Representation.print_secondarybias_info">[docs]</a><span class="k">def</span> <span class="nf">print_secondarybias_info</span><span class="p">(</span><span class="n">seqbiasobj</span><span class="p">)</span> <span class="o">-&gt;</span> <span class="n">SecondaryBiasFinder</span><span class="p">:</span>
+
+    <span class="k">if</span> <span class="n">seqbiasobj</span><span class="o">.</span><span class="n">Q_content</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">One Away</span><span class="se">\t\t\t\t\t</span><span class="s2"> Two Away</span><span class="se">\t\t\t\t\t</span><span class="s2"> Three Away</span><span class="se">\t\t\t\t\t</span><span class="s2"> Local&quot;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">19</span><span class="p">):</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">seqbiasobj</span><span class="o">.</span><span class="n">amino_acids</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                  <span class="nb">round</span><span class="p">(</span><span class="n">seqbiasobj</span><span class="o">.</span><span class="n">one_away</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">seqbiasobj</span><span class="o">.</span><span class="n">Q_content</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;per&quot;</span><span class="p">,</span> <span class="n">seqbiasobj</span><span class="o">.</span><span class="n">primary_bias</span><span class="p">,</span>
+                  <span class="s2">&quot;</span><span class="se">\t\t\t\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">seqbiasobj</span><span class="o">.</span><span class="n">amino_acids</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                  <span class="nb">round</span><span class="p">(</span><span class="n">seqbiasobj</span><span class="o">.</span><span class="n">two_away</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">seqbiasobj</span><span class="o">.</span><span class="n">Q_content</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;per&quot;</span><span class="p">,</span> <span class="n">seqbiasobj</span><span class="o">.</span><span class="n">primary_bias</span><span class="p">,</span>
+                  <span class="s2">&quot;</span><span class="se">\t\t\t\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">seqbiasobj</span><span class="o">.</span><span class="n">amino_acids</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                  <span class="nb">round</span><span class="p">(</span><span class="n">seqbiasobj</span><span class="o">.</span><span class="n">three_away</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">seqbiasobj</span><span class="o">.</span><span class="n">Q_content</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;per&quot;</span><span class="p">,</span> <span class="n">seqbiasobj</span><span class="o">.</span><span class="n">primary_bias</span><span class="p">,</span>
+                  <span class="s2">&quot;</span><span class="se">\t\t\t\t</span><span class="s2">&quot;</span><span class="p">,</span> <span class="n">seqbiasobj</span><span class="o">.</span><span class="n">amino_acids</span><span class="p">[</span><span class="n">i</span><span class="p">],</span>
+                  <span class="nb">round</span><span class="p">(</span><span class="n">seqbiasobj</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">seqbiasobj</span><span class="o">.</span><span class="n">Q_content</span><span class="p">,</span> <span class="mi">3</span><span class="p">),</span> <span class="s2">&quot;per&quot;</span><span class="p">,</span> <span class="n">seqbiasobj</span><span class="o">.</span><span class="n">primary_bias</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">No primary bias</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="prompt_sequence_input"><a class="viewcode-back" href="../Representation.html#Representation.prompt_sequence_input">[docs]</a><span class="k">def</span> <span class="nf">prompt_sequence_input</span><span class="p">():</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prompts user to enter a sequence manually, and calls Sequence.check_aa_entry to ensure valid entry=</span>
+
+<span class="sd">        :return: A valid sequence of natural amino acids as a String object</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">sequence_in</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter an amino acid sequence &#39;</span><span class="p">)</span>
+        <span class="n">good_sequence</span> <span class="o">=</span> <span class="n">check_aa_entry</span><span class="p">(</span><span class="n">sequence_in</span><span class="p">)</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">good_sequence</span><span class="p">:</span>
+            <span class="n">sequence_in</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Enter an amino acid sequence &#39;</span><span class="p">)</span>
+            <span class="n">good_sequence</span> <span class="o">=</span> <span class="n">check_aa_entry</span><span class="p">(</span><span class="n">sequence_in</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">sequence_in</span></div>
+
+<span class="c1"># user interface functions prompts user for necessary info</span>
+<span class="c1"># sends info to</span>
+
+
+<div class="viewcode-block" id="prompt_make_a_new_file"><a class="viewcode-back" href="../Representation.html#Representation.prompt_make_a_new_file">[docs]</a><span class="k">def</span> <span class="nf">prompt_make_a_new_file</span><span class="p">():</span>
+    <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter 1 to convert fasta format to the required format</span><span class="se">\n</span><span class="s2">&quot;</span>
+                       <span class="s2">&quot;Enter 2 if the file is already prepared</span><span class="se">\n</span><span class="s2">&quot;</span>
+                       <span class="s2">&quot;Enter 0 to quit</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">user_input</span> <span class="o">!=</span> <span class="s2">&quot;1&quot;</span> <span class="ow">and</span> <span class="n">user_input</span> <span class="o">!=</span> <span class="s2">&quot;2&quot;</span> <span class="ow">and</span> <span class="n">user_input</span> <span class="o">!=</span> <span class="s2">&quot;0&quot;</span><span class="p">:</span>
+        <span class="n">user_input</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Enter 1 to convert fasta format to the required format</span><span class="se">\n</span><span class="s2">&quot;</span>
+                           <span class="s2">&quot;Enter 2 if the file is already prepared</span><span class="se">\n</span><span class="s2">&quot;</span>
+                           <span class="s2">&quot;Enter 0 to quit</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;string&quot;</span>
+
+    <span class="k">elif</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s2">&quot;2&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;input the path&quot;</span><span class="p">)</span>
+
+    <span class="k">elif</span> <span class="n">user_input</span> <span class="o">==</span> <span class="s2">&quot;0&quot;</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;string&quot;</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">return</span> <span class="s2">&quot;string&quot;</span></div>
+
+<div class="viewcode-block" id="check_aa_entry"><a class="viewcode-back" href="../Representation.html#Representation.check_aa_entry">[docs]</a><span class="k">def</span> <span class="nf">check_aa_entry</span><span class="p">(</span><span class="n">sequence_in</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;`</span>
+<span class="sd">    Ensures only natural amino acids are entered when user inputs a sequence manually.</span>
+<span class="sd">    :param sequence_in: String of characters</span>
+<span class="sd">    :return: True if all characters entered are natural amino acids, otherwise False</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">not_aa</span> <span class="o">=</span> <span class="s2">&quot;BJOUXZ&quot;</span>
+    <span class="n">alpha</span> <span class="o">=</span> <span class="n">sequence_in</span><span class="o">.</span><span class="n">isalpha</span><span class="p">()</span>
+    <span class="k">if</span> <span class="n">alpha</span><span class="p">:</span>
+        <span class="n">sequence_in</span> <span class="o">=</span> <span class="n">sequence_in</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="n">bad_count</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">6</span><span class="p">):</span>
+            <span class="k">if</span> <span class="n">not_aa</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="ow">in</span> <span class="n">sequence_in</span><span class="p">:</span>
+                <span class="n">bad_count</span> <span class="o">=</span> <span class="n">bad_count</span> <span class="o">+</span> <span class="mi">1</span>
+        <span class="k">if</span> <span class="n">bad_count</span> <span class="o">==</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="n">good_entry</span> <span class="o">=</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">good_entry</span> <span class="o">=</span> <span class="kc">False</span>
+
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">good_entry</span> <span class="o">=</span> <span class="kc">False</span>
+    <span class="k">return</span> <span class="n">good_entry</span></div>
+
+
+<div class="viewcode-block" id="choose_primary_bias"><a class="viewcode-back" href="../Representation.html#Representation.choose_primary_bias">[docs]</a><span class="k">def</span> <span class="nf">choose_primary_bias</span><span class="p">():</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Allows the user to select a primary amino acid to search for secondary biases around.</span>
+
+<span class="sd">    :return: A valid amino acid single letter code as a String object</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># have a UI method to interact w user</span>
+    <span class="n">input_mode</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;1 for glutamine 2 for other &#39;</span><span class="p">)</span>
+    <span class="k">while</span> <span class="p">(</span><span class="n">input_mode</span> <span class="o">!=</span> <span class="s1">&#39;1&#39;</span><span class="p">)</span> <span class="ow">and</span> <span class="p">(</span><span class="n">input_mode</span> <span class="o">!=</span> <span class="s1">&#39;2&#39;</span><span class="p">):</span>
+        <span class="n">input_mode</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;1 for glutamine 2 for other &#39;</span><span class="p">)</span>
+    <span class="n">input_aa</span> <span class="o">=</span> <span class="nb">int</span><span class="p">(</span><span class="n">input_mode</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">input_aa</span> <span class="o">==</span> <span class="mi">2</span><span class="p">:</span>
+        <span class="n">firstbias</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s1">&#39;Please enter a primary bias to search &#39;</span><span class="p">)</span>
+        <span class="n">check_bias_entry</span> <span class="o">=</span> <span class="n">check_aa_entry</span><span class="p">(</span><span class="n">firstbias</span><span class="p">)</span>
+        <span class="k">while</span> <span class="ow">not</span> <span class="n">check_bias_entry</span><span class="p">:</span>
+            <span class="n">check_bias_entry</span> <span class="o">=</span> <span class="n">check_aa_entry</span><span class="p">(</span><span class="n">firstbias</span><span class="p">)</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="n">firstbias</span> <span class="o">=</span> <span class="s2">&quot;Q&quot;</span>
+    <span class="k">return</span> <span class="n">firstbias</span></div>
+
+
+<span class="c1"># def print_q_normalized(secbias_in):</span>
+<span class="c1">#     if secbias_in.Q_content != 0:</span>
+<span class="c1">#         print(&quot;\n\nOne Away\t\t\t\t\t Two Away\t\t\t\t\t Three Away\t\t\t\t\t Local&quot;)</span>
+<span class="c1">#         for i in range(0, 19):</span>
+<span class="c1">#             print(secbias_in.amino_acids[i],</span>
+<span class="c1">#                   round(secbias_in.one_away_avg[i], 3), &quot;per&quot;, secbias_in.primary_bias,</span>
+<span class="c1">#                     &quot;\t\t\t\t&quot;, secbias_in.amino_acids[i],</span>
+<span class="c1">#                   round(secbias_in.two_away_avg[i], 3), &quot;per&quot;, secbias_in.primary_bias,</span>
+<span class="c1">#                   &quot;\t\t\t\t&quot;, secbias_in.amino_acids[i],</span>
+<span class="c1">#                   round(secbias_in.three_away_avg[i], 3), &quot;per&quot;, secbias_in.primary_bias,</span>
+<span class="c1">#                   &quot;\t\t\t\t&quot;, secbias_in.amino_acids[i],</span>
+<span class="c1">#                   round(secbias_in.local_avg[i], 3), &quot;per&quot;, secbias_in.primary_bias)</span>
+<span class="c1">#     else:</span>
+<span class="c1">#         print(&quot;\n\nNo primary bias\n&quot;)</span>
 
 
 
