@@ -10,20 +10,26 @@ from Builder import AnalysisBuilder, DatabaseBuilder
 class Director:
     """
     The Director class manages file input, analysis, and data outputting and formatting.
+        * Contains methods to execute tasks
     """
     def __init__(self):
         """
-        :var self.analysis: each director object contains an analysis object that run the desired set of analyses
-        :var self.representation: each director object contains an representation object to litigate data output
-        :var self.master_list: master sequence-id list. saved after file is first read in
-        :var self.file_in_path: path for sequence-id file in csv format
-        :var self.file_out_path: path for directory where files can be output
+        Creates 'representation' object to manage user interface and output
 
-        Analysis and representation objects are instantiated and set to self.analysis and self.representation variables.
+
+        Attributes:
+            self.analysis: each director object contains an analysis object that run the desired set of analyses
+            self.representation: each director object contains an representation object to litigate data output
+            self.master_list: master sequence-id list. saved after file is first read in
+            self.file_in_path: path for sequence-id file in csv format
+            self.file_out_path: path for directory where files can be output
+
+
+
         """
 
-        self.analysis = AnalysisBuilder()
-        self.database = DatabaseBuilder()
+        self.analysis = None
+        self.database = None
         # a list of representations
         self.representation = Representation.Representation()
         # the master sequence-id list
@@ -32,12 +38,29 @@ class Director:
         self.file_in_path = None
 
     def handle_manual_input(self):
+        """
+        Uses 'representation' to prompt user for file path and prints information to the screen
+
+
+        Returns:
+
+
+        """
         something = None
 
     def handle_file_input(self):
+        """
+
+        Returns:
+
+        """
         something = None
 
     def define_input_source(self):
+        """
+
+        :return:
+        """
         something = None
 
     def analysis_helper(self, in_path):
@@ -51,29 +74,53 @@ class Director:
         self.set_file_out_dir(new_path)
 
     def access_databases(self):
+        """
+
+        :return:
+        """
         something = None
     #  call representation methods that ask which DB, what to do with the data and stores that
 
     # if view is selected, run functions that create and functions that display desired info
     def database_presentation(self):
+        """
+
+        :return:
+        """
         something = None
 
     def create_sequence_objects(self):
+        """
+
+        :return:
+        """
         something = None
     # turn string formatted info to SeqRecord objects
     # put SeqRecord obj list in master list
 
     def run_FELLS_analysis(self):
+        """
+
+        Returns:
+
+        """
         something = None
 
     def run_SODA_analysis(self):
+        """
+
+        Returns:
+
+        """
         something = None
 
     def run_bias_analysis(self):
         """
         Reads file in and creates a master list of id-sequence lists. It then creates SecondaryBias objects and runs the
         analysis using its self.analysis object
-        :return: List of fully processed SecondaryBias objects
+
+        Returns:
+             List of fully processed SecondaryBias objects
         """
         file_string = Representation.read_file(self.file_in_path)
         self.master_list = Representation.parse_to_string_list(file_string)
@@ -88,7 +135,8 @@ class Director:
     def create_representation(self):
         """
         Uses the self.representation object to create a graphic representation of the data processed during analysis.
-        :return: N/A
+        Returns:
+            N/A
 
 
         ***Not implemented yet***

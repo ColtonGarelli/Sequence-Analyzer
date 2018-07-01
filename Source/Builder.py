@@ -4,6 +4,10 @@ from SecondaryBiasFinder import SequenceImpl, SecondaryBias
 
 
 class Builder(metaclass=abc.ABCMeta):
+    """
+    Builder is an abstract class that serves as a template for building database responses and analyses
+
+    """
 
     @abc.abstractmethod
     def build_list_from_file(self):
@@ -33,7 +37,12 @@ class Builder(metaclass=abc.ABCMeta):
 class AnalysisBuilder(Builder):
     def __init__(self):
         """
-        :var self.seq_list: a list of Sequence objects instantiated from file
+
+
+        Variables:
+            self.seq_list: a list of Sequence objects instantiated from file
+
+
         """
         super(AnalysisBuilder, self).__init__()
         self.seq_list = []
@@ -47,8 +56,11 @@ class AnalysisBuilder(Builder):
     def build_seq_list(self, sequence_list):
         """
         Builds self.seq_list which can then be used to create the other objects
-        :param sequence_list:
-        :return:
+        Args:
+            sequence_list:
+
+        Returns:
+
         """
         new_list = []
         for i1 in range(len(sequence_list)):
@@ -63,28 +75,36 @@ class AnalysisBuilder(Builder):
     def build_list_from_file(self):
         """
         Takes a fasta formatted file, creates csv formatted file with id-sequence info.
-        :return:
+
+        Returns:
+
         """
         pass
 
     def build_prediciton_A(self):
         """
         For one of the APIs
-        :return:
+
+        Returns:
+
         """
         pass
 
     def build_prediction_B(self):
         """
         For the other API
-        :return:
+
+        Returns:
+
         """
         pass
 
     def build_sec_bias(self):
         """
         Creates a list of SecondaryBias objects from self.seq_list. The list of SecondaryBias objects is then processed.
-        :return: a list of processed SecondaryBias objects ready for output
+
+        Returns:
+            a list of processed SecondaryBias objects ready for output
         """
         return_list = []
         new_list = []
@@ -103,8 +123,18 @@ class AnalysisBuilder(Builder):
 
 
 class DatabaseBuilder(Builder):
+    """
+
+
+    """
 
     def __init__(self):
+        """
+
+        Args:
+
+        Returns:
+        """
         super(DatabaseBuilder, self).__init__()
 
 

@@ -1,5 +1,6 @@
 from os.path import join
 
+import SecondaryBiasFinder
 """Representation.py contains Representation class and assisting UI functions
 
 Responds to Director by:
@@ -19,13 +20,14 @@ class Representation:
     - Runs user interface using the UI class. May move those functions to this module (eliminate class).
     - Handles file-output. Raw data should be output as a csv file. Graphical representations may be implemented later.
     - Runs all interaction with user and computer (display/fileio)
-    """
-    def __init__(self):
-        """
-        Variables:
+
+    Attributes:
             'self.file_out_path': file out path to the desired directory
             'self.base_name': base file name to maintain consistency in output
-        """
+
+    """
+    def __init__(self):
+
         self.file_out_path = None
         self.base_name = None
 
@@ -43,7 +45,7 @@ class Representation:
         Manages file_in entry including providing examples, links to documentation for formatting
         and passing input file path from user to director
 
-        Return:
+        Returns:
             user inputted path
         """
         manual_sequence_input()
@@ -64,7 +66,7 @@ class Representation:
         Request information in this tuple contains keywords, query options,
         and response columns (everything needed to send a request)
 
-        Return:
+        Returns:
             tuple containing database info defined in the director class
 
         """
@@ -74,7 +76,7 @@ class Representation:
         """
         Prints prompts for viewing info for user
 
-        Return:
+        Returns:
             view type (console, graphical, file out)
         """
         s = None
@@ -86,7 +88,7 @@ class Representation:
         Args:
             print_or_out(str): a string representing file our view
 
-        Return:
+        Returns:
              Completion of file_out or printing (T/F)
         """
         s = None
@@ -104,8 +106,12 @@ def write_sequence_to_file(ID, copy_list, file_name):
 def read_file(path):
     """
     Reads files in from the given path
-    :param path: the full path of the desired file
-    :return: a list of id,sequence formatted strings
+
+    Args:
+        path: the full path of the desired file
+
+    Returns:
+         a list of id,sequence formatted strings
     """
     sequence_file = open(path, "r")
     sequence_strings = sequence_file.readlines()
@@ -120,8 +126,12 @@ def read_file(path):
 def parse_to_string_list(file_string):
     """
     Formats file strings to a list of ["id","sequence"] lists (ex. [[id1, sequence1],[id2, sequence2], [id3, sequence3]]
-    :param file_string: a list of "id,sequence" strings from a file
-    :return: a list formatted as in the example above
+
+    Args:
+        file_string: a list of "id,sequence" strings from a file
+
+    Returns:
+        a list formatted as in the example above
     """
     new_list = []
     for i in range(len(file_string)):
@@ -134,10 +144,16 @@ def parse_to_string_list(file_string):
 def export_sec_bias_helper(ID, copy_list, path):
     """
     Writes the file for exporting secondary bias data.
-    :param ID: The id associated with the sequence being processed
-    :param copy_list: a list to be written in csv format
-    :param path: the file path writing to
-    :return: nothing
+
+    Args:
+        ID: The id associated with the sequence being processed
+        copy_list: a list to be written in csv format
+        path: the file path writing to
+
+    Returns:
+        nothing
+
+
     """
     file_to_write = open(path, "a+")
     file_to_write.write(str(ID)+",")
@@ -147,12 +163,25 @@ def export_sec_bias_helper(ID, copy_list, path):
     file_to_write.close()
 
 
-def fasta_parser():
+def fasta_parser(path):
+    """
+    Splits fasta formatted sequences in
+
+    Args:
+        path(str): path to a csv formatted file to format to fasta
+
+    Yields:
+        outputted file in fasta format
+
+
+    """
     n = 0
     file = join("/Users/coltongarelli/", "SequenceAnalyzer/SequenceAnalyzer2.1/References/SEQUENCEANALYZER_Experiment1_inputfile_ACTUAL.csv")
     new_file =join("/Users/coltongarelli/Desktop/", "SEQUENCEANALYZER_Experiment1_inputfile_fasta.txt")
     fasta_formatted = open(new_file, 'w+')
     with open(file, 'r') as f:
+        # can't do for line
+        # count number of >
         for line in f:
             split = line.split(',')
             string_to_write = '>' + split[0] + '\n' + split[1]
@@ -162,34 +191,55 @@ def fasta_parser():
 
 
 def convert_to_ints(string_in):
+    """
+    Converts list of string ints to int objects;
+
+    Args:
+        string_in: a string of comma separated ints
+
+    Returns:
+        return_list: a list of int objects
+    """
     return_list = string_in.split(",")
     for i in range(1, len(return_list)-1):
         return_list = int(return_list)
     return return_list
 
 
-def remove_spaces(string_to_check):
-    if " " in string_to_check or "\n" in string_to_check:
-        for i in range(len(string_to_check)-1):
-            if string_to_check[i] == " " or (string_to_check[i]+string_to_check[i+1]) == "\n":
-                pass
-            else:
-                return_string = string_to_check[i]
-    else:
-        return_string = string_to_check
-
-    return return_string
-
-
-import SecondaryBiasFinder
+# def remove_spaces(string_to_check):
+#     """
+#     Depreciated as manual input no longer allowed
+#     :param string_to_check:
+#     :return:
+#     """
+#
+#     if " " in string_to_check or "\n" in string_to_check:
+#         return_string = None
+#         for i in range(len(string_to_check)-1):
+#             if string_to_check[i] == " " or (string_to_check[i]+string_to_check[i+1]) == "\n":
+#                 pass
+#             else:
+#                 return_string = string_to_check[i]
+#     else:
+#         return_string = string_to_check
+#
+#     return return_string
 
 
 def welcome():
+
     print("Welcome to the Sequence Analyzer\n")
     print("Please refer to documentation at https://github.com/ColtonGarelli/Sequence-Analyzer/ before using.\n\n")
 
 
 def main_page():
+    """
+    Prompts user for input source
+
+    Returns:
+        usage: string value for input source (file or database)
+
+    """
     usage = input("\n\nWould you like to access databases (1)\n"
                   "or input by file/manually (2)\nOf course you could quit as well (0)\n\nEnter:")
     # add options for other uses. main page. should store current info somewhere during session
@@ -198,18 +248,40 @@ def main_page():
 
 
 def access_databases():
+    """
+    Prompts user for database to get info
+
+    Returns:
+        string code for database choice
+    """
     print("Enter the corresponding number to access a database:\n\n")
     database_choice = input("1. UniProt\n2. EMBL-EBI\n3. Some other one??\n\n0. Return to start")
     return database_choice
 
 
 def database_response_options():
+    """
+    Prompts user for what they want to do with the uploaded sequences
+
+    Returns:
+        whether user wants to view, process, or output sequences to file
+    """
     print("What do you want to do with the information?\n")
     database_option = input("1. View\n2. Process\n3. Output to file\n 0. Return to start")
     return database_option
 
 
 def view_database_information(prepped_string):
+    """
+    Displays prepared string data and prompts user for limiting that data in view
+
+    Args:
+        prepped_string: a string formatted to print and be parsed for modified printing
+
+    Yields:
+        Prints views to screen
+    """
+    # should clear the console screen before printing
     print("Would you like to view all of the information or a subset?")
     view_option = input("1. All\n2. Some")
     view = True
@@ -230,11 +302,23 @@ def view_database_information(prepped_string):
 
 
 def keyword_query_uniprot():
+    """
+    Prompts the user for Uniprot advanced search options
+
+    Returns:
+        A tuple with keys for the UniProt url constructor dictionary
+    """
     query = input("Search something: ")
     return query
 
 
-def data_options(self):
+def data_options():
+    """
+    Column options for Uniprot database. Prompts user for which columns they would like to receive
+
+    Returns:
+        Tuple containing the column options for data to be returned from UniProtKB
+    """
     print("Available data options:\n")
     reviewed = input("Reviewed? (y/n)")
     print("Select columns to display: (y/n)\n")
@@ -260,6 +344,12 @@ def data_options(self):
 
 
 def manual_sequence_input():
+    """
+    Prompts user to enter file path to upload sequence information
+
+    Returns:
+        file path for formatted input file
+    """
     # Option to query sequence/id in databases????
     print("Refer to ***documentation_url*** for proper formatting\n\n")
     file_in_path = input("Please enter a file path")
@@ -269,6 +359,11 @@ def manual_sequence_input():
 
 
 def gene_options(self):
+    """
+    gene options
+    :param self:
+    :return:
+    """
     print("Select the various genetic information to gather:\n")
     input("")
 
@@ -277,10 +372,20 @@ def gene_options(self):
 
 
 def query_by_organism():
+    """
+    andvanced query by organism
+    :return:
+    """
     nothing = None
 
 
 def prediction_options():
+    """
+    Prompts user for which predictors they would like to use
+
+    Returns:
+        Tuple containing predictors to run
+    """
     print("Refer to ***Predictor documentation*** for predictor documentation" /
           "and ***local module documentation*** for local modules")
     print("Choose analysis sources: (y/n)\n")
@@ -291,7 +396,7 @@ def prediction_options():
     # return a tuple containing answers to options
 
 
-def print_secondarybias_info(seqbiasobj) -> SecondaryBiasFinder:
+def print_secondarybias_info(seqbiasobj) -> SecondaryBiasFinder.SecondaryBias():
 
     if seqbiasobj.Q_content != 0:
         print("\n\nOne Away\t\t\t\t\t Two Away\t\t\t\t\t Three Away\t\t\t\t\t Local")
@@ -344,6 +449,7 @@ def prompt_make_a_new_file():
 
     else:
         return "string"
+
 
 def check_aa_entry(sequence_in):
     """`

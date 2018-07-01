@@ -6,6 +6,9 @@ import sys, requests
 # creates no objects, just handles requests and string responses
 
 class DatabaseRequests(metaclass=abc.ABCMeta):
+    """
+
+    """
 
     @abc.abstractmethod
     def create_request_url(self, query, param_list): raise NotImplementedError
@@ -26,6 +29,9 @@ class DatabaseRequests(metaclass=abc.ABCMeta):
 
 
 class ebiDatabase(DatabaseRequests):
+    """
+
+    """
     def __init__(self):
         base_url = ""
         query_options = ""
@@ -56,6 +62,9 @@ class ebiDatabase(DatabaseRequests):
 
 
 class UniProtDatabase(DatabaseRequests):
+    """
+
+    """
 
     base_url = "https://www.uniprot.org/uniprot/?query=reviewed:yes"
     column_options = dict(query="query")

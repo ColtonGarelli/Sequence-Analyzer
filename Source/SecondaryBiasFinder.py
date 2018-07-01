@@ -39,10 +39,10 @@ class SequenceImpl:
     Parent class for all of the sequence analysis classes. They inherit from this class in an effort to enforce some
     uniformity and promote flexibility in the case that this program begins to chew up substantial overhead.
 
-    :var self.amino_acids: should probably be a class variable. need to refactor.
-    
-    :var self.id: an id associated with the given sequence
-    :var self.sequence: the sequence associated with the provided id
+    Attributes:
+         self.amino_acids: should probably be a class variable. need to refactor.
+         self.id: an id associated with the given sequence
+         self.sequence: the sequence associated with the provided id
     """
     def __init__(self):
         self.id = None
@@ -65,6 +65,9 @@ class SecondaryBias(SequenceImpl):
     SecondaryBias extends the Sequence class. SecondaryBias has methods prompt input determines primary
     and secondary sequence biases. Is used primarily to find primary glutamine bias, and secondary
     biases at the +/- 1,2,3, and a total of these 6 positions, for each Q.
+
+    Attributes:
+
     """
 
     def __init__(self):
@@ -98,8 +101,9 @@ class SecondaryBias(SequenceImpl):
     def initialize_sec_bias(self, seq_name, seq_in):
         """
         Effectively a constructor to create a SecondaryBias object from an id-sequence pair
-        :param seq_name: a sequence id
-        :param seq_in: the sequence
+        Args:
+            seq_name: a sequence id
+            seq_in: the sequence
         """
         self.ID = seq_name
         self.sequence = seq_in
@@ -108,7 +112,9 @@ class SecondaryBias(SequenceImpl):
         """
         Finds the primary bias defined by the user. Ignores first and last three aa in seq for primary bias calculation.
         Stores the index of each primary bias residue in the sequence string in self.primary_bias
-        :return: updates self.Q_index list (no return)
+
+        Returns:
+            updates self.Q_index list (no return)
         """
         if self.primary_bias in self.sequence:
             for i in range(len(self.sequence)):
@@ -125,7 +131,9 @@ class SecondaryBias(SequenceImpl):
     def secondary_bias_finder(self):
         """
         Finds amino acids at one, two, and three residues from the desired primary bias. A local tally is also computed.
-        :ivar self.one_away, self.two_away,self.three_away, self.three_away_avg, self.local_sequence: get updated
+
+        Modified:
+            self.one_away, self.two_away,self.three_away, self.three_away_avg, self.local_sequence: get updated
         """
 
         for i in range(self.Q_content):
@@ -166,7 +174,9 @@ class SecondaryBias(SequenceImpl):
     def find_avg_occurrence(self):
         """
         Divides each index of +/- 1, 2, 3 and local lists by the total primary bias residue content (average)
-        :ivar: updates +/- 1, 2, 3, and local avg lists
+
+        Modified:
+            updates +/- 1, 2, 3, and local avg lists
         """
         if self.Q_content != 0:
             for i in range(20):
@@ -179,9 +189,11 @@ class SecondaryBias(SequenceImpl):
         """
         Runs the bias finding analysis. Capitalizes self.sequence string;
         calls: find_primary_bias(), secondary_bias_finder(), find_avg_occurrence()
-        :ivar self.sequence: updated with uppercase sequence
-        :ivar self.Q_content: length of self.Q_index list
-        :ivar self.sequence_len:
+
+        Modified:
+            self.sequence: updated with uppercase sequence
+            self.Q_content: length of self.Q_index list
+            self.sequence_len:
         """
 
         # change user in
@@ -204,8 +216,12 @@ class SecondaryBias(SequenceImpl):
 def create_SeqBias_object(seq_string):
     """
     Creates SecondaryBias objects from a sequence by splitting an id-sequence pair  (ex. "id,sequence")
-    :param seq_string: "id,sequence"
-    :return: a new SecondaryBias object with id and sequence initialized to id and sequence from the in_string
+
+    Args:
+        seq_string: "id,sequence"
+
+    Returns:
+        a new SecondaryBias object with id and sequence initialized to id and sequence from the in_string
     """
     # 2D string array[i][0] --from reading csv
     # call create obj between each
@@ -219,8 +235,12 @@ def create_SeqBias_object(seq_string):
 def create_sequence_objects(string_list):
     """
     Creates a sequence object from a pre-split string list
-    :param: string_list: ["id", "sequence"
-    :return: SequenceImpl object (parent for the various sequence data objects)
+
+    Args:
+        string_list: ["id", "sequence"
+
+    Returns:
+        SequenceImpl object (parent for the various sequence data objects)
     """
 
     new_seq = SequenceImpl()
@@ -233,9 +253,12 @@ def processed_data_in(general_path, file_beginning):
     Creates a list of SecondaryBias objects from file.
 
 
-    :param: general_path:
-    :param: file_beginning:
-    :return: List of SecondaryBias objects
+    Args:
+        general_path:
+        file_beginning:
+
+    Returns:
+        List of SecondaryBias objects
     """
     general_path = general_path + file_beginning
     file_string_one = Representation.read_file(general_path + "one_away.csv")
