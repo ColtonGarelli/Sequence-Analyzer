@@ -1,6 +1,9 @@
 from os.path import join
 
 import SecondaryBiasFinder
+from Bio.SeqIO import UniprotIO
+from Bio import SeqIO
+
 """Representation.py contains Representation class and assisting UI functions
 
 Responds to Director by:
@@ -30,6 +33,7 @@ class Representation:
 
         self.file_out_path = None
         self.base_name = None
+        self.print_string = None
 
     def introduction(self):
         """
@@ -48,7 +52,9 @@ class Representation:
         Returns:
             user inputted path
         """
-        manual_sequence_input()
+        # manual_sequence_input provides link to documentation on file_in format
+        self.base_name = manual_sequence_input()
+        return self.base_name
 
     def choose_database(self):
         """
@@ -60,30 +66,44 @@ class Representation:
         s = None
 
     # handles calling desired DB, representing responses,
-    def DB_options(self):
+    def db_options(self):
         """
         Relays an ordered tuple to the director containing request information.
         Request information in this tuple contains keywords, query options,
         and response columns (everything needed to send a request)
 
         Returns:
-            tuple containing database info defined in the director class
+            list containing database info defined in the director class
 
         """
-        print("something")
+        keyword = keyword_query_uniprot()
+        if keyword is None:
+            options = data_options()
+            return options
+
+        else:
+            options = data_options()
+            option_list = options.insert(0, keyword)
+            return option_list
 
     def manage_processed_info(self):
         """
         Prints prompts for viewing info for user
 
         Returns:
-            view type (console, graphical, file out)
+            view type (console, file out, graphical at some point)
         """
-        s = None
+        option = database_response_options()
+        if option == 'file':
+            self.file_out_path = manual_sequence_input()
+            return option
+        else:
+            return option
 
     def output_processed_info(self, print_or_out):
         """
-        Take the string passed in and prints it or writes it to file. In the future, a separate function for graphing
+        Take the string passed in and prints it or writes it to file.
+        In the future, a separate function for graphing
 
         Args:
             print_or_out(str): a string representing file our view
@@ -91,7 +111,39 @@ class Representation:
         Returns:
              Completion of file_out or printing (T/F)
         """
+        if print_or_out == 'file':
+            # add here
+            return True
+
+        elif print_or_out == 'view':
+            print(self.print_string)
+            return True
+        return False
+
+    def db_file_out(self, seq_list):
+        if seq_list == 'up':
+            up_parser = write_uniprot_to_file(self.file_out_path)
+
+    def set_print_string(self, new_string):
+        self.print_string = new_string
+
+    def get_print_string(self):
+        return self.print_string
+
+    def db_query_view(self):
         s = None
+
+    def select_input_source(self):
+        s = None
+
+
+def write_uniprot_to_file(seq_record_list):
+    try:
+        with open("example.xml", "w") as output_handle:
+            SeqIO.write(seq_record_list, output_handle, "xml")
+            return True
+    except Exception:
+        return False
 
 
 def write_sequence_to_file(ID, copy_list, file_name):
@@ -317,13 +369,13 @@ def data_options():
     Column options for Uniprot database. Prompts user for which columns they would like to receive
 
     Returns:
-        Tuple containing the column options for data to be returned from UniProtKB
+        list containing the column options for data to be returned from UniProtKB
     """
     print("Available data options:\n")
     reviewed = input("Reviewed? (y/n)")
     print("Select columns to display: (y/n)\n")
     id = input("UniProt ID?")
-    entry_name = input("Entry name?")
+    entry_names = input("Entry name?")
     protein_names = input("Protein name(s)?")
     genes = input("Genes?")
     absorption = input("Absorption?")
@@ -342,6 +394,12 @@ def data_options():
     limit_entries = input("Limit the number of sequences returned: ")
     offset_entries = "offset????"
 
+    column_list = [id, protein_names, entry_names, sequence, subunits, reviewed]
+    extended_column_list = [ph, mass, domain, absorption, comp_bias, temp_depend, genes,
+                            binding_site, dna_domain, structure, redox_pot, organism]
+
+    return column_list
+
 
 def manual_sequence_input():
     """
@@ -358,7 +416,7 @@ def manual_sequence_input():
     # return a tuple containing answers to options
 
 
-def gene_options(self):
+def gene_options():
     """
     gene options
     :param self:
@@ -396,7 +454,7 @@ def prediction_options():
     # return a tuple containing answers to options
 
 
-def print_secondarybias_info(seqbiasobj) -> SecondaryBiasFinder.SecondaryBias():
+def print_secondarybias_info(seqbiasobj):
 
     if seqbiasobj.Q_content != 0:
         print("\n\nOne Away\t\t\t\t\t Two Away\t\t\t\t\t Three Away\t\t\t\t\t Local")

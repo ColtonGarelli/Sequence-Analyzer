@@ -1,8 +1,8 @@
 import unittest
 import SecondaryBiasFinder
-from SecondaryBiasFinder import SecondaryBias, SequenceImpl
+from SecondaryBiasFinder import SecondaryBias, Sequence
 from Director import Director, AnalysisBuilder
-import UserInterface
+import Representation
 
 
 class InductiveBiasFinderTest(unittest.TestCase):
@@ -30,39 +30,39 @@ class InductiveBiasFinderTest(unittest.TestCase):
                 for i2 in range(len(self.test_sequences_dict_one)-1):
                     seq_to_scan = SecondaryBias()
                     original_seq = self.test_sequences_list_one[i2]
-                    seq_to_scan.sequence = original_seq
+                    seq_to_scan.seq = original_seq
                     append_sequence = self.test_sequences_list_one[i2 + 1]
                     for i3 in range(len(original_seq)-1):
-                        seq_to_scan.bias_finder()
+                        seq_to_scan.bias_finder("Q")
                         self.assertEqual(seq_to_scan.one_away[17], self.test_sequences_dict_one[original_seq])
                         self.assertEqual(int(seq_to_scan.local_sequence[17]), self.test_sequences_dict_one[original_seq])
                         seq_to_scan = SecondaryBias()
-                        seq_to_scan.sequence = original_seq + append_sequence[0:i3]
+                        seq_to_scan.seq = original_seq + append_sequence[0:i3]
             elif 2 < i1 < 10:
                 for i2 in range(len(self.test_sequences_dict_two)-1):
                     seq_to_scan = SecondaryBias()
                     original_seq = self.test_sequences_list_two[i2]
-                    seq_to_scan.sequence = original_seq
+                    seq_to_scan.seq = original_seq
                     append_sequence = self.test_sequences_list_two[i2 + 1]
                     for i3 in range(len(original_seq)-1):
-                        seq_to_scan.bias_finder()
+                        seq_to_scan.bias_finder("Q")
                         self.assertEqual(seq_to_scan.two_away[17], self.test_sequences_dict_two[original_seq])
                         self.assertEqual(int(seq_to_scan.local_sequence[17]), self.test_sequences_dict_two[original_seq])
                         seq_to_scan = SecondaryBias()
-                        seq_to_scan.sequence = original_seq + append_sequence[0:i3]
+                        seq_to_scan.seq = original_seq + append_sequence[0:i3]
 
             else:
                 for i2 in range(len(self.test_sequences_dict_three)-1):
                     seq_to_scan = SecondaryBias()
                     original_seq = self.test_sequences_list_three[i2]
-                    seq_to_scan.sequence = original_seq
+                    seq_to_scan.seq = original_seq
                     append_sequence = self.test_sequences_list_three[i2 + 1]
                     for i3 in range(len(original_seq)-1):
-                        seq_to_scan.bias_finder()
+                        seq_to_scan.bias_finder("Q")
                         self.assertEqual(seq_to_scan.three_away[17], self.test_sequences_dict_three[original_seq])
                         self.assertEqual(int(seq_to_scan.local_sequence[17]), self.test_sequences_dict_three[original_seq])
                         seq_to_scan = SecondaryBias()
-                        seq_to_scan.sequence = original_seq + append_sequence[0:i3]
+                        seq_to_scan.seq = original_seq + append_sequence[0:i3]
 
     def test_rev_concat_aa(self):
         for i1 in range(len(self.test_sequences_list)-1):
@@ -70,48 +70,48 @@ class InductiveBiasFinderTest(unittest.TestCase):
                 for i2 in range(len(self.test_sequences_dict_one)-1):
                     seq_to_scan = SecondaryBias()
                     original_seq = self.test_sequences_list_one[i2]
-                    seq_to_scan.sequence = original_seq
+                    seq_to_scan.seq = original_seq
                     append_sequence = self.test_sequences_list_one[i2 + 1]
                     for i3 in range(len(original_seq)-1):
-                        seq_to_scan.bias_finder()
+                        seq_to_scan.bias_finder("Q")
                         self.assertEqual(seq_to_scan.one_away[17], self.test_sequences_dict_one[original_seq])
                         self.assertEqual(int(seq_to_scan.local_sequence[17]), self.test_sequences_dict_one[original_seq])
                         seq_to_scan = SecondaryBias()
                         holder = ""
                         for i in append_sequence[:i3]:
                             holder = i + holder
-                        seq_to_scan.sequence = holder + original_seq
+                        seq_to_scan.seq = holder + original_seq
 
             elif 2 < i1 < 10:
                 for i2 in range(len(self.test_sequences_dict_two)-1):
                     seq_to_scan = SecondaryBias()
                     original_seq = self.test_sequences_list_two[i2]
-                    seq_to_scan.sequence = original_seq
+                    seq_to_scan.seq = original_seq
                     append_sequence = self.test_sequences_list_two[i2 + 1]
                     for i3 in range(len(original_seq)-1):
-                        seq_to_scan.bias_finder()
+                        seq_to_scan.bias_finder("Q")
                         self.assertEqual(seq_to_scan.two_away[17], self.test_sequences_dict_two[original_seq])
                         self.assertEqual(int(seq_to_scan.local_sequence[17]), self.test_sequences_dict_two[original_seq])
                         seq_to_scan = SecondaryBias()
                         holder = ""
                         for i in append_sequence[:i3]:
                             holder = i + holder
-                        seq_to_scan.sequence = holder + original_seq
+                        seq_to_scan.seq = holder + original_seq
             else:
                 for i2 in range(len(self.test_sequences_dict_three)-1):
                     seq_to_scan = SecondaryBias()
                     original_seq = self.test_sequences_list_three[i2]
-                    seq_to_scan.sequence = original_seq
+                    seq_to_scan.seq = original_seq
                     append_sequence = self.test_sequences_list_three[i2 + 1]
                     for i3 in range(len(original_seq)-1):
-                        seq_to_scan.bias_finder()
+                        seq_to_scan.bias_finder("Q")
                         self.assertEqual(seq_to_scan.three_away[17], self.test_sequences_dict_three[original_seq])
                         self.assertEqual(int(seq_to_scan.local_sequence[17]), self.test_sequences_dict_three[original_seq])
                         seq_to_scan = SecondaryBias()
                         holder = ""
                         for i in append_sequence[:i3]:
                             holder = i + holder
-                        seq_to_scan.sequence = holder + original_seq
+                        seq_to_scan.seq = holder + original_seq
 
     def test_concat_whole_sequences(self):
 
@@ -120,10 +120,10 @@ class InductiveBiasFinderTest(unittest.TestCase):
                 for i2 in range(len(self.test_sequences_dict_one)-1):
                     seq_to_scan = SecondaryBias()
                     original_seq = self.test_sequences_list_one[i2]
-                    seq_to_scan.sequence = original_seq
+                    seq_to_scan.seq = original_seq
                     append_sequence = self.test_sequences_list_one[i2 + 1]
-                    seq_to_scan.sequence = original_seq + append_sequence
-                    seq_to_scan.bias_finder()
+                    seq_to_scan.seq = original_seq + append_sequence
+                    seq_to_scan.bias_finder("Q")
                     self.assertEqual(self.test_sequences_dict_one[original_seq] + self.test_sequences_dict_one[append_sequence], seq_to_scan.one_away[17], "full seq concat one away failed")
                     self.assertEqual(self.test_sequences_dict_one[original_seq] + self.test_sequences_dict_one[append_sequence], int(seq_to_scan.local_sequence[17]))
 
@@ -131,10 +131,10 @@ class InductiveBiasFinderTest(unittest.TestCase):
                 for i2 in range(len(self.test_sequences_dict_two)-1):
                     seq_to_scan = SecondaryBias()
                     original_seq = self.test_sequences_list_two[i2]
-                    seq_to_scan.sequence = original_seq
+                    seq_to_scan.seq = original_seq
                     append_sequence = self.test_sequences_list_two[i2 + 1]
-                    seq_to_scan.sequence = original_seq + append_sequence
-                    seq_to_scan.bias_finder()
+                    seq_to_scan.seq = original_seq + append_sequence
+                    seq_to_scan.bias_finder("Q")
                     self.assertEqual(self.test_sequences_dict_two[original_seq] + self.test_sequences_dict_two[append_sequence], seq_to_scan.two_away[17], "full seq concat two away failed")
                     self.assertEqual(self.test_sequences_dict_two[original_seq] + self.test_sequences_dict_two[append_sequence], int(seq_to_scan.local_sequence[17]), )
 
@@ -142,10 +142,10 @@ class InductiveBiasFinderTest(unittest.TestCase):
                 for i2 in range(len(self.test_sequences_dict_three)-1):
                     seq_to_scan = SecondaryBias()
                     original_seq = self.test_sequences_list_three[i2]
-                    seq_to_scan.sequence = original_seq
+                    seq_to_scan.seq = original_seq
                     append_sequence = self.test_sequences_list_three[i2 + 1]
-                    seq_to_scan.sequence = original_seq + append_sequence
-                    seq_to_scan.bias_finder()
+                    seq_to_scan.seq = original_seq + append_sequence
+                    seq_to_scan.bias_finder("Q")
                     self.assertEqual(self.test_sequences_dict_three[original_seq] + self.test_sequences_dict_three[append_sequence], seq_to_scan.three_away[17], "full seq concat two away failed")
                     self.assertEqual(self.test_sequences_dict_three[original_seq] + self.test_sequences_dict_three[append_sequence], int(seq_to_scan.local_sequence[17]))
 
@@ -157,19 +157,19 @@ class BiasFinderTest(unittest.TestCase):
     test_three_away = SecondaryBias()
 
     key1 = "I"
-    test_one_away.sequence = "IKAAESFLPSPVLRTDVMFLVPALKYNPLHRLLIQILGGHETMIQIGHAETATVKFEERLV" \
+    test_one_away.seq = "IKAAESFLPSPVLRTDVMFLVPALKYNPLHRLLIQILGGHETMIQIGHAETATVKFEERLV" \
                              "ERIFDKRAGTSSLILIQIDYDEIQIWPGYSILRLGMPEKDEIQIAIITEMKRGAPHIQIQILDFGPA" \
                              "ISFKESWLDCVMGNCYNDIASEIKVRGSDLNKVGVRARKECGVATSPINAFINRLLSA" \
                              "TYSVGVNFLAVIQISTGIDKVHTNYDKA"
 
     key2 = "C"
-    test_two_away.sequence = "TTNIISELRCTQTCGNAMDNWMGEVLDGTPAFHFGVHCGDTAGPASKRFLLVCLEFSLR" \
+    test_two_away.seq = "TTNIISELRCTQTCGNAMDNWMGEVLDGTPAFHFGVHCGDTAGPASKRFLLVCLEFSLR" \
                              "GYDLLVRLLLIKDEDANDVHCNQKCSQCCQKCMAHLALGPVTCSSSFNVHYSPGIGAL" \
                              "WACIQTCEIDYCIQPCKACVQSCEERSLKVIKADGITAKSFAPMPNGAVDPSTVEYMV" \
                              "KTLIVCLQTCYDENRTVRRFPEKAL"
 
     key3 = "S"
-    test_three_away.sequence = "YPSSALQGGSMSRFLSPTMLRVRASLGFLGINLLPWTLFVIAALPSKSDAQLSSTQPLSAMGME" \
+    test_three_away.seq = "YPSSALQGGSMSRFLSPTMLRVRASLGFLGINLLPWTLFVIAALPSKSDAQLSSTQPLSAMGME" \
                                "FIRANTESEINFVDKIHYAYHNLVVDPRKVDSEIAKERCKLLKSIVQVGSVTFATVPGDS" \
                                "YIGISSRSLMFVSEKNTGRELGNKCSAEQDDSSDQKNSGTAECGKLYSYEQWESTREGVDIIR" \
                                "KKTAVTHSNRQIPSVADHPLFLADAHEG"
@@ -196,28 +196,18 @@ class BiasFinderTest(unittest.TestCase):
 
     def run_pre_sec_bias1_test(self):
         self.test_one_away.primary_bias = "Q"
-        self.test_one_away.sequence_len = len(self.test_one_away.sequence)
-        self.test_one_away.Q_index = []
-        self.test_one_away.find_primary_bias()
-        self.test_one_away.Q_content = len(self.test_one_away.Q_index)
-        self.test_one_away.secondary_bias_finder()
+        self.test_one_away.seq_len = len(self.test_one_away.seq)
+        self.test_one_away.bias_finder("Q")
 
     def run_pre_sec_bias2_test(self):
         self.test_two_away.primary_bias = "Q"
-        self.test_two_away.sequence_len = len(self.test_two_away.sequence)
-        self.test_two_away.Q_index = []
-        self.test_two_away.find_primary_bias()
-        self.test_two_away.Q_content = len(self.test_two_away.Q_index)
-        self.test_two_away.secondary_bias_finder()
+        self.test_two_away.seq_len = len(self.test_two_away.seq)
+        self.test_two_away.bias_finder("Q")
 
     def run_pre_sec_bias3_test(self):
         self.test_three_away.primary_bias = "Q"
-        self.test_three_away.sequence_len = len(self.test_three_away.sequence)
-        self.test_three_away.Q_index = []
-        self.test_three_away.three_away = [0]*20
-        self.test_three_away.find_primary_bias()
-        self.test_three_away.Q_content = len(self.test_three_away.Q_index)
-        self.test_three_away.secondary_bias_finder()
+        self.test_three_away.seq_len = len(self.test_three_away.seq)
+        self.test_three_away.bias_finder("Q")
 
     def test_secondary_bias_finder(self):
         keylist = ["I", "C", "S"]
@@ -244,7 +234,8 @@ class SequenceBiasIOTests(unittest.TestCase):
 
         director = Director()
         director.file_in_path = path_in
-        returned = director.analysis_helper(path_in)
+        returned = director.analysis_helper()
+
         director.run_bias_analysis()
         for i in range(len(seq_list)):
             self.assertEqual(director.master_list[i], seq_list[i])
@@ -263,12 +254,12 @@ class SequenceBiasIOTests(unittest.TestCase):
         for i in range(len(seq_list)):
             seq = SecondaryBias()
             seq.initialize_sec_bias("tester", seq_list[i])
-            seq.bias_finder()
+            seq.bias_finder("Q")
             seq_objs.append(seq)
         SecondaryBiasFinder.export_sec_bias_files(seq_objs)
         test_seq_list = SecondaryBiasFinder.processed_data_in("/Users/coltongarelli/Desktop/", "tester")
         for i in range(len(seq_objs)):
-            self.assertEqual(seq_objs[i].ID, test_seq_list[i].ID)
+            self.assertEqual(seq_objs[i].id, test_seq_list[i].id)
             for i1 in range(0, 19):
                 self.assertEqual(seq_objs[i].one_away[i1], test_seq_list[i].one_away[i1], )
                 self.assertEqual(seq_objs[i].two_away[i1], test_seq_list[i].two_away[i1])
@@ -279,27 +270,27 @@ class SequenceBiasIOTests(unittest.TestCase):
 class CheckAATests(unittest.TestCase):
     # tests for checkaaentry method
     seq_1 = SecondaryBias()
-    seq_1.sequence = "SAQHHFRQTYQYWWTPQLFVPYQDNRQAMNCQKLQAEVQSISQNTQKMPFPNQYQQKMDIKQIQQC"
+    seq_1.seq = "SAQHHFRQTYQYWWTPQLFVPYQDNRQAMNCQKLQAEVQSISQNTQKMPFPNQYQQKMDIKQIQQC"
     seq_2 = SecondaryBias()
-    seq_2.sequence = "1"
+    seq_2.seq = "1"
     seq_3 = SecondaryBias()
-    seq_3.sequence = "1QCVWQEGFQEQAHA"
+    seq_3.seq = "1QCVWQEGFQEQAHA"
     seq_4 = SecondaryBias()
-    seq_4.sequence = "CCLQQQSTLFQQQSERSQEIQM3"
+    seq_4.seq = "CCLQQQSTLFQQQSERSQEIQM3"
     seq_5 = SecondaryBias()
-    seq_5.sequence = "123453F13423"
+    seq_5.seq = "123453F13423"
     seq_6 = SecondaryBias()
-    seq_6.sequence = "ADSFEW@ASDF"
+    seq_6.seq = "ADSFEW@ASDF"
     seq_7 = SecondaryBias()
-    seq_7.sequence = "WPNVQKECQQVKQDSHCCLQQQSTLFQ*"
+    seq_7.seq = "WPNVQKECQQVKQDSHCCLQQQSTLFQ*"
     seq_8 = SecondaryBias()
-    seq_8.sequence = "%GVMWHDGTWDSAQHHFRQTY"
+    seq_8.seq = "%GVMWHDGTWDSAQHHFRQTY"
     seq_9 = SecondaryBias()
-    seq_9.sequence = "ASSD SDS"
+    seq_9.seq = "ASSD SDS"
     seq_10 = SecondaryBias()
-    seq_10.sequence = "JJJJJJJJJJJ"
+    seq_10.seq = "JJJJJJJJJJJ"
     seq_11 = SecondaryBias()
-    seq_11.sequence = "GQNQRWWYVTVQRSNFHQQKIRPQQPLGDKAHLLMQQMGGQQRAFYMPEQTQCFEYRI" \
+    seq_11.seq = "GQNQRWWYVTVQRSNFHQQKIRPQQPLGDKAHLLMQQMGGQQRAFYMPEQTQCFEYRI" \
                       "DQCVWQEGFQEQAHAWPNVQKECQQVKQDSHCCLQQQSTLFQQQSERSQEIQMADIQTQ" \
                       "CIGQNHQGVMWHDGTWDXSAQHHFRQTYQYWWTPQLFVPYQDNRQAMNCQKLQAEVQSIS" \
                       "QNTQKMPFPNQYQQKMDIKQIQQC"
@@ -307,20 +298,20 @@ class CheckAATests(unittest.TestCase):
     def test_check_aa_entry_pass(self):
         post_test = SecondaryBias()
         for i in range(10):
-            post_test.sequence = BiasFinderTest.seq_list[i]
-            self.assertTrue(UserInterface.check_aa_entry(post_test.sequence))
+            post_test.seq = BiasFinderTest.seq_list[i]
+            self.assertTrue(Representation.check_aa_entry(post_test.seq))
 
     def test_check_aa_entry_fail(self):
-        self.assertFalse(UserInterface.check_aa_entry(self.seq_2.sequence))
-        self.assertFalse(UserInterface.check_aa_entry(self.seq_3.sequence))
-        self.assertFalse(UserInterface.check_aa_entry(self.seq_4.sequence))
-        self.assertFalse(UserInterface.check_aa_entry(self.seq_5.sequence))
-        self.assertFalse(UserInterface.check_aa_entry(self.seq_6.sequence))
-        self.assertFalse(UserInterface.check_aa_entry(self.seq_7.sequence))
-        self.assertFalse(UserInterface.check_aa_entry(self.seq_8.sequence))
-        self.assertFalse(UserInterface.check_aa_entry(self.seq_9.sequence))
-        self.assertFalse(UserInterface.check_aa_entry(self.seq_10.sequence))
-        self.assertFalse(UserInterface.check_aa_entry(self.seq_11.sequence))
+        self.assertFalse(Representation.check_aa_entry(self.seq_2.seq))
+        self.assertFalse(Representation.check_aa_entry(self.seq_3.seq))
+        self.assertFalse(Representation.check_aa_entry(self.seq_4.seq))
+        self.assertFalse(Representation.check_aa_entry(self.seq_5.seq))
+        self.assertFalse(Representation.check_aa_entry(self.seq_6.seq))
+        self.assertFalse(Representation.check_aa_entry(self.seq_7.seq))
+        self.assertFalse(Representation.check_aa_entry(self.seq_8.seq))
+        self.assertFalse(Representation.check_aa_entry(self.seq_9.seq))
+        self.assertFalse(Representation.check_aa_entry(self.seq_10.seq))
+        self.assertFalse(Representation.check_aa_entry(self.seq_11.seq))
 
 
 if __name__ == '__main__':

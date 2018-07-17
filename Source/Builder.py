@@ -1,6 +1,7 @@
 # builder class
 import abc
-from SecondaryBiasFinder import SequenceImpl, SecondaryBias
+from SecondaryBiasFinder import Sequence, SecondaryBias
+import SecondaryBiasFinder
 
 
 class Builder(metaclass=abc.ABCMeta):
@@ -40,22 +41,22 @@ class AnalysisBuilder(Builder):
 
 
         Variables:
-            self.seq_list: a list of Sequence objects instantiated from file
+            self.sec_bias_list: a list of Sequence objects instantiated from file
 
 
         """
         super(AnalysisBuilder, self).__init__()
-        self.seq_list = []
+        self.sec_bias_list = []
 
     def get_sequence_list(self):
-        return self.seq_list
+        return self.sec_bias_list
 
     def set_sequence_list(self, new_list):
-        self.seq_list = new_list
+        self.sec_bias_list = new_list
 
-    def build_seq_list(self, sequence_list):
+    def build_sec_bias_list(self, sequence_list):
         """
-        Builds self.seq_list which can then be used to create the other objects
+        Builds self.sec_bias_list which can then be used to create the other objects
         Args:
             sequence_list:
 
@@ -64,7 +65,7 @@ class AnalysisBuilder(Builder):
         """
         new_list = []
         for i1 in range(len(sequence_list)):
-            new_obj = SequenceImpl()
+            new_obj = Sequence()
             temp_str = sequence_list[i1]
             new_obj.initialize_sequence_object(temp_str[0], temp_str[1])
             new_list.append(new_obj)
@@ -101,25 +102,29 @@ class AnalysisBuilder(Builder):
 
     def build_sec_bias(self):
         """
-        Creates a list of SecondaryBias objects from self.seq_list. The list of SecondaryBias objects is then processed.
+        Creates a list of SecondaryBias objects from self.sec_bias_list. The list of SecondaryBias objects is then processed.
 
         Returns:
             a list of processed SecondaryBias objects ready for output
         """
-        return_list = []
-        new_list = []
-        for i1 in range(len(self.seq_list)):
-            new_obj = SecondaryBias()
-            temp_obj = self.seq_list[i1]
-            new_obj.initialize_sec_bias(str(temp_obj.get_id()), str(temp_obj.get_sequence()))
-            new_list.append(new_obj)
+        s = None
 
-        for i2 in range(len(new_list)):
-            finding = new_list[i2]
-            done = new_list[i2].bias_finder()
-            return_list.append(finding)
 
-        return return_list
+class SequenceBiasBuilder(AnalysisBuilder):
+
+    def __init__(self, seq_record_list):
+        """
+
+
+        """
+        super(SequenceBiasBuilder, self).__init__()
+        self.sec_bias_list = seq_record_list
+
+    def find_sec_bias(self, primary_bias):
+
+        for i in self.sec_bias_list:
+            i.set_primary_bias = primary_bias
+            i.bias_finder()
 
 
 class DatabaseBuilder(Builder):
@@ -136,5 +141,4 @@ class DatabaseBuilder(Builder):
         Returns:
         """
         super(DatabaseBuilder, self).__init__()
-
 
