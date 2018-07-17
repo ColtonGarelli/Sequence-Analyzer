@@ -68,7 +68,7 @@ class AnalysisBuilder(Builder):
         for i1 in range(len(sequence_list)):
             new_obj = SecondaryBias()
             temp_str = sequence_list[i1]
-            new_obj.initialize_sequence_object(temp_str[0], temp_str[1])
+            new_obj.initialize_seqrecord_object(temp_str[0], temp_str[1])
             new_list.append(new_obj)
         self.set_sequence_list(new_list)
         return new_list

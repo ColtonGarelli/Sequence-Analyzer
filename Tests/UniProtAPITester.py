@@ -1,7 +1,7 @@
 import unittest
 import sys
 sys.path.append('/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1')
-import DatabaseRequests
+from Builder import DatabaseBuilder
 
 # test sending request, checking request,
 # receiving request, converting to object
@@ -11,7 +11,7 @@ class UniProtTester(unittest.TestCase):
 
     def test_create_url_test(self):
         # test querystring creator
-        test_database = DatabaseRequests.UniProtDatabase()
+        test_database = DatabaseBuilder()
         query_string = "insulin"
         query = test_database.create_request_url(query_string, "protein names, organism")
 

@@ -51,7 +51,8 @@ class SecondaryBias(SeqRecord):
     """
 
     def __init__(self):
-        SeqRecord.__init__(self, seq="")
+        super(SecondaryBias, self).__init__(seq=None)
+        self.id = None
         self.amino_acid_dict = dict(A=0, C=1, D=2, E=3, F=4, G=5, H=6, I=7, K=8, L=9,
                                     M=10, N=11, P=12, Q=13, R=14, S=15, T=16, V=17, W=18, Y=19)
         self.primary_bias = "Q"
@@ -68,10 +69,6 @@ class SecondaryBias(SeqRecord):
         self.local_avg = [0] * 20
         self.amino_acids = "ACDEFGHIKLMNPQRSTVWY"
 
-    def initialize_sequence_object(self, ID, sequence):
-        self.id = ID
-        self.seq = sequence
-
     # Takes user inputted sequence and ensures only natural amino acids are in seq
     # update stuff with docstrings, sequence variables
     # could also write overloaded assignment op
@@ -79,15 +76,21 @@ class SecondaryBias(SeqRecord):
     # Write docstring below
     # elements of each array represent a single a.a., in alphabetical order (0=A, 1=C, etc)
     # each array will serve as a count for a.a. appearances near primary bias (1-2 aa)
-    #  localseq is the aggregate
+    # localseq is the aggregate
 
     def initialize_sec_bias(self, seq_name, seq_in):
         """
         Effectively a constructor to create a SecondaryBias object from an id-sequence pair
         Args:
+
             seq_name: a sequence id
             seq_in: the sequence
+
+        Returns:
+
+            List of SecondaryBias
         """
+
         self.id = seq_name
         self.seq = seq_in
 
@@ -99,6 +102,7 @@ class SecondaryBias(SeqRecord):
         Returns:
             updates self.Q_index list (no return)
         """
+
         if self.primary_bias in self.seq:
             for i in range(len(self.seq)):
                 if self.seq[i] == self.primary_bias:

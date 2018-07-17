@@ -196,7 +196,8 @@
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">SeqRecord</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SecondaryBias</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">seq</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">F</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">G</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">I</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
                                     <span class="n">M</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">P</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">Q</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">R</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">V</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span> <span class="n">W</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="mi">19</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">primary_bias</span> <span class="o">=</span> <span class="s2">&quot;Q&quot;</span>
@@ -213,10 +214,6 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">local_avg</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">20</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">amino_acids</span> <span class="o">=</span> <span class="s2">&quot;ACDEFGHIKLMNPQRSTVWY&quot;</span>
 
-<div class="viewcode-block" id="SecondaryBias.initialize_sequence_object"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.SecondaryBias.initialize_sequence_object">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_sequence_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">ID</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">seq</span> <span class="o">=</span> <span class="n">sequence</span></div>
-
     <span class="c1"># Takes user inputted sequence and ensures only natural amino acids are in seq</span>
     <span class="c1"># update stuff with docstrings, sequence variables</span>
     <span class="c1"># could also write overloaded assignment op</span>
@@ -224,15 +221,21 @@
     <span class="c1"># Write docstring below</span>
     <span class="c1"># elements of each array represent a single a.a., in alphabetical order (0=A, 1=C, etc)</span>
     <span class="c1"># each array will serve as a count for a.a. appearances near primary bias (1-2 aa)</span>
-    <span class="c1">#  localseq is the aggregate</span>
+    <span class="c1"># localseq is the aggregate</span>
 
 <div class="viewcode-block" id="SecondaryBias.initialize_sec_bias"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.SecondaryBias.initialize_sec_bias">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_sec_bias</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq_name</span><span class="p">,</span> <span class="n">seq_in</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Effectively a constructor to create a SecondaryBias object from an id-sequence pair</span>
 <span class="sd">        Args:</span>
+
 <span class="sd">            seq_name: a sequence id</span>
 <span class="sd">            seq_in: the sequence</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">            List of SecondaryBias</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">seq_name</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">seq</span> <span class="o">=</span> <span class="n">seq_in</span></div>
 
@@ -244,6 +247,7 @@
 <span class="sd">        Returns:</span>
 <span class="sd">            updates self.Q_index list (no return)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
+
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">primary_bias</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">)):</span>
                 <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">primary_bias</span><span class="p">:</span>
