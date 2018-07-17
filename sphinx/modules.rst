@@ -5,10 +5,9 @@ Source
    :maxdepth: 4
 
    Builder
-   DatabaseRequests
    Director
    docstring_example_google
    Representation
    SecondaryBiasFinder
-   SpreadsheetIO
+   Bio_SQL_DB
    main
