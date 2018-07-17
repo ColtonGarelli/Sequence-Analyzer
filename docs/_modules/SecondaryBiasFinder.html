@@ -143,11 +143,14 @@
            <div itemprop="articleBody">
             
   <h1>Source code for SecondaryBiasFinder</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">Representation</span>
+<span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span>
+
+<span class="kn">import</span> <span class="nn">Representation</span>
 
 <span class="kn">import</span> <span class="nn">abc</span>
 <span class="kn">from</span> <span class="nn">Representation</span> <span class="k">import</span> <span class="n">export_sec_bias_helper</span>
 <span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">from</span> <span class="nn">Bio.SeqRecord</span> <span class="k">import</span> <span class="n">SeqRecord</span>
 
 
 
@@ -170,52 +173,30 @@
 <span class="sd">&#39;&#39;&#39;</span>
 
 
-<span class="c1"># class SequenceInterface(abc.ABCMeta):</span>
-<span class="c1">#     &quot;&quot;&quot;</span>
-<span class="c1">#     Still trying to decide whether abstraction is worth it for this part. It probably is but I need to think about it</span>
-<span class="c1">#     &quot;&quot;&quot;</span>
-<span class="c1">#     @abc.abstractmethod</span>
-<span class="c1">#     def get_id(cls):</span>
-<span class="c1">#         raise NotImplementedError</span>
-
-
-<div class="viewcode-block" id="SequenceImpl"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.SequenceImpl">[docs]</a><span class="k">class</span> <span class="nc">SequenceImpl</span><span class="p">:</span>
+<div class="viewcode-block" id="Sequence"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.Sequence">[docs]</a><span class="k">class</span> <span class="nc">Sequence</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Parent class for all of the sequence analysis classes. They inherit from this class in an effort to enforce some</span>
 <span class="sd">    uniformity and promote flexibility in the case that this program begins to chew up substantial overhead.</span>
 
-<span class="sd">    :var self.amino_acids: should probably be a class variable. need to refactor.</span>
-<span class="sd">    </span>
-<span class="sd">    :var self.id: an id associated with the given sequence</span>
-<span class="sd">    :var self.sequence: the sequence associated with the provided id</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">amino_acids</span> <span class="o">=</span> <span class="s2">&quot;ACDEFGHIKLMNPQRSTVWY&quot;</span>
-
-<div class="viewcode-block" id="SequenceImpl.initialize_sequence_object"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.SequenceImpl.initialize_sequence_object">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_sequence_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">ID</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="n">sequence</span></div>
-
-<div class="viewcode-block" id="SequenceImpl.get_id"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.SequenceImpl.get_id">[docs]</a>    <span class="k">def</span> <span class="nf">get_id</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">id</span></div>
-
-<div class="viewcode-block" id="SequenceImpl.get_sequence"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.SequenceImpl.get_sequence">[docs]</a>    <span class="k">def</span> <span class="nf">get_sequence</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span></div></div>
+<span class="sd">    :var</span>
+<span class="sd">         self.amino_acids: should probably be a class variable. need to refactor.</span>
+<span class="sd">         self.id: an id associated with the given sequence</span>
+<span class="sd">         self.sequence: the sequence associated with the provided id</span>
+<span class="sd">    &quot;&quot;&quot;</span></div>
 
 
-<div class="viewcode-block" id="SecondaryBias"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.SecondaryBias">[docs]</a><span class="k">class</span> <span class="nc">SecondaryBias</span><span class="p">(</span><span class="n">SequenceImpl</span><span class="p">):</span>
+<div class="viewcode-block" id="SecondaryBias"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.SecondaryBias">[docs]</a><span class="k">class</span> <span class="nc">SecondaryBias</span><span class="p">(</span><span class="n">SeqRecord</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    SecondaryBias extends the Sequence class. SecondaryBias has methods prompt input determines primary</span>
 <span class="sd">    and secondary sequence biases. Is used primarily to find primary glutamine bias, and secondary</span>
 <span class="sd">    biases at the +/- 1,2,3, and a total of these 6 positions, for each Q.</span>
+
+<span class="sd">    Attributes:</span>
+
 <span class="sd">    &quot;&quot;&quot;</span>
 
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">SeqRecord</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">F</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">G</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">I</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
                                     <span class="n">M</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">P</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">Q</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">R</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">V</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span> <span class="n">W</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="mi">19</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">primary_bias</span> <span class="o">=</span> <span class="s2">&quot;Q&quot;</span>
@@ -230,6 +211,11 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">two_away_avg</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">20</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">three_away_avg</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">20</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">local_avg</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">20</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">amino_acids</span> <span class="o">=</span> <span class="s2">&quot;ACDEFGHIKLMNPQRSTVWY&quot;</span>
+
+<div class="viewcode-block" id="SecondaryBias.initialize_sequence_object"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.SecondaryBias.initialize_sequence_object">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_sequence_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ID</span><span class="p">,</span> <span class="n">sequence</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">ID</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seq</span> <span class="o">=</span> <span class="n">sequence</span></div>
 
     <span class="c1"># Takes user inputted sequence and ensures only natural amino acids are in seq</span>
     <span class="c1"># update stuff with docstrings, sequence variables</span>
@@ -243,21 +229,24 @@
 <div class="viewcode-block" id="SecondaryBias.initialize_sec_bias"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.SecondaryBias.initialize_sec_bias">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_sec_bias</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq_name</span><span class="p">,</span> <span class="n">seq_in</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Effectively a constructor to create a SecondaryBias object from an id-sequence pair</span>
-<span class="sd">        :param seq_name: a sequence id</span>
-<span class="sd">        :param seq_in: the sequence</span>
+<span class="sd">        Args:</span>
+<span class="sd">            seq_name: a sequence id</span>
+<span class="sd">            seq_in: the sequence</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">seq_name</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="n">seq_in</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">seq_name</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seq</span> <span class="o">=</span> <span class="n">seq_in</span></div>
 
 <div class="viewcode-block" id="SecondaryBias.find_primary_bias"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.SecondaryBias.find_primary_bias">[docs]</a>    <span class="k">def</span> <span class="nf">find_primary_bias</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Finds the primary bias defined by the user. Ignores first and last three aa in seq for primary bias calculation.</span>
 <span class="sd">        Stores the index of each primary bias residue in the sequence string in self.primary_bias</span>
-<span class="sd">        :return: updates self.Q_index list (no return)</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">            updates self.Q_index list (no return)</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">primary_bias</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">:</span>
-            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">)):</span>
-                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">primary_bias</span><span class="p">:</span>
+        <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">primary_bias</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="bp">self</span><span class="o">.</span><span class="n">primary_bias</span><span class="p">:</span>
                     <span class="c1"># if statement should ignore Q. Could split loops so if isn&#39;t read outside</span>
                     <span class="c1"># the first three and last three indexes. Range b/t could be very large</span>
                     <span class="k">if</span> <span class="mi">2</span> <span class="o">&lt;</span> <span class="n">i</span> <span class="o">&lt;</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence_len</span><span class="o">-</span><span class="mi">3</span><span class="p">:</span>
@@ -267,10 +256,13 @@
         <span class="k">else</span><span class="p">:</span>
             <span class="k">return</span> <span class="kc">False</span></div>
 
+    <span class="c1"># should split into 5 separate methods</span>
 <div class="viewcode-block" id="SecondaryBias.secondary_bias_finder"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.SecondaryBias.secondary_bias_finder">[docs]</a>    <span class="k">def</span> <span class="nf">secondary_bias_finder</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Finds amino acids at one, two, and three residues from the desired primary bias. A local tally is also computed.</span>
-<span class="sd">        :ivar self.one_away, self.two_away,self.three_away, self.three_away_avg, self.local_sequence: get updated</span>
+
+<span class="sd">        Modified:</span>
+<span class="sd">            self.one_away, self.two_away,self.three_away, self.three_away_avg, self.local_sequence: get updated</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Q_content</span><span class="p">):</span>
@@ -278,40 +270,42 @@
             <span class="c1"># which refers to the index of this Q</span>
             <span class="c1"># in sequence_in</span>
             <span class="n">Q_minus1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Q_index</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">1</span>
-            <span class="n">aa_to_increment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">Q_minus1</span><span class="p">]]</span>
+            <span class="n">aa_to_increment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">[</span><span class="n">Q_minus1</span><span class="p">]]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">one_away</span><span class="p">[</span><span class="n">aa_to_increment</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
             <span class="n">Q_plus1</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Q_index</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">1</span>
-            <span class="n">aa_to_increment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">Q_plus1</span><span class="p">]]</span>
+            <span class="n">aa_to_increment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">[</span><span class="n">Q_plus1</span><span class="p">]]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">one_away</span><span class="p">[</span><span class="n">aa_to_increment</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
             <span class="n">Q_minus2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Q_index</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">2</span>
-            <span class="n">aa_to_increment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">Q_minus2</span><span class="p">]]</span>
+            <span class="n">aa_to_increment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">[</span><span class="n">Q_minus2</span><span class="p">]]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">two_away</span><span class="p">[</span><span class="n">aa_to_increment</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
             <span class="n">Q_plus2</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Q_index</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">2</span>
-            <span class="n">aa_to_increment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">Q_plus2</span><span class="p">]]</span>
+            <span class="n">aa_to_increment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">[</span><span class="n">Q_plus2</span><span class="p">]]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">two_away</span><span class="p">[</span><span class="n">aa_to_increment</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
             <span class="n">Q_minus3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Q_index</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">-</span> <span class="mi">3</span>
-            <span class="n">aa_to_increment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">Q_minus3</span><span class="p">]]</span>
+            <span class="n">aa_to_increment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">[</span><span class="n">Q_minus3</span><span class="p">]]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">three_away</span><span class="p">[</span><span class="n">aa_to_increment</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
             <span class="n">Q_plus3</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">Q_index</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="mi">3</span>
-            <span class="n">aa_to_increment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">Q_plus3</span><span class="p">]]</span>
+            <span class="n">aa_to_increment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">[</span><span class="n">Q_plus3</span><span class="p">]]</span>
             <span class="bp">self</span><span class="o">.</span><span class="n">three_away</span><span class="p">[</span><span class="n">aa_to_increment</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
 
-            <span class="bp">self</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">Q_minus1</span><span class="p">]]]</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">Q_plus1</span><span class="p">]]]</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">Q_minus2</span><span class="p">]]]</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">Q_plus2</span><span class="p">]]]</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">Q_minus3</span><span class="p">]]]</span> <span class="o">+=</span> <span class="mi">1</span>
-            <span class="bp">self</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">[</span><span class="n">Q_plus3</span><span class="p">]]]</span> <span class="o">+=</span> <span class="mi">1</span></div>
+            <span class="bp">self</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">[</span><span class="n">Q_minus1</span><span class="p">]]]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">[</span><span class="n">Q_plus1</span><span class="p">]]]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">[</span><span class="n">Q_minus2</span><span class="p">]]]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">[</span><span class="n">Q_plus2</span><span class="p">]]]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">[</span><span class="n">Q_minus3</span><span class="p">]]]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">[</span><span class="n">Q_plus3</span><span class="p">]]]</span> <span class="o">+=</span> <span class="mi">1</span></div>
 
 <div class="viewcode-block" id="SecondaryBias.find_avg_occurrence"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.SecondaryBias.find_avg_occurrence">[docs]</a>    <span class="k">def</span> <span class="nf">find_avg_occurrence</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Divides each index of +/- 1, 2, 3 and local lists by the total primary bias residue content (average)</span>
-<span class="sd">        :ivar: updates +/- 1, 2, 3, and local avg lists</span>
+
+<span class="sd">        Modified:</span>
+<span class="sd">            updates +/- 1, 2, 3, and local avg lists</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="bp">self</span><span class="o">.</span><span class="n">Q_content</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
             <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
@@ -320,21 +314,25 @@
                 <span class="bp">self</span><span class="o">.</span><span class="n">three_away_avg</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">three_away</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">Q_content</span>
                 <span class="bp">self</span><span class="o">.</span><span class="n">local_avg</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="bp">self</span><span class="o">.</span><span class="n">Q_content</span></div>
 
-<div class="viewcode-block" id="SecondaryBias.bias_finder"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.SecondaryBias.bias_finder">[docs]</a>    <span class="k">def</span> <span class="nf">bias_finder</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+    <span class="c1"># Consider getting rid of</span>
+<div class="viewcode-block" id="SecondaryBias.bias_finder"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.SecondaryBias.bias_finder">[docs]</a>    <span class="k">def</span> <span class="nf">bias_finder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">primary_bias</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Runs the bias finding analysis. Capitalizes self.sequence string;</span>
 <span class="sd">        calls: find_primary_bias(), secondary_bias_finder(), find_avg_occurrence()</span>
-<span class="sd">        :ivar self.sequence: updated with uppercase sequence</span>
-<span class="sd">        :ivar self.Q_content: length of self.Q_index list</span>
-<span class="sd">        :ivar self.sequence_len:</span>
+
+<span class="sd">        Modified:</span>
+<span class="sd">            self.sequence: updated with uppercase sequence</span>
+<span class="sd">            self.Q_content: length of self.Q_index list</span>
+<span class="sd">            self.sequence_len:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="c1"># change user in</span>
         <span class="c1"># self.primary_bias = self.choose_primary_bias()</span>
         <span class="c1"># self.seq_in = self.prompt_sequence_input()</span>
         <span class="c1"># self.sequence = self.remove_spaces(self.sequence)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">sequence_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sequence</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">primary_bias</span> <span class="o">=</span> <span class="n">primary_bias</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sequence_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">find_primary_bias</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Q_content</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Q_index</span><span class="p">)</span>
         <span class="c1"># indices of aa adjacent to q in master seq</span>
@@ -342,15 +340,28 @@
         <span class="c1"># arrays are ordered in single letter code alphabetical order</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">secondary_bias_finder</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">find_avg_occurrence</span><span class="p">()</span>
-        <span class="c1"># self.print_q_normalized()</span>
-        <span class="k">return</span> <span class="kc">True</span></div></div>
+        <span class="k">return</span> <span class="kc">True</span></div>
+
+<div class="viewcode-block" id="SecondaryBias.set_primary_bias"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.SecondaryBias.set_primary_bias">[docs]</a>    <span class="k">def</span> <span class="nf">set_primary_bias</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">primary_bias</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">primary_bias</span> <span class="o">=</span> <span class="n">primary_bias</span></div>
+
+<div class="viewcode-block" id="SecondaryBias.get_primary_bias"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.SecondaryBias.get_primary_bias">[docs]</a>    <span class="k">def</span> <span class="nf">get_primary_bias</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">primary_bias</span></div></div>
+
+
+<div class="viewcode-block" id="seqrecord_to_secbias"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.seqrecord_to_secbias">[docs]</a><span class="k">def</span> <span class="nf">seqrecord_to_secbias</span><span class="p">():</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 
 <div class="viewcode-block" id="create_SeqBias_object"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.create_SeqBias_object">[docs]</a><span class="k">def</span> <span class="nf">create_SeqBias_object</span><span class="p">(</span><span class="n">seq_string</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates SecondaryBias objects from a sequence by splitting an id-sequence pair  (ex. &quot;id,sequence&quot;)</span>
-<span class="sd">    :param seq_string: &quot;id,sequence&quot;</span>
-<span class="sd">    :return: a new SecondaryBias object with id and sequence initialized to id and sequence from the in_string</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        seq_string: &quot;id,sequence&quot;</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        a new SecondaryBias object with id and sequence initialized to id and sequence from the in_string</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="c1"># 2D string array[i][0] --from reading csv</span>
     <span class="c1"># call create obj between each</span>
@@ -364,11 +375,15 @@
 <div class="viewcode-block" id="create_sequence_objects"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.create_sequence_objects">[docs]</a><span class="k">def</span> <span class="nf">create_sequence_objects</span><span class="p">(</span><span class="n">string_list</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates a sequence object from a pre-split string list</span>
-<span class="sd">    :param: string_list: [&quot;id&quot;, &quot;sequence&quot;</span>
-<span class="sd">    :return: SequenceImpl object (parent for the various sequence data objects)</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        string_list: [&quot;id&quot;, &quot;sequence&quot;</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        SequenceImpl object (parent for the various sequence data objects)</span>
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="n">new_seq</span> <span class="o">=</span> <span class="n">SequenceImpl</span><span class="p">()</span>
+    <span class="n">new_seq</span> <span class="o">=</span> <span class="n">Sequence</span><span class="p">()</span>
     <span class="n">new_seq</span><span class="o">.</span><span class="n">initialize_sequence_object</span><span class="p">(</span><span class="n">string_list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">string_list</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
     <span class="k">return</span> <span class="n">new_seq</span></div>
 
@@ -378,9 +393,12 @@
 <span class="sd">    Creates a list of SecondaryBias objects from file.</span>
 
 
-<span class="sd">    :param: general_path:</span>
-<span class="sd">    :param: file_beginning:</span>
-<span class="sd">    :return: List of SecondaryBias objects</span>
+<span class="sd">    Args:</span>
+<span class="sd">        general_path:</span>
+<span class="sd">        file_beginning:</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        List of SecondaryBias objects</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">general_path</span> <span class="o">=</span> <span class="n">general_path</span> <span class="o">+</span> <span class="n">file_beginning</span>
     <span class="n">file_string_one</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">general_path</span> <span class="o">+</span> <span class="s2">&quot;one_away.csv&quot;</span><span class="p">)</span>
@@ -404,29 +422,29 @@
         <span class="n">local_away_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">string_list_local</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
     <span class="k">for</span> <span class="n">i1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">string_list_one</span><span class="p">)):</span>
         <span class="n">new_seq</span> <span class="o">=</span> <span class="n">SecondaryBias</span><span class="p">()</span>
-        <span class="n">new_seq</span><span class="o">.</span><span class="n">ID</span> <span class="o">=</span> <span class="n">one_away_list</span><span class="p">[</span><span class="n">i1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">new_seq</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">one_away_list</span><span class="p">[</span><span class="n">i1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
         <span class="n">seq_object_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_seq</span><span class="p">)</span>
         <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
         <span class="k">for</span> <span class="n">i2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
             <span class="n">one_away</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">one_away_list</span><span class="p">[</span><span class="n">i1</span><span class="p">][</span><span class="n">i2</span><span class="p">])</span>
-            <span class="n">seq_object_list</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span><span class="o">.</span><span class="n">one_away</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="n">one_away</span>
-            <span class="n">seq_object_list</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span><span class="o">.</span><span class="n">two_away</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">two_away_list</span><span class="p">[</span><span class="n">i1</span><span class="p">][</span><span class="n">i2</span><span class="p">])</span>
-            <span class="n">seq_object_list</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span><span class="o">.</span><span class="n">three_away</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">three_away_list</span><span class="p">[</span><span class="n">i1</span><span class="p">][</span><span class="n">i2</span><span class="p">])</span>
-            <span class="n">seq_object_list</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">[</span><span class="n">index</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">local_away_list</span><span class="p">[</span><span class="n">i1</span><span class="p">][</span><span class="n">i2</span><span class="p">])</span>
+            <span class="n">seq_object_list</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span><span class="o">.</span><span class="n">one_away</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span> <span class="o">=</span> <span class="n">one_away</span>
+            <span class="n">seq_object_list</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span><span class="o">.</span><span class="n">two_away</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">two_away_list</span><span class="p">[</span><span class="n">i1</span><span class="p">][</span><span class="n">i2</span><span class="p">])</span>
+            <span class="n">seq_object_list</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span><span class="o">.</span><span class="n">three_away</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">three_away_list</span><span class="p">[</span><span class="n">i1</span><span class="p">][</span><span class="n">i2</span><span class="p">])</span>
+            <span class="n">seq_object_list</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">local_away_list</span><span class="p">[</span><span class="n">i1</span><span class="p">][</span><span class="n">i2</span><span class="p">])</span>
             <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">seq_object_list</span></div>
 
 
-<span class="c1"># def initialize_processed_sec_bias(ID_list, seq_list, one_away, two_away, three_away, local_seq):</span>
+<span class="c1"># def initialize_processed_sec_bias(id_list, seq_list, one_away, two_away, three_away, local_seq):</span>
 <span class="c1">#     seq_obj_list = []</span>
 <span class="c1">#     for i in range(len(seq_list)):</span>
 <span class="c1">#         create_obj = SecondaryBias()</span>
-<span class="c1">#         create_obj.ID = ID_list[i]</span>
+<span class="c1">#         create_obj.id = id_list[i]</span>
 <span class="c1">#     return seq_obj_list</span>
 
 
 <div class="viewcode-block" id="sec_bias_to_string"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.sec_bias_to_string">[docs]</a><span class="k">def</span> <span class="nf">sec_bias_to_string</span><span class="p">(</span><span class="n">obj_to_copy</span><span class="p">,</span> <span class="n">list_to_copy</span><span class="p">):</span>
-    <span class="n">string_to_return</span> <span class="o">=</span> <span class="n">obj_to_copy</span><span class="o">.</span><span class="n">ID</span>
+    <span class="n">string_to_return</span> <span class="o">=</span> <span class="n">obj_to_copy</span><span class="o">.</span><span class="n">id</span>
     <span class="n">string_to_return</span> <span class="o">+=</span> <span class="s2">&quot;,&quot;</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">list_to_copy</span><span class="p">)):</span>
         <span class="n">string_to_return</span> <span class="o">+=</span> <span class="n">list_to_copy</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
@@ -437,7 +455,7 @@
 
 <div class="viewcode-block" id="export_sec_bias_files"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.export_sec_bias_files">[docs]</a><span class="k">def</span> <span class="nf">export_sec_bias_files</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">):</span>
     <span class="n">path</span> <span class="o">=</span> <span class="s2">&quot;/Users/coltongarelli/Desktop/&quot;</span>
-    <span class="n">file_name</span> <span class="o">=</span> <span class="n">sequence_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">ID</span>
+    <span class="n">file_name</span> <span class="o">=</span> <span class="n">sequence_list</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">.</span><span class="n">id</span>
 
     <span class="n">this_file</span> <span class="o">=</span> <span class="n">file_name</span> <span class="o">+</span> <span class="s2">&quot;one_away&quot;</span> <span class="o">+</span> <span class="s2">&quot;.csv&quot;</span>
     <span class="n">file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
@@ -445,9 +463,9 @@
     <span class="c1"># file_to_write = open(file_path, &quot;x&quot;)</span>
     <span class="c1"># file_to_write.close()</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">)):</span>
-        <span class="n">export_sec_bias_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">one_away</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
+        <span class="n">export_sec_bias_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">one_away</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">)):</span>
-        <span class="n">export_sec_bias_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">one_away_avg</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
+        <span class="n">export_sec_bias_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">one_away_avg</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
 
     <span class="n">this_file</span> <span class="o">=</span> <span class="n">file_name</span> <span class="o">+</span> <span class="s2">&quot;two_away&quot;</span> <span class="o">+</span> <span class="s2">&quot;.csv&quot;</span>
     <span class="n">file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
@@ -455,9 +473,9 @@
     <span class="c1"># file_to_write = open(os.path.join(path, this_file), &quot;x&quot;)</span>
     <span class="c1"># file_to_write.close()</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">)):</span>
-        <span class="n">export_sec_bias_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">two_away</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
+        <span class="n">export_sec_bias_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">two_away</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">)):</span>
-        <span class="n">export_sec_bias_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">two_away_avg</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
+        <span class="n">export_sec_bias_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">two_away_avg</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
 
     <span class="n">this_file</span> <span class="o">=</span> <span class="n">file_name</span> <span class="o">+</span> <span class="s2">&quot;three_away&quot;</span> <span class="o">+</span> <span class="s2">&quot;.csv&quot;</span>
     <span class="n">file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
@@ -465,9 +483,9 @@
     <span class="c1"># file_to_write = open(os.path.join(path, this_file), &quot;x&quot;)</span>
     <span class="c1"># file_to_write.close()</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">)):</span>
-        <span class="n">export_sec_bias_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">three_away</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
+        <span class="n">export_sec_bias_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">three_away</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">)):</span>
-        <span class="n">export_sec_bias_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">three_away_avg</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
+        <span class="n">export_sec_bias_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">three_away_avg</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
 
     <span class="n">this_file</span> <span class="o">=</span> <span class="n">file_name</span> <span class="o">+</span> <span class="s2">&quot;local_seq&quot;</span> <span class="o">+</span> <span class="s2">&quot;.csv&quot;</span>
     <span class="n">file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
@@ -475,14 +493,31 @@
     <span class="c1"># file_to_write = open(os.path.join(path, this_file), &quot;x&quot;)</span>
     <span class="c1"># file_to_write.close()</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">)):</span>
-        <span class="n">export_sec_bias_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
+        <span class="n">export_sec_bias_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">)):</span>
-        <span class="n">export_sec_bias_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">ID</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">local_avg</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
+        <span class="n">export_sec_bias_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">local_avg</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">path</span> <span class="o">+</span> <span class="n">file_name</span></div>
 
 
+<div class="viewcode-block" id="create_seqrecord_object"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.create_seqrecord_object">[docs]</a><span class="k">def</span> <span class="nf">create_seqrecord_object</span><span class="p">(</span><span class="n">sequence_dict</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Creates a sequencerecord object from passed in information. Only handles id and sequence</span>
 
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+
+<div class="viewcode-block" id="gen_seqrecord_from_xml"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.gen_seqrecord_from_xml">[docs]</a><span class="k">def</span> <span class="nf">gen_seqrecord_from_xml</span><span class="p">(</span><span class="n">sequence_xml</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Uses SeqIO to generate SeqRecord objects</span>
+<span class="sd">    :return:</span>
+<span class="sd">    &quot;&quot;&quot;</span></div>
+
+
+<div class="viewcode-block" id="seqrecord_to_xml"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.seqrecord_to_xml">[docs]</a><span class="k">def</span> <span class="nf">seqrecord_to_xml</span><span class="p">():</span>
+    <span class="n">s</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 <span class="c1">#</span>
 <span class="c1">#</span>

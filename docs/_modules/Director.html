@@ -144,7 +144,8 @@
             
   <h1>Source code for Director</h1><div class="highlight"><pre>
 <span></span><span class="kn">import</span> <span class="nn">Representation</span>
-<span class="kn">from</span> <span class="nn">Builder</span> <span class="k">import</span> <span class="n">AnalysisBuilder</span><span class="p">,</span> <span class="n">DatabaseBuilder</span>
+<span class="kn">from</span> <span class="nn">Builder</span> <span class="k">import</span> <span class="n">AnalysisBuilder</span><span class="p">,</span> <span class="n">DatabaseBuilder</span><span class="p">,</span> <span class="n">SequenceBiasBuilder</span>
+<span class="kn">import</span> <span class="nn">SecondaryBiasFinder</span>
 
 
 <span class="c1"># room for addition of BLAST, alignment, other tools as run_x_analysis methods</span>
@@ -155,20 +156,28 @@
 <div class="viewcode-block" id="Director"><a class="viewcode-back" href="../Director.html#Director.Director">[docs]</a><span class="k">class</span> <span class="nc">Director</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    The Director class manages file input, analysis, and data outputting and formatting.</span>
+<span class="sd">        * Contains methods to execute tasks</span>
 <span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">file_in_path</span><span class="p">:</span> <span class="nb">str</span>
+
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        :var self.analysis: each director object contains an analysis object that run the desired set of analyses</span>
-<span class="sd">        :var self.representation: each director object contains an representation object to litigate data output</span>
-<span class="sd">        :var self.master_list: master sequence-id list. saved after file is first read in</span>
-<span class="sd">        :var self.file_in_path: path for sequence-id file in csv format</span>
-<span class="sd">        :var self.file_out_path: path for directory where files can be output</span>
+<span class="sd">        Creates &#39;representation&#39; object to manage user interface and output</span>
 
-<span class="sd">        Analysis and representation objects are instantiated and set to self.analysis and self.representation variables.</span>
+
+<span class="sd">        Attributes:</span>
+<span class="sd">            self.analysis: each director object contains an analysis object that run the desired set of analyses</span>
+<span class="sd">            self.representation: each director object contains an representation object to litigate data output</span>
+<span class="sd">            self.master_list: master sequence-id list. saved after file is first read in</span>
+<span class="sd">            self.file_in_path: path for sequence-id file in csv format</span>
+<span class="sd">            self.file_out_path: path for directory where files can be output</span>
+
+
+
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">analysis</span> <span class="o">=</span> <span class="n">AnalysisBuilder</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="n">DatabaseBuilder</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">analysis</span> <span class="o">=</span> <span class="p">[</span><span class="n">AnalysisBuilder</span><span class="p">]</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="c1"># a list of representations</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">representation</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">Representation</span><span class="p">()</span>
         <span class="c1"># the master sequence-id list</span>
@@ -177,68 +186,124 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">file_in_path</span> <span class="o">=</span> <span class="kc">None</span>
 
 <div class="viewcode-block" id="Director.handle_manual_input"><a class="viewcode-back" href="../Director.html#Director.Director.handle_manual_input">[docs]</a>    <span class="k">def</span> <span class="nf">handle_manual_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">something</span> <span class="o">=</span> <span class="kc">None</span></div>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Uses &#39;representation&#39; to prompt user for file path and prints information to the screen</span>
 
-<div class="viewcode-block" id="Director.handle_file_input"><a class="viewcode-back" href="../Director.html#Director.Director.handle_file_input">[docs]</a>    <span class="k">def</span> <span class="nf">handle_file_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">something</span> <span class="o">=</span> <span class="kc">None</span></div>
+
+<span class="sd">        Returns:</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_file_in_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">manual_sequence_entry</span><span class="p">())</span></div>
 
 <div class="viewcode-block" id="Director.define_input_source"><a class="viewcode-back" href="../Director.html#Director.Director.define_input_source">[docs]</a>    <span class="k">def</span> <span class="nf">define_input_source</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">something</span> <span class="o">=</span> <span class="kc">None</span></div>
+        <span class="sd">&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Director.analysis_helper"><a class="viewcode-back" href="../Director.html#Director.Director.analysis_helper">[docs]</a>    <span class="k">def</span> <span class="nf">analysis_helper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">in_path</span><span class="p">):</span>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">data_source</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">select_input_source</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">data_source</span></div>
+
+<div class="viewcode-block" id="Director.analysis_helper"><a class="viewcode-back" href="../Director.html#Director.Director.analysis_helper">[docs]</a>    <span class="k">def</span> <span class="nf">analysis_helper</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Does the work prior to analysis. Handles file-in path, creating file-out path,</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_file_in_path</span><span class="p">(</span><span class="n">in_path</span><span class="p">)</span>
         <span class="n">slash_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_in_path</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">new_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">slash_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">set_file_out_dir</span><span class="p">(</span><span class="n">new_path</span><span class="p">)</span></div>
 
 <div class="viewcode-block" id="Director.access_databases"><a class="viewcode-back" href="../Director.html#Director.Director.access_databases">[docs]</a>    <span class="k">def</span> <span class="nf">access_databases</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">something</span> <span class="o">=</span> <span class="kc">None</span></div>
-    <span class="c1">#  call representation methods that ask which DB, what to do with the data and stores that</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="n">db_choice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">choose_database</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="n">DatabaseBuilder</span><span class="p">()</span>
+        <span class="n">db_options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">db_options</span><span class="p">()</span></div>
+    <span class="c1">#   self.database.send_request</span>
+    <span class="c1">#   self.database.check_for_response</span>
+    <span class="c1">#   while not done:</span>
+    <span class="c1">#     self.database.check_for_response</span>
+    <span class="c1">#</span>
+    <span class="c1">#   database object should contain list of seqrecord objects</span>
+    <span class="c1">#   call database to make list and set master list equal to</span>
 
     <span class="c1"># if view is selected, run functions that create and functions that display desired info</span>
 <div class="viewcode-block" id="Director.database_presentation"><a class="viewcode-back" href="../Director.html#Director.Director.database_presentation">[docs]</a>    <span class="k">def</span> <span class="nf">database_presentation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">something</span> <span class="o">=</span> <span class="kc">None</span></div>
+        <span class="sd">&quot;&quot;&quot;</span>
 
-<div class="viewcode-block" id="Director.create_sequence_objects"><a class="viewcode-back" href="../Director.html#Director.Director.create_sequence_objects">[docs]</a>    <span class="k">def</span> <span class="nf">create_sequence_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">something</span> <span class="o">=</span> <span class="kc">None</span></div>
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">set_print_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">db_query_view</span><span class="p">())</span></div>
+    <span class="c1">#   print the string</span>
+
+<div class="viewcode-block" id="Director.create_sequence_objects"><a class="viewcode-back" href="../Director.html#Director.Director.create_sequence_objects">[docs]</a>    <span class="k">def</span> <span class="nf">create_sequence_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span><span class="n">sequence_info</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :return:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+
+        <span class="k">try</span><span class="p">:</span>
+            <span class="c1"># determine if in xml or fasta format or dict</span>
+            <span class="k">if</span> <span class="n">sequence_info</span><span class="o">.</span><span class="n">type</span><span class="p">()</span> <span class="o">==</span> <span class="s1">&#39;dict&#39;</span><span class="p">:</span>
+                <span class="c1"># dict will be ordered (id, seq)</span>
+                <span class="n">seq_list</span> <span class="o">=</span> <span class="n">SecondaryBiasFinder</span><span class="o">.</span><span class="n">create_seqrecord_object</span><span class="p">(</span><span class="n">sequence_info</span><span class="p">)</span>
+            <span class="c1"># assuming uniprot xml for now</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">seq_list</span> <span class="o">=</span> <span class="n">SecondaryBiasFinder</span><span class="o">.</span><span class="n">gen_seqrecord_from_xml</span><span class="p">(</span><span class="n">sequence_info</span><span class="p">)</span>
+
+        <span class="k">except</span> <span class="ne">Exception</span><span class="p">:</span>
+            <span class="n">s</span> <span class="o">=</span> <span class="kc">None</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;something went bad&quot;</span><span class="p">)</span></div>
     <span class="c1"># turn string formatted info to SeqRecord objects</span>
     <span class="c1"># put SeqRecord obj list in master list</span>
 
 <div class="viewcode-block" id="Director.run_FELLS_analysis"><a class="viewcode-back" href="../Director.html#Director.Director.run_FELLS_analysis">[docs]</a>    <span class="k">def</span> <span class="nf">run_FELLS_analysis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="n">something</span> <span class="o">=</span> <span class="kc">None</span></div>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+    <span class="c1">#   sends list of seqrecord objects to fells module</span>
+    <span class="c1">#   while loop to check for updates</span>
+    <span class="c1">#   director holds onto FELLS, where data is stored</span>
+    <span class="c1">#   builder objects own data and send translations to director</span>
+        <span class="n">s</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="Director.run_SODA_analysis"><a class="viewcode-back" href="../Director.html#Director.Director.run_SODA_analysis">[docs]</a>    <span class="k">def</span> <span class="nf">run_SODA_analysis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="n">something</span> <span class="o">=</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="Director.run_bias_analysis"><a class="viewcode-back" href="../Director.html#Director.Director.run_bias_analysis">[docs]</a>    <span class="k">def</span> <span class="nf">run_bias_analysis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Reads file in and creates a master list of id-sequence lists. It then creates SecondaryBias objects and runs the</span>
 <span class="sd">        analysis using its self.analysis object</span>
-<span class="sd">        :return: List of fully processed SecondaryBias objects</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">             List of fully processed SecondaryBias objects</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">file_string</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_in_path</span><span class="p">)</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">master_list</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">parse_to_string_list</span><span class="p">(</span><span class="n">file_string</span><span class="p">)</span>
-        <span class="c1"># each string in string_list represents a sequence</span>
+        <span class="c1"># for csv formatted files only. call</span>
 
-        <span class="n">sequence_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">build_seq_list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master_list</span><span class="p">)</span>
-        <span class="n">processed</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">analysis</span><span class="o">.</span><span class="n">build_sec_bias</span><span class="p">()</span>
+        <span class="c1"># select primary bias</span>
+        <span class="c1"># primary_bias = Representation.choose_primary_bias()</span>
+        <span class="n">secondary_analysis</span> <span class="o">=</span> <span class="n">SequenceBiasBuilder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master_list</span><span class="p">)</span>
+        <span class="n">secondary_analysis</span><span class="o">.</span><span class="n">find_sec_bias</span><span class="p">(</span><span class="s2">&quot;Q&quot;</span><span class="p">)</span></div>
 
-        <span class="k">return</span> <span class="n">processed</span></div>
-
-    <span class="c1"># for gui stuff</span>
-<div class="viewcode-block" id="Director.create_representation"><a class="viewcode-back" href="../Director.html#Director.Director.create_representation">[docs]</a>    <span class="k">def</span> <span class="nf">create_representation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">        Uses the self.representation object to create a graphic representation of the data processed during analysis.</span>
-<span class="sd">        :return: N/A</span>
-
-
-<span class="sd">        ***Not implemented yet***</span>
-<span class="sd">        &quot;&quot;&quot;</span>
-        <span class="k">pass</span></div>
+        <span class="c1"># file_string = Representation.read_file(self.file_in_path)</span>
+        <span class="c1"># self.master_list = Representation.parse_to_string_list(file_string)</span>
+        <span class="c1"># # each string in string_list represents a sequence</span>
+        <span class="c1">#</span>
+        <span class="c1"># sequence_list = self.analysis.build_seq_list(self.master_list)</span>
+        <span class="c1"># processed = self.analysis.build_sec_bias()</span>
+        <span class="c1">#</span>
+        <span class="c1"># return processed</span>
 
 <div class="viewcode-block" id="Director.get_master_list"><a class="viewcode-back" href="../Director.html#Director.Director.get_master_list">[docs]</a>    <span class="k">def</span> <span class="nf">get_master_list</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">master_list</span></div>

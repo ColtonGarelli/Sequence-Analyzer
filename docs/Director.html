@@ -28,7 +28,7 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Representation module" href="Representation.html" />
+    <link rel="next" title="docstring_example_google module" href="docstring_example_google.html" />
     <link rel="prev" title="DatabaseRequests module" href="DatabaseRequests.html" /> 
 
   
@@ -84,6 +84,7 @@
 <li class="toctree-l2"><a class="reference internal" href="Builder.html">Builder module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DatabaseRequests.html">DatabaseRequests module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Director module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docstring_example_google.html">docstring_example_google module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Representation.html">Representation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SecondaryBiasFinder.html">SecondaryBiasFinder module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SpreadsheetIO.html">SpreadsheetIO module</a></li>
@@ -163,40 +164,70 @@
 <dt id="Director.Director">
 <em class="property">class </em><code class="descclassname">Director.</code><code class="descname">Director</code><a class="reference internal" href="_modules/Director.html#Director"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>The Director class manages file input, analysis, and data outputting and formatting.</p>
+<dl class="docutils">
+<dt>The Director class manages file input, analysis, and data outputting and formatting.</dt>
+<dd><ul class="first last simple">
+<li>Contains methods to execute tasks</li>
+</ul>
+</dd>
+</dl>
 <dl class="method">
 <dt id="Director.Director.access_databases">
 <code class="descname">access_databases</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.access_databases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.access_databases" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="Director.Director.analysis_helper">
-<code class="descname">analysis_helper</code><span class="sig-paren">(</span><em>in_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.analysis_helper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.analysis_helper" title="Permalink to this definition">¶</a></dt>
+<code class="descname">analysis_helper</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.analysis_helper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.analysis_helper" title="Permalink to this definition">¶</a></dt>
 <dd><p>Does the work prior to analysis. Handles file-in path, creating file-out path,</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="Director.Director.create_representation">
-<code class="descname">create_representation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.create_representation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.create_representation" title="Permalink to this definition">¶</a></dt>
-<dd><p>Uses the self.representation object to create a graphic representation of the data processed during analysis.
-:return: N/A</p>
-<p><strong>*Not implemented yet*</strong></p>
-</dd></dl>
-
-<dl class="method">
 <dt id="Director.Director.create_sequence_objects">
-<code class="descname">create_sequence_objects</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.create_sequence_objects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.create_sequence_objects" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="descname">create_sequence_objects</code><span class="sig-paren">(</span><em>sequence_info</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.create_sequence_objects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.create_sequence_objects" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="Director.Director.database_presentation">
 <code class="descname">database_presentation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.database_presentation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.database_presentation" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="Director.Director.define_input_source">
 <code class="descname">define_input_source</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.define_input_source"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.define_input_source" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="Director.Director.get_file_in_path">
@@ -214,31 +245,33 @@
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="Director.Director.handle_file_input">
-<code class="descname">handle_file_input</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.handle_file_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.handle_file_input" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
 <dt id="Director.Director.handle_manual_input">
 <code class="descname">handle_manual_input</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.handle_manual_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.handle_manual_input" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Uses ‘representation’ to prompt user for file path and prints information to the screen</p>
+<p>Returns:</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="Director.Director.run_FELLS_analysis">
 <code class="descname">run_FELLS_analysis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.run_FELLS_analysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.run_FELLS_analysis" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns:</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="Director.Director.run_SODA_analysis">
 <code class="descname">run_SODA_analysis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.run_SODA_analysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.run_SODA_analysis" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Returns:</p>
+</dd></dl>
 
 <dl class="method">
 <dt id="Director.Director.run_bias_analysis">
 <code class="descname">run_bias_analysis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.run_bias_analysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.run_bias_analysis" title="Permalink to this definition">¶</a></dt>
 <dd><p>Reads file in and creates a master list of id-sequence lists. It then creates SecondaryBias objects and runs the
-analysis using its self.analysis object
-:return: List of fully processed SecondaryBias objects</p>
+analysis using its self.analysis object</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>List of fully processed SecondaryBias objects</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -268,7 +301,7 @@ analysis using its self.analysis object
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Representation.html" class="btn btn-neutral float-right" title="Representation module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="docstring_example_google.html" class="btn btn-neutral float-right" title="docstring_example_google module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
         <a href="DatabaseRequests.html" class="btn btn-neutral" title="DatabaseRequests module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>

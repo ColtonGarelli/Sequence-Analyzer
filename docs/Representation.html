@@ -169,18 +169,11 @@
 <li>Handles file-output. Raw data should be output as a csv file. Graphical representations may be implemented later.</li>
 <li>Runs all interaction with user and computer (display/fileio)</li>
 </ul>
-<dl class="method">
-<dt id="Representation.Representation.DB_options">
-<code class="descname">DB_options</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.DB_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.DB_options" title="Permalink to this definition">¶</a></dt>
-<dd><p>Relays an ordered tuple to the director containing request information.
-Request information in this tuple contains keywords, query options,
-and response columns (everything needed to send a request)</p>
 <dl class="docutils">
-<dt>Return:</dt>
-<dd>tuple containing database info defined in the director class</dd>
+<dt>Attributes:</dt>
+<dd>‘self.file_out_path’: file out path to the desired directory
+‘self.base_name’: base file name to maintain consistency in output</dd>
 </dl>
-</dd></dl>
-
 <dl class="method">
 <dt id="Representation.Representation.choose_database">
 <code class="descname">choose_database</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.choose_database"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.choose_database" title="Permalink to this definition">¶</a></dt>
@@ -190,6 +183,33 @@ and response columns (everything needed to send a request)</p>
 <dd>database choice</dd>
 </dl>
 </dd></dl>
+
+<dl class="method">
+<dt id="Representation.Representation.db_file_out">
+<code class="descname">db_file_out</code><span class="sig-paren">(</span><em>seq_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.db_file_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.db_file_out" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Representation.Representation.db_options">
+<code class="descname">db_options</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.db_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.db_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Relays an ordered tuple to the director containing request information.
+Request information in this tuple contains keywords, query options,
+and response columns (everything needed to send a request)</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>list containing database info defined in the director class</dd>
+</dl>
+</dd></dl>
+
+<dl class="method">
+<dt id="Representation.Representation.db_query_view">
+<code class="descname">db_query_view</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.db_query_view"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.db_query_view" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Representation.Representation.get_print_string">
+<code class="descname">get_print_string</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.get_print_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.get_print_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="Representation.Representation.introduction">
@@ -206,8 +226,8 @@ and response columns (everything needed to send a request)</p>
 <code class="descname">manage_processed_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.manage_processed_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.manage_processed_info" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prints prompts for viewing info for user</p>
 <dl class="docutils">
-<dt>Return:</dt>
-<dd>view type (console, graphical, file out)</dd>
+<dt>Returns:</dt>
+<dd>view type (console, file out, graphical at some point)</dd>
 </dl>
 </dd></dl>
 
@@ -217,7 +237,7 @@ and response columns (everything needed to send a request)</p>
 <dd><p>Manages file_in entry including providing examples, links to documentation for formatting
 and passing input file path from user to director</p>
 <dl class="docutils">
-<dt>Return:</dt>
+<dt>Returns:</dt>
 <dd>user inputted path</dd>
 </dl>
 </dd></dl>
@@ -225,21 +245,37 @@ and passing input file path from user to director</p>
 <dl class="method">
 <dt id="Representation.Representation.output_processed_info">
 <code class="descname">output_processed_info</code><span class="sig-paren">(</span><em>print_or_out</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.output_processed_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.output_processed_info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Take the string passed in and prints it or writes it to file. In the future, a separate function for graphing</p>
+<dd><p>Take the string passed in and prints it or writes it to file.
+In the future, a separate function for graphing</p>
 <dl class="docutils">
 <dt>Args:</dt>
 <dd>print_or_out(str): a string representing file our view</dd>
-<dt>Return:</dt>
+<dt>Returns:</dt>
 <dd>Completion of file_out or printing (T/F)</dd>
 </dl>
 </dd></dl>
+
+<dl class="method">
+<dt id="Representation.Representation.select_input_source">
+<code class="descname">select_input_source</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.select_input_source"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.select_input_source" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Representation.Representation.set_print_string">
+<code class="descname">set_print_string</code><span class="sig-paren">(</span><em>new_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.set_print_string"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.set_print_string" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 </dd></dl>
 
 <dl class="function">
 <dt id="Representation.access_databases">
 <code class="descclassname">Representation.</code><code class="descname">access_databases</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#access_databases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.access_databases" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Prompts user for database to get info</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>string code for database choice</dd>
+</dl>
+</dd></dl>
 
 <dl class="function">
 <dt id="Representation.check_aa_entry">
@@ -267,69 +303,124 @@ Ensures only natural amino acids are entered when user inputs a sequence manuall
 <dl class="function">
 <dt id="Representation.convert_to_ints">
 <code class="descclassname">Representation.</code><code class="descname">convert_to_ints</code><span class="sig-paren">(</span><em>string_in</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#convert_to_ints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.convert_to_ints" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Converts list of string ints to int objects;</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>string_in: a string of comma separated ints</dd>
+<dt>Returns:</dt>
+<dd>return_list: a list of int objects</dd>
+</dl>
+</dd></dl>
 
 <dl class="function">
 <dt id="Representation.data_options">
-<code class="descclassname">Representation.</code><code class="descname">data_options</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#data_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.data_options" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="descclassname">Representation.</code><code class="descname">data_options</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#data_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.data_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Column options for Uniprot database. Prompts user for which columns they would like to receive</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>list containing the column options for data to be returned from UniProtKB</dd>
+</dl>
+</dd></dl>
 
 <dl class="function">
 <dt id="Representation.database_response_options">
 <code class="descclassname">Representation.</code><code class="descname">database_response_options</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#database_response_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.database_response_options" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Prompts user for what they want to do with the uploaded sequences</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>whether user wants to view, process, or output sequences to file</dd>
+</dl>
+</dd></dl>
 
 <dl class="function">
 <dt id="Representation.export_sec_bias_helper">
 <code class="descclassname">Representation.</code><code class="descname">export_sec_bias_helper</code><span class="sig-paren">(</span><em>ID</em>, <em>copy_list</em>, <em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#export_sec_bias_helper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.export_sec_bias_helper" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes the file for exporting secondary bias data.
-:param ID: The id associated with the sequence being processed
-:param copy_list: a list to be written in csv format
-:param path: the file path writing to
-:return: nothing</p>
+<dd><p>Writes the file for exporting secondary bias data.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>ID: The id associated with the sequence being processed
+copy_list: a list to be written in csv format
+path: the file path writing to</dd>
+<dt>Returns:</dt>
+<dd>nothing</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="Representation.fasta_parser">
-<code class="descclassname">Representation.</code><code class="descname">fasta_parser</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#fasta_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.fasta_parser" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="descclassname">Representation.</code><code class="descname">fasta_parser</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#fasta_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.fasta_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Splits fasta formatted sequences in</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>path(str): path to a csv formatted file to format to fasta</dd>
+<dt>Yields:</dt>
+<dd>outputted file in fasta format</dd>
+</dl>
+</dd></dl>
 
 <dl class="function">
 <dt id="Representation.gene_options">
-<code class="descclassname">Representation.</code><code class="descname">gene_options</code><span class="sig-paren">(</span><em>self</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#gene_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.gene_options" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="descclassname">Representation.</code><code class="descname">gene_options</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#gene_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.gene_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>gene options
+:param self:
+:return:</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="Representation.keyword_query_uniprot">
 <code class="descclassname">Representation.</code><code class="descname">keyword_query_uniprot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#keyword_query_uniprot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.keyword_query_uniprot" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Prompts the user for Uniprot advanced search options</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>A tuple with keys for the UniProt url constructor dictionary</dd>
+</dl>
+</dd></dl>
 
 <dl class="function">
 <dt id="Representation.main_page">
 <code class="descclassname">Representation.</code><code class="descname">main_page</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#main_page"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.main_page" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Prompts user for input source</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>usage: string value for input source (file or database)</dd>
+</dl>
+</dd></dl>
 
 <dl class="function">
 <dt id="Representation.manual_sequence_input">
 <code class="descclassname">Representation.</code><code class="descname">manual_sequence_input</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#manual_sequence_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.manual_sequence_input" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Prompts user to enter file path to upload sequence information</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>file path for formatted input file</dd>
+</dl>
+</dd></dl>
 
 <dl class="function">
 <dt id="Representation.parse_to_string_list">
 <code class="descclassname">Representation.</code><code class="descname">parse_to_string_list</code><span class="sig-paren">(</span><em>file_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#parse_to_string_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.parse_to_string_list" title="Permalink to this definition">¶</a></dt>
-<dd><p>Formats file strings to a list of [“id”,”sequence”] lists (ex. [[id1, sequence1],[id2, sequence2], [id3, sequence3]]
-:param file_string: a list of “id,sequence” strings from a file
-:return: a list formatted as in the example above</p>
+<dd><p>Formats file strings to a list of [“id”,”sequence”] lists (ex. [[id1, sequence1],[id2, sequence2], [id3, sequence3]]</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>file_string: a list of “id,sequence” strings from a file</dd>
+<dt>Returns:</dt>
+<dd>a list formatted as in the example above</dd>
+</dl>
 </dd></dl>
 
 <dl class="function">
 <dt id="Representation.prediction_options">
 <code class="descclassname">Representation.</code><code class="descname">prediction_options</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#prediction_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.prediction_options" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Prompts user for which predictors they would like to use</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>Tuple containing predictors to run</dd>
+</dl>
+</dd></dl>
 
 <dl class="function">
 <dt id="Representation.print_secondarybias_info">
-<code class="descclassname">Representation.</code><code class="descname">print_secondarybias_info</code><span class="sig-paren">(</span><em>seqbiasobj</em><span class="sig-paren">)</span> &#x2192; &lt;module 'SecondaryBiasFinder' from '/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/Source/SecondaryBiasFinder.py'&gt;<a class="reference internal" href="_modules/Representation.html#print_secondarybias_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.print_secondarybias_info" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">Representation.</code><code class="descname">print_secondarybias_info</code><span class="sig-paren">(</span><em>seqbiasobj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#print_secondarybias_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.print_secondarybias_info" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">
@@ -354,25 +445,33 @@ Ensures only natural amino acids are entered when user inputs a sequence manuall
 <dl class="function">
 <dt id="Representation.query_by_organism">
 <code class="descclassname">Representation.</code><code class="descname">query_by_organism</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#query_by_organism"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.query_by_organism" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>andvanced query by organism
+:return:</p>
+</dd></dl>
 
 <dl class="function">
 <dt id="Representation.read_file">
 <code class="descclassname">Representation.</code><code class="descname">read_file</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#read_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.read_file" title="Permalink to this definition">¶</a></dt>
-<dd><p>Reads files in from the given path
-:param path: the full path of the desired file
-:return: a list of id,sequence formatted strings</p>
+<dd><p>Reads files in from the given path</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>path: the full path of the desired file</dd>
+<dt>Returns:</dt>
+<dd>a list of id,sequence formatted strings</dd>
+</dl>
 </dd></dl>
-
-<dl class="function">
-<dt id="Representation.remove_spaces">
-<code class="descclassname">Representation.</code><code class="descname">remove_spaces</code><span class="sig-paren">(</span><em>string_to_check</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#remove_spaces"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.remove_spaces" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="function">
 <dt id="Representation.view_database_information">
 <code class="descclassname">Representation.</code><code class="descname">view_database_information</code><span class="sig-paren">(</span><em>prepped_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#view_database_information"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.view_database_information" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><p>Displays prepared string data and prompts user for limiting that data in view</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>prepped_string: a string formatted to print and be parsed for modified printing</dd>
+<dt>Yields:</dt>
+<dd>Prints views to screen</dd>
+</dl>
+</dd></dl>
 
 <dl class="function">
 <dt id="Representation.welcome">
@@ -382,6 +481,11 @@ Ensures only natural amino acids are entered when user inputs a sequence manuall
 <dl class="function">
 <dt id="Representation.write_sequence_to_file">
 <code class="descclassname">Representation.</code><code class="descname">write_sequence_to_file</code><span class="sig-paren">(</span><em>ID</em>, <em>copy_list</em>, <em>file_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#write_sequence_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.write_sequence_to_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Representation.write_uniprot_to_file">
+<code class="descclassname">Representation.</code><code class="descname">write_uniprot_to_file</code><span class="sig-paren">(</span><em>seq_record_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#write_uniprot_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.write_uniprot_to_file" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </div>

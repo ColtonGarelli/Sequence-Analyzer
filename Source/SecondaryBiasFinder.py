@@ -68,8 +68,8 @@ class SecondaryBias(SeqRecord):
         self.local_avg = [0] * 20
         self.amino_acids = "ACDEFGHIKLMNPQRSTVWY"
 
-    def initialize_sequence_object(self, id, sequence):
-        self.id = id
+    def initialize_sequence_object(self, ID, sequence):
+        self.id = ID
         self.seq = sequence
 
     # Takes user inputted sequence and ensures only natural amino acids are in seq

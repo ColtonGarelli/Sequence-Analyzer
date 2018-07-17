@@ -84,6 +84,7 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Builder module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="DatabaseRequests.html">DatabaseRequests module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Director.html">Director module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="docstring_example_google.html">docstring_example_google module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Representation.html">Representation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SecondaryBiasFinder.html">SecondaryBiasFinder module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SpreadsheetIO.html">SpreadsheetIO module</a></li>
@@ -166,37 +167,45 @@
 <dl class="method">
 <dt id="Builder.AnalysisBuilder.build_list_from_file">
 <code class="descname">build_list_from_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#AnalysisBuilder.build_list_from_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.AnalysisBuilder.build_list_from_file" title="Permalink to this definition">¶</a></dt>
-<dd><p>Takes a fasta formatted file, creates csv formatted file with id-sequence info.
-:return:</p>
+<dd><p>Takes a fasta formatted file, creates csv formatted file with id-sequence info.</p>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Builder.AnalysisBuilder.build_prediciton_A">
 <code class="descname">build_prediciton_A</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#AnalysisBuilder.build_prediciton_A"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.AnalysisBuilder.build_prediciton_A" title="Permalink to this definition">¶</a></dt>
-<dd><p>For one of the APIs
-:return:</p>
+<dd><p>For one of the APIs</p>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Builder.AnalysisBuilder.build_prediction_B">
 <code class="descname">build_prediction_B</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#AnalysisBuilder.build_prediction_B"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.AnalysisBuilder.build_prediction_B" title="Permalink to this definition">¶</a></dt>
-<dd><p>For the other API
-:return:</p>
+<dd><p>For the other API</p>
+<p>Returns:</p>
 </dd></dl>
 
 <dl class="method">
 <dt id="Builder.AnalysisBuilder.build_sec_bias">
 <code class="descname">build_sec_bias</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#AnalysisBuilder.build_sec_bias"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.AnalysisBuilder.build_sec_bias" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a list of SecondaryBias objects from self.seq_list. The list of SecondaryBias objects is then processed.
-:return: a list of processed SecondaryBias objects ready for output</p>
+<dd><p>Creates a list of SecondaryBias objects from self.sec_bias_list. The list of SecondaryBias objects is then processed.</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>a list of processed SecondaryBias objects ready for output</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
-<dt id="Builder.AnalysisBuilder.build_seq_list">
-<code class="descname">build_seq_list</code><span class="sig-paren">(</span><em>sequence_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#AnalysisBuilder.build_seq_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.AnalysisBuilder.build_seq_list" title="Permalink to this definition">¶</a></dt>
-<dd><p>Builds self.seq_list which can then be used to create the other objects
-:param sequence_list:
-:return:</p>
+<dt id="Builder.AnalysisBuilder.build_sec_bias_list">
+<code class="descname">build_sec_bias_list</code><span class="sig-paren">(</span><em>sequence_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#AnalysisBuilder.build_sec_bias_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.AnalysisBuilder.build_sec_bias_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds self.sec_bias_list which can then be used to create the other objects
+Args:</p>
+<blockquote>
+<div>sequence_list:</div></blockquote>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>List of SecondaryBias</dd>
+</dl>
 </dd></dl>
 
 <dl class="method">
@@ -215,6 +224,7 @@
 <dt id="Builder.Builder">
 <em class="property">class </em><code class="descclassname">Builder.</code><code class="descname">Builder</code><a class="reference internal" href="_modules/Builder.html#Builder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.Builder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<p>Builder is an abstract class that serves as a template for building database responses and analyses</p>
 <dl class="method">
 <dt id="Builder.Builder.build_list_from_file">
 <code class="descname">build_list_from_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#Builder.build_list_from_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.Builder.build_list_from_file" title="Permalink to this definition">¶</a></dt>
@@ -236,6 +246,17 @@
 <dt id="Builder.DatabaseBuilder">
 <em class="property">class </em><code class="descclassname">Builder.</code><code class="descname">DatabaseBuilder</code><a class="reference internal" href="_modules/Builder.html#DatabaseBuilder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.DatabaseBuilder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#Builder.Builder" title="Builder.Builder"><code class="xref py py-class docutils literal notranslate"><span class="pre">Builder.Builder</span></code></a></p>
+</dd></dl>
+
+<dl class="class">
+<dt id="Builder.SequenceBiasBuilder">
+<em class="property">class </em><code class="descclassname">Builder.</code><code class="descname">SequenceBiasBuilder</code><span class="sig-paren">(</span><em>seq_record_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#SequenceBiasBuilder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.SequenceBiasBuilder" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#Builder.AnalysisBuilder" title="Builder.AnalysisBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">Builder.AnalysisBuilder</span></code></a></p>
+<dl class="method">
+<dt id="Builder.SequenceBiasBuilder.find_sec_bias">
+<code class="descname">find_sec_bias</code><span class="sig-paren">(</span><em>primary_bias</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#SequenceBiasBuilder.find_sec_bias"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.SequenceBiasBuilder.find_sec_bias" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 </div>
