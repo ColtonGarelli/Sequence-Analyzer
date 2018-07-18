@@ -6,20 +6,17 @@
 Welcome to Sequence Analyzer's documentation!
 =============================================
 
-Trying to get this set up for easy and useful documentation!
+
 
 .. toctree::
    :maxdepth: 2
    :Caption: Contents:
 
-   modules
-
    intro
+   Python Resources
+   Documentation Resources
 
-.. py:class:: SecondaryBias
-
-
-
+   modules
 
 
 
