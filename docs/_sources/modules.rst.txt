@@ -6,8 +6,8 @@ Source
 
    Builder
    Director
-   docstring_example_google
    Representation
+   docstring_example_google
    SecondaryBiasFinder
    Bio_SQL_DB
    main

@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Search &mdash; Sequence Analyzer 1.0 documentation</title>
+  <title>Documentation Resources &mdash; Sequence Analyzer 1.0 documentation</title>
   
 
   
@@ -27,7 +27,9 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="#" /> 
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="Source" href="modules.html" />
+    <link rel="prev" title="Python Resources" href="Python Resources.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -59,7 +61,7 @@
 
           
 <div role="search">
-  <form id="rtd-search-form" class="wy-form" action="#" method="get">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
     <input type="text" name="q" placeholder="Search docs" />
     <input type="hidden" name="check_keywords" value="yes" />
     <input type="hidden" name="area" value="default" />
@@ -77,10 +79,13 @@
             
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul>
+<ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Python Resources.html">Python Resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Documentation Resources.html">Documentation Resources</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#documentation-using-sphinx">Documentation using Sphinx:</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="modules.html">Source</a></li>
 </ul>
 
@@ -127,12 +132,14 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Search</li>
+      <li>Documentation Resources</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
+            <a href="_sources/Documentation Resources.rst.txt" rel="nofollow"> View page source</a>
+          
         
       </li>
     
@@ -144,24 +151,67 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <noscript>
-  <div id="fallback" class="admonition warning">
-    <p class="last">
-      Please activate JavaScript to enable the search
-      functionality.
-    </p>
-  </div>
-  </noscript>
+  <div class="section" id="documentation-resources">
+<h1>Documentation Resources<a class="headerlink" href="#documentation-resources" title="Permalink to this headline">¶</a></h1>
+<div class="toctree-wrapper compound">
+</div>
+<p>Some documentation on documentation. This page will include links and instructions for Sphinx documentation
+and for general documentation stuff.</p>
+<div class="section" id="documentation-using-sphinx">
+<h2>Documentation using Sphinx:<a class="headerlink" href="#documentation-using-sphinx" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Full docs:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Sphinx full docs: <a class="reference external" href="http://www.sphinx-doc.org/en/master/contents.html">http://www.sphinx-doc.org/en/master/contents.html</a></li>
+<li><dl class="first docutils">
+<dt>Quickstart – installing starting: <a class="reference external" href="http://www.sphinx-doc.org/en/1.7/tutorial.html">http://www.sphinx-doc.org/en/1.7/tutorial.html</a></dt>
+<dd><ol class="first last arabic">
+<li>after completed, run make html from /sphinx dir</li>
+</ol>
+</dd>
+</dl>
+</li>
+<li><dl class="first docutils">
+<dt>apidoc for documenting new modules: <a class="reference external" href="http://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html#cmdoption-sphinx-apidoc-full">http://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html#cmdoption-sphinx-apidoc-full</a></dt>
+<dd><ul class="first last">
+<li>can be run from project directory (directories defined in command)</li>
+<li>should be run when new module is added</li>
+<li>autodocuments docstrings in modules and associates them with source in the documentation</li>
+</ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<ol class="last arabic simple">
+<li>Always commit any new work before messing with docs and be wary of weird commit issues (i.e. reappearance
+of deleted files).</li>
+<li><strong>*MUST*</strong> commit git add . and git commit from project folder</li>
+<li>The ‘make html’ command has to be run from the /sphinx directory</li>
+<li>‘make hmtl’ makes html files from the .rst files using conf.py</li>
+</ol>
+</div>
+</div>
+</div>
 
-  
-  <div id="search-results">
-  
-  </div>
 
            </div>
            
           </div>
           <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="modules.html" class="btn btn-neutral float-right" title="Source" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="Python Resources.html" class="btn btn-neutral" title="Python Resources" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
   
 
   <hr/>
@@ -201,7 +251,6 @@
       <script type="text/javascript" src="_static/jquery.js"></script>
       <script type="text/javascript" src="_static/underscore.js"></script>
       <script type="text/javascript" src="_static/doctools.js"></script>
-      <script type="text/javascript" src="_static/searchtools.js"></script>
 
   
 
@@ -211,14 +260,7 @@
       jQuery(function () {
           SphinxRtdTheme.Navigation.enable(true);
       });
-  </script>
-  <script type="text/javascript">
-    jQuery(function() { Search.loadIndex("searchindex.js"); });
-  </script>
-  
-  <script type="text/javascript" id="searchindexloader"></script>
-   
-
+  </script> 
 
 </body>
 </html>

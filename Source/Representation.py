@@ -1,5 +1,4 @@
 from os.path import join
-
 import SecondaryBiasFinder
 from Bio.SeqIO import UniprotIO
 from Bio import SeqIO
@@ -86,21 +85,21 @@ class Representation:
             option_list = options.insert(0, keyword)
             return option_list
 
-    def manage_processed_info(self):
-        """
-        Prints prompts for viewing info for user
+    # def manage_processed_info(self):
+    #     """
+    #     Prints prompts for viewing info for user
+    #
+    #     Returns:
+    #         view type (console, file out, graphical at some point)
+    #     """
+    #     option = database_response_options()
+    #     if option == 'file':
+    #         self.file_out_path = manual_sequence_input()
+    #         return option
+    #     else:
+    #         return option
 
-        Returns:
-            view type (console, file out, graphical at some point)
-        """
-        option = database_response_options()
-        if option == 'file':
-            self.file_out_path = manual_sequence_input()
-            return option
-        else:
-            return option
-
-    def output_processed_info(self, print_or_out):
+    def output_data(self, print_or_out):
         """
         Take the string passed in and prints it or writes it to file.
         In the future, a separate function for graphing
@@ -193,7 +192,7 @@ def parse_to_string_list(file_string):
     return new_list
 
 
-def export_sec_bias_helper(ID, copy_list, path):
+def sec_bias_out_helper(ID, copy_list, path):
     """
     Writes the file for exporting secondary bias data.
 

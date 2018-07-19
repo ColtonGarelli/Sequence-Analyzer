@@ -3,7 +3,7 @@ from typing import List
 import Representation
 
 import abc
-from Representation import export_sec_bias_helper
+from Representation import sec_bias_out_helper
 import os
 from Bio.SeqRecord import SeqRecord
 
@@ -33,10 +33,11 @@ class Sequence:
     Parent class for all of the sequence analysis classes. They inherit from this class in an effort to enforce some
     uniformity and promote flexibility in the case that this program begins to chew up substantial overhead.
 
-    :var
-         self.amino_acids: should probably be a class variable. need to refactor.
-         self.id: an id associated with the given sequence
-         self.sequence: the sequence associated with the provided id
+    Args:
+
+         :self.amino_acids: should probably be a class variable. need to refactor.
+         :self.id: an id associated with the given sequence
+         :self.sequence: the sequence associated with the provided id
     """
 
 
@@ -83,8 +84,8 @@ class SecondaryBias(SeqRecord):
         Effectively a constructor to create a SecondaryBias object from an id-sequence pair
         Args:
 
-            seq_name: a sequence id
-            seq_in: the sequence
+            :seq_name: a sequence id
+            :seq_in: the sequence
 
         Returns:
 
@@ -322,9 +323,9 @@ def export_sec_bias_files(sequence_list):
     # file_to_write = open(file_path, "x")
     # file_to_write.close()
     for i in range(len(sequence_list)):
-        export_sec_bias_helper(sequence_list[i].id, sequence_list[i].one_away, this_file)
+        sec_bias_out_helper(sequence_list[i].id, sequence_list[i].one_away, this_file)
     for i in range(len(sequence_list)):
-        export_sec_bias_helper(sequence_list[i].id, sequence_list[i].one_away_avg, this_file)
+        sec_bias_out_helper(sequence_list[i].id, sequence_list[i].one_away_avg, this_file)
 
     this_file = file_name + "two_away" + ".csv"
     file = os.path.join(path, this_file)
@@ -332,9 +333,9 @@ def export_sec_bias_files(sequence_list):
     # file_to_write = open(os.path.join(path, this_file), "x")
     # file_to_write.close()
     for i in range(len(sequence_list)):
-        export_sec_bias_helper(sequence_list[i].id, sequence_list[i].two_away, this_file)
+        sec_bias_out_helper(sequence_list[i].id, sequence_list[i].two_away, this_file)
     for i in range(len(sequence_list)):
-        export_sec_bias_helper(sequence_list[i].id, sequence_list[i].two_away_avg, this_file)
+        sec_bias_out_helper(sequence_list[i].id, sequence_list[i].two_away_avg, this_file)
 
     this_file = file_name + "three_away" + ".csv"
     file = os.path.join(path, this_file)
@@ -342,9 +343,9 @@ def export_sec_bias_files(sequence_list):
     # file_to_write = open(os.path.join(path, this_file), "x")
     # file_to_write.close()
     for i in range(len(sequence_list)):
-        export_sec_bias_helper(sequence_list[i].id, sequence_list[i].three_away, this_file)
+        sec_bias_out_helper(sequence_list[i].id, sequence_list[i].three_away, this_file)
     for i in range(len(sequence_list)):
-        export_sec_bias_helper(sequence_list[i].id, sequence_list[i].three_away_avg, this_file)
+        sec_bias_out_helper(sequence_list[i].id, sequence_list[i].three_away_avg, this_file)
 
     this_file = file_name + "local_seq" + ".csv"
     file = os.path.join(path, this_file)
@@ -352,9 +353,9 @@ def export_sec_bias_files(sequence_list):
     # file_to_write = open(os.path.join(path, this_file), "x")
     # file_to_write.close()
     for i in range(len(sequence_list)):
-        export_sec_bias_helper(sequence_list[i].id, sequence_list[i].local_sequence, this_file)
+        sec_bias_out_helper(sequence_list[i].id, sequence_list[i].local_sequence, this_file)
     for i in range(len(sequence_list)):
-        export_sec_bias_helper(sequence_list[i].id, sequence_list[i].local_avg, this_file)
+        sec_bias_out_helper(sequence_list[i].id, sequence_list[i].local_avg, this_file)
 
     return path + file_name
 

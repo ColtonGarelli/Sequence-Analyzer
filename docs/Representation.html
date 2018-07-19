@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="SecondaryBiasFinder module" href="SecondaryBiasFinder.html" />
-    <link rel="prev" title="docstring_example_google module" href="docstring_example_google.html" /> 
+    <link rel="next" title="docstring_example_google module" href="docstring_example_google.html" />
+    <link rel="prev" title="Director module" href="Director.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -80,17 +80,20 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Source</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Builder.html">Builder module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Director.html">Director module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">Representation module</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#representation-class">Representation Class</a></li>
+</ul>
+</li>
 <li class="toctree-l2"><a class="reference internal" href="docstring_example_google.html">docstring_example_google module</a></li>
-<li class="toctree-l2 current"><a class="current reference internal" href="#">Representation module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SecondaryBiasFinder.html">SecondaryBiasFinder module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Bio_SQL_DB.html">Bio_SQL_DB module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 </ul>
 
             
@@ -157,9 +160,16 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="module-Representation">
-<span id="representation-module"></span><h1>Representation module<a class="headerlink" href="#module-Representation" title="Permalink to this headline">¶</a></h1>
-<dl class="class">
+  <div class="section" id="representation-module">
+<h1>Representation module<a class="headerlink" href="#representation-module" title="Permalink to this headline">¶</a></h1>
+<p>The Representation module contains the Representation class, which have methods to coordinate user interface.
+The user interface methods are in the same module.</p>
+<div class="section" id="representation-class">
+<h2>Representation Class<a class="headerlink" href="#representation-class" title="Permalink to this headline">¶</a></h2>
+<p>The Representation class is the only class allowed to output anything, including printing and file out.
+It also handles the user interface. Coordinating functions in the module, a Representation object handles all user input
+and communicates with the Director class to change the state of data.</p>
+<span class="target" id="module-Representation"></span><dl class="class">
 <dt id="Representation.Representation">
 <em class="property">class </em><code class="descclassname">Representation.</code><code class="descname">Representation</code><a class="reference internal" href="_modules/Representation.html#Representation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
@@ -221,16 +231,6 @@ and response columns (everything needed to send a request)</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="Representation.Representation.manage_processed_info">
-<code class="descname">manage_processed_info</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.manage_processed_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.manage_processed_info" title="Permalink to this definition">¶</a></dt>
-<dd><p>Prints prompts for viewing info for user</p>
-<dl class="docutils">
-<dt>Returns:</dt>
-<dd>view type (console, file out, graphical at some point)</dd>
-</dl>
-</dd></dl>
-
-<dl class="method">
 <dt id="Representation.Representation.manual_sequence_entry">
 <code class="descname">manual_sequence_entry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.manual_sequence_entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.manual_sequence_entry" title="Permalink to this definition">¶</a></dt>
 <dd><p>Manages file_in entry including providing examples, links to documentation for formatting
@@ -242,8 +242,8 @@ and passing input file path from user to director</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="Representation.Representation.output_processed_info">
-<code class="descname">output_processed_info</code><span class="sig-paren">(</span><em>print_or_out</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.output_processed_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.output_processed_info" title="Permalink to this definition">¶</a></dt>
+<dt id="Representation.Representation.output_data">
+<code class="descname">output_data</code><span class="sig-paren">(</span><em>print_or_out</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.output_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.output_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Take the string passed in and prints it or writes it to file.
 In the future, a separate function for graphing</p>
 <dl class="docutils">
@@ -328,20 +328,6 @@ Ensures only natural amino acids are entered when user inputs a sequence manuall
 <dl class="docutils">
 <dt>Returns:</dt>
 <dd>whether user wants to view, process, or output sequences to file</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="Representation.export_sec_bias_helper">
-<code class="descclassname">Representation.</code><code class="descname">export_sec_bias_helper</code><span class="sig-paren">(</span><em>ID</em>, <em>copy_list</em>, <em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#export_sec_bias_helper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.export_sec_bias_helper" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes the file for exporting secondary bias data.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>ID: The id associated with the sequence being processed
-copy_list: a list to be written in csv format
-path: the file path writing to</dd>
-<dt>Returns:</dt>
-<dd>nothing</dd>
 </dl>
 </dd></dl>
 
@@ -461,6 +447,20 @@ path: the file path writing to</dd>
 </dd></dl>
 
 <dl class="function">
+<dt id="Representation.sec_bias_out_helper">
+<code class="descclassname">Representation.</code><code class="descname">sec_bias_out_helper</code><span class="sig-paren">(</span><em>ID</em>, <em>copy_list</em>, <em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#sec_bias_out_helper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.sec_bias_out_helper" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the file for exporting secondary bias data.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>ID: The id associated with the sequence being processed
+copy_list: a list to be written in csv format
+path: the file path writing to</dd>
+<dt>Returns:</dt>
+<dd>nothing</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
 <dt id="Representation.view_database_information">
 <code class="descclassname">Representation.</code><code class="descname">view_database_information</code><span class="sig-paren">(</span><em>prepped_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#view_database_information"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.view_database_information" title="Permalink to this definition">¶</a></dt>
 <dd><p>Displays prepared string data and prompts user for limiting that data in view</p>
@@ -488,6 +488,7 @@ path: the file path writing to</dd>
 <dd></dd></dl>
 
 </div>
+</div>
 
 
            </div>
@@ -497,10 +498,10 @@ path: the file path writing to</dd>
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="SecondaryBiasFinder.html" class="btn btn-neutral float-right" title="SecondaryBiasFinder module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="docstring_example_google.html" class="btn btn-neutral float-right" title="docstring_example_google module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="docstring_example_google.html" class="btn btn-neutral" title="docstring_example_google module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="Director.html" class="btn btn-neutral" title="Director module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   
