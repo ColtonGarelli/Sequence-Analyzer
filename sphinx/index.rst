@@ -15,7 +15,6 @@ Welcome to Sequence Analyzer's documentation!
    intro
    Python Resources
    Documentation Resources
-
    modules
 
 

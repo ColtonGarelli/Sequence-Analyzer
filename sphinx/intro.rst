@@ -36,9 +36,10 @@ This is an example crossreference target.
    3. ReStructuredText syntax cheatsheet: http://docutils.sourceforge.net/docs/user/rst/cheatsheet.txt
    4. Autodoc help for documenting modules: http://www.sphinx-doc.org/en/master/usage/quickstart.html
    ***Important:*** Sphinx autodoc needs to be run whenever a new module (file) is added.
-                     * Has to be run from sphinx directory
+      * Has to be run from sphinx directory
    5. The TOC tree resource: http://www.sphinx-doc.org/en/stable/markup/toctree.html
    6. Internal documentation referencing: http://www.sphinx-doc.org/en/stable/markup/inline.html#role-ref
+
 
 :Authors:
     Colton J. Garelli

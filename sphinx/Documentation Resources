@@ -2,6 +2,9 @@
 Documentation Resources
 =======================
 
+.. toctree::
+   :maxdepth: 2
+
 Some documentation on documentation. This page will include links and instructions for Sphinx documentation
 and for general documentation stuff.
 
