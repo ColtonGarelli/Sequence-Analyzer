@@ -32,11 +32,14 @@ This is an example crossreference target.
 
 **Cheatsheets**
 
+   1. The website: https://coltongarelli.github.io/Sequence-Analyzer/index.html
    2. ReStructuredText full syntax doc: http://docutils.sourceforge.net/docs/user/rst/quickref.html
    3. ReStructuredText syntax cheatsheet: http://docutils.sourceforge.net/docs/user/rst/cheatsheet.txt
    4. Autodoc help for documenting modules: http://www.sphinx-doc.org/en/master/usage/quickstart.html
-   ***Important:*** Sphinx autodoc needs to be run whenever a new module (file) is added.
       * Has to be run from sphinx directory
+
+***Important:*** Sphinx autodoc needs to be run whenever a new module (file) is added.
+
    5. The TOC tree resource: http://www.sphinx-doc.org/en/stable/markup/toctree.html
    6. Internal documentation referencing: http://www.sphinx-doc.org/en/stable/markup/inline.html#role-ref
 
