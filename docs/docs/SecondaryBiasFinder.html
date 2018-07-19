@@ -80,6 +80,9 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Python Resources.html">Python Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Documentation Resources.html">Documentation Resources</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Source</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Builder.html">Builder module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Director.html">Director module</a></li>
@@ -90,7 +93,6 @@
 <li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
 </ul>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 </ul>
 
             
@@ -212,8 +214,17 @@ Stores the index of each primary bias residue in the sequence string in self.pri
 <dd><p>Effectively a constructor to create a SecondaryBias object from an id-sequence pair
 Args:</p>
 <blockquote>
-<div>seq_name: a sequence id
-seq_in: the sequence</div></blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">seq_name:</th><td class="field-body">a sequence id</td>
+</tr>
+<tr class="field-even field"><th class="field-name">seq_in:</th><td class="field-body">the sequence</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
 <p>Returns:</p>
 <blockquote>
 <div>List of SecondaryBias</div></blockquote>
@@ -242,12 +253,22 @@ seq_in: the sequence</div></blockquote>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
 <p>Parent class for all of the sequence analysis classes. They inherit from this class in an effort to enforce some
 uniformity and promote flexibility in the case that this program begins to chew up substantial overhead.</p>
-<dl class="docutils">
-<dt>:var</dt>
-<dd>self.amino_acids: should probably be a class variable. need to refactor.
-self.id: an id associated with the given sequence
-self.sequence: the sequence associated with the provided id</dd>
-</dl>
+<p>Args:</p>
+<blockquote>
+<div><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name" colspan="2">self.amino_acids:</th></tr>
+<tr class="field-odd field"><td>&#160;</td><td class="field-body">should probably be a class variable. need to refactor.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">self.id:</th><td class="field-body">an id associated with the given sequence</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">self.sequence:</th><td class="field-body">the sequence associated with the provided id</td>
+</tr>
+</tbody>
+</table>
+</div></blockquote>
 </dd></dl>
 
 <dl class="function">

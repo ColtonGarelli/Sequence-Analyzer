@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Source &mdash; Sequence Analyzer 1.0 documentation</title>
+  <title>Documentation Resources &mdash; Sequence Analyzer 1.0 documentation</title>
   
 
   
@@ -28,8 +28,8 @@
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
     <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Builder module" href="Builder.html" />
-    <link rel="prev" title="Documentation Resources" href="Documentation Resources.html" /> 
+    <link rel="next" title="Source" href="modules.html" />
+    <link rel="prev" title="Python Resources" href="Python Resources.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -82,17 +82,11 @@
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Python Resources.html">Python Resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Documentation Resources.html">Documentation Resources</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Source</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Builder.html">Builder module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Director.html">Director module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Representation.html">Representation module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docstring_example_google.html">docstring_example_google module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SecondaryBiasFinder.html">SecondaryBiasFinder module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Bio_SQL_DB.html">Bio_SQL_DB module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="#">Documentation Resources</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#documentation-using-sphinx">Documentation using Sphinx:</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Source</a></li>
 </ul>
 
             
@@ -138,13 +132,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Source</li>
+      <li>Documentation Resources</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/modules.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/Documentation Resources.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -157,21 +151,50 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="source">
-<h1>Source<a class="headerlink" href="#source" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="documentation-resources">
+<h1>Documentation Resources<a class="headerlink" href="#documentation-resources" title="Permalink to this headline">¶</a></h1>
 <div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Builder.html">Builder module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Director.html">Director module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Representation.html">Representation module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Representation.html#representation-class">Representation Class</a></li>
-</ul>
+</div>
+<p>Some documentation on documentation. This page will include links and instructions for Sphinx documentation
+and for general documentation stuff.</p>
+<div class="section" id="documentation-using-sphinx">
+<h2>Documentation using Sphinx:<a class="headerlink" href="#documentation-using-sphinx" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><p>Full docs:</p>
+<blockquote>
+<div><ul class="simple">
+<li>Sphinx full docs: <a class="reference external" href="http://www.sphinx-doc.org/en/master/contents.html">http://www.sphinx-doc.org/en/master/contents.html</a></li>
+<li><dl class="first docutils">
+<dt>Quickstart – installing starting: <a class="reference external" href="http://www.sphinx-doc.org/en/1.7/tutorial.html">http://www.sphinx-doc.org/en/1.7/tutorial.html</a></dt>
+<dd><ol class="first last arabic">
+<li>after completed, run make html from /sphinx dir</li>
+</ol>
+</dd>
+</dl>
 </li>
-<li class="toctree-l1"><a class="reference internal" href="docstring_example_google.html">docstring_example_google module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SecondaryBiasFinder.html">SecondaryBiasFinder module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bio_SQL_DB.html">Bio_SQL_DB module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="main.html">main module</a></li>
+<li><dl class="first docutils">
+<dt>apidoc for documenting new modules: <a class="reference external" href="http://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html#cmdoption-sphinx-apidoc-full">http://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html#cmdoption-sphinx-apidoc-full</a></dt>
+<dd><ul class="first last">
+<li>can be run from project directory (directories defined in command)</li>
+<li>should be run when new module is added</li>
+<li>autodocuments docstrings in modules and associates them with source in the documentation</li>
 </ul>
+</dd>
+</dl>
+</li>
+</ul>
+</div></blockquote>
+</div></blockquote>
+<div class="admonition important">
+<p class="first admonition-title">Important</p>
+<ol class="last arabic simple">
+<li>Always commit any new work before messing with docs and be wary of weird commit issues (i.e. reappearance
+of deleted files).</li>
+<li><strong>*MUST*</strong> commit git add . and git commit from project folder</li>
+<li>The ‘make html’ command has to be run from the /sphinx directory</li>
+<li>‘make hmtl’ makes html files from the .rst files using conf.py</li>
+</ol>
+</div>
 </div>
 </div>
 
@@ -183,10 +206,10 @@
   
     <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
       
-        <a href="Builder.html" class="btn btn-neutral float-right" title="Builder module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+        <a href="modules.html" class="btn btn-neutral float-right" title="Source" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
       
       
-        <a href="Documentation Resources.html" class="btn btn-neutral" title="Documentation Resources" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+        <a href="Python Resources.html" class="btn btn-neutral" title="Python Resources" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
       
     </div>
   

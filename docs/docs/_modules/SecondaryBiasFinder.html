@@ -78,8 +78,10 @@
             
               <p class="caption"><span class="caption-text">Contents:</span></p>
 <ul>
-<li class="toctree-l1"><a class="reference internal" href="../modules.html">Source</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Python Resources.html">Python Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Documentation Resources.html">Documentation Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Source</a></li>
 </ul>
 
             
@@ -178,10 +180,11 @@
 <span class="sd">    Parent class for all of the sequence analysis classes. They inherit from this class in an effort to enforce some</span>
 <span class="sd">    uniformity and promote flexibility in the case that this program begins to chew up substantial overhead.</span>
 
-<span class="sd">    :var</span>
-<span class="sd">         self.amino_acids: should probably be a class variable. need to refactor.</span>
-<span class="sd">         self.id: an id associated with the given sequence</span>
-<span class="sd">         self.sequence: the sequence associated with the provided id</span>
+<span class="sd">    Args:</span>
+
+<span class="sd">         :self.amino_acids: should probably be a class variable. need to refactor.</span>
+<span class="sd">         :self.id: an id associated with the given sequence</span>
+<span class="sd">         :self.sequence: the sequence associated with the provided id</span>
 <span class="sd">    &quot;&quot;&quot;</span></div>
 
 
@@ -228,8 +231,8 @@
 <span class="sd">        Effectively a constructor to create a SecondaryBias object from an id-sequence pair</span>
 <span class="sd">        Args:</span>
 
-<span class="sd">            seq_name: a sequence id</span>
-<span class="sd">            seq_in: the sequence</span>
+<span class="sd">            :seq_name: a sequence id</span>
+<span class="sd">            :seq_in: the sequence</span>
 
 <span class="sd">        Returns:</span>
 
