@@ -13,7 +13,7 @@
     <splitter split-orientation="horizontal" split-proportion="0.47103918">
       <split-first>
         <leaf>
-          <file leaf-file-name="index.rst" pinned="false" current-in-tab="true">
+          <file leaf-file-name="index.rst" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/sphinx/index.rst">
               <provider selected="true" editor-type-id="text-editor">
                 <state relative-caret-position="255">
@@ -25,10 +25,15 @@
           <file leaf-file-name="intro.rst" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/sphinx/intro.rst">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="45">
-                  <caret line="3" selection-start-line="3" selection-end-line="3" />
+                <state relative-caret-position="345">
+                  <caret line="38" column="6" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
                 </state>
               </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="theme.js" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/docs/docs/_static/js/theme.js">
+              <provider selected="true" editor-type-id="text-editor" />
             </entry>
           </file>
         </leaf>
@@ -53,11 +58,11 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="Documentation Resources.rst" pinned="false" current-in-tab="false">
+          <file leaf-file-name="Documentation Resources.rst" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/sphinx/Documentation Resources.rst">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="360">
-                  <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
+                <state relative-caret-position="210">
+                  <caret line="14" selection-start-line="14" selection-end-line="14" />
                 </state>
               </provider>
             </entry>
@@ -71,11 +76,20 @@
               </provider>
             </entry>
           </file>
-          <file leaf-file-name="main.html" pinned="false" current-in-tab="true">
+          <file leaf-file-name="main.html" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/docs/_modules/main.html">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="300">
-                  <caret line="20" column="2" lean-forward="true" selection-start-line="20" selection-start-column="2" selection-end-line="20" selection-end-column="2" />
+                <state relative-caret-position="315">
+                  <caret line="21" column="2" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="2" />
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="conf.py" pinned="false" current-in-tab="false">
+            <entry file="file://$PROJECT_DIR$/sphinx/conf.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="148">
+                  <caret line="119" column="12" selection-start-line="119" selection-start-column="12" selection-end-line="119" selection-end-column="12" />
                 </state>
               </provider>
             </entry>
@@ -125,7 +139,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>userin</find>
       <find>useri</find>
       <find>Operat</find>
       <find>User</find>
@@ -155,6 +168,7 @@
       <find>s_re</find>
       <find>DatabaseRe</find>
       <find>export</find>
+      <find>Introduc</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -163,7 +177,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/docs/index.html" />
         <option value="$PROJECT_DIR$/SeqAnalyzerDoc/docs/Makefile" />
         <option value="$PROJECT_DIR$/conf.py" />
         <option value="$PROJECT_DIR$/index.rst" />
@@ -210,10 +223,11 @@
         <option value="$PROJECT_DIR$/sphinx/Representation.rst" />
         <option value="$PROJECT_DIR$/sphinx/Python Resources" />
         <option value="$PROJECT_DIR$/README.md" />
-        <option value="$PROJECT_DIR$/sphinx/intro.rst" />
         <option value="$PROJECT_DIR$/sphinx/index.rst" />
         <option value="$PROJECT_DIR$/sphinx/Documentation Resources" />
         <option value="$PROJECT_DIR$/sphinx/Makefile" />
+        <option value="$PROJECT_DIR$/sphinx/Documentation Resources.rst" />
+        <option value="$PROJECT_DIR$/sphinx/intro.rst" />
       </list>
     </option>
   </component>
@@ -774,13 +788,6 @@
     <entry file="file://$PROJECT_DIR$/sphinx/main.rst">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/sphinx/conf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="170">
-          <caret line="152" column="41" selection-start-line="152" selection-start-column="41" selection-end-line="152" selection-end-column="41" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sphinx/build/html/Representation.html">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="289">
@@ -808,9 +815,6 @@
           <caret line="173" column="66" selection-start-line="173" selection-start-column="66" selection-end-line="173" selection-end-column="66" />
         </state>
       </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/docs/_static/js/theme.js">
-      <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/Representation.py">
       <provider selected="true" editor-type-id="text-editor">
@@ -873,13 +877,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sphinx/intro.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sphinx/modules.rst">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
@@ -894,20 +891,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sphinx/index.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="255">
-          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sphinx/Documentation Resources.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="360">
-          <caret line="24" column="14" selection-start-line="24" selection-start-column="14" selection-end-line="24" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sphinx/Makefile">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -917,10 +900,41 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/docs/_modules/main.html">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="300">
-          <caret line="20" column="2" lean-forward="true" selection-start-line="20" selection-start-column="2" selection-end-line="20" selection-end-column="2" />
+        <state relative-caret-position="315">
+          <caret line="21" column="2" selection-start-line="21" selection-start-column="2" selection-end-line="21" selection-end-column="2" />
         </state>
       </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sphinx/conf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="119" column="12" selection-start-line="119" selection-start-column="12" selection-end-line="119" selection-end-column="12" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sphinx/index.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="255">
+          <caret line="17" column="10" selection-start-line="17" selection-start-column="10" selection-end-line="17" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sphinx/Documentation Resources.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="210">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sphinx/intro.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="345">
+          <caret line="38" column="6" selection-start-line="38" selection-start-column="6" selection-end-line="38" selection-end-column="6" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/docs/_static/js/theme.js">
+      <provider selected="true" editor-type-id="text-editor" />
     </entry>
   </component>
 </project>
