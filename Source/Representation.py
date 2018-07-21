@@ -2,6 +2,7 @@ from os.path import join
 import SecondaryBiasFinder
 from Bio.SeqIO import UniprotIO
 from Bio import SeqIO
+import csv
 
 """Representation.py contains Representation class and assisting UI functions
 
@@ -164,8 +165,10 @@ def read_file(path):
     Returns:
          a list of id,sequence formatted strings
     """
-    sequence_file = open(path, "r")
-    sequence_strings = sequence_file.readlines()
+    with open(path, "r") as sequence_file:
+        sequence_reader = csv.reader(sequence_file, delimiter=' ')
+        for row in sequence_reader:
+            sequence_strings = row
     sequence_file.close()
 #   sequence_strings is an array of strings. each line is one string, and one spot
 #   in the array. the end of each string element is defined by \n
@@ -176,6 +179,7 @@ def read_file(path):
 
 def parse_to_string_list(file_string):
     """
+    is done automatically by csv reader. NOT NEEDED
     Formats file strings to a list of ["id","sequence"] lists (ex. [[id1, sequence1],[id2, sequence2], [id3, sequence3]]
 
     Args:
@@ -192,7 +196,7 @@ def parse_to_string_list(file_string):
     return new_list
 
 
-def sec_bias_out_helper(ID, copy_list, path):
+def write_sec_bias_to_file(ID, copy_list, path):
     """
     Writes the file for exporting secondary bias data.
 
@@ -206,12 +210,12 @@ def sec_bias_out_helper(ID, copy_list, path):
 
 
     """
-    file_to_write = open(path, "a+")
-    file_to_write.write(str(ID)+",")
-    for i in range(len(copy_list)):
-        file_to_write.write((str(copy_list[i]) + ","))
-    file_to_write.write("\n")
-    file_to_write.close()
+    with open(path, 'w', newline='') as seq_csv_file:
+        seq_writer = csv.writer(seq_csv_file, delimiter=' ')
+        add_id = [ID]
+        copy_list = add_id+ copy_list
+        for i in range(len(copy_list)):
+            seq_writer.writerow(copy_list)
 
 
 def fasta_parser(path):

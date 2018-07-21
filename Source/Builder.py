@@ -1,7 +1,14 @@
 # builder class
 import abc
-from SecondaryBiasFinder import Sequence, SecondaryBias
-import SecondaryBiasFinder
+from SecondaryBiasFinder import SecondaryBias
+from Bio.SeqIO import UniprotIO
+from Bio import SeqIO, SeqRecord
+import requests as r
+from Bio.SeqIO import SeqXmlIO
+import csv
+import json
+
+
 
 
 class Builder(metaclass=abc.ABCMeta):
@@ -9,33 +16,22 @@ class Builder(metaclass=abc.ABCMeta):
     Builder is an abstract class that serves as a template for building database responses and analyses
 
     """
-
-    @abc.abstractmethod
-    def build_list_from_file(self):
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def get_sequence_list(self):
-        raise NotImplementedError
-
-    @abc.abstractmethod
-    def set_sequence_list(self, new_list):
-        raise NotImplementedError
-
+    #
     # @abc.abstractmethod
-    # def build_sec_bias(self):
+    # def build_list_from_file(self):
     #     raise NotImplementedError
     #
     # @abc.abstractmethod
-    # def build_prediciton_A(self):
+    # def get_sequence_list(self):
     #     raise NotImplementedError
     #
     # @abc.abstractmethod
-    # def build_prediction_B(self):
+    # def set_sequence_list(self, new_list):
     #     raise NotImplementedError
 
 
 class AnalysisBuilder(Builder):
+
     def __init__(self):
         """
 
@@ -46,68 +42,54 @@ class AnalysisBuilder(Builder):
 
         """
         super(AnalysisBuilder, self).__init__()
-        self.sec_bias_list = []
 
-    def get_sequence_list(self):
-        return self.sec_bias_list
 
-    def set_sequence_list(self, new_list):
-        self.sec_bias_list = new_list
+class FELLSAnalysisBuilder(AnalysisBuilder):
+    _base_url = "http://protein.bio.unipd.it/fellsws"
+    _post_url = "http://protein.bio.unipd.it/fellsws/submit"
+    _status_url = "http://protein.bio.unipd.it/fellsws/status/"
+    _get_url = "http://protein.bio.unipd.it/fellsws/result/"
+    _headers = 'Content-Type: application/json'
+    _body_beginning = '\nContent-Disposition: application/json; name="sequence"'
 
-    def build_sec_bias_list(self, sequence_list):
+    def __init__(self):
         """
-        Builds self.sec_bias_list which can then be used to create the other objects
-        Args:
-
-            sequence_list:
-
-        Returns:
-            List of SecondaryBias
-        """
-        new_list = []
-        for i1 in range(len(sequence_list)):
-            new_obj = SecondaryBias()
-            temp_str = sequence_list[i1]
-            new_obj.initialize_seqrecord_object(temp_str[0], temp_str[1])
-            new_list.append(new_obj)
-        self.set_sequence_list(new_list)
-        return new_list
-
-    def build_list_from_file(self):
-        """
-        Takes a fasta formatted file, creates csv formatted file with id-sequence info.
-
-        Returns:
 
         """
-        pass
+        super(FELLSAnalysisBuilder, self).__init__()
+        self.job_id: str = None
 
-    def build_prediciton_A(self):
+    def prepare_request_object(self, seq_id_list):
+        new_session = r.Session()
+        headers = {'Content-Type': 'application/json; charset=utf-8'}
+        body = {'sequence': seq_id_list[0]}
+        json_body = json.dumps(body)
+        response = new_session.request(method='POST', url=self._post_url, headers=headers, json=body)
+        json_obj = json.loads(response.content)
+        self.job_id = json_obj.get('jobid')
+        print(self.job_id)
+        return self.job_id
+
+    def check_request_status(self, ID):
+        check_status = r.get(url=self._status_url+ID)
+        json_obj = json.loads(check_status.content)
+        return json_obj
+
+    def retrieve_response_data(self, ID):
+
+        request_data = r.get(self._get_url+ID)
+        return request_data.content
+
+
+class SODAAnalysisBuilder(AnalysisBuilder):
+    """
+
+    """
+    def __init__(self):
         """
-        For one of the APIs
-
-        Returns:
 
         """
-        pass
-
-    def build_prediction_B(self):
-        """
-        For the other API
-
-        Returns:
-
-        """
-        pass
-
-    def build_sec_bias(self):
-        """
-        Creates a list of SecondaryBias objects from self.sec_bias_list. The list of SecondaryBias objects is then processed.
-
-        Returns:
-            a list of processed SecondaryBias objects ready for output
-        """
-        s = None
+        super(SODAAnalysisBuilder, self).__init__()
 
 
 class SequenceBiasBuilder(AnalysisBuilder):
@@ -118,13 +100,17 @@ class SequenceBiasBuilder(AnalysisBuilder):
 
         """
         super(SequenceBiasBuilder, self).__init__()
-        self.sec_bias_list = seq_record_list
+        for i in range(len(seq_record_list)):
+            sec_bias = SecondaryBias()
+            sec_bias.id = seq_record_list[i][0]
+            sec_bias.seq = seq_record_list[i][1]
+            self.sec_bias_list.append(sec_bias)
 
     def find_sec_bias(self, primary_bias):
 
-        for i in self.sec_bias_list:
-            i.set_primary_bias = primary_bias
-            i.bias_finder()
+        for i in range(len(self.sec_bias_list)):
+            self.sec_bias_list[i].set_primary_bias(primary_bias)
+            self.sec_bias_list[i].bias_finder(primary_bias)
 
 
 class DatabaseBuilder(Builder):
@@ -132,6 +118,21 @@ class DatabaseBuilder(Builder):
 
 
     """
+    def __init__(self):
+        super(DatabaseBuilder, self).__init__()
+
+
+class UniprotBuilder(DatabaseBuilder):
+    """
+
+
+    """
+    _base_url = "https://www.uniprot.org/uniprot/?query="
+    url_extension = "&limit=10000&format=tab"
+    column_dict = {'id': 'id', 'entry': 'entry name', 'Organism': 'organism', 'prot name': "protein name",
+                   'seq': 'sequence', 'mass': 'mass', 'abs': 'comment(ABSORPTION)', 'pH': 'comment(PH DEPENDENCE)',
+                   'domain': 'comment(DOMAIN)', 'comp bias': 'feature(COMPOSITIONAL BIAS)',
+                   'temp': 'comment(TEMPERATURE DEPENDENCE'}
 
     def __init__(self):
         """
@@ -140,5 +141,63 @@ class DatabaseBuilder(Builder):
 
         Returns:
         """
-        super(DatabaseBuilder, self).__init__()
+        super(UniprotBuilder, self).__init__()
+        self.request_url = None
+        self.keyword = None
+
+    def get_base_url(self):
+        return self._base_url
+
+    def construct_column_string(self, columns):
+        column_string = "&columns=reviewed"
+        for i in columns:
+            if i in self.column_dict:
+                column_string += (',' + self.column_dict[i])
+        return column_string
+
+    def create_request_url(self, word_search, column_string):
+        self.request_url = self.get_base_url() + word_search + column_string + self.url_extension
+        return self.request_url
+
+    def make_request_get_response(self, search_url):
+        new_request = r.get(search_url)
+        return new_request.content.decode('utf-8')
+
+    def uniprot_fasta_to_seqrecord(self, uniprot_fasta):
+        seq_record_list = []
+        if isinstance(uniprot_fasta, str):
+            with open('/Users/coltongarelli/Desktop/uniprotxmltest.fasta', 'w') as h:
+                h.write(uniprot_fasta)
+                for record in SeqIO.parse("/Users/coltongarelli/Desktop/uniprotxmltest.fasta", 'fasta'):
+                    seq_record_list.append(record)
+        else:
+            return None
+        return seq_record_list
+
+    def uniprot_xml_to_seqrecord(self, uniprot_xml):
+        seq_record_list = []
+        if isinstance(uniprot_xml, str):
+            with open('/Users/coltongarelli/Desktop/uniprotxmltest.xml', 'w') as h:
+                h.write(uniprot_xml)
+                for record in SeqIO.parse("/Users/coltongarelli/Desktop/uniprotxmltest.xml", 'uniprot-xml'):
+                    seq_record_list.append(record)
+            h.close()
+        else:
+            return None
+        return seq_record_list
+
+    def uniprot_tab_separated_to_file(self, uniprot_tab):
+        with open('/Users/coltongarelli/Desktop/uniprotxmltest.txt', 'w') as f:
+            csv.writer(f, delimiter='\t')
+            f.write(uniprot_tab)
+        return
+
+    def seq_record_to_uniprot_xml(self, seq_record):
+        with open('/Users/coltongarelli/Desktop/uniprotxmltest.xml', 'w') as sr_file:
+            pass
+
+# class Super_TabIO(SeqIO.TabIO):
+#     def __init__(self):
+#         super(Super_TabIO, self).__init__()
+#
 

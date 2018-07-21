@@ -3,6 +3,7 @@ import SecondaryBiasFinder
 from SecondaryBiasFinder import SecondaryBias, Sequence
 from Director import Director, AnalysisBuilder
 import Representation
+from Bio import SeqRecord
 
 
 class InductiveBiasFinderTest(unittest.TestCase):
@@ -235,10 +236,14 @@ class SequenceBiasIOTests(unittest.TestCase):
         director = Director()
         director.file_in_path = path_in
         returned = director.analysis_helper()
-
+        seq_record_list = []
+        for i in seq_list:
+            seq_record_list.append(SeqRecord.SeqRecord(id=i[0], seq=i[1]))
+        director.master_list = seq_record_list
         director.run_bias_analysis()
         for i in range(len(seq_list)):
-            self.assertEqual(director.master_list[i], seq_list[i])
+            self.assertEqual(director.master_list[i].seq, seq_list[i][1])
+            self.assertEqual(director.master_list[i].id, seq_list[i][0])
 
     def test_seqbias_to_file(self):
         list_q_content = [12, 4, 5, 10, 28, 0, 7, 1, 47]

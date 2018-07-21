@@ -9,8 +9,8 @@ import requests
 import sys
 import PyQt5.QtWidgets
 # Colton Garelli
-
-
+from Builder import UniprotBuilder
+import pprint
 
 def analyze_group(self, list_index):
     group_to_analyze = self.group_list[list_index]
@@ -103,13 +103,35 @@ def function_for_experimenting():
 
 def UI_main(director):
     in_source = director.define_input_source()
-    if in_source:
+    if in_source == "up":
         director.access_databases()
-    elif in_source:
+    elif in_source == "file":
         director.define_input_source()
+
+
+def uniprot_test_request():
+    uniprot_builder = UniprotBuilder()
+    columns = uniprot_builder.construct_column_string(['id', 'seq'])
+    request_url = uniprot_builder.create_request_url('tardigrade', columns)
+    data = uniprot_builder.make_request_get_response(request_url)
+    record_list = uniprot_builder.uniprot_tab_separated_to_file(data)
+    print(record_list[0])
+
+def testing_FELLS_requesting():
+    FELLS_builder = Builder.FELLSAnalysisBuilder()
+    seq_list = ['ASDFGFDSASDFGFDSREWASDFREWQQQQQQWQQWSQ', 'ASDFSDFASQWERFDSAWQEWSDDFWEQWEDS']
+    jobid = FELLS_builder.prepare_request_object(seq_list)
+    json_obj = FELLS_builder.check_request_status(jobid)
+    while json_obj.get('status') != 'done':
+        json_obj = FELLS_builder.check_request_status(jobid)
+    something = json_obj.get('names')
+    analysis_id = something[1]
+    something_else = FELLS_builder.retrieve_response_data(analysis_id)
+    print(something_else.decode('utf-8'))
 
 
 if __name__ == '__main__':
     main_director = Director.Director()
-
-    UI_main(main_director)
+    testing_FELLS_requesting()
+    # uniprot_test_request()
+    # UI_main(main_director)
