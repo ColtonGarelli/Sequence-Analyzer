@@ -17,6 +17,7 @@ Welcome to Sequence Analyzer's documentation!
    modules
    Python Resources
    Documentation Resources
+   API Resources
 
 ==================
 Indices and tables

@@ -124,7 +124,7 @@ Iterators: https://www.geeksforgeeks.org/iterators-in-python/
 
 Abstraction: http://composingprograms.com/pages/27-object-abstraction.html
 
-*args and **kwargs: https://www.digitalocean.com/community/tutorials/how-to-use-args-and-kwargs-in-python-3
+args and kwargs: https://www.digitalocean.com/community/tutorials/how-to-use-args-and-kwargs-in-python-3
 
 Style guide: https://github.com/google/styleguide/blob/gh-pages/pyguide.md
 
@@ -133,3 +133,5 @@ Deploying with Docker: https://docs.docker.com/docker-for-mac/
 Builder design pattern: https://gist.github.com/pazdera/1121157
 
 C++: http://www.cplusplus.com/doc/tutorial/
+
+

@@ -23,6 +23,7 @@ Documentation using Sphinx:
             - autodocuments docstrings in modules and associates them with source in the documentation
             - another apidoc link: http://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html#cmdoption-sphinx-apidoc-full
          * the TOC tree: http://www.sphinx-doc.org/en/stable/markup/toctree.html
+
 .. important::
    1. Always commit any new work before messing with docs and be wary of weird commit issues (i.e. reappearance
       of deleted files).

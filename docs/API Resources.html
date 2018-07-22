@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Source &mdash; Sequence Analyzer 1.0 documentation</title>
+  <title>UniProt and Prediction Resources &mdash; Sequence Analyzer 1.0 documentation</title>
   
 
   
@@ -27,9 +27,7 @@
   <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
   <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
     <link rel="index" title="Index" href="genindex.html" />
-    <link rel="search" title="Search" href="search.html" />
-    <link rel="next" title="Builder module" href="Builder.html" />
-    <link rel="prev" title="Documentation Resources" href="Documentation Resources.html" /> 
+    <link rel="search" title="Search" href="search.html" /> 
 
   
   <script src="_static/js/modernizr.min.js"></script>
@@ -78,21 +76,12 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
-<ul class="current">
+              <p class="caption"><span class="caption-text">Contents :</span></p>
+<ul>
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="modules.html">Source</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Python Resources.html">Python Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="Documentation Resources.html">Documentation Resources</a></li>
-<li class="toctree-l1 current"><a class="current reference internal" href="#">Source</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Builder.html">Builder module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Director.html">Director module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Representation.html">Representation module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docstring_example_google.html">docstring_example_google module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="SecondaryBiasFinder.html">SecondaryBiasFinder module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Bio_SQL_DB.html">Bio_SQL_DB module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
-</ul>
-</li>
 </ul>
 
             
@@ -138,13 +127,13 @@
     
       <li><a href="index.html">Docs</a> &raquo;</li>
         
-      <li>Source</li>
+      <li>UniProt and Prediction Resources</li>
     
     
       <li class="wy-breadcrumbs-aside">
         
             
-            <a href="_sources/modules.rst.txt" rel="nofollow"> View page source</a>
+            <a href="_sources/API Resources.rst.txt" rel="nofollow"> View page source</a>
           
         
       </li>
@@ -157,21 +146,20 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="source">
-<h1>Source<a class="headerlink" href="#source" title="Permalink to this headline">¶</a></h1>
-<div class="toctree-wrapper compound">
-<ul>
-<li class="toctree-l1"><a class="reference internal" href="Builder.html">Builder module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Director.html">Director module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Representation.html">Representation module</a><ul>
-<li class="toctree-l2"><a class="reference internal" href="Representation.html#representation-class">Representation Class</a></li>
-</ul>
-</li>
-<li class="toctree-l1"><a class="reference internal" href="docstring_example_google.html">docstring_example_google module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="SecondaryBiasFinder.html">SecondaryBiasFinder module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Bio_SQL_DB.html">Bio_SQL_DB module</a></li>
-<li class="toctree-l1"><a class="reference internal" href="main.html">main module</a></li>
-</ul>
+  <div class="section" id="uniprot-and-prediction-resources">
+<h1>UniProt and Prediction Resources<a class="headerlink" href="#uniprot-and-prediction-resources" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="uniprot">
+<h2>Uniprot<a class="headerlink" href="#uniprot" title="Permalink to this headline">¶</a></h2>
+<blockquote>
+<div><ol class="arabic simple">
+<li>Queries: <a class="reference external" href="https://www.uniprot.org/help/api_queries">https://www.uniprot.org/help/api_queries</a></li>
+<li>Column Names in url (for responses): <a class="reference external" href="https://www.uniprot.org/help/uniprotkb_column_names">https://www.uniprot.org/help/uniprotkb_column_names</a></li>
+<li>example of url request for insulin with column options and format <a class="reference external" href="https://www.uniprot.org/uniprot/?query=insulin&amp;sort=score&amp;columns=id,entry%20name,reviewed,protein%20names,genes,organism,length&amp;format=tab">https://www.uniprot.org/uniprot/?query=insulin&amp;sort=score&amp;columns=id,entry%20name,reviewed,protein%20names,genes,organism,length&amp;format=tab</a></li>
+<li>Advanced Search Options: <a class="reference external" href="https://www.uniprot.org/help/advanced_search">https://www.uniprot.org/help/advanced_search</a></li>
+<li>Retrieval+mapping: <a class="reference external" href="https://www.uniprot.org/help/uploadlists">https://www.uniprot.org/help/uploadlists</a></li>
+<li>Query example: <a class="reference external" href="https://www.uniprot.org/help/api_idmapping">https://www.uniprot.org/help/api_idmapping</a> —for crossreferencing databases</li>
+</ol>
+</div></blockquote>
 </div>
 </div>
 
@@ -180,15 +168,6 @@
            
           </div>
           <footer>
-  
-    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
-      
-        <a href="Builder.html" class="btn btn-neutral float-right" title="Builder module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
-      
-      
-        <a href="Documentation Resources.html" class="btn btn-neutral" title="Documentation Resources" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
-      
-    </div>
   
 
   <hr/>
