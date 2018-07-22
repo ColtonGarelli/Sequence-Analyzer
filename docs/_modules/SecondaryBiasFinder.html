@@ -76,12 +76,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents :</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Source</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Python Resources.html">Python Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Documentation Resources.html">Documentation Resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules.html">Source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../API Resources.html">UniProt and Prediction Resources</a></li>
 </ul>
 
             
@@ -150,7 +151,7 @@
 <span class="kn">import</span> <span class="nn">Representation</span>
 
 <span class="kn">import</span> <span class="nn">abc</span>
-<span class="kn">from</span> <span class="nn">Representation</span> <span class="k">import</span> <span class="n">sec_bias_out_helper</span>
+<span class="kn">from</span> <span class="nn">Representation</span> <span class="k">import</span> <span class="n">write_sec_bias_to_file</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">Bio.SeqRecord</span> <span class="k">import</span> <span class="n">SeqRecord</span>
 
@@ -379,22 +380,6 @@
     <span class="k">return</span> <span class="n">new_seq</span></div>
 
 
-<div class="viewcode-block" id="create_sequence_objects"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.create_sequence_objects">[docs]</a><span class="k">def</span> <span class="nf">create_sequence_objects</span><span class="p">(</span><span class="n">string_list</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Creates a sequence object from a pre-split string list</span>
-
-<span class="sd">    Args:</span>
-<span class="sd">        string_list: [&quot;id&quot;, &quot;sequence&quot;</span>
-
-<span class="sd">    Returns:</span>
-<span class="sd">        SequenceImpl object (parent for the various sequence data objects)</span>
-<span class="sd">    &quot;&quot;&quot;</span>
-
-    <span class="n">new_seq</span> <span class="o">=</span> <span class="n">Sequence</span><span class="p">()</span>
-    <span class="n">new_seq</span><span class="o">.</span><span class="n">initialize_sequence_object</span><span class="p">(</span><span class="n">string_list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">string_list</span><span class="p">[</span><span class="mi">1</span><span class="p">])</span>
-    <span class="k">return</span> <span class="n">new_seq</span></div>
-
-
 <div class="viewcode-block" id="processed_data_in"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.processed_data_in">[docs]</a><span class="k">def</span> <span class="nf">processed_data_in</span><span class="p">(</span><span class="n">general_path</span><span class="p">,</span> <span class="n">file_beginning</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Creates a list of SecondaryBias objects from file.</span>
@@ -408,37 +393,21 @@
 <span class="sd">        List of SecondaryBias objects</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">general_path</span> <span class="o">=</span> <span class="n">general_path</span> <span class="o">+</span> <span class="n">file_beginning</span>
-    <span class="n">file_string_one</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">general_path</span> <span class="o">+</span> <span class="s2">&quot;one_away.csv&quot;</span><span class="p">)</span>
-    <span class="n">file_string_two</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">general_path</span> <span class="o">+</span> <span class="s2">&quot;two_away.csv&quot;</span><span class="p">)</span>
-    <span class="n">file_string_three</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">general_path</span> <span class="o">+</span> <span class="s2">&quot;three_away.csv&quot;</span><span class="p">)</span>
-    <span class="n">file_string_local</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">general_path</span> <span class="o">+</span> <span class="s2">&quot;local_seq.csv&quot;</span><span class="p">)</span>
-    <span class="n">string_list_one</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">parse_to_string_list</span><span class="p">(</span><span class="n">file_string_one</span><span class="p">)</span>
-    <span class="n">string_list_two</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">parse_to_string_list</span><span class="p">(</span><span class="n">file_string_two</span><span class="p">)</span>
-    <span class="n">string_list_three</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">parse_to_string_list</span><span class="p">(</span><span class="n">file_string_three</span><span class="p">)</span>
-    <span class="n">string_list_local</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">parse_to_string_list</span><span class="p">(</span><span class="n">file_string_local</span><span class="p">)</span>
+    <span class="n">one_away_list</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">general_path</span> <span class="o">+</span> <span class="s2">&quot;one_away.csv&quot;</span><span class="p">)</span>
+    <span class="n">two_away_list</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">general_path</span> <span class="o">+</span> <span class="s2">&quot;two_away.csv&quot;</span><span class="p">)</span>
+    <span class="n">three_away_list</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">general_path</span> <span class="o">+</span> <span class="s2">&quot;three_away.csv&quot;</span><span class="p">)</span>
+    <span class="n">local_away_list</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">general_path</span> <span class="o">+</span> <span class="s2">&quot;local_seq.csv&quot;</span><span class="p">)</span>
     <span class="n">seq_object_list</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="c1"># convert to 2D list of ints (other than first index</span>
-    <span class="n">one_away_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">two_away_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">three_away_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="n">local_away_list</span> <span class="o">=</span> <span class="p">[]</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">string_list_one</span><span class="p">)):</span>
-        <span class="n">one_away_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">string_list_one</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-        <span class="n">two_away_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">string_list_two</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-        <span class="n">three_away_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">string_list_three</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-        <span class="n">local_away_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">string_list_local</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
-    <span class="k">for</span> <span class="n">i1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">string_list_one</span><span class="p">)):</span>
+    <span class="k">for</span> <span class="n">i1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">one_away_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
         <span class="n">new_seq</span> <span class="o">=</span> <span class="n">SecondaryBias</span><span class="p">()</span>
-        <span class="n">new_seq</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">one_away_list</span><span class="p">[</span><span class="n">i1</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+        <span class="n">new_seq</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">one_away_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">0</span><span class="p">,</span> <span class="mi">19</span><span class="p">):</span>
+            <span class="n">new_seq</span><span class="o">.</span><span class="n">one_away</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">one_away_list</span><span class="p">[</span><span class="n">i2</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">new_seq</span><span class="o">.</span><span class="n">two_away</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">two_away_list</span><span class="p">[</span><span class="n">i2</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">new_seq</span><span class="o">.</span><span class="n">three_away</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">three_away_list</span><span class="p">[</span><span class="n">i2</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
+            <span class="n">new_seq</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">local_away_list</span><span class="p">[</span><span class="n">i2</span><span class="o">+</span><span class="mi">1</span><span class="p">])</span>
         <span class="n">seq_object_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">new_seq</span><span class="p">)</span>
-        <span class="n">index</span> <span class="o">=</span> <span class="mi">0</span>
-        <span class="k">for</span> <span class="n">i2</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">1</span><span class="p">,</span> <span class="mi">20</span><span class="p">):</span>
-            <span class="n">one_away</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">one_away_list</span><span class="p">[</span><span class="n">i1</span><span class="p">][</span><span class="n">i2</span><span class="p">])</span>
-            <span class="n">seq_object_list</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span><span class="o">.</span><span class="n">one_away</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span> <span class="o">=</span> <span class="n">one_away</span>
-            <span class="n">seq_object_list</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span><span class="o">.</span><span class="n">two_away</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">two_away_list</span><span class="p">[</span><span class="n">i1</span><span class="p">][</span><span class="n">i2</span><span class="p">])</span>
-            <span class="n">seq_object_list</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span><span class="o">.</span><span class="n">three_away</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">three_away_list</span><span class="p">[</span><span class="n">i1</span><span class="p">][</span><span class="n">i2</span><span class="p">])</span>
-            <span class="n">seq_object_list</span><span class="p">[</span><span class="n">i1</span><span class="p">]</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">[</span><span class="n">i2</span><span class="p">]</span> <span class="o">=</span> <span class="nb">float</span><span class="p">(</span><span class="n">local_away_list</span><span class="p">[</span><span class="n">i1</span><span class="p">][</span><span class="n">i2</span><span class="p">])</span>
-            <span class="n">index</span> <span class="o">+=</span> <span class="mi">1</span>
     <span class="k">return</span> <span class="n">seq_object_list</span></div>
 
 
@@ -470,9 +439,9 @@
     <span class="c1"># file_to_write = open(file_path, &quot;x&quot;)</span>
     <span class="c1"># file_to_write.close()</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">)):</span>
-        <span class="n">sec_bias_out_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">one_away</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
+        <span class="n">write_sec_bias_to_file</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">one_away</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">)):</span>
-        <span class="n">sec_bias_out_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">one_away_avg</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
+        <span class="n">write_sec_bias_to_file</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">one_away_avg</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
 
     <span class="n">this_file</span> <span class="o">=</span> <span class="n">file_name</span> <span class="o">+</span> <span class="s2">&quot;two_away&quot;</span> <span class="o">+</span> <span class="s2">&quot;.csv&quot;</span>
     <span class="n">file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
@@ -480,9 +449,9 @@
     <span class="c1"># file_to_write = open(os.path.join(path, this_file), &quot;x&quot;)</span>
     <span class="c1"># file_to_write.close()</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">)):</span>
-        <span class="n">sec_bias_out_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">two_away</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
+        <span class="n">write_sec_bias_to_file</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">two_away</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">)):</span>
-        <span class="n">sec_bias_out_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">two_away_avg</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
+        <span class="n">write_sec_bias_to_file</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">two_away_avg</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
 
     <span class="n">this_file</span> <span class="o">=</span> <span class="n">file_name</span> <span class="o">+</span> <span class="s2">&quot;three_away&quot;</span> <span class="o">+</span> <span class="s2">&quot;.csv&quot;</span>
     <span class="n">file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
@@ -490,9 +459,9 @@
     <span class="c1"># file_to_write = open(os.path.join(path, this_file), &quot;x&quot;)</span>
     <span class="c1"># file_to_write.close()</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">)):</span>
-        <span class="n">sec_bias_out_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">three_away</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
+        <span class="n">write_sec_bias_to_file</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">three_away</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">)):</span>
-        <span class="n">sec_bias_out_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">three_away_avg</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
+        <span class="n">write_sec_bias_to_file</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">three_away_avg</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
 
     <span class="n">this_file</span> <span class="o">=</span> <span class="n">file_name</span> <span class="o">+</span> <span class="s2">&quot;local_seq&quot;</span> <span class="o">+</span> <span class="s2">&quot;.csv&quot;</span>
     <span class="n">file</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
@@ -500,9 +469,9 @@
     <span class="c1"># file_to_write = open(os.path.join(path, this_file), &quot;x&quot;)</span>
     <span class="c1"># file_to_write.close()</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">)):</span>
-        <span class="n">sec_bias_out_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
+        <span class="n">write_sec_bias_to_file</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">local_sequence</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
     <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">)):</span>
-        <span class="n">sec_bias_out_helper</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">local_avg</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
+        <span class="n">write_sec_bias_to_file</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">local_avg</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">path</span> <span class="o">+</span> <span class="n">file_name</span></div>
 

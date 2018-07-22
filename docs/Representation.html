@@ -78,11 +78,9 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents :</span></p>
 <ul class="current">
 <li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Python Resources.html">Python Resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="Documentation Resources.html">Documentation Resources</a></li>
 <li class="toctree-l1 current"><a class="reference internal" href="modules.html">Source</a><ul class="current">
 <li class="toctree-l2"><a class="reference internal" href="Builder.html">Builder module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Director.html">Director module</a></li>
@@ -96,6 +94,8 @@
 <li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
 </ul>
 </li>
+<li class="toctree-l1"><a class="reference internal" href="Python Resources.html">Python Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Documentation Resources.html">Documentation Resources</a></li>
 </ul>
 
             
@@ -197,8 +197,20 @@ and communicates with the Director class to change the state of data.</p>
 
 <dl class="method">
 <dt id="Representation.Representation.db_file_out">
-<code class="descname">db_file_out</code><span class="sig-paren">(</span><em>seq_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.db_file_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.db_file_out" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<code class="descname">db_file_out</code><span class="sig-paren">(</span><em>seq_list</em>, <em>file_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.db_file_out"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.db_file_out" title="Permalink to this definition">¶</a></dt>
+<dd><p>Handles output of a UniProt formatted xml file. In the future this method should support
+multiple data output syntax</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>seq_list</strong> – a list of SeqRecord objects to be written to file.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">success of file output</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 <dl class="method">
 <dt id="Representation.Representation.db_options">
@@ -386,7 +398,8 @@ Ensures only natural amino acids are entered when user inputs a sequence manuall
 <dl class="function">
 <dt id="Representation.parse_to_string_list">
 <code class="descclassname">Representation.</code><code class="descname">parse_to_string_list</code><span class="sig-paren">(</span><em>file_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#parse_to_string_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.parse_to_string_list" title="Permalink to this definition">¶</a></dt>
-<dd><p>Formats file strings to a list of [“id”,”sequence”] lists (ex. [[id1, sequence1],[id2, sequence2], [id3, sequence3]]</p>
+<dd><p>is done automatically by csv reader. NOT NEEDED
+Formats file strings to a list of [“id”,”sequence”] lists (ex. [[id1, sequence1],[id2, sequence2], [id3, sequence3]]</p>
 <dl class="docutils">
 <dt>Args:</dt>
 <dd>file_string: a list of “id,sequence” strings from a file</dd>
@@ -449,20 +462,6 @@ Ensures only natural amino acids are entered when user inputs a sequence manuall
 </dd></dl>
 
 <dl class="function">
-<dt id="Representation.sec_bias_out_helper">
-<code class="descclassname">Representation.</code><code class="descname">sec_bias_out_helper</code><span class="sig-paren">(</span><em>ID</em>, <em>copy_list</em>, <em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#sec_bias_out_helper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.sec_bias_out_helper" title="Permalink to this definition">¶</a></dt>
-<dd><p>Writes the file for exporting secondary bias data.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>ID: The id associated with the sequence being processed
-copy_list: a list to be written in csv format
-path: the file path writing to</dd>
-<dt>Returns:</dt>
-<dd>nothing</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
 <dt id="Representation.view_database_information">
 <code class="descclassname">Representation.</code><code class="descname">view_database_information</code><span class="sig-paren">(</span><em>prepped_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#view_database_information"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.view_database_information" title="Permalink to this definition">¶</a></dt>
 <dd><p>Displays prepared string data and prompts user for limiting that data in view</p>
@@ -478,6 +477,20 @@ path: the file path writing to</dd>
 <dt id="Representation.welcome">
 <code class="descclassname">Representation.</code><code class="descname">welcome</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#welcome"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.welcome" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
+
+<dl class="function">
+<dt id="Representation.write_sec_bias_to_file">
+<code class="descclassname">Representation.</code><code class="descname">write_sec_bias_to_file</code><span class="sig-paren">(</span><em>ID</em>, <em>copy_list</em>, <em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#write_sec_bias_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.write_sec_bias_to_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the file for exporting secondary bias data.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>ID: The id associated with the sequence being processed
+copy_list: a list to be written in csv format
+path: the file path writing to</dd>
+<dt>Returns:</dt>
+<dd>nothing</dd>
+</dl>
+</dd></dl>
 
 <dl class="function">
 <dt id="Representation.write_sequence_to_file">

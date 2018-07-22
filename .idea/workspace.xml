@@ -5,13 +5,100 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Builder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Representation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Representation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SecondaryBiasFinder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SecondaryBiasFinder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/SecondaryBiasTester.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/SecondaryBiasTester.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sphinx/Documentation Resources.rst" beforeDir="false" afterPath="$PROJECT_DIR$/sphinx/Documentation Resources.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sphinx/Python Resources.rst" beforeDir="false" afterPath="$PROJECT_DIR$/sphinx/Python Resources.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sphinx/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/sphinx/index.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv1/pip-selfcheck.json" beforeDir="false" afterPath="$PROJECT_DIR$/venv1/pip-selfcheck.json" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/.buildinfo" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/.nojekyll" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/Bio_SQL_DB.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/Builder.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/Director.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/Documentation Resources.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/Python Resources.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/Representation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/SecondaryBiasFinder.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_modules/Bio_SQL_DB.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_modules/Builder.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_modules/Director.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_modules/Representation.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_modules/SecondaryBiasFinder.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_modules/docstring_example_google.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_modules/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_modules/main.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_sources/Bio_SQL_DB.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_sources/Builder.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_sources/Director.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_sources/Documentation Resources.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_sources/Python Resources.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_sources/Representation.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_sources/SecondaryBiasFinder.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_sources/docstring_example_google.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_sources/index.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_sources/intro.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_sources/main.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_sources/modules.rst.txt" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/ajax-loader.gif" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/basic.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/comment-bright.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/comment-close.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/comment.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/css/badge_only.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/css/theme.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/doctools.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/documentation_options.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/down-pressed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/down.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/file.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/Lato/lato-bold.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/Lato/lato-bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/Lato/lato-bold.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/Lato/lato-bold.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/Lato/lato-bolditalic.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/Lato/lato-bolditalic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/Lato/lato-bolditalic.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/Lato/lato-bolditalic.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/Lato/lato-italic.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/Lato/lato-italic.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/Lato/lato-italic.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/Lato/lato-italic.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/Lato/lato-regular.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/Lato/lato-regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/Lato/lato-regular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/Lato/lato-regular.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/RobotoSlab/roboto-slab-v7-bold.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/RobotoSlab/roboto-slab-v7-bold.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/RobotoSlab/roboto-slab-v7-bold.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/RobotoSlab/roboto-slab-v7-bold.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/RobotoSlab/roboto-slab-v7-regular.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/RobotoSlab/roboto-slab-v7-regular.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/RobotoSlab/roboto-slab-v7-regular.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/RobotoSlab/roboto-slab-v7-regular.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/fontawesome-webfont.eot" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/fontawesome-webfont.svg" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/fontawesome-webfont.ttf" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/fontawesome-webfont.woff" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/fonts/fontawesome-webfont.woff2" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/jquery-3.2.1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/jquery.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/js/modernizr.min.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/js/theme.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/minus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/plus.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/pygments.css" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/searchtools.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/underscore-1.3.1.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/underscore.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/up-pressed.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/up.png" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/_static/websupport.js" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/docstring_example_google.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/genindex.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/index.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/intro.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/main.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/modules.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/objects.inv" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/py-modindex.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/search.html" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/docs/docs/searchindex.js" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -22,11 +109,11 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="Builder.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Builder.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/Builder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="152">
-              <caret line="66" column="95" selection-start-line="66" selection-start-column="95" selection-end-line="66" selection-end-column="95" />
+            <state relative-caret-position="-1142">
+              <caret line="127" column="31" lean-forward="true" selection-start-line="127" selection-start-column="31" selection-end-line="127" selection-end-column="31" />
               <folding>
                 <element signature="e#16#26#0" expanded="true" />
               </folding>
@@ -37,8 +124,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="212">
-              <caret line="127" selection-start-line="127" selection-end-line="127" />
+            <state relative-caret-position="403">
+              <caret line="137" column="52" selection-start-line="137" selection-start-column="52" selection-end-line="137" selection-end-column="52" />
               <folding>
                 <element signature="e#0#27#0" expanded="true" />
               </folding>
@@ -46,13 +133,13 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Director.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Source/Director.py">
+      <file leaf-file-name="Representation.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Source/Representation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="889">
-              <caret line="150" column="41" lean-forward="true" selection-start-line="150" selection-start-column="41" selection-end-line="150" selection-end-column="41" />
+            <state relative-caret-position="514">
+              <caret line="128" column="39" selection-start-line="128" selection-start-column="39" selection-end-line="128" selection-end-column="39" />
               <folding>
-                <element signature="e#0#21#0" expanded="true" />
+                <element signature="e#0#24#0" expanded="true" />
               </folding>
             </state>
           </provider>
@@ -71,7 +158,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>seq_list</find>
       <find>secondar</find>
       <find>self.id</find>
       <find>self.seq</find>
@@ -101,6 +187,7 @@
       <find>initialize_sec</find>
       <find>parse_Strin</find>
       <find>range</find>
+      <find>os.pa</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -155,16 +242,16 @@
         <option value="$PROJECT_DIR$/sphinx/Documentation Resources.rst" />
         <option value="$PROJECT_DIR$/sphinx/Python Resources.rst" />
         <option value="$PROJECT_DIR$/Tests/SecondaryBiasTester.py" />
-        <option value="$PROJECT_DIR$/Source/Representation.py" />
         <option value="$PROJECT_DIR$/Source/SecondaryBiasFinder.py" />
         <option value="$PROJECT_DIR$/sphinx/API Resources.rst" />
-        <option value="$PROJECT_DIR$/Source/main.py" />
         <option value="$PROJECT_DIR$/Source/Builder.py" />
+        <option value="$PROJECT_DIR$/Source/main.py" />
+        <option value="$PROJECT_DIR$/Source/Representation.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="448" />
+    <option name="x" value="399" />
     <option name="y" value="23" />
     <option name="width" value="971" />
     <option name="height" value="877" />
@@ -194,7 +281,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="Scope" />
       <pane id="ProjectPane">
         <subPane>
           <expand>
@@ -207,15 +293,11 @@
               <item name="SequenceAnalyzer2.1" type="462c0819:PsiDirectoryNode" />
               <item name="Source" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="SequenceAnalyzer2.1" type="b2602c69:ProjectViewProjectNode" />
-              <item name="SequenceAnalyzer2.1" type="462c0819:PsiDirectoryNode" />
-              <item name="sphinx" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
       </pane>
+      <pane id="Scope" />
     </panes>
   </component>
   <component name="PropertiesComponent">
@@ -254,7 +336,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.main">
+  <component name="RunManager" selected="Python.Python3.6 interpreter">
     <configuration name="Python3.6 interpreter" type="PythonConfigurationType" factoryName="Python">
       <module name="SequenceAnalyzer2.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -500,20 +582,19 @@
     </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="448" y="23" width="971" height="877" extended-state="0" />
+    <frame x="399" y="23" width="971" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2231579" />
+      <window_info content_ui="combo" id="Project" order="0" weight="0.2231579" />
       <window_info anchor="bottom" id="TODO" order="12" />
       <window_info anchor="bottom" id="Event Log" order="14" sideWeight="0.5049962" side_tool="true" weight="0.10128205" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32564104" />
-      <window_info active="true" anchor="bottom" id="Run" order="4" sideWeight="0.4856487" visible="true" weight="0.32435897" />
       <window_info anchor="bottom" id="Version Control" order="15" weight="0.32992327" />
       <window_info anchor="bottom" id="Python Console" order="16" sideWeight="0.49598163" weight="0.32889965" />
+      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.4856487" weight="0.32435897" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24907522" />
       <window_info anchor="bottom" id="Terminal" order="17" sideWeight="0.4909091" weight="0.33717948" />
-      <window_info anchor="bottom" id="Debug" order="5" sideWeight="0.49500385" weight="0.3602564" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Debug" order="5" sideWeight="0.49500385" weight="0.3602564" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -522,27 +603,28 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32564104" />
     </layout>
     <layout-to-restore>
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32564104" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4856487" weight="0.34358975" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4856487" weight="0.32435897" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22551093" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2231579" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24907522" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
       <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.32889965" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49500385" weight="0.37692308" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4909091" visible="true" weight="0.33717948" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49598163" weight="0.32889965" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49500385" weight="0.3602564" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4909091" weight="0.33717948" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5049962" side_tool="true" weight="0.10128205" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32992327" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32692307" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="7" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49598163" weight="0.32889965" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -561,61 +643,6 @@
           <line>266</line>
           <option name="timeStamp" value="238" />
         </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/main.py</url>
-          <line>128</line>
-          <option name="timeStamp" value="259" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Builder.py</url>
-          <line>79</line>
-          <option name="timeStamp" value="260" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Builder.py</url>
-          <line>80</line>
-          <option name="timeStamp" value="261" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/main.py</url>
-          <line>127</line>
-          <option name="timeStamp" value="263" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/main.py</url>
-          <line>126</line>
-          <option name="timeStamp" value="264" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Builder.py</url>
-          <line>67</line>
-          <option name="timeStamp" value="265" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Builder.py</url>
-          <line>74</line>
-          <option name="timeStamp" value="266" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Builder.py</url>
-          <line>73</line>
-          <option name="timeStamp" value="267" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Builder.py</url>
-          <line>75</line>
-          <option name="timeStamp" value="268" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Builder.py</url>
-          <line>64</line>
-          <option name="timeStamp" value="269" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Builder.py</url>
-          <line>66</line>
-          <option name="timeStamp" value="270" />
-        </line-breakpoint>
       </breakpoints>
       <default-breakpoints>
         <breakpoint type="python-exception">
@@ -624,13 +651,10 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="271" />
+      <option name="time" value="280" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/docs/.buildinfo">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
     <entry file="file://$PROJECT_DIR$/Source/docstring_example_google.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="4260">
@@ -833,16 +857,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Representation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="339">
-          <caret line="192" column="51" lean-forward="true" selection-start-line="192" selection-start-column="51" selection-end-line="192" selection-end-column="51" />
-          <folding>
-            <element signature="e#0#24#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/unittest/case.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
@@ -856,16 +870,6 @@
           <caret line="273" lean-forward="true" selection-start-line="273" selection-end-line="273" />
           <folding>
             <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/SecondaryBiasFinder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-637">
-          <caret line="292" column="18" selection-start-line="292" selection-start-column="13" selection-end-line="292" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
@@ -908,23 +912,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Director.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="889">
-          <caret line="150" column="41" lean-forward="true" selection-start-line="150" selection-start-column="41" selection-end-line="150" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/requests/sessions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="497" selection-start-line="497" selection-end-line="497" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/requests/api.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -939,22 +926,62 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/main.py">
+    <entry file="file://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/requests/sessions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="212">
-          <caret line="127" selection-start-line="127" selection-end-line="127" />
+        <state relative-caret-position="55">
+          <caret line="444" column="8" selection-start-line="444" selection-start-column="8" selection-end-line="444" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv1/bin/f2py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Director.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="2220">
+          <caret line="150" column="41" selection-start-line="150" selection-start-column="41" selection-end-line="150" selection-end-column="41" />
           <folding>
-            <element signature="e#0#27#0" expanded="true" />
+            <element signature="e#0#21#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/SecondaryBiasFinder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="4515">
+          <caret line="308" column="16" selection-start-line="308" selection-start-column="11" selection-end-line="308" selection-end-column="16" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/Builder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="152">
-          <caret line="66" column="95" selection-start-line="66" selection-start-column="95" selection-end-line="66" selection-end-column="95" />
+        <state relative-caret-position="-1142">
+          <caret line="127" column="31" lean-forward="true" selection-start-line="127" selection-start-column="31" selection-end-line="127" selection-end-column="31" />
           <folding>
             <element signature="e#16#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="403">
+          <caret line="137" column="52" selection-start-line="137" selection-start-column="52" selection-end-line="137" selection-end-column="52" />
+          <folding>
+            <element signature="e#0#27#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Representation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="514">
+          <caret line="128" column="39" selection-start-line="128" selection-start-column="39" selection-end-line="128" selection-end-column="39" />
+          <folding>
+            <element signature="e#0#24#0" expanded="true" />
           </folding>
         </state>
       </provider>

@@ -76,12 +76,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents :</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Source</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Python Resources.html">Python Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Documentation Resources.html">Documentation Resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules.html">Source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../API Resources.html">UniProt and Prediction Resources</a></li>
 </ul>
 
             
@@ -156,7 +157,9 @@
 <span class="kn">import</span> <span class="nn">sys</span>
 <span class="kn">import</span> <span class="nn">PyQt5.QtWidgets</span>
 <span class="c1"># Colton Garelli</span>
-
+<span class="kn">from</span> <span class="nn">Builder</span> <span class="k">import</span> <span class="n">UniprotBuilder</span>
+<span class="kn">import</span> <span class="nn">pprint</span>
+<span class="kn">import</span> <span class="nn">json</span>
 
 
 <div class="viewcode-block" id="analyze_group"><a class="viewcode-back" href="../main.html#main.analyze_group">[docs]</a><span class="k">def</span> <span class="nf">analyze_group</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">list_index</span><span class="p">):</span>
@@ -250,16 +253,52 @@
 
 <div class="viewcode-block" id="UI_main"><a class="viewcode-back" href="../main.html#main.UI_main">[docs]</a><span class="k">def</span> <span class="nf">UI_main</span><span class="p">(</span><span class="n">director</span><span class="p">):</span>
     <span class="n">in_source</span> <span class="o">=</span> <span class="n">director</span><span class="o">.</span><span class="n">define_input_source</span><span class="p">()</span>
-    <span class="k">if</span> <span class="n">in_source</span><span class="p">:</span>
+    <span class="k">if</span> <span class="n">in_source</span> <span class="o">==</span> <span class="s2">&quot;up&quot;</span><span class="p">:</span>
         <span class="n">director</span><span class="o">.</span><span class="n">access_databases</span><span class="p">()</span>
-    <span class="k">elif</span> <span class="n">in_source</span><span class="p">:</span>
+    <span class="k">elif</span> <span class="n">in_source</span> <span class="o">==</span> <span class="s2">&quot;file&quot;</span><span class="p">:</span>
         <span class="n">director</span><span class="o">.</span><span class="n">define_input_source</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="uniprot_test_request"><a class="viewcode-back" href="../main.html#main.uniprot_test_request">[docs]</a><span class="k">def</span> <span class="nf">uniprot_test_request</span><span class="p">():</span>
+    <span class="n">uniprot_builder</span> <span class="o">=</span> <span class="n">UniprotBuilder</span><span class="p">()</span>
+    <span class="n">columns</span> <span class="o">=</span> <span class="n">uniprot_builder</span><span class="o">.</span><span class="n">construct_column_string</span><span class="p">([</span><span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;seq&#39;</span><span class="p">])</span>
+    <span class="n">request_url</span> <span class="o">=</span> <span class="n">uniprot_builder</span><span class="o">.</span><span class="n">create_request_url</span><span class="p">(</span><span class="s1">&#39;tardigrade&#39;</span><span class="p">,</span> <span class="n">columns</span><span class="p">)</span>
+    <span class="n">data</span> <span class="o">=</span> <span class="n">uniprot_builder</span><span class="o">.</span><span class="n">make_request_get_response</span><span class="p">(</span><span class="n">request_url</span><span class="p">)</span>
+    <span class="n">record_list</span> <span class="o">=</span> <span class="n">uniprot_builder</span><span class="o">.</span><span class="n">uniprot_fasta_to_seqrecord</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="n">record_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span></div>
+
+
+<div class="viewcode-block" id="testing_FELLS_requesting"><a class="viewcode-back" href="../main.html#main.testing_FELLS_requesting">[docs]</a><span class="k">def</span> <span class="nf">testing_FELLS_requesting</span><span class="p">():</span>
+    <span class="n">FELLS_builder</span> <span class="o">=</span> <span class="n">Builder</span><span class="o">.</span><span class="n">FELLSAnalysisBuilder</span><span class="p">()</span>
+    <span class="n">seq_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ASDFGFDSASDFGFDSREWASDFREWQQQQQQWQQWSQ&quot;</span><span class="p">,</span> <span class="s2">&quot;ASDFSDFASQWERFDSAWQEWSDDFWEQWEDS&quot;</span><span class="p">]</span>
+    <span class="n">jobid</span> <span class="o">=</span> <span class="n">FELLS_builder</span><span class="o">.</span><span class="n">prepare_request_object</span><span class="p">(</span><span class="n">seq_list</span><span class="p">)</span>
+    <span class="n">json_obj</span> <span class="o">=</span> <span class="n">FELLS_builder</span><span class="o">.</span><span class="n">check_request_status</span><span class="p">(</span><span class="n">jobid</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">json_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;done&#39;</span><span class="p">:</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">FELLS_builder</span><span class="o">.</span><span class="n">check_request_status</span><span class="p">(</span><span class="n">jobid</span><span class="p">)</span>
+    <span class="n">something</span> <span class="o">=</span> <span class="n">FELLS_builder</span><span class="o">.</span><span class="n">retrieve_response_data</span><span class="p">(</span><span class="n">jobid</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">something</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span></div>
+
+
+<div class="viewcode-block" id="testing_SODA_requesting"><a class="viewcode-back" href="../main.html#main.testing_SODA_requesting">[docs]</a><span class="k">def</span> <span class="nf">testing_SODA_requesting</span><span class="p">():</span>
+    <span class="n">SODA_builder</span> <span class="o">=</span> <span class="n">Builder</span><span class="o">.</span><span class="n">SODAAnalysisBuilder</span><span class="p">()</span>
+    <span class="n">seq_list</span> <span class="o">=</span> <span class="p">[</span><span class="s2">&quot;ASDFGFDSASDFGFDSREWASDFREWQQQQQQWQQWSQ&quot;</span><span class="p">,</span> <span class="s2">&quot;ASDFSDFASQWERFDSAWQEWSDDFWEQWEDS&quot;</span><span class="p">]</span>
+    <span class="n">jobid</span> <span class="o">=</span> <span class="n">SODA_builder</span><span class="o">.</span><span class="n">submit_job_request</span><span class="p">(</span><span class="n">seq_list</span><span class="p">)</span>
+    <span class="n">json_obj</span> <span class="o">=</span> <span class="n">SODA_builder</span><span class="o">.</span><span class="n">check_request_status</span><span class="p">(</span><span class="n">jobid</span><span class="p">)</span>
+    <span class="k">while</span> <span class="n">json_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;done&#39;</span><span class="p">:</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">SODA_builder</span><span class="o">.</span><span class="n">check_request_status</span><span class="p">(</span><span class="n">jobid</span><span class="p">)</span>
+    <span class="n">new_id</span> <span class="o">=</span> <span class="n">json_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;&#39;</span><span class="p">)</span>
+    <span class="n">something</span> <span class="o">=</span> <span class="n">SODA_builder</span><span class="o">.</span><span class="n">retrieve_response_data</span><span class="p">(</span><span class="n">jobid</span><span class="p">)</span>
+
+    <span class="nb">print</span><span class="p">(</span><span class="n">something</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span></div>
 
 
 <span class="k">if</span> <span class="vm">__name__</span> <span class="o">==</span> <span class="s1">&#39;__main__&#39;</span><span class="p">:</span>
     <span class="n">main_director</span> <span class="o">=</span> <span class="n">Director</span><span class="o">.</span><span class="n">Director</span><span class="p">()</span>
+    <span class="c1"># uniprot_test_request()</span>
+    <span class="n">testing_SODA_requesting</span><span class="p">()</span>
 
-    <span class="n">UI_main</span><span class="p">(</span><span class="n">main_director</span><span class="p">)</span>
+    <span class="c1"># UI_main(main_director)</span>
 </pre></div>
 
            </div>

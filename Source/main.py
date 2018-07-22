@@ -11,6 +11,8 @@ import PyQt5.QtWidgets
 # Colton Garelli
 from Builder import UniprotBuilder
 import pprint
+import json
+
 
 def analyze_group(self, list_index):
     group_to_analyze = self.group_list[list_index]
@@ -114,24 +116,38 @@ def uniprot_test_request():
     columns = uniprot_builder.construct_column_string(['id', 'seq'])
     request_url = uniprot_builder.create_request_url('tardigrade', columns)
     data = uniprot_builder.make_request_get_response(request_url)
-    record_list = uniprot_builder.uniprot_tab_separated_to_file(data)
+    record_list = uniprot_builder.uniprot_fasta_to_seqrecord(data)
     print(record_list[0])
+
 
 def testing_FELLS_requesting():
     FELLS_builder = Builder.FELLSAnalysisBuilder()
-    seq_list = ['ASDFGFDSASDFGFDSREWASDFREWQQQQQQWQQWSQ', 'ASDFSDFASQWERFDSAWQEWSDDFWEQWEDS']
+    seq_list = ["ASDFGFDSASDFGFDSREWASDFREWQQQQQQWQQWSQ", "ASDFSDFASQWERFDSAWQEWSDDFWEQWEDS"]
     jobid = FELLS_builder.prepare_request_object(seq_list)
     json_obj = FELLS_builder.check_request_status(jobid)
     while json_obj.get('status') != 'done':
         json_obj = FELLS_builder.check_request_status(jobid)
-    something = json_obj.get('names')
-    analysis_id = something[1]
-    something_else = FELLS_builder.retrieve_response_data(analysis_id)
-    print(something_else.decode('utf-8'))
+    something = FELLS_builder.retrieve_response_data(jobid)
+
+    print(something.decode('utf-8'))
+
+
+def testing_SODA_requesting():
+    SODA_builder = Builder.SODAAnalysisBuilder()
+    seq_list = ["ASDFGFDSASDFGFDSREWASDFREWQQQQQQWQQWSQ", "ASDFSDFASQWERFDSAWQEWSDDFWEQWEDS"]
+    jobid = SODA_builder.submit_job_request(seq_list)
+    json_obj = SODA_builder.check_request_status(jobid)
+    while json_obj.get('status') != 'done':
+        json_obj = SODA_builder.check_request_status(jobid)
+    new_id = json_obj.get('')
+    something = SODA_builder.retrieve_response_data(jobid)
+
+    print(something.decode('utf-8'))
 
 
 if __name__ == '__main__':
     main_director = Director.Director()
-    testing_FELLS_requesting()
     # uniprot_test_request()
+    testing_SODA_requesting()
+
     # UI_main(main_director)

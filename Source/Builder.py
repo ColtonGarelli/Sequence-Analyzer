@@ -1,14 +1,13 @@
 # builder class
 import abc
-from SecondaryBiasFinder import SecondaryBias
-from Bio.SeqIO import UniprotIO
-from Bio import SeqIO, SeqRecord
-import requests as r
-from Bio.SeqIO import SeqXmlIO
 import csv
 import json
+import os
 
+import requests as r
+from Bio import SeqIO
 
+from SecondaryBiasFinder import SecondaryBias
 
 
 class Builder(metaclass=abc.ABCMeta):
@@ -48,8 +47,8 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
     _base_url = "http://protein.bio.unipd.it/fellsws"
     _post_url = "http://protein.bio.unipd.it/fellsws/submit"
     _status_url = "http://protein.bio.unipd.it/fellsws/status/"
-    _get_url = "http://protein.bio.unipd.it/fellsws/result/"
-    _headers = 'Content-Type: application/json'
+    _get_url = "http://protein.bio.unipd.it/fellsws/results/"
+    _headers = {'Content-Type': 'application/json'}
     _body_beginning = '\nContent-Disposition: application/json; name="sequence"'
 
     def __init__(self):
@@ -62,9 +61,10 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
     def prepare_request_object(self, seq_id_list):
         new_session = r.Session()
         headers = {'Content-Type': 'application/json; charset=utf-8'}
-        body = {'sequence': seq_id_list[0]}
-        json_body = json.dumps(body)
-        response = new_session.request(method='POST', url=self._post_url, headers=headers, json=body)
+        body = {"sequence": seq_id_list[0]}
+        json_body = json.dumps(body).encode('utf-8')
+        with open('/Users/coltongarelli/Desktop/uniprotxmltest.fasta', 'rU') as fasta:
+            response = new_session.request(method='POST', url=self._post_url, headers=headers, data=body)
         json_obj = json.loads(response.content)
         self.job_id = json_obj.get('jobid')
         print(self.job_id)
@@ -80,16 +80,53 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
         request_data = r.get(self._get_url+ID)
         return request_data.content
 
+    def prep_for_file_output(self):
+        pass
+
+    def prep_for_viewing(self):
+        pass
+
 
 class SODAAnalysisBuilder(AnalysisBuilder):
     """
 
     """
+    _post_url = "http://protein.bio.unipd.it/sodaws/submitsoda"
+    _status_url = "http://protein.bio.unipd.it/sodaws/status/"
+    _get_url = "http://protein.bio.unipd.it/sodaws/result/"
+
     def __init__(self):
         """
 
         """
         super(SODAAnalysisBuilder, self).__init__()
+        self.job_id: str = None
+        self.file_path = '/Users/coltongarelli/Desktop/uniprotxmltest.fasta'
+        self.json_obj = None  # a json dictionary
+
+    def submit_job_request(self, seq_in):
+        body = {"sequence": seq_in.seq}
+        response = r.request(method='POST', url=self._post_url, data=body)
+        json_obj = json.loads(response.content)
+        self.job_id = json_obj.get('jobid')
+        return self.job_id
+
+    def check_request_status(self, ID):
+        check_status = r.get(url=self._status_url+ID)
+        json_obj = json.loads(check_status.content)
+        return json_obj
+
+    def retrieve_response_data(self, ID):
+        request_data = r.get(self._get_url+ID)
+        request_str = request_data.content.decode('utf-8')
+        json_obj = json.loads(request_str)
+        return json_obj
+
+    def prep_for_file_output(self, json_format_obj):
+        pass
+
+    def prep_for_viewing(self):
+        pass
 
 
 class SequenceBiasBuilder(AnalysisBuilder):
@@ -100,6 +137,7 @@ class SequenceBiasBuilder(AnalysisBuilder):
 
         """
         super(SequenceBiasBuilder, self).__init__()
+        self.sec_bias_list = []
         for i in range(len(seq_record_list)):
             sec_bias = SecondaryBias()
             sec_bias.id = seq_record_list[i][0]
@@ -128,7 +166,7 @@ class UniprotBuilder(DatabaseBuilder):
 
     """
     _base_url = "https://www.uniprot.org/uniprot/?query="
-    url_extension = "&limit=10000&format=tab"
+    url_extension = "&limit=10000&format=fasta"
     column_dict = {'id': 'id', 'entry': 'entry name', 'Organism': 'organism', 'prot name': "protein name",
                    'seq': 'sequence', 'mass': 'mass', 'abs': 'comment(ABSORPTION)', 'pH': 'comment(PH DEPENDENCE)',
                    'domain': 'comment(DOMAIN)', 'comp bias': 'feature(COMPOSITIONAL BIAS)',
@@ -166,7 +204,7 @@ class UniprotBuilder(DatabaseBuilder):
     def uniprot_fasta_to_seqrecord(self, uniprot_fasta):
         seq_record_list = []
         if isinstance(uniprot_fasta, str):
-            with open('/Users/coltongarelli/Desktop/uniprotxmltest.fasta', 'w') as h:
+            with open(os.path.join('/Users/coltongarelli/Desktop/uniprotxmltest.fasta'), 'w') as h:
                 h.write(uniprot_fasta)
                 for record in SeqIO.parse("/Users/coltongarelli/Desktop/uniprotxmltest.fasta", 'fasta'):
                     seq_record_list.append(record)
@@ -195,6 +233,11 @@ class UniprotBuilder(DatabaseBuilder):
     def seq_record_to_uniprot_xml(self, seq_record):
         with open('/Users/coltongarelli/Desktop/uniprotxmltest.xml', 'w') as sr_file:
             pass
+
+    def prep_uniprot_output(self, seq_list):
+        output_string = ""
+        SeqIO.write(seq_list, output_string, "xml")
+        return output_string
 
 # class Super_TabIO(SeqIO.TabIO):
 #     def __init__(self):

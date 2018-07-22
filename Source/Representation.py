@@ -120,7 +120,14 @@ class Representation:
             return True
         return False
 
-    def db_file_out(self, seq_list):
+    def db_file_out(self, seq_list, file_string):
+        """
+        Handles output of a UniProt formatted xml file. In the future this method should support
+        multiple data output syntax
+
+        :param seq_list: a list of SeqRecord objects to be written to file.
+        :return: success of file output
+        """
         if seq_list == 'up':
             up_parser = write_uniprot_to_file(self.file_out_path)
 

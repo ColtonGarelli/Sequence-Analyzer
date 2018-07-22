@@ -76,12 +76,13 @@
               
             
             
-              <p class="caption"><span class="caption-text">Contents:</span></p>
+              <p class="caption"><span class="caption-text">Contents :</span></p>
 <ul>
 <li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Source</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Python Resources.html">Python Resources</a></li>
 <li class="toctree-l1"><a class="reference internal" href="../Documentation Resources.html">Documentation Resources</a></li>
-<li class="toctree-l1"><a class="reference internal" href="../modules.html">Source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../API Resources.html">UniProt and Prediction Resources</a></li>
 </ul>
 
             
@@ -149,6 +150,7 @@
 <span class="kn">import</span> <span class="nn">SecondaryBiasFinder</span>
 <span class="kn">from</span> <span class="nn">Bio.SeqIO</span> <span class="k">import</span> <span class="n">UniprotIO</span>
 <span class="kn">from</span> <span class="nn">Bio</span> <span class="k">import</span> <span class="n">SeqIO</span>
+<span class="kn">import</span> <span class="nn">csv</span>
 
 <span class="sd">&quot;&quot;&quot;Representation.py contains Representation class and assisting UI functions</span>
 
@@ -266,7 +268,14 @@
             <span class="k">return</span> <span class="kc">True</span>
         <span class="k">return</span> <span class="kc">False</span></div>
 
-<div class="viewcode-block" id="Representation.db_file_out"><a class="viewcode-back" href="../Representation.html#Representation.Representation.db_file_out">[docs]</a>    <span class="k">def</span> <span class="nf">db_file_out</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq_list</span><span class="p">):</span>
+<div class="viewcode-block" id="Representation.db_file_out"><a class="viewcode-back" href="../Representation.html#Representation.Representation.db_file_out">[docs]</a>    <span class="k">def</span> <span class="nf">db_file_out</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq_list</span><span class="p">,</span> <span class="n">file_string</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handles output of a UniProt formatted xml file. In the future this method should support</span>
+<span class="sd">        multiple data output syntax</span>
+
+<span class="sd">        :param seq_list: a list of SeqRecord objects to be written to file.</span>
+<span class="sd">        :return: success of file output</span>
+<span class="sd">        &quot;&quot;&quot;</span>
         <span class="k">if</span> <span class="n">seq_list</span> <span class="o">==</span> <span class="s1">&#39;up&#39;</span><span class="p">:</span>
             <span class="n">up_parser</span> <span class="o">=</span> <span class="n">write_uniprot_to_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_out_path</span><span class="p">)</span></div>
 
@@ -311,8 +320,10 @@
 <span class="sd">    Returns:</span>
 <span class="sd">         a list of id,sequence formatted strings</span>
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">sequence_file</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span>
-    <span class="n">sequence_strings</span> <span class="o">=</span> <span class="n">sequence_file</span><span class="o">.</span><span class="n">readlines</span><span class="p">()</span>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;r&quot;</span><span class="p">)</span> <span class="k">as</span> <span class="n">sequence_file</span><span class="p">:</span>
+        <span class="n">sequence_reader</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">reader</span><span class="p">(</span><span class="n">sequence_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="k">for</span> <span class="n">row</span> <span class="ow">in</span> <span class="n">sequence_reader</span><span class="p">:</span>
+            <span class="n">sequence_strings</span> <span class="o">=</span> <span class="n">row</span>
     <span class="n">sequence_file</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
 <span class="c1">#   sequence_strings is an array of strings. each line is one string, and one spot</span>
 <span class="c1">#   in the array. the end of each string element is defined by \n</span>
@@ -323,6 +334,7 @@
 
 <div class="viewcode-block" id="parse_to_string_list"><a class="viewcode-back" href="../Representation.html#Representation.parse_to_string_list">[docs]</a><span class="k">def</span> <span class="nf">parse_to_string_list</span><span class="p">(</span><span class="n">file_string</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    is done automatically by csv reader. NOT NEEDED</span>
 <span class="sd">    Formats file strings to a list of [&quot;id&quot;,&quot;sequence&quot;] lists (ex. [[id1, sequence1],[id2, sequence2], [id3, sequence3]]</span>
 
 <span class="sd">    Args:</span>
@@ -339,7 +351,7 @@
     <span class="k">return</span> <span class="n">new_list</span></div>
 
 
-<div class="viewcode-block" id="sec_bias_out_helper"><a class="viewcode-back" href="../Representation.html#Representation.sec_bias_out_helper">[docs]</a><span class="k">def</span> <span class="nf">sec_bias_out_helper</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span> <span class="n">copy_list</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
+<div class="viewcode-block" id="write_sec_bias_to_file"><a class="viewcode-back" href="../Representation.html#Representation.write_sec_bias_to_file">[docs]</a><span class="k">def</span> <span class="nf">write_sec_bias_to_file</span><span class="p">(</span><span class="n">ID</span><span class="p">,</span> <span class="n">copy_list</span><span class="p">,</span> <span class="n">path</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Writes the file for exporting secondary bias data.</span>
 
@@ -353,12 +365,12 @@
 
 
 <span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">file_to_write</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s2">&quot;a+&quot;</span><span class="p">)</span>
-    <span class="n">file_to_write</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">ID</span><span class="p">)</span><span class="o">+</span><span class="s2">&quot;,&quot;</span><span class="p">)</span>
-    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">copy_list</span><span class="p">)):</span>
-        <span class="n">file_to_write</span><span class="o">.</span><span class="n">write</span><span class="p">((</span><span class="nb">str</span><span class="p">(</span><span class="n">copy_list</span><span class="p">[</span><span class="n">i</span><span class="p">])</span> <span class="o">+</span> <span class="s2">&quot;,&quot;</span><span class="p">))</span>
-    <span class="n">file_to_write</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
-    <span class="n">file_to_write</span><span class="o">.</span><span class="n">close</span><span class="p">()</span></div>
+    <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">path</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">,</span> <span class="n">newline</span><span class="o">=</span><span class="s1">&#39;&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">seq_csv_file</span><span class="p">:</span>
+        <span class="n">seq_writer</span> <span class="o">=</span> <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">seq_csv_file</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39; &#39;</span><span class="p">)</span>
+        <span class="n">add_id</span> <span class="o">=</span> <span class="p">[</span><span class="n">ID</span><span class="p">]</span>
+        <span class="n">copy_list</span> <span class="o">=</span> <span class="n">add_id</span><span class="o">+</span> <span class="n">copy_list</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">copy_list</span><span class="p">)):</span>
+            <span class="n">seq_writer</span><span class="o">.</span><span class="n">writerow</span><span class="p">(</span><span class="n">copy_list</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="fasta_parser"><a class="viewcode-back" href="../Representation.html#Representation.fasta_parser">[docs]</a><span class="k">def</span> <span class="nf">fasta_parser</span><span class="p">(</span><span class="n">path</span><span class="p">):</span>
