@@ -1,0 +1,452 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Builder &mdash; Sequence Analyzer 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sequence Analyzer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents :</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Python Resources.html">Python Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Documentation Resources.html">Documentation Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../API Resources.html">UniProt and Prediction Resources</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sequence Analyzer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>Builder</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for Builder</h1><div class="highlight"><pre>
+<span></span><span class="c1"># builder class</span>
+<span class="kn">import</span> <span class="nn">abc</span>
+<span class="kn">import</span> <span class="nn">csv</span>
+<span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">os</span>
+
+<span class="kn">import</span> <span class="nn">requests</span> <span class="k">as</span> <span class="nn">r</span>
+<span class="kn">from</span> <span class="nn">Bio</span> <span class="k">import</span> <span class="n">SeqIO</span>
+
+<span class="kn">from</span> <span class="nn">SecondaryBiasFinder</span> <span class="k">import</span> <span class="n">SecondaryBias</span>
+
+
+<div class="viewcode-block" id="Builder"><a class="viewcode-back" href="../Builder.html#Builder.Builder">[docs]</a><span class="k">class</span> <span class="nc">Builder</span><span class="p">(</span><span class="n">metaclass</span><span class="o">=</span><span class="n">abc</span><span class="o">.</span><span class="n">ABCMeta</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Builder is an abstract class that serves as a template for building database responses and analyses</span>
+
+<span class="sd">    &quot;&quot;&quot;</span></div>
+    <span class="c1">#</span>
+    <span class="c1"># @abc.abstractmethod</span>
+    <span class="c1"># def build_list_from_file(self):</span>
+    <span class="c1">#     raise NotImplementedError</span>
+    <span class="c1">#</span>
+    <span class="c1"># @abc.abstractmethod</span>
+    <span class="c1"># def get_sequence_list(self):</span>
+    <span class="c1">#     raise NotImplementedError</span>
+    <span class="c1">#</span>
+    <span class="c1"># @abc.abstractmethod</span>
+    <span class="c1"># def set_sequence_list(self, new_list):</span>
+    <span class="c1">#     raise NotImplementedError</span>
+
+
+<div class="viewcode-block" id="AnalysisBuilder"><a class="viewcode-back" href="../Builder.html#Builder.AnalysisBuilder">[docs]</a><span class="k">class</span> <span class="nc">AnalysisBuilder</span><span class="p">(</span><span class="n">Builder</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="sd">        Variables:</span>
+<span class="sd">            self.sec_bias_list: a list of Sequence objects instantiated from file</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AnalysisBuilder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="FELLSAnalysisBuilder"><a class="viewcode-back" href="../Builder.html#Builder.FELLSAnalysisBuilder">[docs]</a><span class="k">class</span> <span class="nc">FELLSAnalysisBuilder</span><span class="p">(</span><span class="n">AnalysisBuilder</span><span class="p">):</span>
+    <span class="n">_base_url</span> <span class="o">=</span> <span class="s2">&quot;http://protein.bio.unipd.it/fellsws&quot;</span>
+    <span class="n">_post_url</span> <span class="o">=</span> <span class="s2">&quot;http://protein.bio.unipd.it/fellsws/submit&quot;</span>
+    <span class="n">_status_url</span> <span class="o">=</span> <span class="s2">&quot;http://protein.bio.unipd.it/fellsws/status/&quot;</span>
+    <span class="n">_get_url</span> <span class="o">=</span> <span class="s2">&quot;http://protein.bio.unipd.it/fellsws/results/&quot;</span>
+    <span class="n">_headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json&#39;</span><span class="p">}</span>
+    <span class="n">_body_beginning</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Content-Disposition: application/json; name=&quot;sequence&quot;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FELLSAnalysisBuilder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="FELLSAnalysisBuilder.prepare_request_object"><a class="viewcode-back" href="../Builder.html#Builder.FELLSAnalysisBuilder.prepare_request_object">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_request_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq_id_list</span><span class="p">):</span>
+        <span class="n">new_session</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">Session</span><span class="p">()</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json; charset=utf-8&#39;</span><span class="p">}</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;sequence&quot;</span><span class="p">:</span> <span class="n">seq_id_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]}</span>
+        <span class="n">json_body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">)</span><span class="o">.</span><span class="n">encode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/coltongarelli/Desktop/uniprotxmltest.fasta&#39;</span><span class="p">,</span> <span class="s1">&#39;rU&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">fasta</span><span class="p">:</span>
+            <span class="n">response</span> <span class="o">=</span> <span class="n">new_session</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_post_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_id</span> <span class="o">=</span> <span class="n">json_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;jobid&#39;</span><span class="p">)</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">job_id</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_id</span></div>
+
+<div class="viewcode-block" id="FELLSAnalysisBuilder.check_request_status"><a class="viewcode-back" href="../Builder.html#Builder.FELLSAnalysisBuilder.check_request_status">[docs]</a>    <span class="k">def</span> <span class="nf">check_request_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ID</span><span class="p">):</span>
+        <span class="n">check_status</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_status_url</span><span class="o">+</span><span class="n">ID</span><span class="p">)</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">check_status</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">json_obj</span></div>
+
+<div class="viewcode-block" id="FELLSAnalysisBuilder.retrieve_response_data"><a class="viewcode-back" href="../Builder.html#Builder.FELLSAnalysisBuilder.retrieve_response_data">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve_response_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ID</span><span class="p">):</span>
+
+        <span class="n">request_data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_url</span><span class="o">+</span><span class="n">ID</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">request_data</span><span class="o">.</span><span class="n">content</span></div>
+
+<div class="viewcode-block" id="FELLSAnalysisBuilder.prep_for_file_output"><a class="viewcode-back" href="../Builder.html#Builder.FELLSAnalysisBuilder.prep_for_file_output">[docs]</a>    <span class="k">def</span> <span class="nf">prep_for_file_output</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="FELLSAnalysisBuilder.prep_for_viewing"><a class="viewcode-back" href="../Builder.html#Builder.FELLSAnalysisBuilder.prep_for_viewing">[docs]</a>    <span class="k">def</span> <span class="nf">prep_for_viewing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div></div>
+
+
+<div class="viewcode-block" id="SODAAnalysisBuilder"><a class="viewcode-back" href="../Builder.html#Builder.SODAAnalysisBuilder">[docs]</a><span class="k">class</span> <span class="nc">SODAAnalysisBuilder</span><span class="p">(</span><span class="n">AnalysisBuilder</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_post_url</span> <span class="o">=</span> <span class="s2">&quot;http://protein.bio.unipd.it/sodaws/submitsoda&quot;</span>
+    <span class="n">_status_url</span> <span class="o">=</span> <span class="s2">&quot;http://protein.bio.unipd.it/sodaws/status/&quot;</span>
+    <span class="n">_get_url</span> <span class="o">=</span> <span class="s2">&quot;http://protein.bio.unipd.it/sodaws/result/&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SODAAnalysisBuilder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_path</span> <span class="o">=</span> <span class="s1">&#39;/Users/coltongarelli/Desktop/uniprotxmltest.fasta&#39;</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">json_obj</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># a json dictionary</span>
+
+<div class="viewcode-block" id="SODAAnalysisBuilder.submit_job_request"><a class="viewcode-back" href="../Builder.html#Builder.SODAAnalysisBuilder.submit_job_request">[docs]</a>    <span class="k">def</span> <span class="nf">submit_job_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq_in</span><span class="p">):</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;sequence&quot;</span><span class="p">:</span> <span class="n">seq_in</span><span class="o">.</span><span class="n">seq</span><span class="p">}</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_post_url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_id</span> <span class="o">=</span> <span class="n">json_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;jobid&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">job_id</span></div>
+
+<div class="viewcode-block" id="SODAAnalysisBuilder.check_request_status"><a class="viewcode-back" href="../Builder.html#Builder.SODAAnalysisBuilder.check_request_status">[docs]</a>    <span class="k">def</span> <span class="nf">check_request_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ID</span><span class="p">):</span>
+        <span class="n">check_status</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_status_url</span><span class="o">+</span><span class="n">ID</span><span class="p">)</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">check_status</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">json_obj</span></div>
+
+<div class="viewcode-block" id="SODAAnalysisBuilder.retrieve_response_data"><a class="viewcode-back" href="../Builder.html#Builder.SODAAnalysisBuilder.retrieve_response_data">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve_response_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ID</span><span class="p">):</span>
+        <span class="n">request_data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_url</span><span class="o">+</span><span class="n">ID</span><span class="p">)</span>
+        <span class="n">request_str</span> <span class="o">=</span> <span class="n">request_data</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">request_str</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">json_obj</span></div>
+
+<div class="viewcode-block" id="SODAAnalysisBuilder.prep_for_file_output"><a class="viewcode-back" href="../Builder.html#Builder.SODAAnalysisBuilder.prep_for_file_output">[docs]</a>    <span class="k">def</span> <span class="nf">prep_for_file_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_format_obj</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="SODAAnalysisBuilder.prep_for_viewing"><a class="viewcode-back" href="../Builder.html#Builder.SODAAnalysisBuilder.prep_for_viewing">[docs]</a>    <span class="k">def</span> <span class="nf">prep_for_viewing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div></div>
+
+
+<div class="viewcode-block" id="SequenceBiasBuilder"><a class="viewcode-back" href="../Builder.html#Builder.SequenceBiasBuilder">[docs]</a><span class="k">class</span> <span class="nc">SequenceBiasBuilder</span><span class="p">(</span><span class="n">AnalysisBuilder</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq_record_list</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">SequenceBiasBuilder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">sec_bias_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq_record_list</span><span class="p">)):</span>
+            <span class="n">sec_bias</span> <span class="o">=</span> <span class="n">SecondaryBias</span><span class="p">()</span>
+            <span class="n">sec_bias</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">seq_record_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span>
+            <span class="n">sec_bias</span><span class="o">.</span><span class="n">seq</span> <span class="o">=</span> <span class="n">seq_record_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sec_bias_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sec_bias</span><span class="p">)</span>
+
+<div class="viewcode-block" id="SequenceBiasBuilder.find_sec_bias"><a class="viewcode-back" href="../Builder.html#Builder.SequenceBiasBuilder.find_sec_bias">[docs]</a>    <span class="k">def</span> <span class="nf">find_sec_bias</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">primary_bias</span><span class="p">):</span>
+
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">sec_bias_list</span><span class="p">)):</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sec_bias_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">set_primary_bias</span><span class="p">(</span><span class="n">primary_bias</span><span class="p">)</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">sec_bias_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">bias_finder</span><span class="p">(</span><span class="n">primary_bias</span><span class="p">)</span></div></div>
+
+
+<div class="viewcode-block" id="DatabaseBuilder"><a class="viewcode-back" href="../Builder.html#Builder.DatabaseBuilder">[docs]</a><span class="k">class</span> <span class="nc">DatabaseBuilder</span><span class="p">(</span><span class="n">Builder</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">DatabaseBuilder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
+
+
+<div class="viewcode-block" id="UniprotBuilder"><a class="viewcode-back" href="../Builder.html#Builder.UniprotBuilder">[docs]</a><span class="k">class</span> <span class="nc">UniprotBuilder</span><span class="p">(</span><span class="n">DatabaseBuilder</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_base_url</span> <span class="o">=</span> <span class="s2">&quot;https://www.uniprot.org/uniprot/?query=&quot;</span>
+    <span class="n">url_extension</span> <span class="o">=</span> <span class="s2">&quot;&amp;limit=10000&amp;format=fasta&quot;</span>
+    <span class="n">column_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;entry&#39;</span><span class="p">:</span> <span class="s1">&#39;entry name&#39;</span><span class="p">,</span> <span class="s1">&#39;Organism&#39;</span><span class="p">:</span> <span class="s1">&#39;organism&#39;</span><span class="p">,</span> <span class="s1">&#39;prot name&#39;</span><span class="p">:</span> <span class="s2">&quot;protein name&quot;</span><span class="p">,</span>
+                   <span class="s1">&#39;seq&#39;</span><span class="p">:</span> <span class="s1">&#39;sequence&#39;</span><span class="p">,</span> <span class="s1">&#39;mass&#39;</span><span class="p">:</span> <span class="s1">&#39;mass&#39;</span><span class="p">,</span> <span class="s1">&#39;abs&#39;</span><span class="p">:</span> <span class="s1">&#39;comment(ABSORPTION)&#39;</span><span class="p">,</span> <span class="s1">&#39;pH&#39;</span><span class="p">:</span> <span class="s1">&#39;comment(PH DEPENDENCE)&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;domain&#39;</span><span class="p">:</span> <span class="s1">&#39;comment(DOMAIN)&#39;</span><span class="p">,</span> <span class="s1">&#39;comp bias&#39;</span><span class="p">:</span> <span class="s1">&#39;feature(COMPOSITIONAL BIAS)&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;temp&#39;</span><span class="p">:</span> <span class="s1">&#39;comment(TEMPERATURE DEPENDENCE&#39;</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Args:</span>
+
+<span class="sd">        Returns:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">UniprotBuilder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request_url</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">keyword</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="UniprotBuilder.get_base_url"><a class="viewcode-back" href="../Builder.html#Builder.UniprotBuilder.get_base_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_base_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_url</span></div>
+
+<div class="viewcode-block" id="UniprotBuilder.construct_column_string"><a class="viewcode-back" href="../Builder.html#Builder.UniprotBuilder.construct_column_string">[docs]</a>    <span class="k">def</span> <span class="nf">construct_column_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">columns</span><span class="p">):</span>
+        <span class="n">column_string</span> <span class="o">=</span> <span class="s2">&quot;&amp;columns=reviewed&quot;</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_dict</span><span class="p">:</span>
+                <span class="n">column_string</span> <span class="o">+=</span> <span class="p">(</span><span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_dict</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">column_string</span></div>
+
+<div class="viewcode-block" id="UniprotBuilder.create_request_url"><a class="viewcode-back" href="../Builder.html#Builder.UniprotBuilder.create_request_url">[docs]</a>    <span class="k">def</span> <span class="nf">create_request_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word_search</span><span class="p">,</span> <span class="n">column_string</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_url</span><span class="p">()</span> <span class="o">+</span> <span class="n">word_search</span> <span class="o">+</span> <span class="n">column_string</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_extension</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request_url</span></div>
+
+<div class="viewcode-block" id="UniprotBuilder.make_request_get_response"><a class="viewcode-back" href="../Builder.html#Builder.UniprotBuilder.make_request_get_response">[docs]</a>    <span class="k">def</span> <span class="nf">make_request_get_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">search_url</span><span class="p">):</span>
+        <span class="n">new_request</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">search_url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">new_request</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="UniprotBuilder.uniprot_fasta_to_seqrecord"><a class="viewcode-back" href="../Builder.html#Builder.UniprotBuilder.uniprot_fasta_to_seqrecord">[docs]</a>    <span class="k">def</span> <span class="nf">uniprot_fasta_to_seqrecord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uniprot_fasta</span><span class="p">):</span>
+        <span class="n">seq_record_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">uniprot_fasta</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;/Users/coltongarelli/Desktop/uniprotxmltest.fasta&#39;</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">h</span><span class="p">:</span>
+                <span class="n">h</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">uniprot_fasta</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;/Users/coltongarelli/Desktop/uniprotxmltest.fasta&quot;</span><span class="p">,</span> <span class="s1">&#39;fasta&#39;</span><span class="p">):</span>
+                    <span class="n">seq_record_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">seq_record_list</span></div>
+
+<div class="viewcode-block" id="UniprotBuilder.uniprot_xml_to_seqrecord"><a class="viewcode-back" href="../Builder.html#Builder.UniprotBuilder.uniprot_xml_to_seqrecord">[docs]</a>    <span class="k">def</span> <span class="nf">uniprot_xml_to_seqrecord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uniprot_xml</span><span class="p">):</span>
+        <span class="n">seq_record_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">uniprot_xml</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/coltongarelli/Desktop/uniprotxmltest.xml&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">h</span><span class="p">:</span>
+                <span class="n">h</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">uniprot_xml</span><span class="p">)</span>
+                <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;/Users/coltongarelli/Desktop/uniprotxmltest.xml&quot;</span><span class="p">,</span> <span class="s1">&#39;uniprot-xml&#39;</span><span class="p">):</span>
+                    <span class="n">seq_record_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+            <span class="n">h</span><span class="o">.</span><span class="n">close</span><span class="p">()</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span>
+        <span class="k">return</span> <span class="n">seq_record_list</span></div>
+
+<div class="viewcode-block" id="UniprotBuilder.uniprot_tab_separated_to_file"><a class="viewcode-back" href="../Builder.html#Builder.UniprotBuilder.uniprot_tab_separated_to_file">[docs]</a>    <span class="k">def</span> <span class="nf">uniprot_tab_separated_to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uniprot_tab</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/coltongarelli/Desktop/uniprotxmltest.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+            <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
+            <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">uniprot_tab</span><span class="p">)</span>
+        <span class="k">return</span></div>
+
+<div class="viewcode-block" id="UniprotBuilder.seq_record_to_uniprot_xml"><a class="viewcode-back" href="../Builder.html#Builder.UniprotBuilder.seq_record_to_uniprot_xml">[docs]</a>    <span class="k">def</span> <span class="nf">seq_record_to_uniprot_xml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq_record</span><span class="p">):</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/coltongarelli/Desktop/uniprotxmltest.xml&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">sr_file</span><span class="p">:</span>
+            <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="UniprotBuilder.prep_uniprot_output"><a class="viewcode-back" href="../Builder.html#Builder.UniprotBuilder.prep_uniprot_output">[docs]</a>    <span class="k">def</span> <span class="nf">prep_uniprot_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq_list</span><span class="p">):</span>
+        <span class="n">output_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">SeqIO</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">seq_list</span><span class="p">,</span> <span class="n">output_string</span><span class="p">,</span> <span class="s2">&quot;xml&quot;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">output_string</span></div></div>
+
+<span class="c1"># class Super_TabIO(SeqIO.TabIO):</span>
+<span class="c1">#     def __init__(self):</span>
+<span class="c1">#         super(Super_TabIO, self).__init__()</span>
+<span class="c1">#</span>
+
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Colton Garelli and Jamie Paule Ellis.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
