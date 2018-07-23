@@ -12,25 +12,27 @@ and for general documentation stuff.
 Documentation using Sphinx:
 ===========================
 
-    Full docs:
+Full docs:
+   * Sphinx full docs: http://www.sphinx-doc.org/en/master/contents.html
+   * Quickstart -- installing starting: http://www.sphinx-doc.org/en/1.7/tutorial.html
+      1. after completed, run make html from /sphinx dir
 
-        * Sphinx full docs: http://www.sphinx-doc.org/en/master/contents.html
-        * Quickstart -- installing starting: http://www.sphinx-doc.org/en/1.7/tutorial.html
-            1. after completed, run make html from /sphinx dir
-        * apidoc for documenting new modules: http://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html#cmdoption-sphinx-apidoc-full
-            - can be run from project directory (directories defined in command)
-            - should be run when new module is added
-            - autodocuments docstrings in modules and associates them with source in the documentation
-            - another apidoc link: http://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html#cmdoption-sphinx-apidoc-full
-         * the TOC tree: http://www.sphinx-doc.org/en/stable/markup/toctree.html
+   * apidoc for documenting new modules: http://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html#cmdoption-sphinx-apidoc-full
+      - can be run from project directory (directories defined in command)
+      - should be run when new module is added
+      - autodocuments docstrings in modules and associates them with source in the documentation
+      - another apidoc link: http://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html#cmdoption-sphinx-apidoc-full
+   * the TOC tree: http://www.sphinx-doc.org/en/stable/markup/toctree.html
+
 
 .. important::
-   1. Always commit any new work before messing with docs and be wary of weird commit issues (i.e. reappearance
-      of deleted files).
-   2. ***MUST*** commit git add . and git commit from project folder
-   3. The 'make html' command has to be run from the /sphinx directory
-   4. 'make hmtl' makes html files from the .rst files using conf.py
 
+   1. Always commit any new work before messing with docs and be wary of weird commit issues (i.e. reappearance
+   of deleted files).
+   2. ***MUST*** commit git add . and git commit from project folder
+   3. ***MUST*** run make clean before running make html when new modules are added
+   4. The 'make html' command has to be run from the /sphinx directory
+   5. 'make hmtl' makes html files from the .rst files using conf.py
 
 autodoc docstring formatting: https://thomas-cokelaer.info/tutorials/sphinx/docstring_python.html
 

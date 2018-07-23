@@ -157,7 +157,7 @@ def write_uniprot_to_file(seq_record_list):
 def write_sequence_to_file(ID, copy_list, file_name):
     """
 
-    :param ID:
+     ID:
     :param copy_list:
     :param file_name:
     :return:
@@ -206,16 +206,16 @@ def parse_to_string_list(file_string):
     return new_list
 
 
-def sec_bias_to_file(ID, copy_list, path):
+def write_sec_bias_to_file(ID, copy_list, path):
     """
-        Writes the file for exporting secondary bias data.
+    Writes the file for exporting secondary bias data.
 
-        :param ID: The id associated with the sequence being processed
-        :param copy_list: a list to be written in csv format
-        :param path: the file path writing to
+    :param ID: The id associated with the sequence being processed
+    :param copy_list: a list to be written in csv format
+    :param path: the file path writing to
 
-        :returns: nothing
-        """
+    :returns: nothing
+    """
     with open(path, 'w', newline='') as seq_csv_file:
         seq_writer = csv.writer(seq_csv_file, delimiter=' ')
         add_id = [ID]

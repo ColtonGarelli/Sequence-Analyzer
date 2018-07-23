@@ -5,6 +5,7 @@
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Representation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Representation.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/SecondaryBiasFinder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SecondaryBiasFinder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/sphinx/Documentation Resources.rst" beforeDir="false" afterPath="$PROJECT_DIR$/sphinx/Documentation Resources.rst" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -18,8 +19,8 @@
       <file leaf-file-name="Builder.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/Builder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1142">
-              <caret line="127" column="31" selection-start-line="127" selection-start-column="31" selection-end-line="127" selection-end-column="31" />
+            <state relative-caret-position="154">
+              <caret line="138" column="28" selection-start-line="138" selection-start-column="28" selection-end-line="138" selection-end-column="28" />
               <folding>
                 <element signature="e#16#26#0" expanded="true" />
               </folding>
@@ -27,23 +28,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/Source/main.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="403">
-              <caret line="137" column="52" selection-start-line="137" selection-start-column="52" selection-end-line="137" selection-end-column="52" />
-              <folding>
-                <element signature="e#0#27#0" expanded="true" />
-              </folding>
-            </state>
-          </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Representation.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="Representation.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/Representation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="77">
-              <caret line="212" selection-start-line="212" selection-end-line="212" />
+            <state relative-caret-position="235">
+              <caret line="214" column="11" selection-start-line="214" selection-start-column="11" selection-end-line="214" selection-end-column="11" />
               <folding>
                 <element signature="e#0#24#0" expanded="true" />
               </folding>
@@ -54,8 +43,20 @@
       <file leaf-file-name="SecondaryBiasFinder.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/SecondaryBiasFinder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-4517">
-              <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+            <state relative-caret-position="75">
+              <caret line="5" column="49" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="49" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="SecondaryBiasTester.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tests/SecondaryBiasTester.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="148">
+              <caret line="268" column="24" selection-start-line="268" selection-start-column="24" selection-end-line="268" selection-end-column="24" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -69,11 +70,11 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Documentation Resources.rst" pinned="false" current-in-tab="false">
+      <file leaf-file-name="Documentation Resources.rst" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sphinx/Documentation Resources.rst">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-48">
-              <caret line="26" selection-start-line="26" selection-end-line="26" />
+            <state relative-caret-position="327">
+              <caret line="34" selection-start-line="34" selection-end-line="34" />
             </state>
           </provider>
         </entry>
@@ -81,7 +82,7 @@
       <file leaf-file-name="Python Resources.rst" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/sphinx/Python Resources.rst">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="338">
+            <state relative-caret-position="1980">
               <caret line="132" column="49" selection-start-line="132" selection-start-column="49" selection-end-line="132" selection-end-column="49" />
             </state>
           </provider>
@@ -105,11 +106,6 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="theme.js" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/docs/_static/js/theme.js">
-          <provider selected="true" editor-type-id="text-editor" />
-        </entry>
-      </file>
     </leaf>
   </component>
   <component name="FileTemplateManagerImpl">
@@ -123,9 +119,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>self.seq</find>
-      <find>UserInterface</find>
-      <find>.id</find>
       <find>sequencebias</find>
       <find>.seq</find>
       <find>.sequence</find>
@@ -153,6 +146,9 @@
       <find>os.pa</find>
       <find>write_sec</find>
       <find>write_se</find>
+      <find>sec_bias</find>
+      <find>write_sec_bias_to_file</find>
+      <find>sec_bias_to_file</find>
     </findStrings>
   </component>
   <component name="Git.Settings">
@@ -204,21 +200,21 @@
         <option value="$PROJECT_DIR$/sphinx/intro.rst" />
         <option value="$PROJECT_DIR$/sphinx/modules.rst" />
         <option value="$PROJECT_DIR$/Tests/SecondaryBiasTester.py" />
-        <option value="$PROJECT_DIR$/Source/SecondaryBiasFinder.py" />
         <option value="$PROJECT_DIR$/sphinx/API Resources.rst" />
         <option value="$PROJECT_DIR$/Source/Builder.py" />
         <option value="$PROJECT_DIR$/Source/main.py" />
-        <option value="$PROJECT_DIR$/sphinx/Documentation Resources.rst" />
         <option value="$PROJECT_DIR$/sphinx/Python Resources.rst" />
         <option value="$PROJECT_DIR$/sphinx/index.rst" />
+        <option value="$PROJECT_DIR$/Source/SecondaryBiasFinder.py" />
         <option value="$PROJECT_DIR$/Source/Representation.py" />
+        <option value="$PROJECT_DIR$/sphinx/Documentation Resources.rst" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="506" />
+    <option name="x" value="323" />
     <option name="y" value="23" />
-    <option name="width" value="971" />
+    <option name="width" value="818" />
     <option name="height" value="877" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -258,6 +254,22 @@
               <item name="SequenceAnalyzer2.1" type="462c0819:PsiDirectoryNode" />
               <item name="Source" type="462c0819:PsiDirectoryNode" />
             </path>
+            <path>
+              <item name="SequenceAnalyzer2.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SequenceAnalyzer2.1" type="462c0819:PsiDirectoryNode" />
+              <item name="sphinx" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SequenceAnalyzer2.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SequenceAnalyzer2.1" type="462c0819:PsiDirectoryNode" />
+              <item name="sphinx" type="462c0819:PsiDirectoryNode" />
+              <item name="build" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SequenceAnalyzer2.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SequenceAnalyzer2.1" type="462c0819:PsiDirectoryNode" />
+              <item name="Tests" type="462c0819:PsiDirectoryNode" />
+            </path>
           </expand>
           <select />
         </subPane>
@@ -274,19 +286,19 @@
     <property name="settings.editor.selected.configurable" value="preferences.sourceCode" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/docs" />
-      <recent name="$PROJECT_DIR$/References" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/Source" />
-      <recent name="$PROJECT_DIR$/../" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/docs" />
       <recent name="$PROJECT_DIR$/sphinx/build/html" />
       <recent name="$PROJECT_DIR$/Source" />
       <recent name="$PROJECT_DIR$/doc" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/docs" />
+      <recent name="$PROJECT_DIR$/References" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/Source" />
+      <recent name="$PROJECT_DIR$/../" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -301,7 +313,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager" selected="Python.Python3.6 interpreter">
+  <component name="RunManager" selected="Python tests.SecondaryBiasTester">
     <configuration name="Python3.6 interpreter" type="PythonConfigurationType" factoryName="Python">
       <module name="SequenceAnalyzer2.1" />
       <option name="INTERPRETER_OPTIONS" value="" />
@@ -515,15 +527,6 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SecondaryBiasTester - 2018.07.20 at 19h 44m 41s.xml">
-      <configuration name="SecondaryBiasTester" configurationId="tests" />
-    </history-entry>
-    <history-entry file="SecondaryBiasTester - 2018.07.20 at 19h 45m 20s.xml">
-      <configuration name="SecondaryBiasTester" configurationId="tests" />
-    </history-entry>
-    <history-entry file="SecondaryBiasTester - 2018.07.20 at 19h 46m 11s.xml">
-      <configuration name="SecondaryBiasTester" configurationId="tests" />
-    </history-entry>
     <history-entry file="SecondaryBiasTester - 2018.07.20 at 19h 49m 58s.xml">
       <configuration name="SecondaryBiasTester" configurationId="tests" />
     </history-entry>
@@ -545,21 +548,29 @@
     <history-entry file="Unittests_for_SecondaryBiasTester_SequenceBiasIOTests_test_seqbias_to_file - 2018.07.20 at 19h 57m 25s.xml">
       <configuration name="Unittests for SecondaryBiasTester.SequenceBiasIOTests.test_seqbias_to_file" configurationId="tests" />
     </history-entry>
+    <history-entry file="SecondaryBiasTester - 2018.07.23 at 13h 51m 27s.xml">
+      <configuration name="SecondaryBiasTester" configurationId="tests" />
+    </history-entry>
+    <history-entry file="SecondaryBiasTester - 2018.07.23 at 13h 51m 46s.xml">
+      <configuration name="SecondaryBiasTester" configurationId="tests" />
+    </history-entry>
+    <history-entry file="SecondaryBiasTester - 2018.07.23 at 13h 54m 17s.xml">
+      <configuration name="SecondaryBiasTester" configurationId="tests" />
+    </history-entry>
   </component>
   <component name="ToolWindowManager">
-    <frame x="399" y="23" width="971" height="877" extended-state="0" />
+    <frame x="323" y="23" width="818" height="877" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.2231579" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.22208281" />
       <window_info anchor="bottom" id="TODO" order="12" />
       <window_info anchor="bottom" id="Event Log" order="14" sideWeight="0.5049962" side_tool="true" weight="0.10128205" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32564104" />
+      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.4856487" weight="0.32435897" />
       <window_info anchor="bottom" id="Version Control" order="15" weight="0.32992327" />
       <window_info anchor="bottom" id="Python Console" order="16" sideWeight="0.49598163" weight="0.32889965" />
-      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.4856487" weight="0.32435897" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24907522" />
       <window_info active="true" anchor="bottom" id="Terminal" order="17" sideWeight="0.4909091" visible="true" weight="0.33717948" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Debug" order="5" sideWeight="0.49500385" weight="0.3602564" />
+      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
@@ -568,23 +579,24 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32564104" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32564104" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4856487" weight="0.32435897" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2231579" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24907522" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4856487" weight="0.32435897" />
       <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.32889965" />
       <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49598163" weight="0.32889965" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49500385" weight="0.3602564" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4909091" weight="0.33717948" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5049962" side_tool="true" weight="0.10128205" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32564104" />
       <window_info anchor="bottom" id="Version Control" order="9" weight="0.32992327" />
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="7" />
@@ -669,13 +681,6 @@
     <entry file="file://$PROJECT_DIR$/docs/_sources/index.rst.txt">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/sphinx/build/html/_modules/Representation.html">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="156" column="61" selection-start-line="156" selection-start-column="61" selection-end-line="156" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sphinx/build/html/_sources/Representation.rst.txt">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -714,9 +719,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/docs/_static/js/theme.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/docs/_static/js/theme.js" />
     <entry file="file://$PROJECT_DIR$/sphinx/build/doctrees/index.doctree">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -738,13 +741,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="195">
           <caret line="13" selection-start-line="13" selection-end-line="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sphinx/conf.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="148">
-          <caret line="119" column="12" selection-start-line="119" selection-start-column="12" selection-end-line="119" selection-end-column="12" />
         </state>
       </provider>
     </entry>
@@ -794,16 +790,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="155">
           <caret line="821" selection-start-line="821" selection-end-line="821" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Tests/SecondaryBiasTester.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="307">
-          <caret line="273" lean-forward="true" selection-start-line="273" selection-end-line="273" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
@@ -866,25 +852,12 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="2220">
           <caret line="150" column="41" selection-start-line="150" selection-start-column="41" selection-end-line="150" selection-end-column="41" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Builder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1142">
-          <caret line="127" column="31" selection-start-line="127" selection-start-column="31" selection-end-line="127" selection-end-column="31" />
-          <folding>
-            <element signature="e#16#26#0" expanded="true" />
-          </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="403">
+        <state relative-caret-position="1860">
           <caret line="137" column="52" selection-start-line="137" selection-start-column="52" selection-end-line="137" selection-end-column="52" />
           <folding>
             <element signature="e#0#27#0" expanded="true" />
@@ -894,7 +867,7 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/sphinx/Python Resources.rst">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="338">
+        <state relative-caret-position="1980">
           <caret line="132" column="49" selection-start-line="132" selection-start-column="49" selection-end-line="132" selection-end-column="49" />
         </state>
       </provider>
@@ -913,16 +886,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/_static/js/theme.js">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sphinx/Documentation Resources.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-48">
-          <caret line="26" selection-start-line="26" selection-end-line="26" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/sphinx/Representation.rst">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="135">
@@ -930,20 +893,64 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/docs/_static/js/theme.js">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Builder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="154">
+          <caret line="138" column="28" selection-start-line="138" selection-start-column="28" selection-end-line="138" selection-end-column="28" />
+          <folding>
+            <element signature="e#16#26#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Source/SecondaryBiasFinder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-4517">
-          <caret line="5" column="27" selection-start-line="5" selection-start-column="27" selection-end-line="5" selection-end-column="27" />
+        <state relative-caret-position="75">
+          <caret line="5" column="49" selection-start-line="5" selection-start-column="33" selection-end-line="5" selection-end-column="49" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/SecondaryBiasTester.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="268" column="24" selection-start-line="268" selection-start-column="24" selection-end-line="268" selection-end-column="24" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sphinx/conf.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="148">
+          <caret line="119" column="12" selection-start-line="119" selection-start-column="12" selection-end-line="119" selection-end-column="12" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/Representation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="77">
-          <caret line="212" selection-start-line="212" selection-end-line="212" />
+        <state relative-caret-position="235">
+          <caret line="214" column="11" selection-start-line="214" selection-start-column="11" selection-end-line="214" selection-end-column="11" />
           <folding>
             <element signature="e#0#24#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sphinx/build/html/_modules/Representation.html">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="298">
+          <caret line="166" lean-forward="true" selection-start-line="166" selection-end-line="166" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/sphinx/Documentation Resources.rst">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="327">
+          <caret line="34" selection-start-line="34" selection-end-line="34" />
         </state>
       </provider>
     </entry>
