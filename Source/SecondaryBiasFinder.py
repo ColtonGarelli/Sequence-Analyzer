@@ -3,7 +3,7 @@ from typing import List
 import Representation
 
 import abc
-from Representation import write_sec_bias_to_file
+from Representation import sec_bias_to_file
 import os
 from Bio.SeqRecord import SeqRecord
 
@@ -291,9 +291,9 @@ def export_sec_bias_files(sequence_list):
     # file_to_write = open(file_path, "x")
     # file_to_write.close()
     for i in range(len(sequence_list)):
-        write_sec_bias_to_file(sequence_list[i].id, sequence_list[i].one_away, this_file)
+        sec_bias_to_file(sequence_list[i].id, sequence_list[i].one_away, this_file)
     for i in range(len(sequence_list)):
-        write_sec_bias_to_file(sequence_list[i].id, sequence_list[i].one_away_avg, this_file)
+        sec_bias_to_file(sequence_list[i].id, sequence_list[i].one_away_avg, this_file)
 
     this_file = file_name + "two_away" + ".csv"
     file = os.path.join(path, this_file)
@@ -301,9 +301,9 @@ def export_sec_bias_files(sequence_list):
     # file_to_write = open(os.path.join(path, this_file), "x")
     # file_to_write.close()
     for i in range(len(sequence_list)):
-        write_sec_bias_to_file(sequence_list[i].id, sequence_list[i].two_away, this_file)
+        sec_bias_to_file(sequence_list[i].id, sequence_list[i].two_away, this_file)
     for i in range(len(sequence_list)):
-        write_sec_bias_to_file(sequence_list[i].id, sequence_list[i].two_away_avg, this_file)
+        sec_bias_to_file(sequence_list[i].id, sequence_list[i].two_away_avg, this_file)
 
     this_file = file_name + "three_away" + ".csv"
     file = os.path.join(path, this_file)
@@ -311,9 +311,9 @@ def export_sec_bias_files(sequence_list):
     # file_to_write = open(os.path.join(path, this_file), "x")
     # file_to_write.close()
     for i in range(len(sequence_list)):
-        write_sec_bias_to_file(sequence_list[i].id, sequence_list[i].three_away, this_file)
+        sec_bias_to_file(sequence_list[i].id, sequence_list[i].three_away, this_file)
     for i in range(len(sequence_list)):
-        write_sec_bias_to_file(sequence_list[i].id, sequence_list[i].three_away_avg, this_file)
+        sec_bias_to_file(sequence_list[i].id, sequence_list[i].three_away_avg, this_file)
 
     this_file = file_name + "local_seq" + ".csv"
     file = os.path.join(path, this_file)
@@ -321,9 +321,9 @@ def export_sec_bias_files(sequence_list):
     # file_to_write = open(os.path.join(path, this_file), "x")
     # file_to_write.close()
     for i in range(len(sequence_list)):
-        write_sec_bias_to_file(sequence_list[i].id, sequence_list[i].local_sequence, this_file)
+        sec_bias_to_file(sequence_list[i].id, sequence_list[i].local_sequence, this_file)
     for i in range(len(sequence_list)):
-        write_sec_bias_to_file(sequence_list[i].id, sequence_list[i].local_avg, this_file)
+        sec_bias_to_file(sequence_list[i].id, sequence_list[i].local_avg, this_file)
 
     return path + file_name
 

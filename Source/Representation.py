@@ -4,14 +4,15 @@ from Bio.SeqIO import UniprotIO
 from Bio import SeqIO
 import csv
 
-"""Representation.py contains Representation class and assisting UI functions
+"""
+Representation.py contains Representation class and UI functions
 
 Responds to Director by:
     * Print prompts and relay responses
     * Print requested data
     * Present available options for databases, processing, viewing
 
-Functions:
+Functions: 
     * Serve as UI prompts and to augment other printed/file representations
 
 """
@@ -24,7 +25,7 @@ class Representation:
     - Handles file-output. Raw data should be output as a csv file. Graphical representations may be implemented later.
     - Runs all interaction with user and computer (display/fileio)
 
-    Attributes:
+    :Attributes:
             'self.file_out_path': file out path to the desired directory
             'self.base_name': base file name to maintain consistency in output
 
@@ -154,6 +155,13 @@ def write_uniprot_to_file(seq_record_list):
 
 
 def write_sequence_to_file(ID, copy_list, file_name):
+    """
+
+    :param ID:
+    :param copy_list:
+    :param file_name:
+    :return:
+    """
     file_to_write = open(file_name, "a+")
     file_to_write.write(str(ID) + ",")
     for i in range(len(copy_list)):
@@ -166,11 +174,8 @@ def read_file(path):
     """
     Reads files in from the given path
 
-    Args:
-        path: the full path of the desired file
-
-    Returns:
-         a list of id,sequence formatted strings
+    :param path: the full path of the desired file
+    :returns:  a list of id,sequence formatted strings
     """
     with open(path, "r") as sequence_file:
         sequence_reader = csv.reader(sequence_file, delimiter=' ')
@@ -189,11 +194,9 @@ def parse_to_string_list(file_string):
     is done automatically by csv reader. NOT NEEDED
     Formats file strings to a list of ["id","sequence"] lists (ex. [[id1, sequence1],[id2, sequence2], [id3, sequence3]]
 
-    Args:
-        file_string: a list of "id,sequence" strings from a file
+    :param file_string: a list of "id,sequence" strings from a file
 
-    Returns:
-        a list formatted as in the example above
+    :returns: a list formatted as in the example above
     """
     new_list = []
     for i in range(len(file_string)):
@@ -203,24 +206,20 @@ def parse_to_string_list(file_string):
     return new_list
 
 
-def write_sec_bias_to_file(ID, copy_list, path):
+def sec_bias_to_file(ID, copy_list, path):
     """
-    Writes the file for exporting secondary bias data.
+        Writes the file for exporting secondary bias data.
 
-    Args:
-        ID: The id associated with the sequence being processed
-        copy_list: a list to be written in csv format
-        path: the file path writing to
+        :param ID: The id associated with the sequence being processed
+        :param copy_list: a list to be written in csv format
+        :param path: the file path writing to
 
-    Returns:
-        nothing
-
-
-    """
+        :returns: nothing
+        """
     with open(path, 'w', newline='') as seq_csv_file:
         seq_writer = csv.writer(seq_csv_file, delimiter=' ')
         add_id = [ID]
-        copy_list = add_id+ copy_list
+        copy_list = add_id + copy_list
         for i in range(len(copy_list)):
             seq_writer.writerow(copy_list)
 
