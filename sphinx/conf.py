@@ -133,7 +133,7 @@ latex_elements = {
 #  author, documentclass [howto, manual, or own class]).
 latex_documents = [
     (master_doc, 'SequenceAnalyzer.tex', 'Sequence Analyzer Documentation',
-     'Colton Garelli and Jamie P. Ellis', 'manual'),
+     'Colton Garelli, Jamie P. Ellis, Toby Dragon', 'manual'),
 ]
 
 
