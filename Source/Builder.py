@@ -1,3 +1,4 @@
+# -*- coding: utf-8 -*-
 # builder class
 import abc
 import csv
