@@ -1,3 +1,5 @@
+
+
 from PyQt5 import QtWidgets
 
 import SecondaryBiasFinder
@@ -12,6 +14,7 @@ import PyQt5.QtWidgets
 from Builder import UniprotBuilder
 import pprint
 import json
+import os
 
 
 def analyze_group(self, list_index):
@@ -102,22 +105,13 @@ def function_for_experimenting():
     window.show()
     app.exec_()
 
-
-def UI_main(director):
-    in_source = director.define_input_source()
-    if in_source == "up":
-        director.access_databases()
-    elif in_source == "file":
-        director.define_input_source()
-
-
 def uniprot_test_request():
     uniprot_builder = UniprotBuilder()
     columns = uniprot_builder.construct_column_string(['id', 'seq'])
     request_url = uniprot_builder.create_request_url('tardigrade', columns)
     data = uniprot_builder.make_request_get_response(request_url)
     record_list = uniprot_builder.uniprot_fasta_to_seqrecord(data)
-    print(record_list[0])
+    print(record_list)
 
 
 def testing_FELLS_requesting():
@@ -141,13 +135,28 @@ def testing_SODA_requesting():
         json_obj = SODA_builder.check_request_status(jobid)
     new_id = json_obj.get('')
     something = SODA_builder.retrieve_response_data(jobid)
-
     print(something.decode('utf-8'))
+
+
+def UI_main(director):
+    in_source = director.define_file_directory()
+    check_in = Director.check_input_method(in_source)
+    while not check_in:
+        in_source = director.define_file_directory()
+        check_in = Director.check_input_method(in_source)
+    if in_source == "up":
+        seqrec_list = director.access_databases()
+        director.file_out_dir = director.define_file_directory()
+    elif in_source == "file":
+        director.file_in_path = director.define_file_directory()
+
+
 
 
 if __name__ == '__main__':
     main_director = Director.Director()
     # uniprot_test_request()
-    testing_SODA_requesting()
+    # testing_SODA_requesting()
 
-    # UI_main(main_director)
+    UI_main(main_director)
+

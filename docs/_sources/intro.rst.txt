@@ -20,16 +20,6 @@ Secondary Bias:
    * A sequence trend around statistically biased residues and
    * a test to see definition styling
 
-
-Internal crossreferences, like example_.
-
-
-
-
-This is an example crossreference target.
-
-.. _example: something here
-
 **Cheatsheets**
 
    1. The website: https://coltongarelli.github.io/Sequence-Analyzer/index.html

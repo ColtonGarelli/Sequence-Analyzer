@@ -35,10 +35,7 @@ class AnalysisBuilder(Builder):
         """
 
 
-        Variables:
-            self.sec_bias_list: a list of Sequence objects instantiated from file
-
-
+        :param: self.sec_bias_list: a list of Sequence objects instantiated from file
         """
         super(AnalysisBuilder, self).__init__()
 
@@ -105,7 +102,7 @@ class SODAAnalysisBuilder(AnalysisBuilder):
         self.json_obj = None  # a json dictionary
 
     def submit_job_request(self, seq_in):
-        body = {"sequence": seq_in.seq}
+        body = {"sequence": seq_in}
         response = r.request(method='POST', url=self._post_url, data=body)
         json_obj = json.loads(response.content)
         self.job_id = json_obj.get('jobid')
@@ -166,7 +163,7 @@ class UniprotBuilder(DatabaseBuilder):
 
     """
     _base_url = "https://www.uniprot.org/uniprot/?query="
-    url_extension = "&limit=10000&format=fasta"
+    url_extension = "&limit=100&format="
     column_dict = {'id': 'id', 'entry': 'entry name', 'Organism': 'organism', 'prot name': "protein name",
                    'seq': 'sequence', 'mass': 'mass', 'abs': 'comment(ABSORPTION)', 'pH': 'comment(PH DEPENDENCE)',
                    'domain': 'comment(DOMAIN)', 'comp bias': 'feature(COMPOSITIONAL BIAS)',
@@ -175,9 +172,9 @@ class UniprotBuilder(DatabaseBuilder):
     def __init__(self):
         """
 
-        Args:
+        :param:
 
-        Returns:
+        :returns:
         """
         super(UniprotBuilder, self).__init__()
         self.request_url = None
@@ -193,8 +190,8 @@ class UniprotBuilder(DatabaseBuilder):
                 column_string += (',' + self.column_dict[i])
         return column_string
 
-    def create_request_url(self, word_search, column_string):
-        self.request_url = self.get_base_url() + word_search + column_string + self.url_extension
+    def create_request_url(self, response_format, column_string):
+        self.request_url = self.get_base_url() + response_format + column_string + self.url_extension
         return self.request_url
 
     def make_request_get_response(self, search_url):
@@ -204,18 +201,18 @@ class UniprotBuilder(DatabaseBuilder):
     def uniprot_fasta_to_seqrecord(self, uniprot_fasta):
         seq_record_list = []
         if isinstance(uniprot_fasta, str):
-            with open(os.path.join('/Users/coltongarelli/Desktop/uniprotxmltest.fasta'), 'w') as h:
+            with open(os.path.join('/Users/coltongarelli/Desktop/uniprotxmltest-fasta.txt'), 'a') as h:
                 h.write(uniprot_fasta)
-                for record in SeqIO.parse("/Users/coltongarelli/Desktop/uniprotxmltest.fasta", 'fasta'):
+                for record in SeqIO.parse("/Users/coltongarelli/Desktop/uniprotxmltest-fasta.txt", 'fasta'):
                     seq_record_list.append(record)
+            return seq_record_list
         else:
             return None
-        return seq_record_list
 
     def uniprot_xml_to_seqrecord(self, uniprot_xml):
         seq_record_list = []
         if isinstance(uniprot_xml, str):
-            with open('/Users/coltongarelli/Desktop/uniprotxmltest.xml', 'w') as h:
+            with open('/Users/coltongarelli/Desktop/uniprotxmltest.xml', 'a') as h:
                 h.write(uniprot_xml)
                 for record in SeqIO.parse("/Users/coltongarelli/Desktop/uniprotxmltest.xml", 'uniprot-xml'):
                     seq_record_list.append(record)
@@ -225,17 +222,17 @@ class UniprotBuilder(DatabaseBuilder):
         return seq_record_list
 
     def uniprot_tab_separated_to_file(self, uniprot_tab):
-        with open('/Users/coltongarelli/Desktop/uniprotxmltest.txt', 'w') as f:
+        with open('/Users/coltongarelli/Desktop/uniprotxmltest.txt', 'a') as f:
             csv.writer(f, delimiter='\t')
             f.write(uniprot_tab)
         return
 
     def seq_record_to_uniprot_xml(self, seq_record):
-        with open('/Users/coltongarelli/Desktop/uniprotxmltest.xml', 'w') as sr_file:
+        with open('/Users/coltongarelli/Desktop/uniprotxmltest.xml', 'a') as sr_file:
             pass
 
     def prep_uniprot_output(self, seq_list):
-        output_string = ""
+        output_string: str
         SeqIO.write(seq_list, output_string, "xml")
         return output_string
 

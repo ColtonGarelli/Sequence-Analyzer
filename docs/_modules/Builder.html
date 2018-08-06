@@ -183,10 +183,7 @@
         <span class="sd">&quot;&quot;&quot;</span>
 
 
-<span class="sd">        Variables:</span>
-<span class="sd">            self.sec_bias_list: a list of Sequence objects instantiated from file</span>
-
-
+<span class="sd">        :param: self.sec_bias_list: a list of Sequence objects instantiated from file</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">AnalysisBuilder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span></div>
 
@@ -253,7 +250,7 @@
         <span class="bp">self</span><span class="o">.</span><span class="n">json_obj</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># a json dictionary</span>
 
 <div class="viewcode-block" id="SODAAnalysisBuilder.submit_job_request"><a class="viewcode-back" href="../Builder.html#Builder.SODAAnalysisBuilder.submit_job_request">[docs]</a>    <span class="k">def</span> <span class="nf">submit_job_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq_in</span><span class="p">):</span>
-        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;sequence&quot;</span><span class="p">:</span> <span class="n">seq_in</span><span class="o">.</span><span class="n">seq</span><span class="p">}</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;sequence&quot;</span><span class="p">:</span> <span class="n">seq_in</span><span class="p">}</span>
         <span class="n">response</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_post_url</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">body</span><span class="p">)</span>
         <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">job_id</span> <span class="o">=</span> <span class="n">json_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;jobid&#39;</span><span class="p">)</span>
@@ -314,7 +311,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">_base_url</span> <span class="o">=</span> <span class="s2">&quot;https://www.uniprot.org/uniprot/?query=&quot;</span>
-    <span class="n">url_extension</span> <span class="o">=</span> <span class="s2">&quot;&amp;limit=10000&amp;format=fasta&quot;</span>
+    <span class="n">url_extension</span> <span class="o">=</span> <span class="s2">&quot;&amp;limit=100&amp;format=&quot;</span>
     <span class="n">column_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;id&#39;</span><span class="p">:</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;entry&#39;</span><span class="p">:</span> <span class="s1">&#39;entry name&#39;</span><span class="p">,</span> <span class="s1">&#39;Organism&#39;</span><span class="p">:</span> <span class="s1">&#39;organism&#39;</span><span class="p">,</span> <span class="s1">&#39;prot name&#39;</span><span class="p">:</span> <span class="s2">&quot;protein name&quot;</span><span class="p">,</span>
                    <span class="s1">&#39;seq&#39;</span><span class="p">:</span> <span class="s1">&#39;sequence&#39;</span><span class="p">,</span> <span class="s1">&#39;mass&#39;</span><span class="p">:</span> <span class="s1">&#39;mass&#39;</span><span class="p">,</span> <span class="s1">&#39;abs&#39;</span><span class="p">:</span> <span class="s1">&#39;comment(ABSORPTION)&#39;</span><span class="p">,</span> <span class="s1">&#39;pH&#39;</span><span class="p">:</span> <span class="s1">&#39;comment(PH DEPENDENCE)&#39;</span><span class="p">,</span>
                    <span class="s1">&#39;domain&#39;</span><span class="p">:</span> <span class="s1">&#39;comment(DOMAIN)&#39;</span><span class="p">,</span> <span class="s1">&#39;comp bias&#39;</span><span class="p">:</span> <span class="s1">&#39;feature(COMPOSITIONAL BIAS)&#39;</span><span class="p">,</span>
@@ -323,9 +320,9 @@
     <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
-<span class="sd">        Args:</span>
+<span class="sd">        :param:</span>
 
-<span class="sd">        Returns:</span>
+<span class="sd">        :returns:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
         <span class="nb">super</span><span class="p">(</span><span class="n">UniprotBuilder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">request_url</span> <span class="o">=</span> <span class="kc">None</span>
@@ -341,8 +338,8 @@
                 <span class="n">column_string</span> <span class="o">+=</span> <span class="p">(</span><span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_dict</span><span class="p">[</span><span class="n">i</span><span class="p">])</span>
         <span class="k">return</span> <span class="n">column_string</span></div>
 
-<div class="viewcode-block" id="UniprotBuilder.create_request_url"><a class="viewcode-back" href="../Builder.html#Builder.UniprotBuilder.create_request_url">[docs]</a>    <span class="k">def</span> <span class="nf">create_request_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">word_search</span><span class="p">,</span> <span class="n">column_string</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">request_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_url</span><span class="p">()</span> <span class="o">+</span> <span class="n">word_search</span> <span class="o">+</span> <span class="n">column_string</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_extension</span>
+<div class="viewcode-block" id="UniprotBuilder.create_request_url"><a class="viewcode-back" href="../Builder.html#Builder.UniprotBuilder.create_request_url">[docs]</a>    <span class="k">def</span> <span class="nf">create_request_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response_format</span><span class="p">,</span> <span class="n">column_string</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_url</span><span class="p">()</span> <span class="o">+</span> <span class="n">response_format</span> <span class="o">+</span> <span class="n">column_string</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">url_extension</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request_url</span></div>
 
 <div class="viewcode-block" id="UniprotBuilder.make_request_get_response"><a class="viewcode-back" href="../Builder.html#Builder.UniprotBuilder.make_request_get_response">[docs]</a>    <span class="k">def</span> <span class="nf">make_request_get_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">search_url</span><span class="p">):</span>
@@ -352,18 +349,18 @@
 <div class="viewcode-block" id="UniprotBuilder.uniprot_fasta_to_seqrecord"><a class="viewcode-back" href="../Builder.html#Builder.UniprotBuilder.uniprot_fasta_to_seqrecord">[docs]</a>    <span class="k">def</span> <span class="nf">uniprot_fasta_to_seqrecord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uniprot_fasta</span><span class="p">):</span>
         <span class="n">seq_record_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">uniprot_fasta</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;/Users/coltongarelli/Desktop/uniprotxmltest.fasta&#39;</span><span class="p">),</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">h</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;/Users/coltongarelli/Desktop/uniprotxmltest-fasta.txt&#39;</span><span class="p">),</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">h</span><span class="p">:</span>
                 <span class="n">h</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">uniprot_fasta</span><span class="p">)</span>
-                <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;/Users/coltongarelli/Desktop/uniprotxmltest.fasta&quot;</span><span class="p">,</span> <span class="s1">&#39;fasta&#39;</span><span class="p">):</span>
+                <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;/Users/coltongarelli/Desktop/uniprotxmltest-fasta.txt&quot;</span><span class="p">,</span> <span class="s1">&#39;fasta&#39;</span><span class="p">):</span>
                     <span class="n">seq_record_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">seq_record_list</span>
         <span class="k">else</span><span class="p">:</span>
-            <span class="k">return</span> <span class="kc">None</span>
-        <span class="k">return</span> <span class="n">seq_record_list</span></div>
+            <span class="k">return</span> <span class="kc">None</span></div>
 
 <div class="viewcode-block" id="UniprotBuilder.uniprot_xml_to_seqrecord"><a class="viewcode-back" href="../Builder.html#Builder.UniprotBuilder.uniprot_xml_to_seqrecord">[docs]</a>    <span class="k">def</span> <span class="nf">uniprot_xml_to_seqrecord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uniprot_xml</span><span class="p">):</span>
         <span class="n">seq_record_list</span> <span class="o">=</span> <span class="p">[]</span>
         <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">uniprot_xml</span><span class="p">,</span> <span class="nb">str</span><span class="p">):</span>
-            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/coltongarelli/Desktop/uniprotxmltest.xml&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">h</span><span class="p">:</span>
+            <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/coltongarelli/Desktop/uniprotxmltest.xml&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">h</span><span class="p">:</span>
                 <span class="n">h</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">uniprot_xml</span><span class="p">)</span>
                 <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="s2">&quot;/Users/coltongarelli/Desktop/uniprotxmltest.xml&quot;</span><span class="p">,</span> <span class="s1">&#39;uniprot-xml&#39;</span><span class="p">):</span>
                     <span class="n">seq_record_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">record</span><span class="p">)</span>
@@ -373,17 +370,17 @@
         <span class="k">return</span> <span class="n">seq_record_list</span></div>
 
 <div class="viewcode-block" id="UniprotBuilder.uniprot_tab_separated_to_file"><a class="viewcode-back" href="../Builder.html#Builder.UniprotBuilder.uniprot_tab_separated_to_file">[docs]</a>    <span class="k">def</span> <span class="nf">uniprot_tab_separated_to_file</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">uniprot_tab</span><span class="p">):</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/coltongarelli/Desktop/uniprotxmltest.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/coltongarelli/Desktop/uniprotxmltest.txt&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
             <span class="n">csv</span><span class="o">.</span><span class="n">writer</span><span class="p">(</span><span class="n">f</span><span class="p">,</span> <span class="n">delimiter</span><span class="o">=</span><span class="s1">&#39;</span><span class="se">\t</span><span class="s1">&#39;</span><span class="p">)</span>
             <span class="n">f</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">uniprot_tab</span><span class="p">)</span>
         <span class="k">return</span></div>
 
 <div class="viewcode-block" id="UniprotBuilder.seq_record_to_uniprot_xml"><a class="viewcode-back" href="../Builder.html#Builder.UniprotBuilder.seq_record_to_uniprot_xml">[docs]</a>    <span class="k">def</span> <span class="nf">seq_record_to_uniprot_xml</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq_record</span><span class="p">):</span>
-        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/coltongarelli/Desktop/uniprotxmltest.xml&#39;</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">sr_file</span><span class="p">:</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="s1">&#39;/Users/coltongarelli/Desktop/uniprotxmltest.xml&#39;</span><span class="p">,</span> <span class="s1">&#39;a&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">sr_file</span><span class="p">:</span>
             <span class="k">pass</span></div>
 
 <div class="viewcode-block" id="UniprotBuilder.prep_uniprot_output"><a class="viewcode-back" href="../Builder.html#Builder.UniprotBuilder.prep_uniprot_output">[docs]</a>    <span class="k">def</span> <span class="nf">prep_uniprot_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq_list</span><span class="p">):</span>
-        <span class="n">output_string</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+        <span class="n">output_string</span><span class="p">:</span> <span class="nb">str</span>
         <span class="n">SeqIO</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">seq_list</span><span class="p">,</span> <span class="n">output_string</span><span class="p">,</span> <span class="s2">&quot;xml&quot;</span><span class="p">)</span>
         <span class="k">return</span> <span class="n">output_string</span></div></div>
 

@@ -3,6 +3,8 @@ import SecondaryBiasFinder
 from Bio.SeqIO import UniprotIO
 from Bio import SeqIO
 import csv
+import os
+import pathlib
 
 """
 Representation.py contains Representation class and UI functions
@@ -25,7 +27,7 @@ class Representation:
     - Handles file-output. Raw data should be output as a csv file. Graphical representations may be implemented later.
     - Runs all interaction with user and computer (display/fileio)
 
-    :Attributes:
+    Attributes:
             'self.file_out_path': file out path to the desired directory
             'self.base_name': base file name to maintain consistency in output
 
@@ -50,21 +52,11 @@ class Representation:
         Manages file_in entry including providing examples, links to documentation for formatting
         and passing input file path from user to director
 
-        Returns:
-            user inputted path
+        :returns: user inputted path
         """
         # manual_sequence_input provides link to documentation on file_in format
         self.base_name = manual_sequence_input()
         return self.base_name
-
-    def choose_database(self):
-        """
-        Relays which database is being accessed so Director can access that database through its builder
-
-        Returns:
-            database choice
-        """
-        s = None
 
     # handles calling desired DB, representing responses,
     def db_options(self):
@@ -73,12 +65,11 @@ class Representation:
         Request information in this tuple contains keywords, query options,
         and response columns (everything needed to send a request)
 
-        Returns:
-            list containing database info defined in the director class
+        :returns: list containing database info defined in the director class
 
         """
         keyword = keyword_query_uniprot()
-        if keyword is None:
+        if keyword is "":
             options = data_options()
             return options
 
@@ -106,11 +97,9 @@ class Representation:
         Take the string passed in and prints it or writes it to file.
         In the future, a separate function for graphing
 
-        Args:
-            print_or_out(str): a string representing file our view
+        :param print_or_out(str): a string representing file our view
 
-        Returns:
-             Completion of file_out or printing (T/F)
+        :returns: Completion of file_out or printing (T/F)
         """
         if print_or_out == 'file':
             # add here
@@ -141,11 +130,70 @@ class Representation:
     def db_query_view(self):
         s = None
 
-    def select_input_source(self):
-        s = None
+    def choose_database(self):
+        """
+        Relays which database is being accessed so Director can access that database through its builder
+
+        :returns: database choice
+        """
+        db_choice = access_databases()
+        if db_choice != "1":
+            print("Sorry! That database hasn't been implemented.")
+        else:
+            return "up"
+
+
+def select_fileio_directory():
+        # Joins the home directior to the users typed in folder
+    home = os.path.expanduser('~')
+    folder_name_input = "/" + input("Please input a directory name to see if it exists at: {} ".format(home)
+                        + "\nNote that searches are case sensitive\n")
+    folder_check = os.path.isdir(folder_name_input)
+    while not folder_check:
+        print(home + folder_name_input + "  is NOT a valid directory")
+        folder_name_input = input("Please input a directory name to see if it exists at: {} ".format(home)
+                                  + "\nNote that searches are case sensitive\n")
+    folder_path = os.path.join(home, folder_name_input)
+    # Checks to see if the folder exsists
+    print(folder_path + " is a valid directory.")
+    return folder_path
+
+
+def select_db_format():
+    input_type = input("If you would like to simply import IDs and sequences for analysis, enter 1\n\n"
+                       "If you would like additional information for viewing, enter 2")
+    while input_type != "1" or input_type != "2":
+        input_type = input("Please enter a valid response.\n\n\n"
+                           "If you would like to simply import IDs and sequences for analysis, enter 1\n"
+                           "If you would like additional information for viewing, enter 2")
+    if input_type == "1":
+        return "fasta"
+    elif input_type == "2":
+        return "xml"
+
+
+def prompt_output_dir():
+    out_path = input("Please input the full desired path for outputting files: ")
+
+
+def access_databases():
+    """
+    Prompts user for database to get info
+
+    Returns:
+        string code for database choice
+    """
+    print("Enter the corresponding number to access a database:\n\n")
+    database_choice = input("1. UniProt\n2. EMBL-EBI\n3. Some other one??\n\n0. Return to start")
+    return database_choice
 
 
 def write_uniprot_to_file(seq_record_list):
+    """
+
+    :param seq_record_list:
+    :return:
+    """
     try:
         with open("example.xml", "w") as output_handle:
             SeqIO.write(seq_record_list, output_handle, "xml")
@@ -157,7 +205,7 @@ def write_uniprot_to_file(seq_record_list):
 def write_sequence_to_file(ID, copy_list, file_name):
     """
 
-     ID:
+    :param ID:
     :param copy_list:
     :param file_name:
     :return:
@@ -177,6 +225,7 @@ def read_file(path):
     :param path: the full path of the desired file
     :returns:  a list of id,sequence formatted strings
     """
+    sequence_strings = ""
     with open(path, "r") as sequence_file:
         sequence_reader = csv.reader(sequence_file, delimiter=' ')
         for row in sequence_reader:
@@ -187,6 +236,24 @@ def read_file(path):
 #   Data members are separated by ,
 #   Each comma notes a new cell
     return sequence_strings
+
+
+def sec_bias_file_o(ID, copy_list, path):
+    """
+    Writes the file for exporting secondary bias data.
+
+    :param ID: The id associated with the sequence being processed
+    :param copy_list: a list to be written in csv format
+    :param path: the file path writing to
+
+    :returns: nothing
+    """
+    with open(path, 'w', newline='') as seq_csv_file:
+        seq_writer = csv.writer(seq_csv_file, delimiter=' ')
+        add_id = [ID]
+        copy_list = add_id + copy_list
+        for i in range(len(copy_list)):
+            seq_writer.writerow(copy_list)
 
 
 def parse_to_string_list(file_string):
@@ -204,24 +271,6 @@ def parse_to_string_list(file_string):
         new_list.append(file_string[i].split(","))
     # need something to do add last sequence
     return new_list
-
-
-def write_sec_bias_to_file(ID, copy_list, path):
-    """
-    Writes the file for exporting secondary bias data.
-
-    :param ID: The id associated with the sequence being processed
-    :param copy_list: a list to be written in csv format
-    :param path: the file path writing to
-
-    :returns: nothing
-    """
-    with open(path, 'w', newline='') as seq_csv_file:
-        seq_writer = csv.writer(seq_csv_file, delimiter=' ')
-        add_id = [ID]
-        copy_list = add_id + copy_list
-        for i in range(len(copy_list)):
-            seq_writer.writerow(copy_list)
 
 
 def fasta_parser(path):
@@ -288,7 +337,6 @@ def convert_to_ints(string_in):
 
 
 def welcome():
-
     print("Welcome to the Sequence Analyzer\n")
     print("Please refer to documentation at https://github.com/ColtonGarelli/Sequence-Analyzer/ before using.\n\n")
 
@@ -308,16 +356,7 @@ def main_page():
     return usage
 
 
-def access_databases():
-    """
-    Prompts user for database to get info
 
-    Returns:
-        string code for database choice
-    """
-    print("Enter the corresponding number to access a database:\n\n")
-    database_choice = input("1. UniProt\n2. EMBL-EBI\n3. Some other one??\n\n0. Return to start")
-    return database_choice
 
 
 def database_response_options():
@@ -369,7 +408,7 @@ def keyword_query_uniprot():
     Returns:
         A tuple with keys for the UniProt url constructor dictionary
     """
-    query = input("Search something: ")
+    query = input("Enter a keyword search or press enter to continue: ")
     return query
 
 

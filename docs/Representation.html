@@ -181,23 +181,23 @@ and communicates with the Director class to change the state of data.</p>
 <li>Handles file-output. Raw data should be output as a csv file. Graphical representations may be implemented later.</li>
 <li>Runs all interaction with user and computer (display/fileio)</li>
 </ul>
-<table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Attributes:</th><td class="field-body">‘self.file_out_path’: file out path to the desired directory
-‘self.base_name’: base file name to maintain consistency in output</td>
-</tr>
-</tbody>
-</table>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>‘self.file_out_path’: file out path to the desired directory
+‘self.base_name’: base file name to maintain consistency in output</dd>
+</dl>
 <dl class="method">
 <dt id="Representation.Representation.choose_database">
 <code class="descname">choose_database</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.choose_database"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.choose_database" title="Permalink to this definition">¶</a></dt>
 <dd><p>Relays which database is being accessed so Director can access that database through its builder</p>
-<dl class="docutils">
-<dt>Returns:</dt>
-<dd>database choice</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">database choice</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -223,10 +223,14 @@ multiple data output syntax</p>
 <dd><p>Relays an ordered tuple to the director containing request information.
 Request information in this tuple contains keywords, query options,
 and response columns (everything needed to send a request)</p>
-<dl class="docutils">
-<dt>Returns:</dt>
-<dd>list containing database info defined in the director class</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">list containing database info defined in the director class</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -254,10 +258,14 @@ and response columns (everything needed to send a request)</p>
 <code class="descname">manual_sequence_entry</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.manual_sequence_entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.manual_sequence_entry" title="Permalink to this definition">¶</a></dt>
 <dd><p>Manages file_in entry including providing examples, links to documentation for formatting
 and passing input file path from user to director</p>
-<dl class="docutils">
-<dt>Returns:</dt>
-<dd>user inputted path</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">user inputted path</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -265,18 +273,17 @@ and passing input file path from user to director</p>
 <code class="descname">output_data</code><span class="sig-paren">(</span><em>print_or_out</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.output_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.output_data" title="Permalink to this definition">¶</a></dt>
 <dd><p>Take the string passed in and prints it or writes it to file.
 In the future, a separate function for graphing</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>print_or_out(str): a string representing file our view</dd>
-<dt>Returns:</dt>
-<dd>Completion of file_out or printing (T/F)</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>print_or_out</strong><strong>(</strong><strong>str</strong><strong>)</strong> – a string representing file our view</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">Completion of file_out or printing (T/F)</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
-
-<dl class="method">
-<dt id="Representation.Representation.select_input_source">
-<code class="descname">select_input_source</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#Representation.select_input_source"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.Representation.select_input_source" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
 
 <dl class="method">
 <dt id="Representation.Representation.set_print_string">
@@ -438,6 +445,11 @@ Formats file strings to a list of [“id”,”sequence”] lists (ex. [[id1, se
 <dd></dd></dl>
 
 <dl class="function">
+<dt id="Representation.prompt_output_dir">
+<code class="descclassname">Representation.</code><code class="descname">prompt_output_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#prompt_output_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.prompt_output_dir" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
 <dt id="Representation.prompt_sequence_input">
 <code class="descclassname">Representation.</code><code class="descname">prompt_sequence_input</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#prompt_sequence_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.prompt_sequence_input" title="Permalink to this definition">¶</a></dt>
 <dd><p>Prompts user to enter a sequence manually, and calls Sequence.check_aa_entry to ensure valid entry=</p>
@@ -475,25 +487,8 @@ Formats file strings to a list of [“id”,”sequence”] lists (ex. [[id1, se
 </dd></dl>
 
 <dl class="function">
-<dt id="Representation.view_database_information">
-<code class="descclassname">Representation.</code><code class="descname">view_database_information</code><span class="sig-paren">(</span><em>prepped_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#view_database_information"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.view_database_information" title="Permalink to this definition">¶</a></dt>
-<dd><p>Displays prepared string data and prompts user for limiting that data in view</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>prepped_string: a string formatted to print and be parsed for modified printing</dd>
-<dt>Yields:</dt>
-<dd>Prints views to screen</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="Representation.welcome">
-<code class="descclassname">Representation.</code><code class="descname">welcome</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#welcome"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.welcome" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="function">
-<dt id="Representation.write_sec_bias_to_file">
-<code class="descclassname">Representation.</code><code class="descname">write_sec_bias_to_file</code><span class="sig-paren">(</span><em>ID</em>, <em>copy_list</em>, <em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#write_sec_bias_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.write_sec_bias_to_file" title="Permalink to this definition">¶</a></dt>
+<dt id="Representation.sec_bias_file_o">
+<code class="descclassname">Representation.</code><code class="descname">sec_bias_file_o</code><span class="sig-paren">(</span><em>ID</em>, <em>copy_list</em>, <em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#sec_bias_file_o"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.sec_bias_file_o" title="Permalink to this definition">¶</a></dt>
 <dd><p>Writes the file for exporting secondary bias data.</p>
 <table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
@@ -514,15 +509,41 @@ Formats file strings to a list of [“id”,”sequence”] lists (ex. [[id1, se
 </dd></dl>
 
 <dl class="function">
+<dt id="Representation.select_db_format">
+<code class="descclassname">Representation.</code><code class="descname">select_db_format</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#select_db_format"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.select_db_format" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Representation.select_fileio_directory">
+<code class="descclassname">Representation.</code><code class="descname">select_fileio_directory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#select_fileio_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.select_fileio_directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="Representation.view_database_information">
+<code class="descclassname">Representation.</code><code class="descname">view_database_information</code><span class="sig-paren">(</span><em>prepped_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#view_database_information"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.view_database_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays prepared string data and prompts user for limiting that data in view</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>prepped_string: a string formatted to print and be parsed for modified printing</dd>
+<dt>Yields:</dt>
+<dd>Prints views to screen</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="Representation.welcome">
+<code class="descclassname">Representation.</code><code class="descname">welcome</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#welcome"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.welcome" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
 <dt id="Representation.write_sequence_to_file">
 <code class="descclassname">Representation.</code><code class="descname">write_sequence_to_file</code><span class="sig-paren">(</span><em>ID</em>, <em>copy_list</em>, <em>file_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#write_sequence_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.write_sequence_to_file" title="Permalink to this definition">¶</a></dt>
-<dd><blockquote>
-<div>ID:</div></blockquote>
-<table class="docutils field-list" frame="void" rules="none">
+<dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
 <tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ID</strong> – </li>
 <li><strong>copy_list</strong> – </li>
 <li><strong>file_name</strong> – </li>
 </ul>
@@ -538,7 +559,17 @@ Formats file strings to a list of [“id”,”sequence”] lists (ex. [[id1, se
 <dl class="function">
 <dt id="Representation.write_uniprot_to_file">
 <code class="descclassname">Representation.</code><code class="descname">write_uniprot_to_file</code><span class="sig-paren">(</span><em>seq_record_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Representation.html#write_uniprot_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Representation.write_uniprot_to_file" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>seq_record_list</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
 
 </div>
 </div>

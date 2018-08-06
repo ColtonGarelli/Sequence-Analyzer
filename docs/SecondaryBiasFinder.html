@@ -166,10 +166,25 @@
 <dt id="SecondaryBiasFinder.SecondaryBias">
 <em class="property">class </em><code class="descclassname">SecondaryBiasFinder.</code><code class="descname">SecondaryBias</code><a class="reference internal" href="_modules/SecondaryBiasFinder.html#SecondaryBias"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.SecondaryBias" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">Bio.SeqRecord.SeqRecord</span></code></p>
-<p>SecondaryBias extends the Sequence class. SecondaryBias has methods prompt input determines primary
-and secondary sequence biases. Is used primarily to find primary glutamine bias, and secondary
+<p>SecondaryBias extends the SeqRecord class. SecondaryBias determines primary and secondary sequence biases.
+Is used primarily to find primary glutamine bias, and secondary
 biases at the +/- 1,2,3, and a total of these 6 positions, for each Q.</p>
-<p>Attributes:</p>
+<dl class="docutils">
+<dt>Attributes:</dt>
+<dd>self.primary_bias:
+self.sequence_len:
+self.Q_index:
+self.Q_content:
+self.one_away:
+self.two_away:
+self.three_away:
+self.local_sequence:
+self.one_away_avg:
+self.two_away_avg:
+self.three_away_avg:
+self.local_avg:
+self.amino_acids:</dd>
+</dl>
 <dl class="method">
 <dt id="SecondaryBiasFinder.SecondaryBias.bias_finder">
 <code class="descname">bias_finder</code><span class="sig-paren">(</span><em>primary_bias</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/SecondaryBiasFinder.html#SecondaryBias.bias_finder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.SecondaryBias.bias_finder" title="Permalink to this definition">¶</a></dt>
@@ -198,10 +213,14 @@ self.sequence_len:</dd>
 <code class="descname">find_primary_bias</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/SecondaryBiasFinder.html#SecondaryBias.find_primary_bias"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.SecondaryBias.find_primary_bias" title="Permalink to this definition">¶</a></dt>
 <dd><p>Finds the primary bias defined by the user. Ignores first and last three aa in seq for primary bias calculation.
 Stores the index of each primary bias residue in the sequence string in self.primary_bias</p>
-<dl class="docutils">
-<dt>Returns:</dt>
-<dd>updates self.Q_index list (no return)</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">updates self.Q_index list (no return)</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="method">
@@ -212,23 +231,17 @@ Stores the index of each primary bias residue in the sequence string in self.pri
 <dl class="method">
 <dt id="SecondaryBiasFinder.SecondaryBias.initialize_sec_bias">
 <code class="descname">initialize_sec_bias</code><span class="sig-paren">(</span><em>seq_name</em>, <em>seq_in</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/SecondaryBiasFinder.html#SecondaryBias.initialize_sec_bias"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.SecondaryBias.initialize_sec_bias" title="Permalink to this definition">¶</a></dt>
-<dd><p>Effectively a constructor to create a SecondaryBias object from an id-sequence pair
-Args:</p>
-<blockquote>
-<div><table class="docutils field-list" frame="void" rules="none">
+<dd><p>Effectively a constructor to create a SecondaryBias object from an id-sequence pair</p>
+<p>:param:seq_name: a sequence id
+:param seq_in: the sequence</p>
+<table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
 <tbody valign="top">
-<tr class="field-odd field"><th class="field-name">seq_name:</th><td class="field-body">a sequence id</td>
-</tr>
-<tr class="field-even field"><th class="field-name">seq_in:</th><td class="field-body">the sequence</td>
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">List of SecondaryBias</td>
 </tr>
 </tbody>
 </table>
-</div></blockquote>
-<p>Returns:</p>
-<blockquote>
-<div>List of SecondaryBias</div></blockquote>
 </dd></dl>
 
 <dl class="method">
@@ -248,46 +261,20 @@ Args:</p>
 
 </dd></dl>
 
-<dl class="class">
-<dt id="SecondaryBiasFinder.Sequence">
-<em class="property">class </em><code class="descclassname">SecondaryBiasFinder.</code><code class="descname">Sequence</code><a class="reference internal" href="_modules/SecondaryBiasFinder.html#Sequence"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.Sequence" title="Permalink to this definition">¶</a></dt>
-<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Parent class for all of the sequence analysis classes. They inherit from this class in an effort to enforce some
-uniformity and promote flexibility in the case that this program begins to chew up substantial overhead.</p>
-<p>Args:</p>
-<blockquote>
-<div><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name" colspan="2">self.amino_acids:</th></tr>
-<tr class="field-odd field"><td>&#160;</td><td class="field-body">should probably be a class variable. need to refactor.</td>
-</tr>
-<tr class="field-even field"><th class="field-name">self.id:</th><td class="field-body">an id associated with the given sequence</td>
-</tr>
-<tr class="field-odd field"><th class="field-name">self.sequence:</th><td class="field-body">the sequence associated with the provided id</td>
-</tr>
-</tbody>
-</table>
-</div></blockquote>
-</dd></dl>
-
 <dl class="function">
 <dt id="SecondaryBiasFinder.create_SeqBias_object">
 <code class="descclassname">SecondaryBiasFinder.</code><code class="descname">create_SeqBias_object</code><span class="sig-paren">(</span><em>seq_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/SecondaryBiasFinder.html#create_SeqBias_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.create_SeqBias_object" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates SecondaryBias objects from a sequence by splitting an id-sequence pair  (ex. “id,sequence”)</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>seq_string: “id,sequence”</dd>
-<dt>Returns:</dt>
-<dd>a new SecondaryBias object with id and sequence initialized to id and sequence from the in_string</dd>
-</dl>
-</dd></dl>
-
-<dl class="function">
-<dt id="SecondaryBiasFinder.create_seqrecord_object">
-<code class="descclassname">SecondaryBiasFinder.</code><code class="descname">create_seqrecord_object</code><span class="sig-paren">(</span><em>sequence_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/SecondaryBiasFinder.html#create_seqrecord_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.create_seqrecord_object" title="Permalink to this definition">¶</a></dt>
-<dd><p>Creates a sequencerecord object from passed in information. Only handles id and sequence</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>seq_string</strong> – “id,sequence”</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a new SecondaryBias object with id and sequence initialized to id and sequence from the in_string</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -303,16 +290,30 @@ uniformity and promote flexibility in the case that this program begins to chew 
 </dd></dl>
 
 <dl class="function">
+<dt id="SecondaryBiasFinder.gen_seqrecord_object">
+<code class="descclassname">SecondaryBiasFinder.</code><code class="descname">gen_seqrecord_object</code><span class="sig-paren">(</span><em>sequence_dict</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/SecondaryBiasFinder.html#gen_seqrecord_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.gen_seqrecord_object" title="Permalink to this definition">¶</a></dt>
+<dd><p>Creates a sequencerecord object from passed in information. Only handles id and sequence</p>
+</dd></dl>
+
+<dl class="function">
 <dt id="SecondaryBiasFinder.processed_data_in">
 <code class="descclassname">SecondaryBiasFinder.</code><code class="descname">processed_data_in</code><span class="sig-paren">(</span><em>general_path</em>, <em>file_beginning</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/SecondaryBiasFinder.html#processed_data_in"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.processed_data_in" title="Permalink to this definition">¶</a></dt>
 <dd><p>Creates a list of SecondaryBias objects from file.</p>
-<dl class="docutils">
-<dt>Args:</dt>
-<dd>general_path:
-file_beginning:</dd>
-<dt>Returns:</dt>
-<dd>List of SecondaryBias objects</dd>
-</dl>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>general_path</strong> – </li>
+<li><strong>file_beginning</strong> – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">List of SecondaryBias objects</p>
+</td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
 <dl class="function">
@@ -322,7 +323,7 @@ file_beginning:</dd>
 
 <dl class="function">
 <dt id="SecondaryBiasFinder.seqrecord_to_secbias">
-<code class="descclassname">SecondaryBiasFinder.</code><code class="descname">seqrecord_to_secbias</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/SecondaryBiasFinder.html#seqrecord_to_secbias"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.seqrecord_to_secbias" title="Permalink to this definition">¶</a></dt>
+<code class="descclassname">SecondaryBiasFinder.</code><code class="descname">seqrecord_to_secbias</code><span class="sig-paren">(</span><em>seq_record: Bio.SeqRecord.SeqRecord</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/SecondaryBiasFinder.html#seqrecord_to_secbias"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#SecondaryBiasFinder.seqrecord_to_secbias" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="function">

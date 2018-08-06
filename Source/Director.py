@@ -1,5 +1,5 @@
 import Representation
-from Builder import AnalysisBuilder, DatabaseBuilder, SequenceBiasBuilder
+from Builder import AnalysisBuilder, UniprotBuilder, SequenceBiasBuilder
 import SecondaryBiasFinder
 
 
@@ -20,12 +20,11 @@ class Director:
         Creates 'representation' object to manage user interface and output
 
 
-        Attributes:
-            self.analysis: each director object contains an analysis object that run the desired set of analyses
-            self.representation: each director object contains an representation object to litigate data output
-            self.master_list: master sequence-id list. saved after file is first read in
-            self.file_in_path: path for sequence-id file in csv format
-            self.file_out_path: path for directory where files can be output
+        :cvar self.analysis: each director object contains an analysis object that run the desired set of analyses
+        :cvar self.representation: each director object contains an representation object to litigate data output
+        :cvar self.master_list: master sequence-id list. saved after file is first read in
+        :cvar self.file_in_path: path for sequence-id file in csv format
+        :cvar self.file_out_path: path for directory where files can be output
 
 
 
@@ -45,19 +44,19 @@ class Director:
         Uses 'representation' to prompt user for file path and prints information to the screen
 
 
-        Returns:
+        :returns:
 
 
         """
 
         self.set_file_in_path(self.representation.manual_sequence_entry())
 
-    def define_input_source(self):
+    def define_file_directory(self):
         """
 
         :return:
         """
-        data_source = self.representation.select_input_source()
+        data_source = Representation.select_fileio_directory()
         return data_source
 
     def analysis_helper(self):
@@ -76,15 +75,23 @@ class Director:
         """
 
         db_choice = self.representation.choose_database()
-        self.database = DatabaseBuilder()
+        self.database = UniprotBuilder()
         db_options = self.representation.db_options()
-    #   self.database.send_request
-    #   self.database.check_for_response
-    #   while not done:
-    #     self.database.check_for_response
-    #
-    #   database object should contain list of seqrecord objects
-    #   call database to make list and set master list equal to
+        response_opts = self.database.construct_column_string(db_options)
+        response_format = self.representation.select_fileio_directory()
+        request_url = self.database.create_request_url(response_format, response_opts)
+        response_info = self.database.make_request_get_response(request_url)
+        if response_format == "xml":
+            seq_list = self.database.uniprot_xml_to_seqrecord(response_info)
+        elif response_format == "fasta":
+            seq_list = self.database.uniprot_fasta_to_seqrecord(response_info)
+        elif response_format == "tab":
+            seq_list = self.database.uniprot_tab_separated_to_file(response_info)
+        else:
+            seq_list = None
+        # database object should contain list of seqrecord objects
+        # call database to make list and set master list equal to
+        return seq_list
 
     # if view is selected, run functions that create and functions that display desired info
     def database_presentation(self):
@@ -95,31 +102,18 @@ class Director:
         self.representation.set_print_string(self.representation.db_query_view())
     #   print the string
 
-    def create_sequence_objects(self,sequence_info):
+    def create_sequence_objects(self, sequence_info):
         """
 
         :return:
         """
-
-        try:
-            # determine if in xml or fasta format or dict
-            if sequence_info.type() == 'dict':
-                # dict will be ordered (id, seq)
-                seq_list = SecondaryBiasFinder.create_seqrecord_object(sequence_info)
-            # assuming uniprot xml for now
-            else:
-                seq_list = SecondaryBiasFinder.gen_seqrecord_from_xml(sequence_info)
-
-        except Exception:
-            s = None
-            print("something went bad")
     # turn string formatted info to SeqRecord objects
     # put SeqRecord obj list in master list
 
     def run_FELLS_analysis(self):
         """
 
-        Returns:
+        :returns:
 
         """
     #   sends list of seqrecord objects to fells module
@@ -131,8 +125,7 @@ class Director:
     def run_SODA_analysis(self):
         """
 
-        Returns:
-
+        :returns:
         """
         something = None
 
@@ -141,8 +134,7 @@ class Director:
         Reads file in and creates a master list of id-sequence lists. It then creates SecondaryBias objects and runs the
         analysis using its self.analysis object
 
-        Returns:
-             List of fully processed SecondaryBias objects
+        :returns: List of fully processed SecondaryBias objects
         """
         # for csv formatted files only. call
 
@@ -177,3 +169,10 @@ class Director:
 
     def set_file_out_dir(self, new_out_dir):
         self.file_out_dir = new_out_dir
+
+
+def check_input_method(input):
+    if input == 'up' or input == 'file':
+        return True
+    else:
+        return False

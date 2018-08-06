@@ -3,7 +3,7 @@ from typing import List
 import Representation
 
 import abc
-from Representation import write_sec_bias_to_file
+from Representation import sec_bias_file_o
 import os
 from Bio.SeqRecord import SeqRecord
 
@@ -27,33 +27,33 @@ very much work in function
 ---change to MVC format and use multiple inheritance to make classes that get seq info from uniprot
 '''
 
-
-class Sequence:
-    """
-    Parent class for all of the sequence analysis classes. They inherit from this class in an effort to enforce some
-    uniformity and promote flexibility in the case that this program begins to chew up substantial overhead.
-
-    Args:
-
-         :self.amino_acids: should probably be a class variable. need to refactor.
-         :self.id: an id associated with the given sequence
-         :self.sequence: the sequence associated with the provided id
-    """
-
-
 class SecondaryBias(SeqRecord):
     """
-    SecondaryBias extends the Sequence class. SecondaryBias has methods prompt input determines primary
-    and secondary sequence biases. Is used primarily to find primary glutamine bias, and secondary
+    SecondaryBias extends the SeqRecord class. SecondaryBias determines primary and secondary sequence biases.
+    Is used primarily to find primary glutamine bias, and secondary
     biases at the +/- 1,2,3, and a total of these 6 positions, for each Q.
 
     Attributes:
+        self.primary_bias:
+        self.sequence_len:
+        self.Q_index:
+        self.Q_content:
+        self.one_away:
+        self.two_away:
+        self.three_away:
+        self.local_sequence:
+        self.one_away_avg:
+        self.two_away_avg:
+        self.three_away_avg:
+        self.local_avg:
+        self.amino_acids:
+
+
 
     """
 
     def __init__(self):
         super(SecondaryBias, self).__init__(seq=None)
-        self.id = None
         self.amino_acid_dict = dict(A=0, C=1, D=2, E=3, F=4, G=5, H=6, I=7, K=8, L=9,
                                     M=10, N=11, P=12, Q=13, R=14, S=15, T=16, V=17, W=18, Y=19)
         self.primary_bias = "Q"
@@ -82,14 +82,11 @@ class SecondaryBias(SeqRecord):
     def initialize_sec_bias(self, seq_name, seq_in):
         """
         Effectively a constructor to create a SecondaryBias object from an id-sequence pair
-        Args:
 
-            :seq_name: a sequence id
-            :seq_in: the sequence
+        :param:seq_name: a sequence id
+        :param seq_in: the sequence
 
-        Returns:
-
-            List of SecondaryBias
+        :returns: List of SecondaryBias
         """
 
         self.id = seq_name
@@ -100,8 +97,7 @@ class SecondaryBias(SeqRecord):
         Finds the primary bias defined by the user. Ignores first and last three aa in seq for primary bias calculation.
         Stores the index of each primary bias residue in the sequence string in self.primary_bias
 
-        Returns:
-            updates self.Q_index list (no return)
+        :returns: updates self.Q_index list (no return)
         """
 
         if self.primary_bias in self.seq:
@@ -209,19 +205,19 @@ class SecondaryBias(SeqRecord):
         return self.primary_bias
 
 
-def seqrecord_to_secbias():
-    s = None
+def seqrecord_to_secbias(seq_record: SeqRecord):
+    sec_bias = SecondaryBias()
+    sec_bias.features = seq_record.id
+
 
 
 def create_SeqBias_object(seq_string):
     """
     Creates SecondaryBias objects from a sequence by splitting an id-sequence pair  (ex. "id,sequence")
 
-    Args:
-        seq_string: "id,sequence"
+    :param seq_string: "id,sequence"
 
-    Returns:
-        a new SecondaryBias object with id and sequence initialized to id and sequence from the in_string
+    :returns: a new SecondaryBias object with id and sequence initialized to id and sequence from the in_string
     """
     # 2D string array[i][0] --from reading csv
     # call create obj between each
@@ -237,12 +233,10 @@ def processed_data_in(general_path, file_beginning):
     Creates a list of SecondaryBias objects from file.
 
 
-    Args:
-        general_path:
-        file_beginning:
+    :param general_path:
+    :param file_beginning:
 
-    Returns:
-        List of SecondaryBias objects
+    :returns: List of SecondaryBias objects
     """
     general_path = general_path + file_beginning
     one_away_list = Representation.read_file(general_path + "one_away.csv")
@@ -291,9 +285,9 @@ def export_sec_bias_files(sequence_list):
     # file_to_write = open(file_path, "x")
     # file_to_write.close()
     for i in range(len(sequence_list)):
-        write_sec_bias_to_file(sequence_list[i].id, sequence_list[i].one_away, this_file)
+        sec_bias_file_o(sequence_list[i].id, sequence_list[i].one_away, this_file)
     for i in range(len(sequence_list)):
-        write_sec_bias_to_file(sequence_list[i].id, sequence_list[i].one_away_avg, this_file)
+        sec_bias_file_o(sequence_list[i].id, sequence_list[i].one_away_avg, this_file)
 
     this_file = file_name + "two_away" + ".csv"
     file = os.path.join(path, this_file)
@@ -301,9 +295,9 @@ def export_sec_bias_files(sequence_list):
     # file_to_write = open(os.path.join(path, this_file), "x")
     # file_to_write.close()
     for i in range(len(sequence_list)):
-        write_sec_bias_to_file(sequence_list[i].id, sequence_list[i].two_away, this_file)
+        sec_bias_file_o(sequence_list[i].id, sequence_list[i].two_away, this_file)
     for i in range(len(sequence_list)):
-        write_sec_bias_to_file(sequence_list[i].id, sequence_list[i].two_away_avg, this_file)
+        sec_bias_file_o(sequence_list[i].id, sequence_list[i].two_away_avg, this_file)
 
     this_file = file_name + "three_away" + ".csv"
     file = os.path.join(path, this_file)
@@ -311,9 +305,9 @@ def export_sec_bias_files(sequence_list):
     # file_to_write = open(os.path.join(path, this_file), "x")
     # file_to_write.close()
     for i in range(len(sequence_list)):
-        write_sec_bias_to_file(sequence_list[i].id, sequence_list[i].three_away, this_file)
+        sec_bias_file_o(sequence_list[i].id, sequence_list[i].three_away, this_file)
     for i in range(len(sequence_list)):
-        write_sec_bias_to_file(sequence_list[i].id, sequence_list[i].three_away_avg, this_file)
+        sec_bias_file_o(sequence_list[i].id, sequence_list[i].three_away_avg, this_file)
 
     this_file = file_name + "local_seq" + ".csv"
     file = os.path.join(path, this_file)
@@ -321,14 +315,14 @@ def export_sec_bias_files(sequence_list):
     # file_to_write = open(os.path.join(path, this_file), "x")
     # file_to_write.close()
     for i in range(len(sequence_list)):
-        write_sec_bias_to_file(sequence_list[i].id, sequence_list[i].local_sequence, this_file)
+        sec_bias_file_o(sequence_list[i].id, sequence_list[i].local_sequence, this_file)
     for i in range(len(sequence_list)):
-        write_sec_bias_to_file(sequence_list[i].id, sequence_list[i].local_avg, this_file)
+        sec_bias_file_o(sequence_list[i].id, sequence_list[i].local_avg, this_file)
 
     return path + file_name
 
 
-def create_seqrecord_object(sequence_dict):
+def gen_seqrecord_object(sequence_dict):
     """
     Creates a sequencerecord object from passed in information. Only handles id and sequence
 
