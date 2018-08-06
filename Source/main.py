@@ -140,6 +140,7 @@ def testing_SODA_requesting():
 
 
 def UI_main(director):
+    director.representation.introduction()
     in_source = director.define_file_directory()
     check_in = Director.check_input_method(in_source)
     while not check_in:
