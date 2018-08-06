@@ -105,6 +105,7 @@ def function_for_experimenting():
     window.show()
     app.exec_()
 
+
 def uniprot_test_request():
     uniprot_builder = UniprotBuilder()
     columns = uniprot_builder.construct_column_string(['id', 'seq'])
