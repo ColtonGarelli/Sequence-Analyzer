@@ -1,9 +1,10 @@
 from typing import List
 
+import Output_Functions
 import Representation
 
 import abc
-from Representation import sec_bias_file_o
+from Output_Functions import sec_bias_file_o
 import os
 from Bio.SeqRecord import SeqRecord
 
@@ -239,10 +240,10 @@ def processed_data_in(general_path, file_beginning):
     :returns: List of SecondaryBias objects
     """
     general_path = general_path + file_beginning
-    one_away_list = Representation.read_file(general_path + "one_away.csv")
-    two_away_list = Representation.read_file(general_path + "two_away.csv")
-    three_away_list = Representation.read_file(general_path + "three_away.csv")
-    local_away_list = Representation.read_file(general_path + "local_seq.csv")
+    one_away_list = Output_Functions.read_file(general_path + "one_away.csv")
+    two_away_list = Output_Functions.read_file(general_path + "two_away.csv")
+    three_away_list = Output_Functions.read_file(general_path + "three_away.csv")
+    local_away_list = Output_Functions.read_file(general_path + "local_seq.csv")
     seq_object_list = []
     # convert to 2D list of ints (other than first index
     for i1 in range(len(one_away_list[0])):

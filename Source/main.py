@@ -140,20 +140,18 @@ def testing_SODA_requesting():
 
 
 def UI_main(director):
-    director.representation.introduction()
-    in_source = director.define_file_directory()
-    check_in = Director.check_input_method(in_source)
-    while not check_in:
-        in_source = director.define_file_directory()
-        check_in = Director.check_input_method(in_source)
-    if in_source == "up":
-        seqrec_list = director.access_databases()
-        director.file_out_dir = director.define_file_directory()
-    elif in_source == "file":
-        director.file_in_path = director.define_file_directory()
-
-
-
+    done = False
+    input_source = director.start_up()
+    selected_dir = director.define_file_directory()
+    while not done:
+        if selected_dir == "1":
+            seq_list = director.handle_manual_input()
+        elif selected_dir == "2":
+            seq_list = director.db_access()
+        choice = director.db_view_or_process()
+        director.run_analysis()
+        director.view_analysis()
+        director.quit_or_continue()
 
 if __name__ == '__main__':
     main_director = Director.Director()

@@ -8,6 +8,7 @@ import os
 import requests as r
 from Bio import SeqIO
 
+
 from SecondaryBiasFinder import SecondaryBias
 
 
@@ -199,46 +200,23 @@ class UniprotBuilder(DatabaseBuilder):
         new_request = r.get(search_url)
         return new_request.content.decode('utf-8')
 
-    def uniprot_fasta_to_seqrecord(self, uniprot_fasta):
+    def uniprot_data_to_seqrecord(self, uniprot_data, file_address, file_format):
         seq_record_list = []
-        if isinstance(uniprot_fasta, str):
-            with open(os.path.join('/Users/coltongarelli/Desktop/uniprotxmltest-fasta.txt'), 'a') as h:
-                h.write(uniprot_fasta)
-                for record in SeqIO.parse("/Users/coltongarelli/Desktop/uniprotxmltest-fasta.txt", 'fasta'):
-                    seq_record_list.append(record)
-            return seq_record_list
-        else:
-            return None
-
-    def uniprot_xml_to_seqrecord(self, uniprot_xml):
-        seq_record_list = []
-        if isinstance(uniprot_xml, str):
-            with open('/Users/coltongarelli/Desktop/uniprotxmltest.xml', 'a') as h:
-                h.write(uniprot_xml)
-                for record in SeqIO.parse("/Users/coltongarelli/Desktop/uniprotxmltest.xml", 'uniprot-xml'):
-                    seq_record_list.append(record)
-            h.close()
-        else:
-            return None
+        file_address = os.path.join('/Users/coltongarelli/Desktop/uniprotxmltest-fasta.txt')
+        file_format = 'fasta'
+        with open(file_address, 'rU') as file:
+            for record in SeqIO.parse(file, file_format):
+                seq_record_list.append(record)
         return seq_record_list
 
-    def uniprot_tab_separated_to_file(self, uniprot_tab):
-        with open('/Users/coltongarelli/Desktop/uniprotxmltest.txt', 'a') as f:
-            csv.writer(f, delimiter='\t')
-            f.write(uniprot_tab)
-        return
+    def uniprot_xml_to_seqrecord(self, uniprot_xml, file_address):
+        seq_record_list = []
+        file_address = os.path.join('/Users/coltongarelli/Desktop/uniprotxmltest-fasta.txt')
+        with open(file_address, 'rU') as file:
+            parser = SeqIO.UniprotIO.Parser(file)
+            seq_record_list = parser.parse()
+        return seq_record_list
 
-    def seq_record_to_uniprot_xml(self, seq_record):
-        with open('/Users/coltongarelli/Desktop/uniprotxmltest.xml', 'a') as sr_file:
-            pass
-
-    def prep_uniprot_output(self, seq_list):
-        output_string: str
-        SeqIO.write(seq_list, output_string, "xml")
-        return output_string
-
-# class Super_TabIO(SeqIO.TabIO):
-#     def __init__(self):
-#         super(Super_TabIO, self).__init__()
-#
+    def seq_record_to_uniprot_format(self):
+        pass
 

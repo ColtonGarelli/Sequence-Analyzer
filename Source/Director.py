@@ -1,3 +1,4 @@
+import Output_Functions
 import Representation
 from Builder import AnalysisBuilder, UniprotBuilder, SequenceBiasBuilder
 import SecondaryBiasFinder
@@ -39,6 +40,9 @@ class Director:
         self.file_out_dir = None
         self.file_in_path = None
 
+    def start_up(self):
+        return self.representation.introduction()
+
     def handle_manual_input(self):
         """
         Uses 'representation' to prompt user for file path and prints information to the screen
@@ -56,7 +60,7 @@ class Director:
 
         :return:
         """
-        data_source = Representation.select_fileio_directory()
+        data_source = Output_Functions.select_fileio_directory()
         return data_source
 
     def analysis_helper(self):
@@ -68,7 +72,7 @@ class Director:
         new_path = str(slash_list[0])
         self.set_file_out_dir(new_path)
 
-    def access_databases(self):
+    def db_access(self):
         """
 
         :return:
@@ -78,15 +82,15 @@ class Director:
         self.database = UniprotBuilder()
         db_options = self.representation.db_options()
         response_opts = self.database.construct_column_string(db_options)
-        response_format = self.representation.select_fileio_directory()
+        response_format = "xml"
         request_url = self.database.create_request_url(response_format, response_opts)
         response_info = self.database.make_request_get_response(request_url)
         if response_format == "xml":
-            seq_list = self.database.uniprot_xml_to_seqrecord(response_info)
+            seq_list = self.database.uniprot_xml_to_seqrecord(response_info, self.file_in_path)
         elif response_format == "fasta":
-            seq_list = self.database.uniprot_fasta_to_seqrecord(response_info)
+            seq_list = self.database.uniprot_data_to_seqrecord(response_info, self.file_in_path, 'fasta')
         elif response_format == "tab":
-            seq_list = self.database.uniprot_tab_separated_to_file(response_info)
+            seq_list = self.database.uniprot_data_to_seqrecord(response_info, self.file_in_path, 'tab')
         else:
             seq_list = None
         # database object should contain list of seqrecord objects
@@ -94,13 +98,14 @@ class Director:
         return seq_list
 
     # if view is selected, run functions that create and functions that display desired info
-    def database_presentation(self):
+    def db_view_or_process(self):
         """
 
         :return:
         """
-        self.representation.set_print_string(self.representation.db_query_view())
-    #   print the string
+        pass
+        # self.representation.set_print_string(self.representation.db_query_view())
+        # print(self.representation.print_string)
 
     def create_sequence_objects(self, sequence_info):
         """
@@ -109,6 +114,14 @@ class Director:
         """
     # turn string formatted info to SeqRecord objects
     # put SeqRecord obj list in master list
+    def run_analysis(self):
+        pass
+
+    def view_analysis(self):
+        pass
+
+    def quit_or_continue(self):
+        pass
 
     def run_FELLS_analysis(self):
         """
@@ -169,10 +182,3 @@ class Director:
 
     def set_file_out_dir(self, new_out_dir):
         self.file_out_dir = new_out_dir
-
-
-def check_input_method(input):
-    if input == 'up' or input == 'file':
-        return True
-    else:
-        return False
