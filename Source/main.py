@@ -143,15 +143,26 @@ def UI_main(director):
     done = False
     input_source = director.start_up()
     selected_dir = director.define_file_directory()
+    first_time = True
     while not done:
-        if selected_dir == "1":
-            seq_list = director.handle_manual_input()
-        elif selected_dir == "2":
-            seq_list = director.db_access()
-        choice = director.db_view_or_process()
-        director.run_analysis()
-        director.view_analysis()
-        director.quit_or_continue()
+        if first_time:
+            if input_source == "1":
+                seq_list = director.handle_manual_input()
+            elif input_source == "2":
+                seq_list = director.db_access()
+            elif input_source == "0":
+                done = True
+        elif not first_time:
+            # give give option to quit or go again here and set done to true
+            pass
+
+        if not done:
+            first_time = False
+            choice = director.db_view_or_process()
+            director.run_analysis()
+            director.view_analysis()
+            director.quit_or_continue()
+
 
 if __name__ == '__main__':
     main_director = Director.Director()

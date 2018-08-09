@@ -12,12 +12,15 @@ def select_fileio_directory():
                         + "\nNote that searches are case sensitive\n")
     folder_check = os.path.isdir(check_dir)
     while not folder_check:
-        print(home + folder_check + "  is NOT a valid directory")
-        folder_name_input = input("Please input a directory name to see if it exists at: {} ".format(home)
+        print(check_dir + "  is NOT a valid directory")
+        check_dir = home + "/" + input("Please input a directory name to see if it exists at: {} ".format(home)
                                   + "\nNote that searches are case sensitive\n")
-    # Checks to see if the folder exsists
-    print(folder_check + " is a valid directory.")
-    return os.path.join(home, "/" + folder_check)
+        folder_check = os.path.isdir(check_dir)
+
+        # Checks to see if the folder exsists
+    print(check_dir + " is a valid directory.")
+    return_val = os.path.join(check_dir)
+    return return_val
 
 
 def select_db_format():

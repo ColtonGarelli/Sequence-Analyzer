@@ -2,21 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7bbb029-bcaf-48ad-b10b-48c7b7feb115" name="Default" comment="commit all">
-      <change beforePath="$PROJECT_DIR$/.idea/SequenceAnalyzer2.1.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/SequenceAnalyzer2.1.iml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Builder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Director.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Director.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Representation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Representation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Resources/Database info" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/Database info" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Resources/csv_key" beforeDir="false" afterPath="$PROJECT_DIR$/Resources/csv_key" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SecondaryBiasFinder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SecondaryBiasFinder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/__init__.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Output_Functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Output_Functions.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/FELLSAPITester.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/BuilderTests/FELLSAPITester.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/SecondaryBiasTester.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/BuilderTests/SecondaryBiasTester.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/UniProtAPITester.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/BuilderTests/UniProtAPITester.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sphinx/Python Resources.rst" beforeDir="false" afterPath="$PROJECT_DIR$/sphinx/Python Resources.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sphinx/intro.rst" beforeDir="false" afterPath="$PROJECT_DIR$/sphinx/intro.rst" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -26,14 +13,14 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.7354409">
+    <splitter split-orientation="horizontal" split-proportion="0.42845258">
       <split-first>
         <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file leaf-file-name="Builder.py" pinned="false" current-in-tab="true">
+          <file leaf-file-name="Builder.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Source/Builder.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="337">
-                  <caret line="215" column="46" lean-forward="true" selection-start-line="215" selection-start-column="46" selection-end-line="215" selection-end-column="46" />
+                <state relative-caret-position="538">
+                  <caret line="215" column="36" selection-start-line="215" selection-start-column="36" selection-end-line="215" selection-end-column="36" />
                   <folding>
                     <element signature="e#40#50#0" expanded="true" />
                   </folding>
@@ -44,8 +31,8 @@
           <file leaf-file-name="Representation.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Source/Representation.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="1845">
-                  <caret line="123" column="28" lean-forward="true" selection-start-line="123" selection-start-column="28" selection-end-line="123" selection-end-column="28" />
+                <state relative-caret-position="-1047">
+                  <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
                 </state>
               </provider>
             </entry>
@@ -53,10 +40,20 @@
           <file leaf-file-name="Output_Functions.py" pinned="false" current-in-tab="false">
             <entry file="file://$PROJECT_DIR$/Source/Output_Functions.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state>
+                <state relative-caret-position="300">
+                  <caret line="20" selection-start-line="20" selection-end-line="20" />
                   <folding>
                     <element signature="e#0#10#0" expanded="true" />
                   </folding>
+                </state>
+              </provider>
+            </entry>
+          </file>
+          <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+            <entry file="file://$PROJECT_DIR$/Source/main.py">
+              <provider selected="true" editor-type-id="text-editor">
+                <state relative-caret-position="328">
+                  <caret line="152" column="29" selection-start-line="152" selection-start-column="29" selection-end-line="152" selection-end-column="29" />
                 </state>
               </provider>
             </entry>
@@ -68,20 +65,11 @@
           <file leaf-file-name="Director.py" pinned="false" current-in-tab="true">
             <entry file="file://$PROJECT_DIR$/Source/Director.py">
               <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="272">
-                  <caret line="88" column="47" lean-forward="true" selection-start-line="88" selection-start-column="47" selection-end-line="88" selection-end-column="47" />
+                <state relative-caret-position="240">
+                  <caret line="63" selection-start-line="63" selection-end-line="63" />
                   <folding>
                     <element signature="e#0#23#0" expanded="true" />
                   </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Source/main.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="391">
-                  <caret line="149" column="39" selection-start-line="149" selection-start-column="39" selection-end-line="149" selection-end-column="39" />
                 </state>
               </provider>
             </entry>
@@ -146,7 +134,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/docs/index.rst" />
         <option value="$PROJECT_DIR$/References/CSV-IO.py" />
         <option value="$PROJECT_DIR$/docs/References/DocRefs" />
         <option value="$PROJECT_DIR$/pyvenv.cfg" />
@@ -191,12 +178,13 @@
         <option value="$PROJECT_DIR$/sphinx/intro.rst" />
         <option value="$PROJECT_DIR$/Source/__init__.py" />
         <option value="$PROJECT_DIR$/sphinx/Python Resources.rst" />
-        <option value="$PROJECT_DIR$/Source/Director.py" />
         <option value="$PROJECT_DIR$/Source/Output Functions.py" />
         <option value="$PROJECT_DIR$/Source/Representation.py" />
-        <option value="$PROJECT_DIR$/Source/main.py" />
         <option value="$PROJECT_DIR$/Tests/ErrorHandlingTests.py" />
         <option value="$PROJECT_DIR$/Source/Builder.py" />
+        <option value="$PROJECT_DIR$/Source/Director.py" />
+        <option value="$PROJECT_DIR$/Source/Output_Functions.py" />
+        <option value="$PROJECT_DIR$/Source/main.py" />
       </list>
     </option>
   </component>
@@ -544,10 +532,11 @@
     <frame x="-1440" y="-315" width="1440" height="877" extended-state="6" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.1529246" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1529246" />
       <window_info anchor="bottom" id="TODO" order="12" weight="0.32848486" />
       <window_info anchor="bottom" id="Event Log" order="14" sideWeight="0.5049962" side_tool="true" weight="0.10128205" />
-      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.4856487" visible="true" weight="0.33461538" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32435897" />
+      <window_info anchor="bottom" id="Run" order="4" sideWeight="0.4856487" weight="0.33461538" />
       <window_info anchor="bottom" id="Version Control" order="15" weight="0.32848486" />
       <window_info anchor="bottom" id="Python Console" order="16" sideWeight="0.49598163" weight="0.32820514" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24907522" />
@@ -562,7 +551,6 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="7" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="6" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32484847" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -610,7 +598,7 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="285" />
+      <option name="time" value="294" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
@@ -866,39 +854,6 @@
     <entry file="file://$PROJECT_DIR$/Source/__init__.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Output_Functions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <folding>
-            <element signature="e#0#10#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="391">
-          <caret line="149" column="39" selection-start-line="149" selection-start-column="39" selection-end-line="149" selection-end-column="39" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Director.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="272">
-          <caret line="88" column="47" lean-forward="true" selection-start-line="88" selection-start-column="47" selection-end-line="88" selection-end-column="47" />
-          <folding>
-            <element signature="e#0#23#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Representation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1845">
-          <caret line="123" column="28" lean-forward="true" selection-start-line="123" selection-start-column="28" selection-end-line="123" selection-end-column="28" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Tests/ErrorHandlingTester.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="150">
@@ -908,11 +863,45 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/Builder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="337">
-          <caret line="215" column="46" lean-forward="true" selection-start-line="215" selection-start-column="46" selection-end-line="215" selection-end-column="46" />
+        <state relative-caret-position="538">
+          <caret line="215" column="36" selection-start-line="215" selection-start-column="36" selection-end-line="215" selection-end-column="36" />
           <folding>
             <element signature="e#40#50#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Representation.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1047">
+          <caret line="43" column="8" selection-start-line="43" selection-start-column="8" selection-end-line="43" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Director.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="240">
+          <caret line="63" selection-start-line="63" selection-end-line="63" />
+          <folding>
+            <element signature="e#0#23#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Output_Functions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="300">
+          <caret line="20" selection-start-line="20" selection-end-line="20" />
+          <folding>
+            <element signature="e#0#10#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="328">
+          <caret line="152" column="29" selection-start-line="152" selection-start-column="29" selection-end-line="152" selection-end-column="29" />
         </state>
       </provider>
     </entry>
