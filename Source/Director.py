@@ -273,7 +273,11 @@ class Director:
                 SeqIO.write(sequences=self.master_list, handle=file, format='seqxml')
             except TypeError as type_e:
                 for i in range(len(self.master_list)):
-                    seq_obj = Bio.Seq.Seq(data=self.master_list[i].seq, alphabet=IUPAC.IUPACProtein())
+                    seq_obj = Bio.Seq.Seq(data=str(self.master_list[i].seq), alphabet=Alphabet.ProteinAlphabet())
+                    self.master_list[i].seq = seq_obj
+            except AttributeError as att_err:
+                for i in range(len(self.master_list)):
+                    seq_obj = Bio.Seq.Seq(data=str(self.master_list[i].seq), alphabet=Alphabet.ProteinAlphabet())
                     self.master_list[i].seq = seq_obj
                 SeqIO.write(sequences=self.master_list, handle=file, format='seqxml')
 

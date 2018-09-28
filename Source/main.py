@@ -129,8 +129,9 @@ def testing_FELLS_requesting():
     FELLS_builder = Builder.FELLSAnalysisBuilder()
     seq_list = ["\n\n>test\nMVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR"]
     seq = SeqRecord(id=">test\n", seq="MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR")
-    master = [seq]
-    jobid = FELLS_builder.prepare_and_send_request(seq_list)
+    seq2 = SeqRecord(id='>test2\n', seq="ASDFASDFSDFASDFAFSDFSDFSDAFSDFFSD")
+    master = [seq, seq2]
+    jobid = FELLS_builder.prepare_and_send_request(master)
     json_obj = FELLS_builder.check_request_status(jobid)
     FELLS_builder.check_processing_status(json_obj['names'][0][1])
     data = FELLS_builder.retrieve_response_data(json_obj['names'])

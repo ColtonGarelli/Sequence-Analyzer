@@ -7,7 +7,8 @@ import os
 import time
 from pprint import pprint
 import requests as r
-from Bio import SeqIO, SeqRecord
+from Bio import SeqIO, SeqRecord, Seq
+from Bio.Alphabet import IUPAC
 
 
 from SecondaryBiasFinder import SecondaryBias
@@ -80,9 +81,22 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
         self.job_id: str = None
 
     def prepare_and_send_request(self, seq_list):
+        working_list = list()
+        for i in range(len(seq_list)):
+            working_list.append(seq_list[i])
+        if isinstance(working_list[0], SeqRecord.SeqRecord):
+            try:
+                for i in range(len(working_list)):
+                    working_list[i] = working_list[i].format("fasta")
+            except TypeError as type_e:
+                for i in range(len(working_list)):
+                    working_list[i].seq = Seq.Seq(working_list[i].seq, IUPAC.IUPACProtein)
+
+                    working_list[i] = working_list[i].format("fasta")
+
         headers = {'Content-Type': 'application/json; charset=utf-8'}
         formatted = ""
-        for i in seq_list:
+        for i in working_list:
             if "\n\n>" not in i:
                 formatted = formatted + "\n\n"+i
             else:
@@ -149,8 +163,11 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
             master_list[i].annotations.update({'comp': comp})
             master_list[i].annotations.update({'aggregation': aggregation})
             master_list[i].annotations.update({'order_disorder': order_disorder})
-            pfam = data_list[i]['pfam']
-            master_list[i].annotations.update({'pfam': pfam})
+            try:
+                pfam = data_list[i]['pfam']
+                master_list[i].annotations.update({'pfam': pfam})
+            except KeyError as e:
+                pass
         return master_list
 
     def prep_for_file_output(self):

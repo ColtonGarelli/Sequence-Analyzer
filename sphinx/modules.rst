@@ -9,5 +9,4 @@ Source
    Representation
    docstring_example_google
    SecondaryBiasFinder
-   Bio_SQL_DB
    main

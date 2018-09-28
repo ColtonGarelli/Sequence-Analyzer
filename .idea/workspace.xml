@@ -3,15 +3,9 @@
   <component name="ChangeListManager">
     <list default="true" id="d7bbb029-bcaf-48ad-b10b-48c7b7feb115" name="Default" comment="commit all">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Bio_SQL_DB.py" beforeDir="false" afterPath="$PROJECT_DIR$/Bio_SQL_DB.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Builder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Director.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Director.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Output_Functions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/OutputFunctions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Representation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Representation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/SecondaryBiasFinder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SecondaryBiasFinder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/BuilderTests/SecondaryBiasTester.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/BuilderTests/SecondaryBiasTester.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/venv1/pip-selfcheck.json" beforeDir="false" afterPath="$PROJECT_DIR$/venv1/pip-selfcheck.json" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -25,8 +19,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="635">
-              <caret line="186" column="33" lean-forward="true" selection-start-line="186" selection-start-column="33" selection-end-line="186" selection-end-column="33" />
+            <state relative-caret-position="-265">
+              <caret line="137" selection-start-line="137" selection-end-line="137" />
               <folding>
                 <element signature="e#2#29#0" expanded="true" />
               </folding>
@@ -37,8 +31,8 @@
       <file leaf-file-name="Builder.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/Builder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="641">
-              <caret line="139" selection-start-line="139" selection-end-line="139" />
+            <state relative-caret-position="748">
+              <caret line="167" column="65" selection-start-line="167" selection-start-column="65" selection-end-line="167" selection-end-column="65" />
               <folding>
                 <element signature="e#40#50#0" expanded="true" />
               </folding>
@@ -49,8 +43,8 @@
       <file leaf-file-name="Director.py" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Source/Director.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="580">
-              <caret line="275" column="101" selection-start-line="275" selection-start-column="101" selection-end-line="275" selection-end-column="101" />
+            <state relative-caret-position="3037">
+              <caret line="279" column="20" selection-start-line="279" selection-start-column="20" selection-end-line="279" selection-end-column="20" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
               </folding>
@@ -58,19 +52,10 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="IUPAC.py" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/Bio/Alphabet/IUPAC.py">
-          <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="251">
-              <caret line="55" selection-start-line="55" selection-end-line="55" />
-            </state>
-          </provider>
-        </entry>
-      </file>
       <file leaf-file-name="Representation.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/Representation.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="485">
+            <state relative-caret-position="1650">
               <caret line="110" column="8" selection-start-line="110" selection-start-column="8" selection-end-line="110" selection-end-column="8" />
             </state>
           </provider>
@@ -90,8 +75,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>defin</find>
-      <find>handle</find>
       <find>os.</find>
       <find>with</find>
       <find>entropy</find>
@@ -120,6 +103,8 @@
       <find>letter_annotations</find>
       <find>choose</find>
       <find>writ</find>
+      <find>Seq</find>
+      <find>IUPAC</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -182,16 +167,16 @@
         <option value="$PROJECT_DIR$/Source/OutputFunctions.py" />
         <option value="$PROJECT_DIR$/Source/SecondaryBiasFinder.py" />
         <option value="$PROJECT_DIR$/Source/Representation.py" />
-        <option value="$PROJECT_DIR$/Source/Builder.py" />
         <option value="$PROJECT_DIR$/Source/main.py" />
+        <option value="$PROJECT_DIR$/Source/Builder.py" />
         <option value="$PROJECT_DIR$/Source/Director.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6">
-    <option name="x" value="-1429" />
+  <component name="ProjectFrameBounds">
+    <option name="x" value="-1440" />
     <option name="y" value="-146" />
-    <option name="width" value="1440" />
+    <option name="width" value="767" />
     <option name="height" value="877" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -230,6 +215,16 @@
               <item name="SequenceAnalyzer2.1" type="b2602c69:ProjectViewProjectNode" />
               <item name="SequenceAnalyzer2.1" type="462c0819:PsiDirectoryNode" />
               <item name="Source" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SequenceAnalyzer2.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SequenceAnalyzer2.1" type="462c0819:PsiDirectoryNode" />
+              <item name="sphinx" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="SequenceAnalyzer2.1" type="b2602c69:ProjectViewProjectNode" />
+              <item name="SequenceAnalyzer2.1" type="462c0819:PsiDirectoryNode" />
+              <item name="Tests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -529,17 +524,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="-1440" y="-146" width="1440" height="877" extended-state="6" />
+    <frame x="-1440" y="-146" width="767" height="877" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.15593705" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.29624665" />
       <window_info anchor="bottom" id="TODO" order="4" weight="0.32848486" />
       <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.5049962" side_tool="true" weight="0.10128205" />
-      <window_info anchor="right" id="Run" order="3" sideWeight="0.8423077" side_tool="true" weight="0.27539343" />
+      <window_info anchor="right" id="Run" order="3" sideWeight="0.8044515" side_tool="true" weight="0.27825466" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32848486" />
       <window_info anchor="bottom" id="Python Console" order="8" sideWeight="0.49598163" weight="0.33076924" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24907522" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4909091" weight="0.4" />
-      <window_info anchor="right" id="Debug" order="4" sideWeight="0.15769231" weight="0.27539343" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.4909091" visible="true" weight="0.19358975" />
+      <window_info anchor="right" id="Debug" order="4" sideWeight="0.19554849" weight="0.27825466" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -554,23 +549,23 @@
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2231579" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24907522" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32992327" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4856487" weight="0.32435897" />
       <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.32889965" />
-      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49598163" weight="0.32889965" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49500385" weight="0.3602564" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4909091" weight="0.33717948" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5049962" side_tool="true" weight="0.10128205" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.32564104" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32992327" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Messages" order="7" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49598163" weight="0.32889965" />
+      <window_info id="Favorites" order="2" side_tool="true" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -594,6 +589,16 @@
           <line>272</line>
           <option name="timeStamp" value="524" />
         </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Source/Director.py</url>
+          <line>275</line>
+          <option name="timeStamp" value="526" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Source/Director.py</url>
+          <line>276</line>
+          <option name="timeStamp" value="527" />
+        </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
         <breakpoints-dialog />
@@ -605,17 +610,10 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="526" />
+      <option name="time" value="547" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/xml/etree/ElementTree.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="184">
-          <caret line="1273" selection-start-line="1273" selection-end-line="1273" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/requests/api.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="176">
@@ -838,13 +836,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/Bio/SeqIO/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="545" column="61" selection-start-line="545" selection-start-column="61" selection-end-line="545" selection-end-column="61" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2018.1/python_stubs/-1029230298/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="15">
@@ -852,29 +843,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="635">
-          <caret line="186" column="33" lean-forward="true" selection-start-line="186" selection-start-column="33" selection-end-line="186" selection-end-column="33" />
-          <folding>
-            <element signature="e#2#29#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Builder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="641">
-          <caret line="139" selection-start-line="139" selection-end-line="139" />
-          <folding>
-            <element signature="e#40#50#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Source/Representation.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="485">
+        <state relative-caret-position="1650">
           <caret line="110" column="8" selection-start-line="110" selection-start-column="8" selection-end-line="110" selection-end-column="8" />
         </state>
       </provider>
@@ -893,6 +864,13 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/Bio/Seq.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="200">
+          <caret line="88" column="8" selection-start-line="88" selection-start-column="8" selection-end-line="88" selection-end-column="8" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/Bio/Alphabet/IUPAC.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="251">
@@ -900,10 +878,37 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/Bio/SeqIO/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="390">
+          <caret line="516" selection-start-line="516" selection-end-line="516" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-265">
+          <caret line="137" selection-start-line="137" selection-end-line="137" />
+          <folding>
+            <element signature="e#2#29#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Builder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="748">
+          <caret line="167" column="65" selection-start-line="167" selection-start-column="65" selection-end-line="167" selection-end-column="65" />
+          <folding>
+            <element signature="e#40#50#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Source/Director.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="580">
-          <caret line="275" column="101" selection-start-line="275" selection-start-column="101" selection-end-line="275" selection-end-column="101" />
+        <state relative-caret-position="3037">
+          <caret line="279" column="20" selection-start-line="279" selection-start-column="20" selection-end-line="279" selection-end-column="20" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
           </folding>

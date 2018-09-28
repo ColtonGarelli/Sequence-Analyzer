@@ -23,6 +23,7 @@ Full docs:
       - autodocuments docstrings in modules and associates them with source in the documentation
       - another apidoc link: http://www.sphinx-doc.org/en/master/man/sphinx-apidoc.html#cmdoption-sphinx-apidoc-full
    * the TOC tree: http://www.sphinx-doc.org/en/stable/markup/toctree.html
+   * sphinx-apidoc -o . ../Source
 
 
 .. important::
