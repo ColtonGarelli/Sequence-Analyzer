@@ -1,7 +1,7 @@
 
 
 from PyQt5 import QtWidgets
-
+from threading import Timer
 import SecondaryBiasFinder
 import Director
 import Representation
@@ -15,6 +15,8 @@ from Builder import UniprotBuilder
 import pprint
 import json
 import os
+from Bio.SeqRecord import SeqRecord
+import time
 
 
 def analyze_group(self, list_index):
@@ -115,59 +117,72 @@ def uniprot_test_request():
     print(record_list)
 
 
+def timer():
+
+    starttime = time.time()
+    while True:
+        print("tick")
+        time.sleep(5.0 - ((time.time() - starttime) % 5.0))
+
+
 def testing_FELLS_requesting():
     FELLS_builder = Builder.FELLSAnalysisBuilder()
-    seq_list = ["ASDFGFDSASDFGFDSREWASDFREWQQQQQQWQQWSQ", "ASDFSDFASQWERFDSAWQEWSDDFWEQWEDS"]
-    jobid = FELLS_builder.prepare_request_object(seq_list)
+    seq_list = ["\n\n>test\nMVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR"]
+    seq = SeqRecord(id=">test\n", seq="MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR")
+    master = [seq]
+    jobid = FELLS_builder.prepare_and_send_request(seq_list)
     json_obj = FELLS_builder.check_request_status(jobid)
-    while json_obj.get('status') != 'done':
-        json_obj = FELLS_builder.check_request_status(jobid)
-    something = FELLS_builder.retrieve_response_data(jobid)
-
-    print(something.decode('utf-8'))
+    FELLS_builder.check_processing_status(json_obj['names'][0][1])
+    data = FELLS_builder.retrieve_response_data(json_obj['names'])
+    updated = FELLS_builder.update_annotations(master_list=master, data_list=data)
+    return updated
 
 
 def testing_SODA_requesting():
     SODA_builder = Builder.SODAAnalysisBuilder()
-    seq_list = ["ASDFGFDSASDFGFDSREWASDFREWQQQQQQWQQWSQ", "ASDFSDFASQWERFDSAWQEWSDDFWEQWEDS"]
-    jobid = SODA_builder.submit_job_request(seq_list)
+    seq_list = ["MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR", "ASDFSDFASQWERFDSAWQEWSDDFWEQWEDS"]
+    jobid = SODA_builder.prepare_request_object(seq_list[0])
     json_obj = SODA_builder.check_request_status(jobid)
-    while json_obj.get('status') != 'done':
-        json_obj = SODA_builder.check_request_status(jobid)
-    new_id = json_obj.get('')
-    something = SODA_builder.retrieve_response_data(jobid)
-    print(something.decode('utf-8'))
+    data = SODA_builder.retrieve_response_data(jobid)
+    pprint.pprint(data)
 
 
 def UI_main(director):
     done = False
     input_source = director.start_up()
-    selected_dir = director.define_file_directory()
     first_time = True
     while not done:
+        # while loop terminates when done = True
         if first_time:
+            # if first time is true, the following options set up input
             if input_source == "1":
-                seq_list = director.handle_manual_input()
-            elif input_source == "2":
                 seq_list = director.db_access()
+                director.set_master_list(seq_list)
+            elif input_source == "2":
+                seq_list = director.handle_manual_input()
+                director.set_master_list(seq_list)
             elif input_source == "0":
-                done = True
-        elif not first_time:
-            # give give option to quit or go again here and set done to true
-            pass
+                break
+        first_time = False
+        choice = director.view_or_process()
+        while choice == 'v':
+            # interface to view
+            # todo: options to change view
+            choice = director.view_or_process()
 
-        if not done:
-            first_time = False
-            choice = director.db_view_or_process()
-            director.run_analysis()
-            director.view_analysis()
-            director.quit_or_continue()
+        bias_data = director.run_bias_analysis()
+        fells_data = director.run_FELLS_analysis()
+        soda_data = director.run_SODA_analysis()
+        director.update_seq_data(fells=fells_data, soda=soda_data, sec_bias=bias_data)
+        director.view_analysis()
+        director.store_all_data()
+        done = director.quit_or_continue()
 
 
 if __name__ == '__main__':
     main_director = Director.Director()
-    # uniprot_test_request()
-    # testing_SODA_requesting()
-
-    UI_main(main_director)
-
+    main_director.start_up()
+    data = testing_FELLS_requesting()
+    main_director.set_master_list(data)
+    main_director.store_all_data()
+    # UI_main(main_director)

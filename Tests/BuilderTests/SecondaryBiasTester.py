@@ -1,6 +1,6 @@
 import unittest
 
-import Output_Functions
+import OutputFunctions
 import SecondaryBiasFinder
 from SecondaryBiasFinder import SecondaryBias, Sequence
 from Director import Director, AnalysisBuilder
@@ -306,19 +306,19 @@ class CheckAATests(unittest.TestCase):
         post_test = SecondaryBias()
         for i in range(10):
             post_test.seq = BiasFinderTest.seq_list[i]
-            self.assertTrue(Output_Functions.check_aa_entry(post_test.seq))
+            self.assertTrue(OutputFunctions.check_aa_entry(post_test.seq))
 
     def test_check_aa_entry_fail(self):
-        self.assertFalse(Output_Functions.check_aa_entry(self.seq_2.seq))
-        self.assertFalse(Output_Functions.check_aa_entry(self.seq_3.seq))
-        self.assertFalse(Output_Functions.check_aa_entry(self.seq_4.seq))
-        self.assertFalse(Output_Functions.check_aa_entry(self.seq_5.seq))
-        self.assertFalse(Output_Functions.check_aa_entry(self.seq_6.seq))
-        self.assertFalse(Output_Functions.check_aa_entry(self.seq_7.seq))
-        self.assertFalse(Output_Functions.check_aa_entry(self.seq_8.seq))
-        self.assertFalse(Output_Functions.check_aa_entry(self.seq_9.seq))
-        self.assertFalse(Output_Functions.check_aa_entry(self.seq_10.seq))
-        self.assertFalse(Output_Functions.check_aa_entry(self.seq_11.seq))
+        self.assertFalse(OutputFunctions.check_aa_entry(self.seq_2.seq))
+        self.assertFalse(OutputFunctions.check_aa_entry(self.seq_3.seq))
+        self.assertFalse(OutputFunctions.check_aa_entry(self.seq_4.seq))
+        self.assertFalse(OutputFunctions.check_aa_entry(self.seq_5.seq))
+        self.assertFalse(OutputFunctions.check_aa_entry(self.seq_6.seq))
+        self.assertFalse(OutputFunctions.check_aa_entry(self.seq_7.seq))
+        self.assertFalse(OutputFunctions.check_aa_entry(self.seq_8.seq))
+        self.assertFalse(OutputFunctions.check_aa_entry(self.seq_9.seq))
+        self.assertFalse(OutputFunctions.check_aa_entry(self.seq_10.seq))
+        self.assertFalse(OutputFunctions.check_aa_entry(self.seq_11.seq))
 
 
 if __name__ == '__main__':

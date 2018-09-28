@@ -1,4 +1,4 @@
-import Output_Functions
+import OutputFunctions
 """
 Representation.py contains Representation class and UI functions
 
@@ -28,7 +28,7 @@ class Representation:
     def __init__(self):
 
         self.file_out_path = None
-        self.base_name = None
+        self.file_in_name = None
         self.print_string = None
 
     def introduction(self):
@@ -38,8 +38,8 @@ class Representation:
         Note:
             this function may be moved to a class variable
         """
-        Output_Functions.welcome()
-        return Output_Functions.main_page()
+        OutputFunctions.welcome()
+        return OutputFunctions.main_page()
 
     def manual_sequence_entry(self):
         """
@@ -49,8 +49,9 @@ class Representation:
         :returns: user inputted path
         """
         # manual_sequence_input provides link to documentation on file_in format
-        self.base_name = Output_Functions.manual_sequence_input()
-        return self.base_name
+        self.file_in_name = OutputFunctions.manual_sequence_input()
+
+        return self.file_in_name
 
     # handles calling desired DB, representing responses,
     def db_options(self):
@@ -62,47 +63,33 @@ class Representation:
         :returns: list containing database info defined in the director class
 
         """
-        keyword = Output_Functions.keyword_query_uniprot()
+        keyword = OutputFunctions.keyword_query_uniprot()
         if keyword is "":
-            options = Output_Functions.data_options()
+            options = OutputFunctions.data_options()
             return options
 
         else:
-            options = Output_Functions.data_options()
-            option_list = options.insert(0, keyword)
+            option_list = list()
+            option_list.append(keyword)
+            options = OutputFunctions.data_options()
+            option_list.append(options)
             return option_list
 
-    # def manage_processed_info(self):
-    #     """
-    #     Prints prompts for viewing info for user
-    #
-    #     Returns:
-    #         view type (console, file out, graphical at some point)
-    #     """
-    #     option = database_response_options()
-    #     if option == 'file':
-    #         self.file_out_path = manual_sequence_input()
-    #         return option
-    #     else:
-    #         return option
+    def decide_viewing_or_analysis(self):
+        # todo: write a representation function to handle viewing until processing
+        choice = OutputFunctions.prompt_viewing_or_analysis()
+        return choice
 
-    def output_data(self, print_or_out):
+    def output_data(self, print_string):
         """
         Take the string passed in and prints it or writes it to file.
         In the future, a separate function for graphing
 
-        :param print_or_out(str): a string representing file our view
+        :param print_string: a string representing file our view
 
         :returns: Completion of file_out or printing (T/F)
         """
-        if print_or_out == 'file':
-            # add here
-            return True
-
-        elif print_or_out == 'view':
-            print(self.print_string)
-            return True
-        return False
+        OutputFunctions.print_data(print_string)
 
     def db_file_out(self, seq_list, file_string):
         """
@@ -113,7 +100,7 @@ class Representation:
         :return: success of file output
         """
         if seq_list == 'up':
-            up_parser = Output_Functions.write_uniprot_to_file(self.file_out_path)
+            up_parser = OutputFunctions.write_uniprot_to_file(self.file_out_path)
 
     def set_print_string(self, new_string):
         self.print_string = new_string
@@ -121,8 +108,10 @@ class Representation:
     def get_print_string(self):
         return self.print_string
 
-    def db_query_view(self):
-        s = None
+    def db_query_view(self, data_list):
+        for i in data_list:
+            print(i)
+
 
     def choose_database(self):
         """
@@ -130,7 +119,7 @@ class Representation:
 
         :returns: database choice
         """
-        db_choice = Output_Functions.access_databases()
+        db_choice = OutputFunctions.access_databases()
         if db_choice != "1":
             print("Sorry! That database hasn't been implemented.")
         else:

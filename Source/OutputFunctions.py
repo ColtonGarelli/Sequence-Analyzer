@@ -5,22 +5,23 @@ from os.path import join
 from Bio import SeqIO
 
 
+def print_data(print_string):
+    print(print_string)
+
+
 def select_fileio_directory():
-        # Joins the home directior to the users typed in folder
     home = os.path.expanduser('~')
-    check_dir = home + "/" + input("Please input a directory name to see if it exists at: {} ".format(home)
-                        + "\nNote that searches are case sensitive\n")
+    check_dir = home + "/" + input("Please input a directory name for data storage.\n"
+                                   "Please include full path beyond: {}\n".format(home))
     folder_check = os.path.isdir(check_dir)
     while not folder_check:
         print(check_dir + "  is NOT a valid directory")
-        check_dir = home + "/" + input("Please input a directory name to see if it exists at: {} ".format(home)
-                                  + "\nNote that searches are case sensitive\n")
+        check_dir = home + "/" + input("Please input a directory name for data storage.\n"
+                                       "Please include full path beyond: {}\n".format(home))
         folder_check = os.path.isdir(check_dir)
-
-        # Checks to see if the folder exsists
-    print(check_dir + " is a valid directory.")
-    return_val = os.path.join(check_dir)
-    return return_val
+    print(check_dir + " is a valid directory.\n")
+    dir_path = os.path.join(check_dir)
+    return dir_path
 
 
 def select_db_format():
@@ -257,35 +258,45 @@ def data_options():
     Column options for Uniprot database. Prompts user for which columns they would like to receive
 
     Returns:
-        list containing the column options for data to be returned from UniProtKB
+        list containing keys for the column options for data to be returned from UniProtKB
+        Column options in this list are keys matching the current column option dictionary (below)
+          column_dict = {'id': 'id', 'entry': 'entry name', 'Organism': 'organism', 'prot name': "protein name",
+                   'seq': 'sequence', 'mass': 'mass', 'abs': 'comment(ABSORPTION)', 'pH': 'comment(PH DEPENDENCE)',
+                   'domain': 'comment(DOMAIN)', 'comp_bias': 'feature(COMPOSITIONAL BIAS)',
+                   'temp': 'comment(TEMPERATURE DEPENDENCE'}
     """
+
     print("Available data options:\n")
-    reviewed = input("Reviewed? (y/n)")
-    print("Select columns to display: (y/n)\n")
-    id = input("UniProt ID?")
-    entry_names = input("Entry name?")
-    protein_names = input("Protein name(s)?")
-    genes = input("Genes?")
-    absorption = input("Absorption?")
-    temp_depend = input("Temperature dependence?")
-    ph = input("pH dependence?")
-    binding_site = input("Binding site?")
-    dna_domain = input("DNA-binding domain?")
-    redox_pot = input("Redox potential? (disulfides)")
-    subunits = input("Subunits?")
-    structure = input("3D structure?")
-    domain = input("Domain?")
-    comp_bias = input("Compositional bias(es)?")
-    sequence = input("Sequence?")
-    mass = input("Mass?")
-    organism = "Organism?"
-    limit_entries = input("Limit the number of sequences returned: ")
-    offset_entries = "offset????"
-
-    column_list = [id, protein_names, entry_names, sequence, subunits, reviewed]
-    extended_column_list = [ph, mass, domain, absorption, comp_bias, temp_depend, genes,
-                            binding_site, dna_domain, structure, redox_pot, organism]
-
+    print("Select columns to display (y/n)\n")
+    columns = dict(ID=None, seq=None, entry_names=None, prot_names=None)
+    columns['ID'] = input("UniProt ID? ")
+    columns['seq'] = input("Sequence? ")
+    columns['entry_names'] = input("Entry name? ")
+    columns['prot_names'] = input("Protein name(s)? ")
+    extended_options = input("Would you like to import more information? ")
+    if extended_options == "y":
+        extended_column_dict = dict(genes=None, abs=None, organism=None, mass=None, domain=None, pH=None,
+                                    comp_bias=None, temp=None)
+        extended_column_dict['genes'] = input("Genes? ")
+        extended_column_dict['abs'] = input("Absorption? ")
+        extended_column_dict['temp'] = input("Temperature dependence? ")
+        extended_column_dict['pH'] = input("pH dependence? ")
+        binding_site = input("Binding site? ")
+        dna_domain = input("DNA-binding domain? ")
+        redox_pot = input("Redox potential? (disulfides) ")
+        extended_column_dict['domain'] = input("Subunits? ")
+        structure = input("3D structure? ")
+        domain = input("Domain? ")
+        extended_column_dict['comp_bias'] = input("Compositional bias(es)? ")
+        extended_column_dict['mass'] = input("Mass? ")
+        extended_column_dict['organism'] = input("Organism? ")
+        limit_entries = input("Limit the number of sequences returned: ")
+        offset_entries = "offset????"
+        columns.update(extended_column_dict)
+    column_list = list()
+    for i in columns:
+        if columns[i] == 'y':
+            column_list.append(i)
     return column_list
 
 
@@ -297,9 +308,13 @@ def manual_sequence_input():
         file path for formatted input file
     """
     # Option to query sequence/id in databases????
-    print("Refer to ***documentation_url*** for proper formatting\n\n")
-    file_in_name = input("Please enter the file name: ")
-    return file_in_name
+    home = os.path.join(os.path.expanduser('~'))
+    file_dir = os.path.join("/", input("Refer to ***documentation_url*** for proper formatting\n\n"
+                                       "---> If the file is in the Desktop folder, enter the file name.\n"
+                                       "---> Otherwise enter the full file path beyond {}: ".format(home)))
+    if "/" in file_dir:
+        file_dir = os.path.join(home, "/Desktop", file_dir)
+    return file_dir
 
     # return a tuple containing answers to options
 
@@ -357,6 +372,17 @@ def print_secondarybias_info(seqbiasobj):
                   round(seqbiasobj.local_sequence[i] / seqbiasobj.Q_content, 3), "per", seqbiasobj.primary_bias)
     else:
         print("\n\nNo primary bias\n")
+
+
+def prompt_viewing_or_analysis():
+    view_or_proc = input("Would you like to view or process the uploaded data?\nEnter 1 to view or 2 to process: ")
+    while view_or_proc != '1' and view_or_proc != '2':
+        view_or_proc = input("Invalid input.\n\n"
+                             "Would you like to view or process the uploaded data?\nEnter 1 to view or 2 to process: ")
+    if view_or_proc == '1':
+        return 'v'
+    elif view_or_proc == '2':
+        return 'a'
 
 
 def prompt_sequence_input():
