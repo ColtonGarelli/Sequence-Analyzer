@@ -7,6 +7,6 @@ Source
    Builder
    Director
    Representation
-   docstring_example_google
    SecondaryBiasFinder
+   OutputFunctions
    main

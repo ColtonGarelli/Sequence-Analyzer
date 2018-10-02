@@ -1,0 +1,517 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>OutputFunctions module &mdash; Sequence Analyzer 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="main module" href="main.html" />
+    <link rel="prev" title="SecondaryBiasFinder module" href="SecondaryBiasFinder.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Sequence Analyzer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents :</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Source</a><ul class="current">
+<li class="toctree-l2"><a class="reference internal" href="Builder.html">Builder module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Director.html">Director module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="Representation.html">Representation module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="SecondaryBiasFinder.html">SecondaryBiasFinder module</a></li>
+<li class="toctree-l2 current"><a class="current reference internal" href="#">OutputFunctions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Python Resources.html">Python Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Documentation Resources.html">Documentation Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API Resources.html">UniProt and Prediction Resources</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Sequence Analyzer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">Source</a> &raquo;</li>
+        
+      <li>OutputFunctions module</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/OutputFunctions.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-OutputFunctions">
+<span id="outputfunctions-module"></span><h1>OutputFunctions module<a class="headerlink" href="#module-OutputFunctions" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="OutputFunctions.access_databases">
+<code class="descclassname">OutputFunctions.</code><code class="descname">access_databases</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#access_databases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.access_databases" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prompts user for database to get info</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>string code for database choice</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.check_aa_entry">
+<code class="descclassname">OutputFunctions.</code><code class="descname">check_aa_entry</code><span class="sig-paren">(</span><em>sequence_in</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#check_aa_entry"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.check_aa_entry" title="Permalink to this definition">¶</a></dt>
+<dd><p>`
+Ensures only natural amino acids are entered when user inputs a sequence manually.
+:param sequence_in: String of characters
+:return: True if all characters entered are natural amino acids, otherwise False</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.choose_primary_bias">
+<code class="descclassname">OutputFunctions.</code><code class="descname">choose_primary_bias</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#choose_primary_bias"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.choose_primary_bias" title="Permalink to this definition">¶</a></dt>
+<dd><p>Allows the user to select a primary amino acid to search for secondary biases around.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A valid amino acid single letter code as a String object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.convert_to_ints">
+<code class="descclassname">OutputFunctions.</code><code class="descname">convert_to_ints</code><span class="sig-paren">(</span><em>string_in</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#convert_to_ints"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.convert_to_ints" title="Permalink to this definition">¶</a></dt>
+<dd><p>Converts list of string ints to int objects;</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>string_in: a string of comma separated ints</dd>
+<dt>Returns:</dt>
+<dd>return_list: a list of int objects</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.data_options">
+<code class="descclassname">OutputFunctions.</code><code class="descname">data_options</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#data_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.data_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Column options for Uniprot database. Prompts user for which columns they would like to receive</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>list containing keys for the column options for data to be returned from UniProtKB
+Column options in this list are keys matching the current column option dictionary (below)
+:var column_dict: = {‘id’: ‘id’, ‘entry’: ‘entry name’, ‘Organism’: ‘organism’, ‘prot name’: “protein name”, ‘seq’: ‘sequence’, ‘mass’: ‘mass’, ‘abs’: ‘comment(ABSORPTION)’, ‘pH’: ‘comment(PH DEPENDENCE)’, ‘domain’: ‘comment(DOMAIN)’, ‘comp_bias’: ‘feature(COMPOSITIONAL BIAS)’, ‘temp’: ‘comment(TEMPERATURE DEPENDENCE’}</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.database_response_options">
+<code class="descclassname">OutputFunctions.</code><code class="descname">database_response_options</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#database_response_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.database_response_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prompts user for what they want to do with the uploaded sequences</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>whether user wants to view, process, or output sequences to file</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.fasta_parser">
+<code class="descclassname">OutputFunctions.</code><code class="descname">fasta_parser</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#fasta_parser"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.fasta_parser" title="Permalink to this definition">¶</a></dt>
+<dd><p>Splits fasta formatted sequences in</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>path(str): path to a csv formatted file to format to fasta</dd>
+<dt>Yields:</dt>
+<dd>outputted file in fasta format</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.gene_options">
+<code class="descclassname">OutputFunctions.</code><code class="descname">gene_options</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#gene_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.gene_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>gene options
+:param self:
+:return:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.keyword_query_uniprot">
+<code class="descclassname">OutputFunctions.</code><code class="descname">keyword_query_uniprot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#keyword_query_uniprot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.keyword_query_uniprot" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prompts the user for Uniprot advanced search options</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>A tuple with keys for the UniProt url constructor dictionary</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.main_page">
+<code class="descclassname">OutputFunctions.</code><code class="descname">main_page</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#main_page"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.main_page" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prompts user for input source</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>usage: string value for input source (file or database)</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.manual_sequence_input">
+<code class="descclassname">OutputFunctions.</code><code class="descname">manual_sequence_input</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#manual_sequence_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.manual_sequence_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prompts user to enter file path to upload sequence information</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>file path for formatted input file</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.parse_to_string_list">
+<code class="descclassname">OutputFunctions.</code><code class="descname">parse_to_string_list</code><span class="sig-paren">(</span><em>file_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#parse_to_string_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.parse_to_string_list" title="Permalink to this definition">¶</a></dt>
+<dd><p>is done automatically by csv reader. NOT NEEDED
+Formats file strings to a list of [“id”,”sequence”] lists (ex. [[id1, sequence1],[id2, sequence2], [id3, sequence3]]</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>file_string</strong> – a list of “id,sequence” strings from a file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list formatted as in the example above</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.prediction_options">
+<code class="descclassname">OutputFunctions.</code><code class="descname">prediction_options</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#prediction_options"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.prediction_options" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prompts user for which predictors they would like to use</p>
+<dl class="docutils">
+<dt>Returns:</dt>
+<dd>Tuple containing predictors to run</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.print_data">
+<code class="descclassname">OutputFunctions.</code><code class="descname">print_data</code><span class="sig-paren">(</span><em>print_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#print_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.print_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.print_secondarybias_info">
+<code class="descclassname">OutputFunctions.</code><code class="descname">print_secondarybias_info</code><span class="sig-paren">(</span><em>seqbiasobj</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#print_secondarybias_info"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.print_secondarybias_info" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.prompt_make_a_new_file">
+<code class="descclassname">OutputFunctions.</code><code class="descname">prompt_make_a_new_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#prompt_make_a_new_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.prompt_make_a_new_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.prompt_sequence_input">
+<code class="descclassname">OutputFunctions.</code><code class="descname">prompt_sequence_input</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#prompt_sequence_input"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.prompt_sequence_input" title="Permalink to this definition">¶</a></dt>
+<dd><p>Prompts user to enter a sequence manually, and calls Sequence.check_aa_entry to ensure valid entry=</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">A valid sequence of natural amino acids as a String object</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.prompt_viewing_or_analysis">
+<code class="descclassname">OutputFunctions.</code><code class="descname">prompt_viewing_or_analysis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#prompt_viewing_or_analysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.prompt_viewing_or_analysis" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.query_by_organism">
+<code class="descclassname">OutputFunctions.</code><code class="descname">query_by_organism</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#query_by_organism"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.query_by_organism" title="Permalink to this definition">¶</a></dt>
+<dd><p>andvanced query by organism
+:return:</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.read_file">
+<code class="descclassname">OutputFunctions.</code><code class="descname">read_file</code><span class="sig-paren">(</span><em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#read_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.read_file" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads files in from the given path</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>path</strong> – the full path of the desired file</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body">a list of id,sequence formatted strings</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.sec_bias_file_o">
+<code class="descclassname">OutputFunctions.</code><code class="descname">sec_bias_file_o</code><span class="sig-paren">(</span><em>ID</em>, <em>copy_list</em>, <em>path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#sec_bias_file_o"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.sec_bias_file_o" title="Permalink to this definition">¶</a></dt>
+<dd><p>Writes the file for exporting secondary bias data.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ID</strong> – The id associated with the sequence being processed</li>
+<li><strong>copy_list</strong> – a list to be written in csv format</li>
+<li><strong>path</strong> – the file path writing to</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last">nothing</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.select_db_format">
+<code class="descclassname">OutputFunctions.</code><code class="descname">select_db_format</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#select_db_format"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.select_db_format" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.select_fileio_directory">
+<code class="descclassname">OutputFunctions.</code><code class="descname">select_fileio_directory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#select_fileio_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.select_fileio_directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.view_database_information">
+<code class="descclassname">OutputFunctions.</code><code class="descname">view_database_information</code><span class="sig-paren">(</span><em>prepped_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#view_database_information"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.view_database_information" title="Permalink to this definition">¶</a></dt>
+<dd><p>Displays prepared string data and prompts user for limiting that data in view</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>prepped_string: a string formatted to print and be parsed for modified printing</dd>
+<dt>Yields:</dt>
+<dd>Prints views to screen</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.welcome">
+<code class="descclassname">OutputFunctions.</code><code class="descname">welcome</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#welcome"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.welcome" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.write_sequence_to_file">
+<code class="descclassname">OutputFunctions.</code><code class="descname">write_sequence_to_file</code><span class="sig-paren">(</span><em>ID</em>, <em>copy_list</em>, <em>file_name</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#write_sequence_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.write_sequence_to_file" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>ID</strong> – </li>
+<li><strong>copy_list</strong> – </li>
+<li><strong>file_name</strong> – </li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first last"></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="OutputFunctions.write_uniprot_to_file">
+<code class="descclassname">OutputFunctions.</code><code class="descname">write_uniprot_to_file</code><span class="sig-paren">(</span><em>seq_record_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/OutputFunctions.html#write_uniprot_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#OutputFunctions.write_uniprot_to_file" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>seq_record_list</strong> – </td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="main.html" class="btn btn-neutral float-right" title="main module" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="SecondaryBiasFinder.html" class="btn btn-neutral" title="SecondaryBiasFinder module" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Colton Garelli and Jamie Paule Ellis.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

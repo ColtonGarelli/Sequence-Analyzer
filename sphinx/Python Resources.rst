@@ -73,6 +73,7 @@ SeqRecord.seq is a Seq class object. Sequences should be input as Seq('sequenceh
 SeqRecord.features is a SeqFeature object with values like type, location, and qualifiers that describe features
    - .position refers to single aa while .location is some region of aas
    - SeqFeature.ExactPosition, BeforePosition, After, Within, OneOf, and Unknown
+
 BioSQL:
 =======
 https://github.com/biosql/biosql/blob/master/INSTALL
