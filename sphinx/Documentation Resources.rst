@@ -11,6 +11,7 @@ and for general documentation stuff.
 ===========================
 Documentation using Sphinx:
 ===========================
+updates-- sphinx-build ./sphinx
 
 Full docs:
    * Sphinx full docs: http://www.sphinx-doc.org/en/master/contents.html
