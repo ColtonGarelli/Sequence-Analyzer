@@ -9,8 +9,6 @@ from pprint import pprint
 import requests as r
 from Bio import SeqIO, SeqRecord, Seq
 from Bio.Alphabet import IUPAC
-
-
 from SecondaryBiasFinder import SecondaryBias
 
 
@@ -197,7 +195,6 @@ class SODAAnalysisBuilder(AnalysisBuilder):
         """
         super().__init__()
         self.job_id: str = None
-        self.file_path = '/Users/coltongarelli/Desktop/uniprotxmltest.fasta'
         self.json_obj = None  # a json dictionary
 
     def prepare_request_object(self, seq):
@@ -247,22 +244,22 @@ class SODAAnalysisBuilder(AnalysisBuilder):
 
 class SequenceBiasBuilder(AnalysisBuilder):
 
-    def __init__(self, seq_record_list):
+    def __init__(self):
         """
 
 
         """
-        super(SequenceBiasBuilder, self).__init__()
-        self.sec_bias_list = list()
+        super().__init__()
 
-    def find_sec_bias(self, primary_bias, seq_record_list):
+    @staticmethod
+    def find_sec_bias(primary_bias, seq_record_list):
+        sec_bias_list = list()
         for i in seq_record_list:
-            self.sec_bias_list.append(SecondaryBias(i.seq))
-        for i in self.sec_bias_list:
+            sec_bias_list.append(SecondaryBias(i.seq))
+        for i in sec_bias_list:
             i.bias_finder(primary_bias)
             i.update_annotations()
-        return self.sec_bias_list
-
+        return sec_bias_list
 
 
 class DatabaseBuilder(Builder):
@@ -315,27 +312,23 @@ class UniprotBuilder(DatabaseBuilder):
         new_request = r.get(search_url)
         return new_request.content.decode('utf-8')
 
-    def uniprot_data_to_seqrecord(self, uniprot_data, file_address, file_format):
-        seq_record_list = []
-        file_address = os.path.join('/Users/coltongarelli/Desktop/uniprotxmltest-fasta.txt')
-        file_format = 'fasta'
-        with open(file_address, 'rU') as file:
-            for record in SeqIO.parse(file, file_format):
-                seq_record_list.append(record)
-        return seq_record_list
-
-
     def uniprot_xml_to_seqrecord(self, uniprot_xml, storage_dir):
-        file_address = os.path.join(storage_dir, "xmltest_{}.xml".format(str(time.clock())[2:]))
-
-        with open(file_address, 'w') as file:
+        file_name = os.path.join(storage_dir, "uniprot_data{}.xml".format(str(time.clock())[2:]))
+        if os.path.exists(file_name):
+            counter = 0
+            os.path.exists(file_name+"_{}".format(counter))
+            while os.path.isdir(file_name):
+                counter += 1
+                if counter < 11:
+                    file_name = os.path.join(file_name[:-1] + str(counter))
+                elif counter > 10:
+                    file_name = os.path.join(file_name[:-2] + str(counter))
+                elif counter > 100:
+                    file_name = os.path.join(file_name[:-3] + str(counter))
+        with open(file_name, 'w') as file:
             file.write(uniprot_xml)
         seq_record_list = list()
-        with open(file_address, 'rU') as file:
+        with open(file_name, 'rU') as file:
             for sequence in SeqIO.parse(file, "uniprot-xml"):
                 seq_record_list.append(sequence)
         return seq_record_list
-
-    def seq_record_to_uniprot_format(self):
-        pass
-

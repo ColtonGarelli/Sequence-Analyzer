@@ -1,6 +1,6 @@
 import unittest
 import sys
-sys.path.append('/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1')
+sys.path.append('/Users/coltongarelli/SequenceAnalyzer/PAM')
 from Builder import DatabaseBuilder
 
 # test sending request, checking request,

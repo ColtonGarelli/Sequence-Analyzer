@@ -147,7 +147,7 @@ def fasta_parser(path):
 
     """
     n = 0
-    file = join("/Users/coltongarelli/", "SequenceAnalyzer/SequenceAnalyzer2.1/References/SEQUENCEANALYZER_Experiment1_inputfile_ACTUAL.csv")
+    file = join("/Users/coltongarelli/", "SequenceAnalyzer/PAM/References/SEQUENCEANALYZER_Experiment1_inputfile_ACTUAL.csv")
     new_file =join("/Users/coltongarelli/Desktop/", "SEQUENCEANALYZER_Experiment1_inputfile_fasta.txt")
     fasta_formatted = open(new_file, 'w+')
     with open(file, 'r') as f:
@@ -178,7 +178,7 @@ def convert_to_ints(string_in):
 
 
 def welcome():
-    print("Welcome to the Sequence Analyzer\n")
+    print("Welcome to the Protein Analysis Manager (PAM)\n")
     print("Please refer to documentation at https://github.com/ColtonGarelli/Sequence-Analyzer/ before using.\n\n")
 
 

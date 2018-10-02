@@ -4,7 +4,7 @@
 # You can set these variables from the command line.
 SPHINXOPTS    =
 SPHINXBUILD   = sphinx-build
-SPHINXPROJ    = SequenceAnalyzer2.1
+SPHINXPROJ    = PAM (Protein Analysis Manager)
 SOURCEDIR     =
 BUILDDIR      = build
 

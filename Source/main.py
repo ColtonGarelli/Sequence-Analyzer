@@ -88,7 +88,7 @@ def function_for_db_fiddling():
     # request = requests.post("https://www.uniprot.org/uniprot/?query=reviewed:yes&random=yes")
     # print(request.status_code)
     # SpreadsheetIO.fasta_parser()
-    # path_in = "/Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/References/SEQUENCEANALYZER_Experiment1_inputfile_ACTUAL.csv"
+    # path_in = "/Users/coltongarelli/SequenceAnalyzer/PAM/References/SEQUENCEANALYZER_Experiment1_inputfile_ACTUAL.csv"
     # # # file_representation = Representation()
     #
     # director = Director()
@@ -182,8 +182,8 @@ def UI_main(director):
 
 if __name__ == '__main__':
     main_director = Director.Director()
-    main_director.start_up()
-    data = testing_FELLS_requesting()
-    main_director.set_master_list(data)
-    main_director.store_all_data()
-    # UI_main(main_director)
+    # main_director.start_up()
+    # data = testing_FELLS_requesting()
+    # main_director.set_master_list(data)
+    # main_director.store_all_data()
+    UI_main(main_director)

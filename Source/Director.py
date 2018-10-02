@@ -45,7 +45,7 @@ class Director:
         # master list contains seq_record objects. Initially should contain id-seq but
         # annotations and letter annotations should be updated w new values
         self.master_list: list = None
-        self.analysis = {"fells": FELLSAnalysisBuilder(), "soda": SODAAnalysisBuilder(), "seqbias": SequenceBiasBuilder(self.master_list)}
+        self.analysis = {"fells": FELLSAnalysisBuilder(), "soda": SODAAnalysisBuilder(), "seqbias": SequenceBiasBuilder()}
         # directory where input file resides and where output directory will be created
         self.file_out_dir: str = None
         self.file_in_path: str = None
@@ -124,6 +124,8 @@ class Director:
         db_choice = self.representation.choose_database()
         if db_choice == "up":
             self.database = UniprotBuilder()
+        else:
+            self.database = UniprotBuilder()
         db_options = self.representation.db_options()
         response_opts = self.database.construct_column_string(db_options)
         response_format = "xml"
@@ -153,15 +155,6 @@ class Director:
         else:
             # todo: implement better viewing and ability to select different views
             return "a"
-
-    def create_seqrec_objects_from_fasta(self, fasta):
-        """
-
-        :return:
-        """
-    # turn string formatted info to SeqRecord objects
-    # put SeqRecord obj list in master list
-        pass
 
     def view_analysis(self):
         print(self.master_list)
@@ -212,40 +205,9 @@ class Director:
 
         :returns: List of fully processed SecondaryBias objects
         """
-        # for csv formatted files only. call
-
-        # select primary bias
-        # primary_bias = Representation.choose_primary_bias()
-        secondary_analysis = SequenceBiasBuilder(self.master_list)
-        updated_list = secondary_analysis.find_sec_bias("Q", self.master_list)
+        updated_list = self.analysis['sec_bias'].find_sec_bias("Q", self.master_list)
 
         return updated_list
-        # file_string = Representation.read_file(self.file_in_path)
-        # self.master_list = Representation.parse_to_string_list(file_string)
-        # # each string in string_list represents a sequence
-        #
-        # sequence_list = self.analysis.build_seq_list(self.master_list)
-        # processed = self.analysis.build_sec_bias()
-        #
-        # return processed
-
-    def get_master_list(self):
-        return self.master_list
-
-    def set_master_list(self, new_list):
-        self.master_list = new_list
-
-    def get_file_in_path(self):
-        return self.file_in_path
-
-    def set_file_in_path(self, new_in_path):
-        self.file_in_path = new_in_path
-
-    def get_io_directory(self):
-        return self.file_out_dir
-
-    def set_io_directory(self, new_out_dir):
-        self.file_out_dir = new_out_dir
 
     def update_seq_data(self, **kwargs):
         if 'fells' in kwargs:
@@ -281,3 +243,20 @@ class Director:
                     self.master_list[i].seq = seq_obj
                 SeqIO.write(sequences=self.master_list, handle=file, format='seqxml')
 
+    def get_master_list(self):
+        return self.master_list
+
+    def set_master_list(self, new_list):
+        self.master_list = new_list
+
+    def get_file_in_path(self):
+        return self.file_in_path
+
+    def set_file_in_path(self, new_in_path):
+        self.file_in_path = new_in_path
+
+    def get_io_directory(self):
+        return self.file_out_dir
+
+    def set_io_directory(self, new_out_dir):
+        self.file_out_dir = new_out_dir

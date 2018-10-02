@@ -3,7 +3,7 @@ import setuptools as s
 
 
 s.setup(
-    name='SequenceAnalyzer2.1',
+    name='PAM',
     version='1.1',
     packages=s.find_packages(),
     package_dir={'': 'Source'},
