@@ -148,10 +148,11 @@
   <h1>Source code for SecondaryBiasFinder</h1><div class="highlight"><pre>
 <span></span><span class="kn">from</span> <span class="nn">typing</span> <span class="k">import</span> <span class="n">List</span>
 
+<span class="kn">import</span> <span class="nn">OutputFunctions</span>
 <span class="kn">import</span> <span class="nn">Representation</span>
 
 <span class="kn">import</span> <span class="nn">abc</span>
-<span class="kn">from</span> <span class="nn">Representation</span> <span class="k">import</span> <span class="n">sec_bias_file_o</span>
+<span class="kn">from</span> <span class="nn">OutputFunctions</span> <span class="k">import</span> <span class="n">sec_bias_file_o</span>
 <span class="kn">import</span> <span class="nn">os</span>
 <span class="kn">from</span> <span class="nn">Bio.SeqRecord</span> <span class="k">import</span> <span class="n">SeqRecord</span>
 
@@ -175,6 +176,9 @@
 <span class="sd">---change to MVC format and use multiple inheritance to make classes that get seq info from uniprot</span>
 <span class="sd">&#39;&#39;&#39;</span>
 
+<span class="n">_NO_SEQRECORD_COMPARISON</span> <span class="o">=</span> <span class="s2">&quot;SeqRecord comparison is deliberately not implemented. Explicitly compare the attributes of interest.&quot;</span>
+
+
 <div class="viewcode-block" id="SecondaryBias"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.SecondaryBias">[docs]</a><span class="k">class</span> <span class="nc">SecondaryBias</span><span class="p">(</span><span class="n">SeqRecord</span><span class="p">):</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    SecondaryBias extends the SeqRecord class. SecondaryBias determines primary and secondary sequence biases.</span>
@@ -196,12 +200,30 @@
 <span class="sd">        self.local_avg:</span>
 <span class="sd">        self.amino_acids:</span>
 
-
-
 <span class="sd">    &quot;&quot;&quot;</span>
 
-    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
-        <span class="nb">super</span><span class="p">(</span><span class="n">SecondaryBias</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">seq</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+    <span class="k">def</span> <span class="nf">__lt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">_NO_SEQRECORD_COMPARISON</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__le___</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">_NO_SEQRECORD_COMPARISON</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__eq__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">_NO_SEQRECORD_COMPARISON</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__ne__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">_NO_SEQRECORD_COMPARISON</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__gt__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">_NO_SEQRECORD_COMPARISON</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__ge__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">other</span><span class="p">):</span>
+        <span class="k">raise</span> <span class="ne">NotImplementedError</span><span class="p">(</span><span class="n">_NO_SEQRECORD_COMPARISON</span><span class="p">)</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">*</span><span class="n">args</span><span class="p">):</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">(</span><span class="n">seq</span><span class="o">=</span><span class="kc">None</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">args</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">seq</span> <span class="o">=</span> <span class="n">args</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">F</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">G</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">I</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
                                     <span class="n">M</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">P</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">Q</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">R</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">V</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span> <span class="n">W</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="mi">19</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">primary_bias</span> <span class="o">=</span> <span class="s2">&quot;Q&quot;</span>
@@ -226,6 +248,11 @@
     <span class="c1"># elements of each array represent a single a.a., in alphabetical order (0=A, 1=C, etc)</span>
     <span class="c1"># each array will serve as a count for a.a. appearances near primary bias (1-2 aa)</span>
     <span class="c1"># localseq is the aggregate</span>
+
+<div class="viewcode-block" id="SecondaryBias.update_annotations"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.SecondaryBias.update_annotations">[docs]</a>    <span class="k">def</span> <span class="nf">update_annotations</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">primarybias</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">primary_bias</span><span class="p">,</span> <span class="n">total_primary</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">Q_content</span><span class="p">,</span> <span class="n">local_bias</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">local_avg</span><span class="p">,</span>
+                                <span class="n">bias_1</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">one_away</span><span class="p">,</span> <span class="n">bias2</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">two_away</span><span class="p">,</span> <span class="n">bias3</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">three_away</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">annotations</span></div>
 
 <div class="viewcode-block" id="SecondaryBias.initialize_sec_bias"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.SecondaryBias.initialize_sec_bias">[docs]</a>    <span class="k">def</span> <span class="nf">initialize_sec_bias</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq_name</span><span class="p">,</span> <span class="n">seq_in</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -335,7 +362,7 @@
         <span class="c1"># self.seq_in = self.prompt_sequence_input()</span>
         <span class="c1"># self.sequence = self.remove_spaces(self.sequence)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">primary_bias</span> <span class="o">=</span> <span class="n">primary_bias</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">seq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">seq</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">.</span><span class="n">upper</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">sequence_len</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">seq</span><span class="p">)</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">find_primary_bias</span><span class="p">()</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">Q_content</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">Q_index</span><span class="p">)</span>
@@ -356,7 +383,6 @@
 <div class="viewcode-block" id="seqrecord_to_secbias"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.seqrecord_to_secbias">[docs]</a><span class="k">def</span> <span class="nf">seqrecord_to_secbias</span><span class="p">(</span><span class="n">seq_record</span><span class="p">:</span> <span class="n">SeqRecord</span><span class="p">):</span>
     <span class="n">sec_bias</span> <span class="o">=</span> <span class="n">SecondaryBias</span><span class="p">()</span>
     <span class="n">sec_bias</span><span class="o">.</span><span class="n">features</span> <span class="o">=</span> <span class="n">seq_record</span><span class="o">.</span><span class="n">id</span></div>
-
 
 
 <div class="viewcode-block" id="create_SeqBias_object"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.create_SeqBias_object">[docs]</a><span class="k">def</span> <span class="nf">create_SeqBias_object</span><span class="p">(</span><span class="n">seq_string</span><span class="p">):</span>
@@ -387,10 +413,10 @@
 <span class="sd">    :returns: List of SecondaryBias objects</span>
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">general_path</span> <span class="o">=</span> <span class="n">general_path</span> <span class="o">+</span> <span class="n">file_beginning</span>
-    <span class="n">one_away_list</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">general_path</span> <span class="o">+</span> <span class="s2">&quot;one_away.csv&quot;</span><span class="p">)</span>
-    <span class="n">two_away_list</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">general_path</span> <span class="o">+</span> <span class="s2">&quot;two_away.csv&quot;</span><span class="p">)</span>
-    <span class="n">three_away_list</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">general_path</span> <span class="o">+</span> <span class="s2">&quot;three_away.csv&quot;</span><span class="p">)</span>
-    <span class="n">local_away_list</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">general_path</span> <span class="o">+</span> <span class="s2">&quot;local_seq.csv&quot;</span><span class="p">)</span>
+    <span class="n">one_away_list</span> <span class="o">=</span> <span class="n">OutputFunctions</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">general_path</span> <span class="o">+</span> <span class="s2">&quot;one_away.csv&quot;</span><span class="p">)</span>
+    <span class="n">two_away_list</span> <span class="o">=</span> <span class="n">OutputFunctions</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">general_path</span> <span class="o">+</span> <span class="s2">&quot;two_away.csv&quot;</span><span class="p">)</span>
+    <span class="n">three_away_list</span> <span class="o">=</span> <span class="n">OutputFunctions</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">general_path</span> <span class="o">+</span> <span class="s2">&quot;three_away.csv&quot;</span><span class="p">)</span>
+    <span class="n">local_away_list</span> <span class="o">=</span> <span class="n">OutputFunctions</span><span class="o">.</span><span class="n">read_file</span><span class="p">(</span><span class="n">general_path</span> <span class="o">+</span> <span class="s2">&quot;local_seq.csv&quot;</span><span class="p">)</span>
     <span class="n">seq_object_list</span> <span class="o">=</span> <span class="p">[]</span>
     <span class="c1"># convert to 2D list of ints (other than first index</span>
     <span class="k">for</span> <span class="n">i1</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">one_away_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])):</span>
@@ -468,64 +494,6 @@
         <span class="n">sec_bias_file_o</span><span class="p">(</span><span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">,</span> <span class="n">sequence_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">local_avg</span><span class="p">,</span> <span class="n">this_file</span><span class="p">)</span>
 
     <span class="k">return</span> <span class="n">path</span> <span class="o">+</span> <span class="n">file_name</span></div>
-
-
-<div class="viewcode-block" id="gen_seqrecord_object"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.gen_seqrecord_object">[docs]</a><span class="k">def</span> <span class="nf">gen_seqrecord_object</span><span class="p">(</span><span class="n">sequence_dict</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Creates a sequencerecord object from passed in information. Only handles id and sequence</span>
-
-
-<span class="sd">    &quot;&quot;&quot;</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="kc">None</span></div>
-
-
-<div class="viewcode-block" id="gen_seqrecord_from_xml"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.gen_seqrecord_from_xml">[docs]</a><span class="k">def</span> <span class="nf">gen_seqrecord_from_xml</span><span class="p">(</span><span class="n">sequence_xml</span><span class="p">):</span>
-    <span class="sd">&quot;&quot;&quot;</span>
-<span class="sd">    Uses SeqIO to generate SeqRecord objects</span>
-<span class="sd">    :return:</span>
-<span class="sd">    &quot;&quot;&quot;</span></div>
-
-
-<div class="viewcode-block" id="seqrecord_to_xml"><a class="viewcode-back" href="../SecondaryBiasFinder.html#SecondaryBiasFinder.seqrecord_to_xml">[docs]</a><span class="k">def</span> <span class="nf">seqrecord_to_xml</span><span class="p">():</span>
-    <span class="n">s</span> <span class="o">=</span> <span class="kc">None</span></div>
-
-<span class="c1">#</span>
-<span class="c1">#</span>
-<span class="c1"># class Sequence:</span>
-<span class="c1">#     &quot;&quot;&quot;</span>
-<span class="c1">#     A general Sequence class. Contains parameters for valid amino acids, amino acid dictionary,</span>
-<span class="c1">#     and a sequence_in variable to store the input sequence.</span>
-<span class="c1">#     &quot;&quot;&quot;</span>
-<span class="c1">#     amino_acids = &quot;ACDEFGHIKLMNPQRSTVWY&quot;</span>
-<span class="c1">#</span>
-<span class="c1">#     amino_acid_dict = dict(A=0, C=1, D=2, E=3, F=4, G=5, H=6, I=7, K=8, L=9,</span>
-<span class="c1">#                             M=10, N=11, P=12, Q=13, R=14, S=15,T=16, V=17, W=18, Y=19)</span>
-<span class="c1">#     sequence_in = &quot;&quot;</span>
-<span class="c1">#</span>
-<span class="c1">#     def check_aa_entry(self, sequence_in):</span>
-<span class="c1">#         &quot;&quot;&quot;</span>
-<span class="c1">#         Ensures only natural amino acids are entered when user inputs a sequence manually.</span>
-<span class="c1">#</span>
-<span class="c1">#         :param sequence_in: String of characters</span>
-<span class="c1">#         :return: True if all characters entered are natural amino acids, otherwise False</span>
-<span class="c1">#         &quot;&quot;&quot;</span>
-<span class="c1">#</span>
-<span class="c1">#         not_aa = &quot;BJOUXZ&quot;</span>
-<span class="c1">#         alpha = sequence_in.isalpha()</span>
-<span class="c1">#         if alpha:</span>
-<span class="c1">#             sequence_in = sequence_in.upper()</span>
-<span class="c1">#             bad_count = 0</span>
-<span class="c1">#             for i in range(0, 6):</span>
-<span class="c1">#                 if not_aa[i] in sequence_in:</span>
-<span class="c1">#                     bad_count = bad_count + 1</span>
-<span class="c1">#             if bad_count == 0:</span>
-<span class="c1">#                 good_entry = True</span>
-<span class="c1">#             else:</span>
-<span class="c1">#                 good_entry = False</span>
-<span class="c1">#</span>
-<span class="c1">#         else:</span>
-<span class="c1">#             good_entry = False</span>
-<span class="c1">#         return good_entry</span>
 </pre></div>
 
            </div>

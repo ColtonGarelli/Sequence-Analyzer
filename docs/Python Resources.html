@@ -204,11 +204,26 @@
 <div class="section" id="uniprotio">
 <h3>UniprotIO:<a class="headerlink" href="#uniprotio" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="https://biopython.org/wiki/SeqIO">https://biopython.org/wiki/SeqIO</a></p>
-<p><a class="reference external" href="https://biopython.org/DIST/docs/api/Bio.SeqIO.UniprotIO-pysrc.html#Parser.__init__">https://biopython.org/DIST/docs/api/Bio.SeqIO.UniprotIO-pysrc.html#Parser.__init__</a></p>
+<p><a class="reference external" href="https://biopython.org/DIST/docs/api/Bio.SeqIO.UniprotIO-pysrc.html#Parser.__init__">https://biopython.org/DIST/docs/api/Bio.SeqIO.UniprotIO-pysrc.html#Parser.__init__</a>
+SEQIO.READ(FILENAME.FILE, ‘uniprot’)</p>
 </div>
 <div class="section" id="seqrecord-class">
 <h3>SeqRecord Class<a class="headerlink" href="#seqrecord-class" title="Permalink to this headline">¶</a></h3>
 <p><a class="reference external" href="http://biopython.org/DIST/docs/api/Bio.SeqRecord.SeqRecord-class.html">http://biopython.org/DIST/docs/api/Bio.SeqRecord.SeqRecord-class.html</a></p>
+<p>parsing example: records = list(SeqIO.parse(“ls_orchid.gbk”, “genbank”))</p>
+<dl class="docutils">
+<dt>SeqRecord.seq is a Seq class object. Sequences should be input as Seq(‘sequencehere’)</dt>
+<dd><ul class="first last simple">
+<li>SeqRecord.format() allows reformatting of objects to strings of formatted info</li>
+</ul>
+</dd>
+<dt>SeqRecord.features is a SeqFeature object with values like type, location, and qualifiers that describe features</dt>
+<dd><ul class="first last simple">
+<li>.position refers to single aa while .location is some region of aas</li>
+<li>SeqFeature.ExactPosition, BeforePosition, After, Within, OneOf, and Unknown</li>
+</ul>
+</dd>
+</dl>
 </div>
 <div class="section" id="biosql">
 <h3>BioSQL:<a class="headerlink" href="#biosql" title="Permalink to this headline">¶</a></h3>
@@ -238,6 +253,8 @@
 <p>Iteration tools: <a class="reference external" href="https://realpython.com/python-itertools/">https://realpython.com/python-itertools/</a>
 <a class="reference external" href="https://dbader.org/blog/python-iterators">https://dbader.org/blog/python-iterators</a>
 <a class="reference external" href="https://docs.python.org/3.6/library/itertools.html#itertools.takewhile">https://docs.python.org/3.6/library/itertools.html#itertools.takewhile</a></p>
+<p>Time: use sleep function to stall thread
+<a class="reference external" href="https://docs.python.org/3/library/time.html">https://docs.python.org/3/library/time.html</a></p>
 </div>
 <div class="section" id="misc">
 <h3>Misc<a class="headerlink" href="#misc" title="Permalink to this headline">¶</a></h3>

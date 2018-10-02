@@ -85,9 +85,8 @@
 <li class="toctree-l2"><a class="reference internal" href="Builder.html">Builder module</a></li>
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Director module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Representation.html">Representation module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docstring_example_google.html">docstring_example_google module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SecondaryBiasFinder.html">SecondaryBiasFinder module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Bio_SQL_DB.html">Bio_SQL_DB module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OutputFunctions.html">OutputFunctions module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
 </ul>
 </li>
@@ -174,27 +173,14 @@
 </dd>
 </dl>
 <dl class="method">
-<dt id="Director.Director.access_databases">
-<code class="descname">access_databases</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.access_databases"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.access_databases" title="Permalink to this definition">¶</a></dt>
-<dd><table class="docutils field-list" frame="void" rules="none">
-<col class="field-name" />
-<col class="field-body" />
-<tbody valign="top">
-<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
-</tr>
-</tbody>
-</table>
-</dd></dl>
-
-<dl class="method">
 <dt id="Director.Director.analysis_helper">
-<code class="descname">analysis_helper</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.analysis_helper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.analysis_helper" title="Permalink to this definition">¶</a></dt>
+<code class="descname">analysis_helper</code><span class="sig-paren">(</span><em>bias_analysis: bool</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.analysis_helper"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.analysis_helper" title="Permalink to this definition">¶</a></dt>
 <dd><p>Does the work prior to analysis. Handles file-in path, creating file-out path,</p>
 </dd></dl>
 
 <dl class="method">
-<dt id="Director.Director.create_sequence_objects">
-<code class="descname">create_sequence_objects</code><span class="sig-paren">(</span><em>sequence_info</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.create_sequence_objects"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.create_sequence_objects" title="Permalink to this definition">¶</a></dt>
+<dt id="Director.Director.create_seqrec_objects_from_fasta">
+<code class="descname">create_seqrec_objects_from_fasta</code><span class="sig-paren">(</span><em>fasta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.create_seqrec_objects_from_fasta"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.create_seqrec_objects_from_fasta" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -206,8 +192,8 @@
 </dd></dl>
 
 <dl class="method">
-<dt id="Director.Director.database_presentation">
-<code class="descname">database_presentation</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.database_presentation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.database_presentation" title="Permalink to this definition">¶</a></dt>
+<dt id="Director.Director.db_access">
+<code class="descname">db_access</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.db_access"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.db_access" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -218,9 +204,9 @@
 </table>
 </dd></dl>
 
-<dl class="method">
-<dt id="Director.Director.define_file_directory">
-<code class="descname">define_file_directory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.define_file_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.define_file_directory" title="Permalink to this definition">¶</a></dt>
+<dl class="staticmethod">
+<dt id="Director.Director.find_desktop_dir">
+<em class="property">static </em><code class="descname">find_desktop_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.find_desktop_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.find_desktop_dir" title="Permalink to this definition">¶</a></dt>
 <dd><table class="docutils field-list" frame="void" rules="none">
 <col class="field-name" />
 <col class="field-body" />
@@ -237,8 +223,8 @@
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="Director.Director.get_file_out_dir">
-<code class="descname">get_file_out_dir</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.get_file_out_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.get_file_out_dir" title="Permalink to this definition">¶</a></dt>
+<dt id="Director.Director.get_io_directory">
+<code class="descname">get_io_directory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.get_io_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.get_io_directory" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -259,6 +245,11 @@
 </tbody>
 </table>
 </dd></dl>
+
+<dl class="method">
+<dt id="Director.Director.quit_or_continue">
+<code class="descname">quit_or_continue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.quit_or_continue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.quit_or_continue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
 
 <dl class="method">
 <dt id="Director.Director.run_FELLS_analysis">
@@ -307,8 +298,8 @@ analysis using its self.analysis object</p>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="Director.Director.set_file_out_dir">
-<code class="descname">set_file_out_dir</code><span class="sig-paren">(</span><em>new_out_dir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.set_file_out_dir"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.set_file_out_dir" title="Permalink to this definition">¶</a></dt>
+<dt id="Director.Director.set_io_directory">
+<code class="descname">set_io_directory</code><span class="sig-paren">(</span><em>new_out_dir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.set_io_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.set_io_directory" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -316,12 +307,40 @@ analysis using its self.analysis object</p>
 <code class="descname">set_master_list</code><span class="sig-paren">(</span><em>new_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.set_master_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.set_master_list" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
+<dl class="method">
+<dt id="Director.Director.start_up">
+<code class="descname">start_up</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.start_up"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.start_up" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Director.Director.store_all_data">
+<code class="descname">store_all_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.store_all_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.store_all_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Director.Director.update_seq_data">
+<code class="descname">update_seq_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.update_seq_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.update_seq_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Director.Director.view_analysis">
+<code class="descname">view_analysis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.view_analysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.view_analysis" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Director.Director.view_or_process">
+<code class="descname">view_or_process</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#Director.view_or_process"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.Director.view_or_process" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
 </dd></dl>
 
-<dl class="function">
-<dt id="Director.check_input_method">
-<code class="descclassname">Director.</code><code class="descname">check_input_method</code><span class="sig-paren">(</span><em>input</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Director.html#check_input_method"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Director.check_input_method" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
+</dd></dl>
 
 </div>
 

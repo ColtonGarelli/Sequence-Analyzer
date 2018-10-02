@@ -146,15 +146,23 @@
            <div itemprop="articleBody">
             
   <h1>Source code for Director</h1><div class="highlight"><pre>
-<span></span><span class="kn">import</span> <span class="nn">Representation</span>
-<span class="kn">from</span> <span class="nn">Builder</span> <span class="k">import</span> <span class="n">AnalysisBuilder</span><span class="p">,</span> <span class="n">UniprotBuilder</span><span class="p">,</span> <span class="n">SequenceBiasBuilder</span>
+<span></span><span class="kn">import</span> <span class="nn">OutputFunctions</span>
+<span class="kn">import</span> <span class="nn">Representation</span>
+<span class="kn">from</span> <span class="nn">Builder</span> <span class="k">import</span> <span class="n">Builder</span><span class="p">,</span> <span class="n">AnalysisBuilder</span><span class="p">,</span> <span class="n">UniprotBuilder</span><span class="p">,</span> <span class="n">SequenceBiasBuilder</span><span class="p">,</span> <span class="n">DatabaseBuilder</span><span class="p">,</span> <span class="n">FELLSAnalysisBuilder</span><span class="p">,</span> <span class="n">SODAAnalysisBuilder</span>
 <span class="kn">import</span> <span class="nn">SecondaryBiasFinder</span>
-
+<span class="kn">import</span> <span class="nn">os.path</span>
+<span class="kn">import</span> <span class="nn">datetime</span>
+<span class="kn">import</span> <span class="nn">Bio</span>
+<span class="kn">from</span> <span class="nn">Bio</span> <span class="k">import</span> <span class="n">SeqIO</span><span class="p">,</span> <span class="n">Seq</span><span class="p">,</span> <span class="n">Alphabet</span>
+<span class="kn">from</span> <span class="nn">Bio.Alphabet</span> <span class="k">import</span> <span class="n">IUPAC</span>
 
 <span class="c1"># room for addition of BLAST, alignment, other tools as run_x_analysis methods</span>
 <span class="c1"># run_x_analysis methods communicate directly with self.AnalysisBuilder obj and self.DatabaseBuilder</span>
 <span class="c1"># DatabaseBuilder and AnalysisBuilder communicate with APIs and local modules</span>
 <span class="c1"># director also manages Representation</span>
+
+<span class="c1"># ***IMPORTANT DECISIONS***</span>
+<span class="c1"># Start by passing only in xml, always pass in file paths, update the master_list at the end of each analysis run</span>
 
 <div class="viewcode-block" id="Director"><a class="viewcode-back" href="../Director.html#Director.Director">[docs]</a><span class="k">class</span> <span class="nc">Director</span><span class="p">:</span>
     <span class="sd">&quot;&quot;&quot;</span>
@@ -171,6 +179,7 @@
 <span class="sd">        :cvar self.analysis: each director object contains an analysis object that run the desired set of analyses</span>
 <span class="sd">        :cvar self.representation: each director object contains an representation object to litigate data output</span>
 <span class="sd">        :cvar self.master_list: master sequence-id list. saved after file is first read in</span>
+<span class="sd">              the master list should be updated after analysis</span>
 <span class="sd">        :cvar self.file_in_path: path for sequence-id file in csv format</span>
 <span class="sd">        :cvar self.file_out_path: path for directory where files can be output</span>
 
@@ -178,14 +187,38 @@
 
 <span class="sd">        &quot;&quot;&quot;</span>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">analysis</span> <span class="o">=</span> <span class="p">[</span><span class="n">AnalysisBuilder</span><span class="p">]</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="p">:</span> <span class="n">DatabaseBuilder</span> <span class="o">=</span> <span class="kc">None</span>
         <span class="c1"># a list of representations</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">representation</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">Representation</span><span class="p">()</span>
-        <span class="c1"># the master sequence-id list</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">master_list</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">file_out_dir</span> <span class="o">=</span> <span class="kc">None</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">file_in_path</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="c1"># master list contains seq_record objects. Initially should contain id-seq but</span>
+        <span class="c1"># annotations and letter annotations should be updated w new values</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">master_list</span><span class="p">:</span> <span class="nb">list</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">analysis</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;fells&quot;</span><span class="p">:</span> <span class="n">FELLSAnalysisBuilder</span><span class="p">(),</span> <span class="s2">&quot;soda&quot;</span><span class="p">:</span> <span class="n">SODAAnalysisBuilder</span><span class="p">(),</span> <span class="s2">&quot;seqbias&quot;</span><span class="p">:</span> <span class="n">SequenceBiasBuilder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master_list</span><span class="p">)}</span>
+        <span class="c1"># directory where input file resides and where output directory will be created</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_out_dir</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_in_path</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Director.start_up"><a class="viewcode-back" href="../Director.html#Director.Director.start_up">[docs]</a>    <span class="k">def</span> <span class="nf">start_up</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">new_dir_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">find_desktop_dir</span><span class="p">(),</span> <span class="s2">&quot;PAM_Output_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()))</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">new_dir_name</span><span class="p">):</span>
+            <span class="n">new_dir_name</span> <span class="o">=</span> <span class="n">new_dir_name</span> <span class="o">+</span> <span class="s2">&quot;_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>
+            <span class="k">while</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">new_dir_name</span><span class="p">):</span>
+                <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="mi">11</span><span class="p">:</span>
+                    <span class="n">new_dir_name</span> <span class="o">=</span> <span class="n">new_dir_name</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">counter</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+                    <span class="n">new_dir_name</span> <span class="o">=</span> <span class="n">new_dir_name</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span>
+                <span class="k">elif</span> <span class="n">counter</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+                    <span class="n">new_dir_name</span> <span class="o">=</span> <span class="n">new_dir_name</span><span class="p">[:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+
+                <span class="n">new_dir_name</span> <span class="o">=</span> <span class="n">new_dir_name</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">)</span>
+                <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">new_dir_name</span><span class="p">)</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">mkdir</span><span class="p">(</span><span class="n">new_dir_name</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">makedirs</span><span class="p">(</span><span class="n">new_dir_name</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_out_dir</span> <span class="o">=</span> <span class="n">new_dir_name</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">introduction</span><span class="p">()</span></div>
 
 <div class="viewcode-block" id="Director.handle_manual_input"><a class="viewcode-back" href="../Director.html#Director.Director.handle_manual_input">[docs]</a>    <span class="k">def</span> <span class="nf">handle_manual_input</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -196,67 +229,93 @@
 
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">manual_sequence_entry</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_file_in_path</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_out_dir</span><span class="p">,</span> <span class="n">file_name</span><span class="p">))</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_in_path</span><span class="p">,</span> <span class="s1">&#39;rU&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">lines</span> <span class="o">=</span> <span class="p">[]</span>
+            <span class="k">for</span> <span class="n">line</span> <span class="ow">in</span> <span class="n">file</span><span class="p">:</span>
+                <span class="n">lines</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">line</span><span class="p">)</span>
+        <span class="n">list_in</span> <span class="o">=</span> <span class="n">Builder</span><span class="o">.</span><span class="n">create_seqrecord_object_from_csv</span><span class="p">(</span><span class="n">lines</span><span class="p">)</span>
+        <span class="c1"># run function to return master list</span>
+        <span class="k">return</span> <span class="n">list_in</span></div>
 
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_file_in_path</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">manual_sequence_entry</span><span class="p">())</span></div>
-
-<div class="viewcode-block" id="Director.define_file_directory"><a class="viewcode-back" href="../Director.html#Director.Director.define_file_directory">[docs]</a>    <span class="k">def</span> <span class="nf">define_file_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Director.find_desktop_dir"><a class="viewcode-back" href="../Director.html#Director.Director.find_desktop_dir">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">find_desktop_dir</span><span class="p">():</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :return:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">data_source</span> <span class="o">=</span> <span class="n">Representation</span><span class="o">.</span><span class="n">select_fileio_directory</span><span class="p">()</span>
+        <span class="n">home</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">expanduser</span><span class="p">(</span><span class="s1">&#39;~&#39;</span><span class="p">))</span>
+        <span class="n">d</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="s1">&#39;Desktop&#39;</span><span class="p">)</span>
+        <span class="n">data_source</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">home</span><span class="p">,</span> <span class="n">d</span><span class="p">)</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">data_source</span><span class="p">):</span>
+            <span class="n">data_source</span> <span class="o">=</span> <span class="n">OutputFunctions</span><span class="o">.</span><span class="n">select_fileio_directory</span><span class="p">()</span>
         <span class="k">return</span> <span class="n">data_source</span></div>
 
-<div class="viewcode-block" id="Director.analysis_helper"><a class="viewcode-back" href="../Director.html#Director.Director.analysis_helper">[docs]</a>    <span class="k">def</span> <span class="nf">analysis_helper</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Director.analysis_helper"><a class="viewcode-back" href="../Director.html#Director.Director.analysis_helper">[docs]</a>    <span class="k">def</span> <span class="nf">analysis_helper</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bias_analysis</span><span class="p">:</span> <span class="nb">bool</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">        Does the work prior to analysis. Handles file-in path, creating file-out path,</span>
 
 <span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># todo: select primary bias</span>
+        <span class="n">this</span> <span class="o">=</span> <span class="n">bias_analysis</span>
         <span class="n">slash_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_in_path</span><span class="o">.</span><span class="n">rsplit</span><span class="p">(</span><span class="s2">&quot;/&quot;</span><span class="p">,</span> <span class="mi">1</span><span class="p">)</span>
         <span class="n">new_path</span> <span class="o">=</span> <span class="nb">str</span><span class="p">(</span><span class="n">slash_list</span><span class="p">[</span><span class="mi">0</span><span class="p">])</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">set_file_out_dir</span><span class="p">(</span><span class="n">new_path</span><span class="p">)</span></div>
+        <span class="bp">self</span><span class="o">.</span><span class="n">set_io_directory</span><span class="p">(</span><span class="n">new_path</span><span class="p">)</span></div>
 
-<div class="viewcode-block" id="Director.access_databases"><a class="viewcode-back" href="../Director.html#Director.Director.access_databases">[docs]</a>    <span class="k">def</span> <span class="nf">access_databases</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Director.db_access"><a class="viewcode-back" href="../Director.html#Director.Director.db_access">[docs]</a>    <span class="k">def</span> <span class="nf">db_access</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :return:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
 
         <span class="n">db_choice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">choose_database</span><span class="p">()</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="n">UniprotBuilder</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">db_choice</span> <span class="o">==</span> <span class="s2">&quot;up&quot;</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">database</span> <span class="o">=</span> <span class="n">UniprotBuilder</span><span class="p">()</span>
         <span class="n">db_options</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">db_options</span><span class="p">()</span>
         <span class="n">response_opts</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">construct_column_string</span><span class="p">(</span><span class="n">db_options</span><span class="p">)</span>
-        <span class="n">response_format</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">select_fileio_directory</span><span class="p">()</span>
+        <span class="n">response_format</span> <span class="o">=</span> <span class="s2">&quot;xml&quot;</span>
         <span class="n">request_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">create_request_url</span><span class="p">(</span><span class="n">response_format</span><span class="p">,</span> <span class="n">response_opts</span><span class="p">)</span>
         <span class="n">response_info</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">make_request_get_response</span><span class="p">(</span><span class="n">request_url</span><span class="p">)</span>
-        <span class="k">if</span> <span class="n">response_format</span> <span class="o">==</span> <span class="s2">&quot;xml&quot;</span><span class="p">:</span>
-            <span class="n">seq_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">uniprot_xml_to_seqrecord</span><span class="p">(</span><span class="n">response_info</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">response_format</span> <span class="o">==</span> <span class="s2">&quot;fasta&quot;</span><span class="p">:</span>
-            <span class="n">seq_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">uniprot_fasta_to_seqrecord</span><span class="p">(</span><span class="n">response_info</span><span class="p">)</span>
-        <span class="k">elif</span> <span class="n">response_format</span> <span class="o">==</span> <span class="s2">&quot;tab&quot;</span><span class="p">:</span>
-            <span class="n">seq_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">uniprot_tab_separated_to_file</span><span class="p">(</span><span class="n">response_info</span><span class="p">)</span>
-        <span class="k">else</span><span class="p">:</span>
-            <span class="n">seq_list</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="n">seq_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">database</span><span class="o">.</span><span class="n">uniprot_xml_to_seqrecord</span><span class="p">(</span><span class="n">response_info</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_out_dir</span><span class="p">)</span>
+        <span class="c1"># elif response_format == &quot;fasta&quot;:</span>
+        <span class="c1">#     seq_list = self.database.uniprot_data_to_seqrecord(response_info, self.file_in_path, &#39;fasta&#39;)</span>
+        <span class="c1"># elif response_format == &quot;tab&quot;:</span>
+        <span class="c1">#     seq_list = self.database.uniprot_data_to_seqrecord(response_info, self.file_in_path, &#39;tab&#39;)</span>
+        <span class="c1"># else:</span>
+        <span class="c1">#     seq_list = None</span>
         <span class="c1"># database object should contain list of seqrecord objects</span>
         <span class="c1"># call database to make list and set master list equal to</span>
         <span class="k">return</span> <span class="n">seq_list</span></div>
 
     <span class="c1"># if view is selected, run functions that create and functions that display desired info</span>
-<div class="viewcode-block" id="Director.database_presentation"><a class="viewcode-back" href="../Director.html#Director.Director.database_presentation">[docs]</a>    <span class="k">def</span> <span class="nf">database_presentation</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Director.view_or_process"><a class="viewcode-back" href="../Director.html#Director.Director.view_or_process">[docs]</a>    <span class="k">def</span> <span class="nf">view_or_process</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :return:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">set_print_string</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">db_query_view</span><span class="p">())</span></div>
-    <span class="c1">#   print the string</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="nb">input</span><span class="p">(</span><span class="s2">&quot;Would you like to view imported sequence information before processing? (y/n) &quot;</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">choice</span> <span class="o">==</span> <span class="s2">&quot;y&quot;</span><span class="p">:</span>
+            <span class="n">choice</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">representation</span><span class="o">.</span><span class="n">db_query_view</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master_list</span><span class="p">)</span>
+            <span class="k">return</span> <span class="s2">&quot;v&quot;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="c1"># todo: implement better viewing and ability to select different views</span>
+            <span class="k">return</span> <span class="s2">&quot;a&quot;</span></div>
 
-<div class="viewcode-block" id="Director.create_sequence_objects"><a class="viewcode-back" href="../Director.html#Director.Director.create_sequence_objects">[docs]</a>    <span class="k">def</span> <span class="nf">create_sequence_objects</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence_info</span><span class="p">):</span>
+<div class="viewcode-block" id="Director.create_seqrec_objects_from_fasta"><a class="viewcode-back" href="../Director.html#Director.Director.create_seqrec_objects_from_fasta">[docs]</a>    <span class="k">def</span> <span class="nf">create_seqrec_objects_from_fasta</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">fasta</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :return:</span>
-<span class="sd">        &quot;&quot;&quot;</span></div>
+<span class="sd">        &quot;&quot;&quot;</span>
     <span class="c1"># turn string formatted info to SeqRecord objects</span>
     <span class="c1"># put SeqRecord obj list in master list</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="Director.view_analysis"><a class="viewcode-back" href="../Director.html#Director.Director.view_analysis">[docs]</a>    <span class="k">def</span> <span class="nf">view_analysis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="nb">print</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master_list</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Director.quit_or_continue"><a class="viewcode-back" href="../Director.html#Director.Director.quit_or_continue">[docs]</a>    <span class="k">def</span> <span class="nf">quit_or_continue</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="kc">True</span></div>
 
 <div class="viewcode-block" id="Director.run_FELLS_analysis"><a class="viewcode-back" href="../Director.html#Director.Director.run_FELLS_analysis">[docs]</a>    <span class="k">def</span> <span class="nf">run_FELLS_analysis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -268,14 +327,31 @@
     <span class="c1">#   while loop to check for updates</span>
     <span class="c1">#   director holds onto FELLS, where data is stored</span>
     <span class="c1">#   builder objects own data and send translations to director</span>
-        <span class="n">s</span> <span class="o">=</span> <span class="kc">None</span></div>
+        <span class="n">prepped_list</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_master_list</span><span class="p">():</span>
+            <span class="n">prepped_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;fasta&quot;</span><span class="p">))</span>
+    <span class="c1"># todo: fill prepped_list with a list of fasta formatted sequences</span>
+        <span class="n">jobid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">analysis</span><span class="p">[</span><span class="s2">&quot;fells&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">prepare_and_send_request</span><span class="p">(</span><span class="n">prepped_list</span><span class="p">)</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">analysis</span><span class="p">[</span><span class="s2">&quot;fells&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">check_request_status</span><span class="p">(</span><span class="n">jobid</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">analysis</span><span class="p">[</span><span class="s2">&quot;fells&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">check_processing_status</span><span class="p">(</span><span class="n">json_obj</span><span class="p">[</span><span class="s1">&#39;names&#39;</span><span class="p">][</span><span class="mi">0</span><span class="p">][</span><span class="mi">1</span><span class="p">])</span>
+        <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">analysis</span><span class="p">[</span><span class="s2">&quot;fells&quot;</span><span class="p">]</span><span class="o">.</span><span class="n">retrieve_response_data</span><span class="p">(</span><span class="n">json_obj</span><span class="p">[</span><span class="s1">&#39;names&#39;</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">data</span></div>
+    <span class="c1"># todo: do something with the data (store and plot)</span>
 
 <div class="viewcode-block" id="Director.run_SODA_analysis"><a class="viewcode-back" href="../Director.html#Director.Director.run_SODA_analysis">[docs]</a>    <span class="k">def</span> <span class="nf">run_SODA_analysis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
 
 <span class="sd">        :returns:</span>
 <span class="sd">        &quot;&quot;&quot;</span>
-        <span class="n">something</span> <span class="o">=</span> <span class="kc">None</span></div>
+        <span class="n">processed_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">master_list</span><span class="p">:</span>
+            <span class="n">jobid</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;soda&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">prepare_request_object</span><span class="p">(</span><span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">seq</span><span class="p">))</span>
+            <span class="n">json_obj</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;soda&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">check_request_status</span><span class="p">(</span><span class="n">jobid</span><span class="p">)</span>
+            <span class="n">jobid</span> <span class="o">=</span> <span class="n">json_obj</span><span class="p">[</span><span class="s1">&#39;jobid&#39;</span><span class="p">]</span>
+            <span class="n">data</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">analysis</span><span class="p">[</span><span class="s1">&#39;soda&#39;</span><span class="p">]</span><span class="o">.</span><span class="n">retrieve_response_data</span><span class="p">(</span><span class="n">jobid</span><span class="p">)</span>
+            <span class="n">processed_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">processed_list</span></div>
+    <span class="c1"># todo: do something with the data (store and plot)</span>
 
 <div class="viewcode-block" id="Director.run_bias_analysis"><a class="viewcode-back" href="../Director.html#Director.Director.run_bias_analysis">[docs]</a>    <span class="k">def</span> <span class="nf">run_bias_analysis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="sd">&quot;&quot;&quot;</span>
@@ -289,8 +365,9 @@
         <span class="c1"># select primary bias</span>
         <span class="c1"># primary_bias = Representation.choose_primary_bias()</span>
         <span class="n">secondary_analysis</span> <span class="o">=</span> <span class="n">SequenceBiasBuilder</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master_list</span><span class="p">)</span>
-        <span class="n">secondary_analysis</span><span class="o">.</span><span class="n">find_sec_bias</span><span class="p">(</span><span class="s2">&quot;Q&quot;</span><span class="p">)</span></div>
+        <span class="n">updated_list</span> <span class="o">=</span> <span class="n">secondary_analysis</span><span class="o">.</span><span class="n">find_sec_bias</span><span class="p">(</span><span class="s2">&quot;Q&quot;</span><span class="p">,</span> <span class="bp">self</span><span class="o">.</span><span class="n">master_list</span><span class="p">)</span>
 
+        <span class="k">return</span> <span class="n">updated_list</span></div>
         <span class="c1"># file_string = Representation.read_file(self.file_in_path)</span>
         <span class="c1"># self.master_list = Representation.parse_to_string_list(file_string)</span>
         <span class="c1"># # each string in string_list represents a sequence</span>
@@ -312,18 +389,46 @@
 <div class="viewcode-block" id="Director.set_file_in_path"><a class="viewcode-back" href="../Director.html#Director.Director.set_file_in_path">[docs]</a>    <span class="k">def</span> <span class="nf">set_file_in_path</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_in_path</span><span class="p">):</span>
         <span class="bp">self</span><span class="o">.</span><span class="n">file_in_path</span> <span class="o">=</span> <span class="n">new_in_path</span></div>
 
-<div class="viewcode-block" id="Director.get_file_out_dir"><a class="viewcode-back" href="../Director.html#Director.Director.get_file_out_dir">[docs]</a>    <span class="k">def</span> <span class="nf">get_file_out_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+<div class="viewcode-block" id="Director.get_io_directory"><a class="viewcode-back" href="../Director.html#Director.Director.get_io_directory">[docs]</a>    <span class="k">def</span> <span class="nf">get_io_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
         <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_out_dir</span></div>
 
-<div class="viewcode-block" id="Director.set_file_out_dir"><a class="viewcode-back" href="../Director.html#Director.Director.set_file_out_dir">[docs]</a>    <span class="k">def</span> <span class="nf">set_file_out_dir</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_out_dir</span><span class="p">):</span>
-        <span class="bp">self</span><span class="o">.</span><span class="n">file_out_dir</span> <span class="o">=</span> <span class="n">new_out_dir</span></div></div>
+<div class="viewcode-block" id="Director.set_io_directory"><a class="viewcode-back" href="../Director.html#Director.Director.set_io_directory">[docs]</a>    <span class="k">def</span> <span class="nf">set_io_directory</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_out_dir</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_out_dir</span> <span class="o">=</span> <span class="n">new_out_dir</span></div>
 
+<div class="viewcode-block" id="Director.update_seq_data"><a class="viewcode-back" href="../Director.html#Director.Director.update_seq_data">[docs]</a>    <span class="k">def</span> <span class="nf">update_seq_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="o">**</span><span class="n">kwargs</span><span class="p">):</span>
+        <span class="k">if</span> <span class="s1">&#39;fells&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">master_list</span> <span class="o">=</span> <span class="n">FELLSAnalysisBuilder</span><span class="o">.</span><span class="n">update_annotations</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master_list</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;fells&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="s1">&#39;soda&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">master_list</span> <span class="o">=</span> <span class="n">SODAAnalysisBuilder</span><span class="o">.</span><span class="n">update_annotations</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master_list</span><span class="p">,</span> <span class="n">kwargs</span><span class="p">[</span><span class="s1">&#39;soda&#39;</span><span class="p">])</span>
+        <span class="k">if</span> <span class="s1">&#39;sec_bias&#39;</span> <span class="ow">in</span> <span class="n">kwargs</span><span class="p">:</span>
+            <span class="k">pass</span></div>
 
-<div class="viewcode-block" id="check_input_method"><a class="viewcode-back" href="../Director.html#Director.check_input_method">[docs]</a><span class="k">def</span> <span class="nf">check_input_method</span><span class="p">(</span><span class="nb">input</span><span class="p">):</span>
-    <span class="k">if</span> <span class="nb">input</span> <span class="o">==</span> <span class="s1">&#39;up&#39;</span> <span class="ow">or</span> <span class="nb">input</span> <span class="o">==</span> <span class="s1">&#39;file&#39;</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">True</span>
-    <span class="k">else</span><span class="p">:</span>
-        <span class="k">return</span> <span class="kc">False</span></div>
+<div class="viewcode-block" id="Director.store_all_data"><a class="viewcode-back" href="../Director.html#Director.Director.store_all_data">[docs]</a>    <span class="k">def</span> <span class="nf">store_all_data</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_out_dir</span><span class="p">,</span> <span class="s1">&#39;data_persistence</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">datetime</span><span class="o">.</span><span class="n">date</span><span class="o">.</span><span class="n">today</span><span class="p">()))</span>
+        <span class="n">counter</span> <span class="o">=</span> <span class="mi">0</span>
+        <span class="k">if</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
+            <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">exists</span><span class="p">(</span><span class="n">file_name</span><span class="o">+</span><span class="s2">&quot;_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">counter</span><span class="p">))</span>
+            <span class="k">while</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">isdir</span><span class="p">(</span><span class="n">file_name</span><span class="p">):</span>
+                <span class="n">counter</span> <span class="o">+=</span> <span class="mi">1</span>
+                <span class="k">if</span> <span class="n">counter</span> <span class="o">&lt;</span> <span class="mi">11</span><span class="p">:</span>
+                    <span class="n">file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_name</span><span class="p">[:</span><span class="o">-</span><span class="mi">1</span><span class="p">]</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">))</span>
+                <span class="k">elif</span> <span class="n">counter</span> <span class="o">&gt;</span> <span class="mi">10</span><span class="p">:</span>
+                    <span class="n">file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_name</span><span class="p">[:</span><span class="o">-</span><span class="mi">2</span><span class="p">]</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">))</span>
+                <span class="k">elif</span> <span class="n">counter</span> <span class="o">&gt;</span> <span class="mi">100</span><span class="p">:</span>
+                    <span class="n">file_name</span> <span class="o">=</span> <span class="n">os</span><span class="o">.</span><span class="n">path</span><span class="o">.</span><span class="n">join</span><span class="p">(</span><span class="n">file_name</span><span class="p">[:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span> <span class="o">+</span> <span class="nb">str</span><span class="p">(</span><span class="n">counter</span><span class="p">))</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">SeqIO</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">sequences</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">master_list</span><span class="p">,</span> <span class="n">handle</span><span class="o">=</span><span class="n">file</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;seqxml&#39;</span><span class="p">)</span>
+            <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">type_e</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master_list</span><span class="p">)):</span>
+                    <span class="n">seq_obj</span> <span class="o">=</span> <span class="n">Bio</span><span class="o">.</span><span class="n">Seq</span><span class="o">.</span><span class="n">Seq</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">seq</span><span class="p">),</span> <span class="n">alphabet</span><span class="o">=</span><span class="n">Alphabet</span><span class="o">.</span><span class="n">ProteinAlphabet</span><span class="p">())</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">seq</span> <span class="o">=</span> <span class="n">seq_obj</span>
+            <span class="k">except</span> <span class="ne">AttributeError</span> <span class="k">as</span> <span class="n">att_err</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master_list</span><span class="p">)):</span>
+                    <span class="n">seq_obj</span> <span class="o">=</span> <span class="n">Bio</span><span class="o">.</span><span class="n">Seq</span><span class="o">.</span><span class="n">Seq</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="nb">str</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">seq</span><span class="p">),</span> <span class="n">alphabet</span><span class="o">=</span><span class="n">Alphabet</span><span class="o">.</span><span class="n">ProteinAlphabet</span><span class="p">())</span>
+                    <span class="bp">self</span><span class="o">.</span><span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">seq</span> <span class="o">=</span> <span class="n">seq_obj</span>
+                <span class="n">SeqIO</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">sequences</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">master_list</span><span class="p">,</span> <span class="n">handle</span><span class="o">=</span><span class="n">file</span><span class="p">,</span> <span class="nb">format</span><span class="o">=</span><span class="s1">&#39;seqxml&#39;</span><span class="p">)</span></div></div>
+
 </pre></div>
 
            </div>

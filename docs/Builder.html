@@ -85,9 +85,8 @@
 <li class="toctree-l2 current"><a class="current reference internal" href="#">Builder module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Director.html">Director module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="Representation.html">Representation module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="docstring_example_google.html">docstring_example_google module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="SecondaryBiasFinder.html">SecondaryBiasFinder module</a></li>
-<li class="toctree-l2"><a class="reference internal" href="Bio_SQL_DB.html">Bio_SQL_DB module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="OutputFunctions.html">OutputFunctions module</a></li>
 <li class="toctree-l2"><a class="reference internal" href="main.html">main module</a></li>
 </ul>
 </li>
@@ -172,7 +171,12 @@
 <dt id="Builder.Builder">
 <em class="property">class </em><code class="descclassname">Builder.</code><code class="descname">Builder</code><a class="reference internal" href="_modules/Builder.html#Builder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.Builder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
-<p>Builder is an abstract class that serves as a template for building database responses and analyses</p>
+<p>Builder is a class that serves as a template for building database responses and analyses</p>
+<dl class="staticmethod">
+<dt id="Builder.Builder.create_seqrecord_object_from_csv">
+<em class="property">static </em><code class="descname">create_seqrecord_object_from_csv</code><span class="sig-paren">(</span><em>seq_string</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#Builder.create_seqrecord_object_from_csv"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.Builder.create_seqrecord_object_from_csv" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
 </dd></dl>
 
 <dl class="class">
@@ -186,8 +190,18 @@
 <em class="property">class </em><code class="descclassname">Builder.</code><code class="descname">FELLSAnalysisBuilder</code><a class="reference internal" href="_modules/Builder.html#FELLSAnalysisBuilder"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.FELLSAnalysisBuilder" title="Permalink to this definition">¶</a></dt>
 <dd><p>Bases: <a class="reference internal" href="#Builder.AnalysisBuilder" title="Builder.AnalysisBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">Builder.AnalysisBuilder</span></code></a></p>
 <dl class="method">
+<dt id="Builder.FELLSAnalysisBuilder.check_processing_status">
+<code class="descname">check_processing_status</code><span class="sig-paren">(</span><em>ID</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#FELLSAnalysisBuilder.check_processing_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.FELLSAnalysisBuilder.check_processing_status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="Builder.FELLSAnalysisBuilder.check_request_status">
-<code class="descname">check_request_status</code><span class="sig-paren">(</span><em>ID</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#FELLSAnalysisBuilder.check_request_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.FELLSAnalysisBuilder.check_request_status" title="Permalink to this definition">¶</a></dt>
+<code class="descname">check_request_status</code><span class="sig-paren">(</span><em>jobid</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#FELLSAnalysisBuilder.check_request_status"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.FELLSAnalysisBuilder.check_request_status" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="Builder.FELLSAnalysisBuilder.create_seqrecord_object">
+<code class="descname">create_seqrecord_object</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#FELLSAnalysisBuilder.create_seqrecord_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.FELLSAnalysisBuilder.create_seqrecord_object" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -201,13 +215,18 @@
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="Builder.FELLSAnalysisBuilder.prepare_request_object">
-<code class="descname">prepare_request_object</code><span class="sig-paren">(</span><em>seq_id_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#FELLSAnalysisBuilder.prepare_request_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.FELLSAnalysisBuilder.prepare_request_object" title="Permalink to this definition">¶</a></dt>
+<dt id="Builder.FELLSAnalysisBuilder.prepare_and_send_request">
+<code class="descname">prepare_and_send_request</code><span class="sig-paren">(</span><em>seq_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#FELLSAnalysisBuilder.prepare_and_send_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.FELLSAnalysisBuilder.prepare_and_send_request" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="Builder.FELLSAnalysisBuilder.retrieve_response_data">
-<code class="descname">retrieve_response_data</code><span class="sig-paren">(</span><em>ID</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#FELLSAnalysisBuilder.retrieve_response_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.FELLSAnalysisBuilder.retrieve_response_data" title="Permalink to this definition">¶</a></dt>
+<code class="descname">retrieve_response_data</code><span class="sig-paren">(</span><em>id_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#FELLSAnalysisBuilder.retrieve_response_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.FELLSAnalysisBuilder.retrieve_response_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="staticmethod">
+<dt id="Builder.FELLSAnalysisBuilder.update_annotations">
+<em class="property">static </em><code class="descname">update_annotations</code><span class="sig-paren">(</span><em>master_list</em>, <em>data_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#FELLSAnalysisBuilder.update_annotations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.FELLSAnalysisBuilder.update_annotations" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -232,13 +251,18 @@
 <dd></dd></dl>
 
 <dl class="method">
+<dt id="Builder.SODAAnalysisBuilder.prepare_request_object">
+<code class="descname">prepare_request_object</code><span class="sig-paren">(</span><em>seq</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#SODAAnalysisBuilder.prepare_request_object"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.SODAAnalysisBuilder.prepare_request_object" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
 <dt id="Builder.SODAAnalysisBuilder.retrieve_response_data">
 <code class="descname">retrieve_response_data</code><span class="sig-paren">(</span><em>ID</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#SODAAnalysisBuilder.retrieve_response_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.SODAAnalysisBuilder.retrieve_response_data" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
-<dl class="method">
-<dt id="Builder.SODAAnalysisBuilder.submit_job_request">
-<code class="descname">submit_job_request</code><span class="sig-paren">(</span><em>seq_in</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#SODAAnalysisBuilder.submit_job_request"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.SODAAnalysisBuilder.submit_job_request" title="Permalink to this definition">¶</a></dt>
+<dl class="staticmethod">
+<dt id="Builder.SODAAnalysisBuilder.update_annotations">
+<em class="property">static </em><code class="descname">update_annotations</code><span class="sig-paren">(</span><em>seqrecord</em>, <em>json_info</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#SODAAnalysisBuilder.update_annotations"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.SODAAnalysisBuilder.update_annotations" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -249,7 +273,7 @@
 <dd><p>Bases: <a class="reference internal" href="#Builder.AnalysisBuilder" title="Builder.AnalysisBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">Builder.AnalysisBuilder</span></code></a></p>
 <dl class="method">
 <dt id="Builder.SequenceBiasBuilder.find_sec_bias">
-<code class="descname">find_sec_bias</code><span class="sig-paren">(</span><em>primary_bias</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#SequenceBiasBuilder.find_sec_bias"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.SequenceBiasBuilder.find_sec_bias" title="Permalink to this definition">¶</a></dt>
+<code class="descname">find_sec_bias</code><span class="sig-paren">(</span><em>primary_bias</em>, <em>seq_record_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#SequenceBiasBuilder.find_sec_bias"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.SequenceBiasBuilder.find_sec_bias" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>
@@ -260,7 +284,7 @@
 <dd><p>Bases: <a class="reference internal" href="#Builder.DatabaseBuilder" title="Builder.DatabaseBuilder"><code class="xref py py-class docutils literal notranslate"><span class="pre">Builder.DatabaseBuilder</span></code></a></p>
 <dl class="attribute">
 <dt id="Builder.UniprotBuilder.column_dict">
-<code class="descname">column_dict</code><em class="property"> = {'Organism': 'organism', 'abs': 'comment(ABSORPTION)', 'comp bias': 'feature(COMPOSITIONAL BIAS)', 'domain': 'comment(DOMAIN)', 'entry': 'entry name', 'id': 'id', 'mass': 'mass', 'pH': 'comment(PH DEPENDENCE)', 'prot name': 'protein name', 'seq': 'sequence', 'temp': 'comment(TEMPERATURE DEPENDENCE'}</em><a class="headerlink" href="#Builder.UniprotBuilder.column_dict" title="Permalink to this definition">¶</a></dt>
+<code class="descname">column_dict</code><em class="property"> = {'Organism': 'organism', 'abs': 'comment(ABSORPTION)', 'comp_bias': 'feature(COMPOSITIONAL BIAS)', 'domain': 'comment(DOMAIN)', 'entry': 'entry name', 'id': 'id', 'mass': 'mass', 'pH': 'comment(PH DEPENDENCE)', 'prot name': 'protein name', 'seq': 'sequence', 'temp': 'comment(TEMPERATURE DEPENDENCE'}</em><a class="headerlink" href="#Builder.UniprotBuilder.column_dict" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
@@ -284,33 +308,23 @@
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="Builder.UniprotBuilder.prep_uniprot_output">
-<code class="descname">prep_uniprot_output</code><span class="sig-paren">(</span><em>seq_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#UniprotBuilder.prep_uniprot_output"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.UniprotBuilder.prep_uniprot_output" title="Permalink to this definition">¶</a></dt>
+<dt id="Builder.UniprotBuilder.seq_record_to_uniprot_format">
+<code class="descname">seq_record_to_uniprot_format</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#UniprotBuilder.seq_record_to_uniprot_format"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.UniprotBuilder.seq_record_to_uniprot_format" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
-<dt id="Builder.UniprotBuilder.seq_record_to_uniprot_xml">
-<code class="descname">seq_record_to_uniprot_xml</code><span class="sig-paren">(</span><em>seq_record</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#UniprotBuilder.seq_record_to_uniprot_xml"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.UniprotBuilder.seq_record_to_uniprot_xml" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="Builder.UniprotBuilder.uniprot_fasta_to_seqrecord">
-<code class="descname">uniprot_fasta_to_seqrecord</code><span class="sig-paren">(</span><em>uniprot_fasta</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#UniprotBuilder.uniprot_fasta_to_seqrecord"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.UniprotBuilder.uniprot_fasta_to_seqrecord" title="Permalink to this definition">¶</a></dt>
-<dd></dd></dl>
-
-<dl class="method">
-<dt id="Builder.UniprotBuilder.uniprot_tab_separated_to_file">
-<code class="descname">uniprot_tab_separated_to_file</code><span class="sig-paren">(</span><em>uniprot_tab</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#UniprotBuilder.uniprot_tab_separated_to_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.UniprotBuilder.uniprot_tab_separated_to_file" title="Permalink to this definition">¶</a></dt>
+<dt id="Builder.UniprotBuilder.uniprot_data_to_seqrecord">
+<code class="descname">uniprot_data_to_seqrecord</code><span class="sig-paren">(</span><em>uniprot_data</em>, <em>file_address</em>, <em>file_format</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#UniprotBuilder.uniprot_data_to_seqrecord"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.UniprotBuilder.uniprot_data_to_seqrecord" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="method">
 <dt id="Builder.UniprotBuilder.uniprot_xml_to_seqrecord">
-<code class="descname">uniprot_xml_to_seqrecord</code><span class="sig-paren">(</span><em>uniprot_xml</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#UniprotBuilder.uniprot_xml_to_seqrecord"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.UniprotBuilder.uniprot_xml_to_seqrecord" title="Permalink to this definition">¶</a></dt>
+<code class="descname">uniprot_xml_to_seqrecord</code><span class="sig-paren">(</span><em>uniprot_xml</em>, <em>storage_dir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/Builder.html#UniprotBuilder.uniprot_xml_to_seqrecord"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#Builder.UniprotBuilder.uniprot_xml_to_seqrecord" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 <dl class="attribute">
 <dt id="Builder.UniprotBuilder.url_extension">
-<code class="descname">url_extension</code><em class="property"> = '&amp;limit=100&amp;format='</em><a class="headerlink" href="#Builder.UniprotBuilder.url_extension" title="Permalink to this definition">¶</a></dt>
+<code class="descname">url_extension</code><em class="property"> = '&amp;limit=5&amp;format='</em><a class="headerlink" href="#Builder.UniprotBuilder.url_extension" title="Permalink to this definition">¶</a></dt>
 <dd></dd></dl>
 
 </dd></dl>

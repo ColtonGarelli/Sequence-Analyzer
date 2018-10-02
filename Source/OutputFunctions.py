@@ -260,10 +260,7 @@ def data_options():
     Returns:
         list containing keys for the column options for data to be returned from UniProtKB
         Column options in this list are keys matching the current column option dictionary (below)
-          column_dict = {'id': 'id', 'entry': 'entry name', 'Organism': 'organism', 'prot name': "protein name",
-                   'seq': 'sequence', 'mass': 'mass', 'abs': 'comment(ABSORPTION)', 'pH': 'comment(PH DEPENDENCE)',
-                   'domain': 'comment(DOMAIN)', 'comp_bias': 'feature(COMPOSITIONAL BIAS)',
-                   'temp': 'comment(TEMPERATURE DEPENDENCE'}
+        :var column_dict: = {'id': 'id', 'entry': 'entry name', 'Organism': 'organism', 'prot name': "protein name", 'seq': 'sequence', 'mass': 'mass', 'abs': 'comment(ABSORPTION)', 'pH': 'comment(PH DEPENDENCE)', 'domain': 'comment(DOMAIN)', 'comp_bias': 'feature(COMPOSITIONAL BIAS)', 'temp': 'comment(TEMPERATURE DEPENDENCE'}
     """
 
     print("Available data options:\n")

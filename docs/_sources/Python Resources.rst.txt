@@ -59,12 +59,20 @@ UniprotIO:
 https://biopython.org/wiki/SeqIO
 
 https://biopython.org/DIST/docs/api/Bio.SeqIO.UniprotIO-pysrc.html#Parser.__init__
+SEQIO.READ(FILENAME.FILE, 'uniprot')
 
 
 SeqRecord Class
 ===============
 http://biopython.org/DIST/docs/api/Bio.SeqRecord.SeqRecord-class.html
 
+parsing example: records = list(SeqIO.parse("ls_orchid.gbk", "genbank"))
+
+SeqRecord.seq is a Seq class object. Sequences should be input as Seq('sequencehere')
+   - SeqRecord.format() allows reformatting of objects to strings of formatted info
+SeqRecord.features is a SeqFeature object with values like type, location, and qualifiers that describe features
+   - .position refers to single aa while .location is some region of aas
+   - SeqFeature.ExactPosition, BeforePosition, After, Within, OneOf, and Unknown
 
 BioSQL:
 =======
@@ -105,6 +113,8 @@ Iteration tools: https://realpython.com/python-itertools/
 https://dbader.org/blog/python-iterators
 https://docs.python.org/3.6/library/itertools.html#itertools.takewhile
 
+Time: use sleep function to stall thread
+https://docs.python.org/3/library/time.html
 
 Misc
 =============

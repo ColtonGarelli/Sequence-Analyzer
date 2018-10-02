@@ -3,5 +3,5 @@ Builder module
 
 .. automodule:: Builder
     :members:
-    :undoc-members: UniprotBuilder.column_dict
+    :undoc-members:
     :show-inheritance:

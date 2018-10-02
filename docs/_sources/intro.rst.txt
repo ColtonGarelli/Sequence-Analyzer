@@ -33,6 +33,7 @@ Secondary Bias:
    5. The TOC tree resource: http://www.sphinx-doc.org/en/stable/markup/toctree.html
    6. Internal documentation referencing: http://www.sphinx-doc.org/en/stable/markup/inline.html#role-ref
 
+***MAKING PACKAGES***: Refactor the desired module and click "Convert to Python Package"
 
 :Authors:
     Colton J. Garelli
