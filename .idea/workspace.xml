@@ -58,12 +58,19 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="OutputFunctions.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="OutputFunctions.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/../PAM/Source/OutputFunctions.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="175">
-              <caret line="174" column="38" selection-start-line="174" selection-start-column="38" selection-end-line="174" selection-end-column="38" />
+            <state relative-caret-position="370">
+              <caret line="187" column="5" selection-start-line="187" selection-start-column="5" selection-end-line="187" selection-end-column="5" />
             </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="workspace.xml" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/../PAM/.idea/workspace.xml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-136" />
           </provider>
         </entry>
       </file>
@@ -146,7 +153,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Source/DatabaseAPI" />
         <option value="$PROJECT_DIR$/Source/Resources/Database info" />
         <option value="$PROJECT_DIR$/Source/SpreadsheetIO.py" />
         <option value="$PROJECT_DIR$/Source/Operation.py" />
@@ -197,6 +203,7 @@
         <option value="$PROJECT_DIR$/Source/OutputFunctions.py" />
         <option value="$PROJECT_DIR$/sphinx/Makefile" />
         <option value="$PROJECT_DIR$/sphinx/index.rst" />
+        <option value="$PROJECT_DIR$/../PAM/Source/OutputFunctions.py" />
       </list>
     </option>
   </component>
@@ -238,16 +245,6 @@
               <item name="Protein-Analysis-Manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="PAM" type="462c0819:PsiDirectoryNode" />
             </path>
-            <path>
-              <item name="Protein-Analysis-Manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PAM" type="462c0819:PsiDirectoryNode" />
-              <item name="Source" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Protein-Analysis-Manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PAM" type="462c0819:PsiDirectoryNode" />
-              <item name="sphinx" type="462c0819:PsiDirectoryNode" />
-            </path>
           </expand>
           <select />
         </subPane>
@@ -258,6 +255,11 @@
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="PAM" type="cbb8eebc:String" user="PAM" />
+            </path>
+            <path>
+              <item name="Root" type="cbb8eebc:String" user="Root" />
+              <item name="PAM" type="cbb8eebc:String" user="PAM" />
+              <item name=".idea" type="cbb8eebc:String" user=".idea" />
             </path>
             <path>
               <item name="Root" type="cbb8eebc:String" user="Root" />
@@ -284,19 +286,19 @@
     <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
   </component>
   <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/../PAM/Tests" />
+      <recent name="$PROJECT_DIR$/docs" />
+      <recent name="$PROJECT_DIR$/References" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/sphinx/build/html" />
+    </key>
     <key name="MoveFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/sphinx/Source" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/SequenceAnalyzer2.1" />
       <recent name="$PROJECT_DIR$/Tests/BuilderTests" />
       <recent name="$PROJECT_DIR$/BuilderTests" />
-    </key>
-    <key name="CopyFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/docs" />
-      <recent name="$PROJECT_DIR$/References" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/sphinx/build/html" />
-      <recent name="$PROJECT_DIR$/Source" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -568,15 +570,15 @@
   <component name="ToolWindowManager">
     <frame x="-1344" y="-146" width="1317" height="877" extended-state="0" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17283951" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.17283951" />
       <window_info anchor="bottom" id="TODO" order="4" weight="0.32848486" />
-      <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.5049962" side_tool="true" weight="0.49688667" />
+      <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.50771606" side_tool="true" visible="true" weight="0.19358975" />
       <window_info anchor="bottom" id="Find" order="1" weight="0.3237858" />
       <window_info anchor="right" id="Run" order="3" sideWeight="0.8051282" side_tool="true" weight="0.27764705" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32820514" />
       <window_info anchor="bottom" id="Python Console" order="8" sideWeight="0.49598163" weight="0.33076924" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24907522" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.4909091" visible="true" weight="0.19358975" />
+      <window_info active="true" anchor="bottom" id="Terminal" order="9" sideWeight="0.49228394" visible="true" weight="0.19358975" />
       <window_info anchor="right" id="Debug" order="4" sideWeight="0.1948718" weight="0.27764705" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -671,13 +673,6 @@
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/../PAM/venv1/lib/python3.6/site-packages/Bio/SeqRecord.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="243">
-          <caret line="749" column="8" selection-start-line="749" selection-start-column="8" selection-end-line="749" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="650">
@@ -931,9 +926,14 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/../PAM/Source/OutputFunctions.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="175">
-          <caret line="174" column="38" selection-start-line="174" selection-start-column="38" selection-end-line="174" selection-end-column="38" />
+        <state relative-caret-position="370">
+          <caret line="187" column="5" selection-start-line="187" selection-start-column="5" selection-end-line="187" selection-end-column="5" />
         </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/../PAM/.idea/workspace.xml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-136" />
       </provider>
     </entry>
   </component>
