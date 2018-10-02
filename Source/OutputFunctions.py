@@ -185,6 +185,7 @@ def welcome():
 def main_page():
     """
     Prompts user for input source
+    \
 
     Returns:
         usage: string value for input source (file or database)
