@@ -1,125 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d7bbb029-bcaf-48ad-b10b-48c7b7feb115" name="Default" comment="commit all">
-      <change afterPath="$PROJECT_DIR$/Source/searchindex.js" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/docstring_example_google.py" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.buildinfo" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.doctrees/API Resources.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.doctrees/Builder.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.doctrees/Director.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.doctrees/Documentation Resources.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.doctrees/OutputFunctions.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.doctrees/Python Resources.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.doctrees/Representation.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.doctrees/SecondaryBiasFinder.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.doctrees/docstring_example_google.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.doctrees/environment.pickle" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.doctrees/index.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.doctrees/intro.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.doctrees/main.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.doctrees/modules.doctree" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/.nojekyll" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/API Resources.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Bio_SQL_DB.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Builder.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Director.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Documentation Resources.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/OutputFunctions.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Python Resources.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Python Resources.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/Representation.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Representation.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/SecondaryBiasFinder.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source/SecondaryBiasFinder.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_modules/Bio_SQL_DB.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_modules/Builder.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_modules/Director.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_modules/OutputFunctions.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_modules/Representation.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_modules/SecondaryBiasFinder.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_modules/docstring_example_google.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_modules/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_modules/main.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_sources/API Resources.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_sources/Bio_SQL_DB.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_sources/Builder.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_sources/Director.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_sources/Documentation Resources.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_sources/OutputFunctions.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_sources/Python Resources.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_sources/Representation.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_sources/SecondaryBiasFinder.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_sources/docstring_example_google.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_sources/index.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_sources/intro.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_sources/main.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_sources/modules.rst.txt" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/ajax-loader.gif" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/basic.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/comment-bright.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/comment-close.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/comment.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/css/badge_only.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/css/theme.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/doctools.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/documentation_options.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/down-pressed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/down.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/file.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/Lato/lato-bold.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/Lato/lato-bold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/Lato/lato-bold.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/Lato/lato-bold.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/Lato/lato-bolditalic.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/Lato/lato-bolditalic.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/Lato/lato-bolditalic.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/Lato/lato-bolditalic.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/Lato/lato-italic.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/Lato/lato-italic.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/Lato/lato-italic.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/Lato/lato-italic.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/Lato/lato-regular.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/Lato/lato-regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/Lato/lato-regular.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/Lato/lato-regular.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/RobotoSlab/roboto-slab-v7-bold.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/RobotoSlab/roboto-slab-v7-bold.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/RobotoSlab/roboto-slab-v7-bold.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/RobotoSlab/roboto-slab-v7-bold.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/RobotoSlab/roboto-slab-v7-regular.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/RobotoSlab/roboto-slab-v7-regular.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/RobotoSlab/roboto-slab-v7-regular.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/RobotoSlab/roboto-slab-v7-regular.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/fontawesome-webfont.eot" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/fontawesome-webfont.svg" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/fontawesome-webfont.ttf" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/fontawesome-webfont.woff" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/fonts/fontawesome-webfont.woff2" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/jquery-3.2.1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/jquery.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/js/modernizr.min.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/js/theme.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/minus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/plus.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/pygments.css" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/searchtools.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/underscore-1.3.1.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/underscore.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/up-pressed.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/up.png" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/_static/websupport.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/docstring_example_google.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/genindex.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/index.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/intro.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/main.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/modules.html" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/objects.inv" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/py-modindex.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source/py-modindex.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/search.html" beforeDir="false" afterPath="$PROJECT_DIR$/Source/search.html" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/docs/searchindex.js" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/sphinx/Documentation Resources.rst" beforeDir="false" afterPath="$PROJECT_DIR$/sphinx/Documentation Resources.rst" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sphinx/index.rst" beforeDir="false" afterPath="$PROJECT_DIR$/sphinx/index.rst" afterDir="false" />
-    </list>
+    <list default="true" id="d7bbb029-bcaf-48ad-b10b-48c7b7feb115" name="Default" comment="commit all" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
@@ -133,7 +15,7 @@
         <entry file="file://$PROJECT_DIR$/sphinx/conf.py">
           <provider selected="true" editor-type-id="text-editor">
             <state relative-caret-position="210">
-              <caret line="15" column="10" lean-forward="true" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+              <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
             </state>
           </provider>
         </entry>
@@ -141,8 +23,17 @@
       <file leaf-file-name="index.rst" pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/sphinx/index.rst">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="225">
-              <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+            <state relative-caret-position="210">
+              <caret line="14" selection-start-line="14" selection-end-line="14" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".readthedocs.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.readthedocs.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
             </state>
           </provider>
         </entry>
@@ -178,11 +69,6 @@
               <caret line="78" column="18" selection-start-line="78" selection-start-column="18" selection-end-line="78" selection-end-column="18" />
             </state>
           </provider>
-        </entry>
-      </file>
-      <file leaf-file-name="Director.html" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/sphinx/build/html/Director.html">
-          <provider selected="true" editor-type-id="text-editor" />
         </entry>
       </file>
     </leaf>
@@ -282,7 +168,6 @@
         <option value="$PROJECT_DIR$/Source/Output Functions.py" />
         <option value="$PROJECT_DIR$/Tests/ErrorHandlingTests.py" />
         <option value="$PROJECT_DIR$/Source/Output_Functions.py" />
-        <option value="$PROJECT_DIR$/.readthedocs.yml" />
         <option value="$PROJECT_DIR$/Source/SecondaryBiasFinder.py" />
         <option value="$PROJECT_DIR$/Source/Representation.py" />
         <option value="$PROJECT_DIR$/Source/main.py" />
@@ -293,6 +178,7 @@
         <option value="$PROJECT_DIR$/Source/OutputFunctions.py" />
         <option value="$PROJECT_DIR$/sphinx/Python Resources.rst" />
         <option value="$PROJECT_DIR$/sphinx/Documentation Resources.rst" />
+        <option value="$PROJECT_DIR$/.readthedocs.yml" />
         <option value="$PROJECT_DIR$/sphinx/index.rst" />
       </list>
     </option>
@@ -753,13 +639,6 @@
     <entry file="file://$PROJECT_DIR$/pyvenv.cfg">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/.readthedocs.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="135">
-          <caret line="9" column="10" lean-forward="true" selection-start-line="9" selection-start-column="10" selection-end-line="9" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Bio_SQL_DB.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -1015,14 +894,21 @@
     <entry file="file://$PROJECT_DIR$/sphinx/conf.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="210">
-          <caret line="15" column="10" lean-forward="true" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+          <caret line="15" column="10" selection-start-line="15" selection-start-column="10" selection-end-line="15" selection-end-column="10" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.readthedocs.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sphinx/index.rst">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" column="16" selection-start-line="15" selection-start-column="16" selection-end-line="15" selection-end-column="16" />
+        <state relative-caret-position="210">
+          <caret line="14" selection-start-line="14" selection-end-line="14" />
         </state>
       </provider>
     </entry>

@@ -1,0 +1,332 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Representation &mdash; Sequence Analyzer 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../genindex.html" />
+    <link rel="search" title="Search" href="../search.html" /> 
+
+  
+  <script src="../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../index.html" class="icon icon-home"> Sequence Analyzer
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents :</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../modules.html">Source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Python Resources.html">Python Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../Documentation Resources.html">Documentation Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../API Resources.html">UniProt and Prediction Resources</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../index.html">Sequence Analyzer</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="index.html">Module code</a> &raquo;</li>
+        
+      <li>Representation</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for Representation</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">OutputFunctions</span>
+<span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">Representation.py contains Representation class and UI functions</span>
+
+<span class="sd">Responds to Director by:</span>
+<span class="sd">    * Print prompts and relay responses</span>
+<span class="sd">    * Print requested data</span>
+<span class="sd">    * Present available options for databases, processing, viewing</span>
+
+<span class="sd">Functions: </span>
+<span class="sd">    * Serve as UI prompts and to augment other printed/file representations</span>
+
+<span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="c1"># Product in builder pattern for python (see: https://gist.github.com/pazdera/1121157)</span>
+<div class="viewcode-block" id="Representation"><a class="viewcode-back" href="../Representation.html#Representation.Representation">[docs]</a><span class="k">class</span> <span class="nc">Representation</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    - Runs user interface using the UI class. May move those functions to this module (eliminate class).</span>
+<span class="sd">    - Handles file-output. Raw data should be output as a csv file. Graphical representations may be implemented later.</span>
+<span class="sd">    - Runs all interaction with user and computer (display/fileio)</span>
+
+<span class="sd">    Attributes:</span>
+<span class="sd">            &#39;self.file_out_path&#39;: file out path to the desired directory</span>
+<span class="sd">            &#39;self.base_name&#39;: base file name to maintain consistency in output</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_out_path</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_in_name</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">print_string</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="Representation.introduction"><a class="viewcode-back" href="../Representation.html#Representation.Representation.introduction">[docs]</a>    <span class="k">def</span> <span class="nf">introduction</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Prints link to documentation and prints welcome message</span>
+
+<span class="sd">        Note:</span>
+<span class="sd">            this function may be moved to a class variable</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">OutputFunctions</span><span class="o">.</span><span class="n">welcome</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">OutputFunctions</span><span class="o">.</span><span class="n">main_page</span><span class="p">()</span></div>
+
+<div class="viewcode-block" id="Representation.manual_sequence_entry"><a class="viewcode-back" href="../Representation.html#Representation.Representation.manual_sequence_entry">[docs]</a>    <span class="k">def</span> <span class="nf">manual_sequence_entry</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Manages file_in entry including providing examples, links to documentation for formatting</span>
+<span class="sd">        and passing input file path from user to director</span>
+
+<span class="sd">        :returns: user inputted path</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="c1"># manual_sequence_input provides link to documentation on file_in format</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">file_in_name</span> <span class="o">=</span> <span class="n">OutputFunctions</span><span class="o">.</span><span class="n">manual_sequence_input</span><span class="p">()</span>
+
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">file_in_name</span></div>
+
+    <span class="c1"># handles calling desired DB, representing responses,</span>
+<div class="viewcode-block" id="Representation.db_options"><a class="viewcode-back" href="../Representation.html#Representation.Representation.db_options">[docs]</a>    <span class="k">def</span> <span class="nf">db_options</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Relays an ordered tuple to the director containing request information.</span>
+<span class="sd">        Request information in this tuple contains keywords, query options,</span>
+<span class="sd">        and response columns (everything needed to send a request)</span>
+
+<span class="sd">        :returns: list containing database info defined in the director class</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">keyword</span> <span class="o">=</span> <span class="n">OutputFunctions</span><span class="o">.</span><span class="n">keyword_query_uniprot</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">keyword</span> <span class="ow">is</span> <span class="s2">&quot;&quot;</span><span class="p">:</span>
+            <span class="n">options</span> <span class="o">=</span> <span class="n">OutputFunctions</span><span class="o">.</span><span class="n">data_options</span><span class="p">()</span>
+            <span class="k">return</span> <span class="n">options</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">option_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+            <span class="n">option_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">keyword</span><span class="p">)</span>
+            <span class="n">options</span> <span class="o">=</span> <span class="n">OutputFunctions</span><span class="o">.</span><span class="n">data_options</span><span class="p">()</span>
+            <span class="n">option_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">options</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">option_list</span></div>
+
+<div class="viewcode-block" id="Representation.decide_viewing_or_analysis"><a class="viewcode-back" href="../Representation.html#Representation.Representation.decide_viewing_or_analysis">[docs]</a>    <span class="k">def</span> <span class="nf">decide_viewing_or_analysis</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="c1"># todo: write a representation function to handle viewing until processing</span>
+        <span class="n">choice</span> <span class="o">=</span> <span class="n">OutputFunctions</span><span class="o">.</span><span class="n">prompt_viewing_or_analysis</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">choice</span></div>
+
+<div class="viewcode-block" id="Representation.output_data"><a class="viewcode-back" href="../Representation.html#Representation.Representation.output_data">[docs]</a>    <span class="k">def</span> <span class="nf">output_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">print_string</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Take the string passed in and prints it or writes it to file.</span>
+<span class="sd">        In the future, a separate function for graphing</span>
+
+<span class="sd">        :param print_string: a string representing file our view</span>
+
+<span class="sd">        :returns: Completion of file_out or printing (T/F)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">OutputFunctions</span><span class="o">.</span><span class="n">print_data</span><span class="p">(</span><span class="n">print_string</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Representation.db_file_out"><a class="viewcode-back" href="../Representation.html#Representation.Representation.db_file_out">[docs]</a>    <span class="k">def</span> <span class="nf">db_file_out</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq_list</span><span class="p">,</span> <span class="n">file_string</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Handles output of a UniProt formatted xml file. In the future this method should support</span>
+<span class="sd">        multiple data output syntax</span>
+
+<span class="sd">        :param seq_list: a list of SeqRecord objects to be written to file.</span>
+<span class="sd">        :return: success of file output</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">seq_list</span> <span class="o">==</span> <span class="s1">&#39;up&#39;</span><span class="p">:</span>
+            <span class="n">up_parser</span> <span class="o">=</span> <span class="n">OutputFunctions</span><span class="o">.</span><span class="n">write_uniprot_to_file</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">file_out_path</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="Representation.set_print_string"><a class="viewcode-back" href="../Representation.html#Representation.Representation.set_print_string">[docs]</a>    <span class="k">def</span> <span class="nf">set_print_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">new_string</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">print_string</span> <span class="o">=</span> <span class="n">new_string</span></div>
+
+<div class="viewcode-block" id="Representation.get_print_string"><a class="viewcode-back" href="../Representation.html#Representation.Representation.get_print_string">[docs]</a>    <span class="k">def</span> <span class="nf">get_print_string</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">print_string</span></div>
+
+<div class="viewcode-block" id="Representation.db_query_view"><a class="viewcode-back" href="../Representation.html#Representation.Representation.db_query_view">[docs]</a>    <span class="k">def</span> <span class="nf">db_query_view</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data_list</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">data_list</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="n">i</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="Representation.choose_database"><a class="viewcode-back" href="../Representation.html#Representation.Representation.choose_database">[docs]</a>    <span class="k">def</span> <span class="nf">choose_database</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Relays which database is being accessed so Director can access that database through its builder</span>
+
+<span class="sd">        :returns: database choice</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">db_choice</span> <span class="o">=</span> <span class="n">OutputFunctions</span><span class="o">.</span><span class="n">access_databases</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">db_choice</span> <span class="o">!=</span> <span class="s2">&quot;1&quot;</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Sorry! That database hasn&#39;t been implemented.&quot;</span><span class="p">)</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="s2">&quot;up&quot;</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Colton Garelli and Jamie Paule Ellis.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'../',
+            VERSION:'1.0',
+            LANGUAGE:'None',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true,
+            SOURCELINK_SUFFIX: '.txt'
+        };
+    </script>
+      <script type="text/javascript" src="../_static/jquery.js"></script>
+      <script type="text/javascript" src="../_static/underscore.js"></script>
+      <script type="text/javascript" src="../_static/doctools.js"></script>
+
+  
+
+  <script type="text/javascript" src="../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
