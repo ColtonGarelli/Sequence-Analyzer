@@ -3,9 +3,9 @@
    You can adapt this file completely to your liking, but it should at least
    contain the root `toctree` directive.
 
-#############################################
-Welcome to Sequence Analyzer's documentation!
-#############################################
+######################################################
+Welcome to the Protein Analysis Manager documentation!
+######################################################
 
 
 

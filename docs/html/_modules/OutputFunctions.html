@@ -295,7 +295,7 @@
 
 <span class="sd">    &quot;&quot;&quot;</span>
     <span class="n">n</span> <span class="o">=</span> <span class="mi">0</span>
-    <span class="n">file</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="s2">&quot;/Users/coltongarelli/&quot;</span><span class="p">,</span> <span class="s2">&quot;SequenceAnalyzer/SequenceAnalyzer2.1/References/SEQUENCEANALYZER_Experiment1_inputfile_ACTUAL.csv&quot;</span><span class="p">)</span>
+    <span class="n">file</span> <span class="o">=</span> <span class="n">join</span><span class="p">(</span><span class="s2">&quot;/Users/coltongarelli/&quot;</span><span class="p">,</span> <span class="s2">&quot;SequenceAnalyzer/PAM/References/SEQUENCEANALYZER_Experiment1_inputfile_ACTUAL.csv&quot;</span><span class="p">)</span>
     <span class="n">new_file</span> <span class="o">=</span><span class="n">join</span><span class="p">(</span><span class="s2">&quot;/Users/coltongarelli/Desktop/&quot;</span><span class="p">,</span> <span class="s2">&quot;SEQUENCEANALYZER_Experiment1_inputfile_fasta.txt&quot;</span><span class="p">)</span>
     <span class="n">fasta_formatted</span> <span class="o">=</span> <span class="nb">open</span><span class="p">(</span><span class="n">new_file</span><span class="p">,</span> <span class="s1">&#39;w+&#39;</span><span class="p">)</span>
     <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="s1">&#39;r&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">f</span><span class="p">:</span>
@@ -326,13 +326,14 @@
 
 
 <div class="viewcode-block" id="welcome"><a class="viewcode-back" href="../OutputFunctions.html#OutputFunctions.welcome">[docs]</a><span class="k">def</span> <span class="nf">welcome</span><span class="p">():</span>
-    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Welcome to the Sequence Analyzer</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
+    <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Welcome to the Protein Analysis Manager (PAM)</span><span class="se">\n</span><span class="s2">&quot;</span><span class="p">)</span>
     <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;Please refer to documentation at https://github.com/ColtonGarelli/Sequence-Analyzer/ before using.</span><span class="se">\n\n</span><span class="s2">&quot;</span><span class="p">)</span></div>
 
 
 <div class="viewcode-block" id="main_page"><a class="viewcode-back" href="../OutputFunctions.html#OutputFunctions.main_page">[docs]</a><span class="k">def</span> <span class="nf">main_page</span><span class="p">():</span>
     <span class="sd">&quot;&quot;&quot;</span>
 <span class="sd">    Prompts user for input source</span>
+<span class="sd">    \</span>
 
 <span class="sd">    Returns:</span>
 <span class="sd">        usage: string value for input source (file or database)</span>
