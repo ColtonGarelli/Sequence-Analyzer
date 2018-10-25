@@ -2,8 +2,8 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7bbb029-bcaf-48ad-b10b-48c7b7feb115" name="Default" comment="commit all">
-      <change beforePath="$PROJECT_DIR$/README.md" beforeDir="false" afterPath="$PROJECT_DIR$/README.md" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/sphinx/conf.py" beforeDir="false" afterPath="$PROJECT_DIR$/sphinx/conf.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Builder.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -14,14 +14,32 @@
   </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="true">
+      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="140">
-              <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
+            <state relative-caret-position="261">
+              <caret line="53" column="16" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
               <folding>
                 <element signature="e#1#36#0" expanded="true" />
               </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name=".readthedocs.yml" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/.readthedocs.yml">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="105">
+              <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file leaf-file-name="Builder.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Source/Builder.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-1849">
+              <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
             </state>
           </provider>
         </entry>
@@ -127,7 +145,6 @@
         <option value="$PROJECT_DIR$/Source/___init___.py" />
         <option value="$PROJECT_DIR$/Source/Director.py" />
         <option value="$PROJECT_DIR$/venv1/pyvenv.cfg" />
-        <option value="$PROJECT_DIR$/Source/Builder.py" />
         <option value="$PROJECT_DIR$/Source/OutputFunctions.py" />
         <option value="$PROJECT_DIR$/sphinx/Makefile" />
         <option value="$PROJECT_DIR$/sphinx/index.rst" />
@@ -135,13 +152,13 @@
         <option value="$PROJECT_DIR$/Source/main.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/sphinx/conf.py" />
+        <option value="$PROJECT_DIR$/Source/Builder.py" />
       </list>
     </option>
   </component>
   <component name="ProjectFrameBounds">
-    <option name="x" value="50" />
     <option name="y" value="23" />
-    <option name="width" value="1317" />
+    <option name="width" value="1013" />
     <option name="height" value="877" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
@@ -170,22 +187,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Protein-Analysis-Manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PAM" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Protein-Analysis-Manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PAM" type="462c0819:PsiDirectoryNode" />
-              <item name="Source" type="462c0819:PsiDirectoryNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -207,6 +208,22 @@
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="PAM" type="cbb8eebc:String" user="PAM" />
               <item name="Tests" type="cbb8eebc:String" user="Tests" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Protein-Analysis-Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PAM" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Protein-Analysis-Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PAM" type="462c0819:PsiDirectoryNode" />
+              <item name="Source" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -505,17 +522,17 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="50" y="23" width="1317" height="877" extended-state="0" />
+    <frame x="0" y="23" width="1013" height="877" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.17283951" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22580644" />
       <window_info anchor="bottom" id="TODO" order="4" weight="0.32848486" />
       <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.50771606" side_tool="true" weight="0.19358975" />
       <window_info anchor="right" id="Run" order="3" sideWeight="0.8051282" side_tool="true" weight="0.27764705" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32820514" />
       <window_info anchor="bottom" id="Python Console" order="8" sideWeight="0.49598163" weight="0.33076924" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24907522" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49228394" visible="true" weight="0.19358975" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49228394" visible="true" weight="0.19286658" />
       <window_info anchor="right" id="Debug" order="4" sideWeight="0.1948718" weight="0.27764705" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -531,23 +548,23 @@
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2231579" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24907522" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
       <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32992327" />
       <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4856487" weight="0.32435897" />
       <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.32889965" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49598163" weight="0.32889965" />
+      <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49500385" weight="0.3602564" />
       <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4909091" weight="0.33717948" />
       <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5049962" side_tool="true" weight="0.10128205" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32564104" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32992327" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Messages" order="7" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
       <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32564104" />
+      <window_info anchor="bottom" id="Messages" order="7" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49598163" weight="0.32889965" />
     </layout-to-restore>
   </component>
   <component name="VcsContentAnnotationSettings">
@@ -588,12 +605,12 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Source/Builder.py</url>
-          <line>111</line>
+          <line>108</line>
           <option name="timeStamp" value="547" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Source/Builder.py</url>
-          <line>113</line>
+          <line>110</line>
           <option name="timeStamp" value="548" />
         </line-breakpoint>
       </breakpoints>
@@ -686,16 +703,12 @@
     <entry file="file://$PROJECT_DIR$/sphinx/build/html/Director.html">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/main.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/main.html" />
     <entry file="file://$PROJECT_DIR$/.gitignore">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/Python Resources.html" />
-    <entry file="file://$PROJECT_DIR$/docs/_modules/main.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/_modules/main.html" />
     <entry file="file://$PROJECT_DIR$/Source/___init___.py">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -747,13 +760,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Builder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" column="21" selection-start-line="11" selection-start-column="21" selection-end-line="11" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Source/OutputFunctions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="370">
@@ -775,9 +781,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/docs/.buildinfo">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/docs/.buildinfo" />
     <entry file="file://$PROJECT_DIR$/docs/doctrees/main.doctree">
       <provider selected="true" editor-type-id="text-editor" />
     </entry>
@@ -804,13 +808,6 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Bio_SQL_DB.py">
       <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.readthedocs.yml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
-        </state>
-      </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sphinx/make.bat">
       <provider selected="true" editor-type-id="text-editor" />
@@ -865,11 +862,25 @@
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="140">
-          <caret line="45" column="19" selection-start-line="45" selection-start-column="19" selection-end-line="45" selection-end-column="19" />
+        <state relative-caret-position="261">
+          <caret line="53" column="16" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
           <folding>
             <element signature="e#1#36#0" expanded="true" />
           </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/.readthedocs.yml">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="105">
+          <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Builder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-1849">
+          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
         </state>
       </provider>
     </entry>

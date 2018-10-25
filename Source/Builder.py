@@ -1,11 +1,8 @@
 # -*- coding: utf-8 -*-
 # builder class
-import abc
-import csv
 import json
 import os
 import time
-from pprint import pprint
 import requests as r
 from Bio import SeqIO, SeqRecord, Seq
 from Bio.Alphabet import IUPAC
