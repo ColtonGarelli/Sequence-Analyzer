@@ -36,28 +36,13 @@ class AnalysisBuilder(Builder):
         """
         super(AnalysisBuilder, self).__init__()
 
+    @staticmethod
+    def send_request(post_url, headers, json_body):
+        response = r.post(url=post_url, headers=headers, data=json_body)
+        json_obj = json.loads(response.content.decode())
+        job_id = json_obj.get('jobid')
+        return job_id
 
-# @abc.ABCMeta
-# class UPDBuilder(abc.ABCMeta):
-#
-#     @abc.abstractmethod
-#     def prepare_and_send_request(cls):
-#         raise NotImplementedError
-#
-#     @abc.abstractmethod
-#     def check_request_submission(cls):
-#         raise NotImplementedError
-#
-#     @abc.abstractmethod
-#     def check_processing_status(cls):
-#         raise NotImplementedError
-#
-#     @abc.abstractmethod
-#     def retrieve_processed_data(cls):
-#         raise NotImplementedError
-
-    # @abc.abstractmethod
-    # def handle_
 
 # ***MAX # of sequences = 15000
 class FELLSAnalysisBuilder(AnalysisBuilder):
@@ -75,7 +60,7 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
         super(FELLSAnalysisBuilder, self).__init__()
         self.job_id: str = None
 
-    def prepare_and_send_request(self, seq_list):
+    def prepare_request(self, seq_list):
         working_list = list()
         for i in range(len(seq_list)):
             working_list.append(seq_list[i])
@@ -88,7 +73,6 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
                     working_list[i].seq = Seq.Seq(working_list[i].seq, IUPAC.IUPACProtein)
 
                     working_list[i] = working_list[i].format("fasta")
-
         headers = {'Content-Type': 'application/json; charset=utf-8'}
         formatted = ""
         for i in working_list:
@@ -97,12 +81,11 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
             else:
                 formatted = formatted + i
         json_body = json.dumps({"sequence": formatted}).encode()
-        response = r.post(url=self._post_url, headers=headers, data=json_body)
-        json_obj = json.loads(response.content)
-        self.job_id = json_obj.get('jobid')
-        return self.job_id
+        prepped_request = r.Request(method='POST', url=self.get_post_url(), headers=headers, data=json_body).prepare()
 
-    def check_request_status(self, jobid):
+        return prepped_request
+
+    def check_request_submission(self, jobid):
         check_status = r.get(url=self._status_url+jobid)
         json_obj = json.loads(check_status.content)
         while json_obj.get('status') != 'done':
@@ -118,7 +101,10 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
             time.sleep(5.00)
             processing = r.get(self._get_url + ID)
             processing = json.loads(processing.content)
-        return True
+        if processing['status'] == 'done':
+            return True
+        else:
+            return False
 
     def retrieve_response_data(self, id_list):
         return_data = []
@@ -177,6 +163,15 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
         # if implemented with kwargs, could make class level
         pass
 
+    def get_post_url(self):
+        return self._post_url
+
+    def get_processed_data_url(self):
+        return self._get_url
+
+    def get_status_url(self):
+        return self._status_url
+
 
 class SODAAnalysisBuilder(AnalysisBuilder):
     """
@@ -198,10 +193,8 @@ class SODAAnalysisBuilder(AnalysisBuilder):
         headers = {'Content-Type': 'application/json; charset=utf-8'}
         body = {"sequence": seq}
         json_body = json.dumps(body)
-        response = r.post(url=self._post_url, headers=headers, data=json_body)
-        json_obj = json.loads(response.content.decode())
-        self.job_id = json_obj.get('jobid')
-        return self.job_id
+        prepped_request = r.Request(method='POST', url=self.get_post_url(), headers=headers, data=json_body).prepare()
+        return prepped_request
 
     def check_request_status(self, ID):
         check_status = r.get(url=self._status_url+ID)
@@ -237,6 +230,9 @@ class SODAAnalysisBuilder(AnalysisBuilder):
 
     def prep_for_viewing(self):
         pass
+
+    def get_post_url(self):
+        return self._post_url
 
 
 class SequenceBiasBuilder(AnalysisBuilder):

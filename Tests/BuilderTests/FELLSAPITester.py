@@ -43,8 +43,7 @@ class FELLSAPITester(unittest.TestCase):
         s.close()
         # self.assertEqual(True, False)
 
-    def test_format_from_object(self):
-        pass
+    def test_prepare
 
     def test_export_data(self):
         self.assertEqual(True, True)

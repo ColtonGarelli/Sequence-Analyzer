@@ -5,6 +5,8 @@ import Builder
 import sys
 import pprint
 from Bio.SeqRecord import SeqRecord
+import requests as r
+import json
 
 
 def function_for_experimenting():
@@ -22,7 +24,11 @@ def testing_FELLS_requesting():
     seq = SeqRecord(id=">test\n", seq="MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR")
     seq2 = SeqRecord(id='>test2\n', seq="ASDFASDFSDFASDFAFSDFSDFSDAFSDFFSD")
     master = [seq, seq2]
-    jobid = FELLS_builder.prepare_and_send_request(master)
+    prepped_request = FELLS_builder.prepare_request(master)
+    s = r.Session()
+    response = s.send(request=prepped_request)
+    json_content = json.loads(response.content.decode('utf-8'))
+    jobid = json_content['jobid']
     json_obj = FELLS_builder.check_request_status(jobid)
     FELLS_builder.check_processing_status(json_obj['names'][0][1])
     data = FELLS_builder.retrieve_response_data(json_obj['names'])
@@ -33,7 +39,11 @@ def testing_FELLS_requesting():
 def testing_SODA_requesting():
     SODA_builder = Builder.SODAAnalysisBuilder()
     seq_list = ["MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR", "ASDFSDFASQWERFDSAWQEWSDDFWEQWEDS"]
-    jobid = SODA_builder.prepare_request_object(seq_list[0])
+    prepped_request = SODA_builder.prepare_request_object(seq_list[0])
+    s = r.Session()
+    response = s.send(request=prepped_request)
+    json_content = json.loads(response.content.decode('utf-8'))
+    jobid = json_content['jobid']
     json_obj = SODA_builder.check_request_status(jobid)
     data = SODA_builder.retrieve_response_data(jobid)
     pprint.pprint(data)
@@ -73,8 +83,8 @@ def UI_main(director):
 
 if __name__ == '__main__':
     main_director = Director.Director()
-    # main_director.start_up()
-    # data = testing_FELLS_requesting()
+    main_director.start_up()
+    data = testing_SODA_requesting()
     # main_director.set_master_list(data)
     # main_director.store_all_data()
     UI_main(main_director)

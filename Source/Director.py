@@ -6,7 +6,8 @@ import os.path
 import datetime
 import Bio
 from Bio import SeqIO, Seq, Alphabet
-from Bio.Alphabet import IUPAC
+import json
+import requests as r
 
 # room for addition of BLAST, alignment, other tools as run_x_analysis methods
 # run_x_analysis methods communicate directly with self.AnalysisBuilder obj and self.DatabaseBuilder
@@ -172,15 +173,22 @@ class Director:
     #   while loop to check for updates
     #   director holds onto FELLS, where data is stored
     #   builder objects own data and send translations to director
-        prepped_list = []
+        fasta_list = []
         for i in self.get_master_list():
-            prepped_list.append(i.format("fasta"))
-    # todo: fill prepped_list with a list of fasta formatted sequences
-        jobid = self.analysis["fells"].prepare_and_send_request(prepped_list)
+            fasta_list.append(i.format("fasta"))
+        prepped_request = self.analysis["fells"].prepare_request(fasta_list)
+        s = r.Session()
+        response = s.send(request=prepped_request)
+        json_content = json.loads(response.content.decode('utf-8'))
+        jobid = json_content['jobid']
         json_obj = self.analysis["fells"].check_request_status(jobid)
-        self.analysis["fells"].check_processing_status(json_obj['names'][0][1])
-        data = self.analysis["fells"].retrieve_response_data(json_obj['names'])
-        return data
+        complete = self.analysis["fells"].check_processing_status(json_obj['names'][0][1])
+        if complete:
+            data = self.analysis["fells"].retrieve_response_data(json_obj['names'])
+            data = json.loads(data)
+            return data
+        else:
+            return "an error occured"
     # todo: do something with the data (store and plot)
 
     def run_SODA_analysis(self):
@@ -190,10 +198,13 @@ class Director:
         """
         processed_list = list()
         for i in self.master_list:
-            jobid = self.analysis['soda'].prepare_request_object(str(i.seq))
+            prepped_request = self.analysis['soda'].prepare_request_object(str(i.seq))
+            response = prepped_request.send()
+            jobid = response.jobid
             json_obj = self.analysis['soda'].check_request_status(jobid)
             jobid = json_obj['jobid']
             data = self.analysis['soda'].retrieve_response_data(jobid)
+            data = json.loads(data)
             processed_list.append(data)
         return processed_list
     # todo: do something with the data (store and plot)

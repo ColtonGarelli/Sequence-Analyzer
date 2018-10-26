@@ -2,8 +2,10 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7bbb029-bcaf-48ad-b10b-48c7b7feb115" name="Default" comment="commit all">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Builder.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/Director.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Director.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Source/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/main.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/BuilderTests/FELLSAPITester.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/BuilderTests/FELLSAPITester.py" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="TRACKING_ENABLED" value="true" />
@@ -17,8 +19,8 @@
       <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="261">
-              <caret line="53" column="16" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
+            <state relative-caret-position="646">
+              <caret line="78" column="7" lean-forward="true" selection-start-line="78" selection-start-column="7" selection-end-line="78" selection-end-column="7" />
               <folding>
                 <element signature="e#1#36#0" expanded="true" />
               </folding>
@@ -26,20 +28,23 @@
           </provider>
         </entry>
       </file>
-      <file leaf-file-name=".readthedocs.yml" pinned="false" current-in-tab="false">
-        <entry file="file://$PROJECT_DIR$/.readthedocs.yml">
+      <file leaf-file-name="Builder.py" pinned="false" current-in-tab="true">
+        <entry file="file://$PROJECT_DIR$/Source/Builder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="105">
-              <caret line="7" column="24" selection-start-line="7" selection-start-column="24" selection-end-line="7" selection-end-column="24" />
+            <state relative-caret-position="244">
+              <caret line="90" selection-start-line="90" selection-end-line="90" />
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Builder.py" pinned="false" current-in-tab="true">
-        <entry file="file://$PROJECT_DIR$/Source/Builder.py">
+      <file leaf-file-name="Director.py" pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Source/Director.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="-1849">
-              <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+            <state relative-caret-position="416">
+              <caret line="179" column="23" lean-forward="true" selection-start-line="179" selection-start-column="23" selection-end-line="179" selection-end-column="23" />
+              <folding>
+                <element signature="e#0#22#0" expanded="true" />
+              </folding>
             </state>
           </provider>
         </entry>
@@ -102,7 +107,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Source/Resources/Database info" />
         <option value="$PROJECT_DIR$/Source/SpreadsheetIO.py" />
         <option value="$PROJECT_DIR$/Source/Operation.py" />
         <option value="$PROJECT_DIR$/Source/Sequence.py" />
@@ -143,23 +147,25 @@
         <option value="$PROJECT_DIR$/sphinx/Documentation Resources.rst" />
         <option value="$PROJECT_DIR$/.readthedocs.yml" />
         <option value="$PROJECT_DIR$/Source/___init___.py" />
-        <option value="$PROJECT_DIR$/Source/Director.py" />
         <option value="$PROJECT_DIR$/venv1/pyvenv.cfg" />
         <option value="$PROJECT_DIR$/Source/OutputFunctions.py" />
         <option value="$PROJECT_DIR$/sphinx/Makefile" />
         <option value="$PROJECT_DIR$/sphinx/index.rst" />
         <option value="$PROJECT_DIR$/Source/OutputFunctions.py" />
-        <option value="$PROJECT_DIR$/Source/main.py" />
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/sphinx/conf.py" />
+        <option value="$PROJECT_DIR$/Tests/BuilderTests/FELLSAPITester.py" />
+        <option value="$PROJECT_DIR$/Source/Director.py" />
         <option value="$PROJECT_DIR$/Source/Builder.py" />
+        <option value="$PROJECT_DIR$/Source/main.py" />
       </list>
     </option>
   </component>
-  <component name="ProjectFrameBounds">
-    <option name="y" value="23" />
-    <option name="width" value="1013" />
-    <option name="height" value="877" />
+  <component name="ProjectFrameBounds" fullScreen="true">
+    <option name="x" value="-1440" />
+    <option name="y" value="-169" />
+    <option name="width" value="1440" />
+    <option name="height" value="900" />
   </component>
   <component name="ProjectInspectionProfilesVisibleTreeState">
     <entry key="Project Default">
@@ -224,6 +230,17 @@
               <item name="Protein-Analysis-Manager" type="b2602c69:ProjectViewProjectNode" />
               <item name="PAM" type="462c0819:PsiDirectoryNode" />
               <item name="Source" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Protein-Analysis-Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PAM" type="462c0819:PsiDirectoryNode" />
+              <item name="Tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Protein-Analysis-Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PAM" type="462c0819:PsiDirectoryNode" />
+              <item name="Tests" type="462c0819:PsiDirectoryNode" />
+              <item name="BuilderTests" type="462c0819:PsiDirectoryNode" />
             </path>
           </expand>
           <select />
@@ -522,18 +539,19 @@
     </todo-panel>
   </component>
   <component name="ToolWindowManager">
-    <frame x="0" y="23" width="1013" height="877" extended-state="0" />
+    <frame x="-1440" y="-169" width="1440" height="900" extended-state="0" />
     <editor active="true" />
     <layout>
-      <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.22580644" />
+      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1602289" />
       <window_info anchor="bottom" id="TODO" order="4" weight="0.32848486" />
       <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.50771606" side_tool="true" weight="0.19358975" />
-      <window_info anchor="right" id="Run" order="3" sideWeight="0.8051282" side_tool="true" weight="0.27764705" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32364598" />
+      <window_info active="true" anchor="right" id="Run" order="3" sideWeight="0.80548626" side_tool="true" visible="true" weight="0.27753934" />
       <window_info anchor="bottom" id="Version Control" order="7" weight="0.32820514" />
       <window_info anchor="bottom" id="Python Console" order="8" sideWeight="0.49598163" weight="0.33076924" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24907522" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49228394" visible="true" weight="0.19286658" />
-      <window_info anchor="right" id="Debug" order="4" sideWeight="0.1948718" weight="0.27764705" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49228394" weight="0.19286658" />
+      <window_info anchor="right" id="Debug" order="4" sideWeight="0.19451371" weight="0.27753934" />
       <window_info id="Favorites" order="2" side_tool="true" />
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
@@ -543,7 +561,6 @@
       <window_info anchor="bottom" id="Message" order="0" />
       <window_info anchor="bottom" id="Inspection" order="3" weight="0.4" />
       <window_info anchor="bottom" id="Cvs" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.3237858" />
     </layout>
     <layout-to-restore>
       <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
@@ -590,28 +607,63 @@
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Source/Director.py</url>
-          <line>234</line>
+          <line>245</line>
           <option name="timeStamp" value="524" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Source/Director.py</url>
-          <line>237</line>
+          <line>248</line>
           <option name="timeStamp" value="526" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Source/Director.py</url>
-          <line>238</line>
+          <line>249</line>
           <option name="timeStamp" value="527" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Builder.py</url>
-          <line>108</line>
-          <option name="timeStamp" value="547" />
+          <url>file://$PROJECT_DIR$/Source/Director.py</url>
+          <line>180</line>
+          <option name="timeStamp" value="553" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Builder.py</url>
-          <line>110</line>
-          <option name="timeStamp" value="548" />
+          <url>file://$PROJECT_DIR$/Source/Director.py</url>
+          <line>178</line>
+          <option name="timeStamp" value="554" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Source/Director.py</url>
+          <line>179</line>
+          <option name="timeStamp" value="555" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Source/Director.py</url>
+          <line>182</line>
+          <option name="timeStamp" value="556" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Source/Director.py</url>
+          <line>184</line>
+          <option name="timeStamp" value="557" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Source/Director.py</url>
+          <line>181</line>
+          <option name="timeStamp" value="558" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Source/Director.py</url>
+          <line>183</line>
+          <option name="timeStamp" value="559" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Source/main.py</url>
+          <line>35</line>
+          <option name="timeStamp" value="574" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Source/main.py</url>
+          <line>34</line>
+          <option name="timeStamp" value="575" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -624,24 +676,10 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="549" />
+      <option name="time" value="576" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file:///Library/Frameworks/Python.framework/Versions/3.6/lib/python3.6/json/decoder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="365">
-          <caret line="338" selection-start-line="338" selection-end-line="338" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2018.1/python_stubs/-1029230298/builtins.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="341" column="4" selection-start-line="341" selection-start-column="4" selection-end-line="341" selection-end-column="4" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Source/Representation.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="1650">
@@ -753,13 +791,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Director.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" column="10" selection-start-line="6" selection-start-column="10" selection-end-line="6" selection-end-column="10" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/Source/OutputFunctions.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="370">
@@ -860,16 +891,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="261">
-          <caret line="53" column="16" selection-start-line="53" selection-start-column="16" selection-end-line="53" selection-end-column="16" />
-          <folding>
-            <element signature="e#1#36#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/.readthedocs.yml">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="105">
@@ -877,10 +898,47 @@
         </state>
       </provider>
     </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/BuilderTests/FELLSAPITester.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="287">
+          <caret line="45" column="20" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2018.1/python_stubs/-2100763944/time.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="259">
+          <caret line="138" column="4" selection-start-line="138" selection-start-column="4" selection-end-line="138" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Director.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="416">
+          <caret line="179" column="23" lean-forward="true" selection-start-line="179" selection-start-column="23" selection-end-line="179" selection-end-column="23" />
+          <folding>
+            <element signature="e#0#22#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/main.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="646">
+          <caret line="78" column="7" lean-forward="true" selection-start-line="78" selection-start-column="7" selection-end-line="78" selection-end-column="7" />
+          <folding>
+            <element signature="e#1#36#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Source/Builder.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-1849">
-          <caret line="4" column="11" selection-start-line="4" selection-start-column="11" selection-end-line="4" selection-end-column="11" />
+        <state relative-caret-position="244">
+          <caret line="90" selection-start-line="90" selection-end-line="90" />
         </state>
       </provider>
     </entry>
