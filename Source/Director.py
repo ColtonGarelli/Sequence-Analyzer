@@ -1,13 +1,13 @@
 import OutputFunctions
 import Representation
-from Builder import Builder, AnalysisBuilder, UniprotBuilder, SequenceBiasBuilder, DatabaseBuilder, FELLSAnalysisBuilder, SODAAnalysisBuilder
-import SecondaryBiasFinder
+from Builder import AnalysisBuilder, UniprotBuilder, SequenceBiasBuilder, DatabaseBuilder, FELLSAnalysisBuilder, SODAAnalysisBuilder
 import os.path
 import datetime
 import Bio
-from Bio import SeqIO, Seq, Alphabet
+from Bio import SeqIO, Seq, Alphabet, SeqRecord
 import json
 import requests as r
+import csv
 
 # room for addition of BLAST, alignment, other tools as run_x_analysis methods
 # run_x_analysis methods communicate directly with self.AnalysisBuilder obj and self.DatabaseBuilder
@@ -16,6 +16,7 @@ import requests as r
 
 # ***IMPORTANT DECISIONS***
 # Start by passing only in xml, always pass in file paths, update the master_list at the end of each analysis run
+
 
 class Director:
     """
@@ -73,25 +74,6 @@ class Director:
         self.file_out_dir = new_dir_name
         return self.representation.introduction()
 
-    def handle_manual_input(self):
-        """
-        Uses 'representation' to prompt user for file path and prints information to the screen
-
-
-        :returns:
-
-
-        """
-        file_name = self.representation.manual_sequence_entry()
-        self.set_file_in_path(os.path.join(self.file_out_dir, file_name))
-        with open(self.file_in_path, 'rU') as file:
-            lines = []
-            for line in file:
-                lines.append(line)
-        list_in = Builder.create_seqrecord_object_from_csv(lines)
-        # run function to return master list
-        return list_in
-
     @staticmethod
     def find_desktop_dir():
         """
@@ -99,7 +81,7 @@ class Director:
         :return:
         """
         home = os.path.join(os.path.expanduser('~'))
-        d = os.path.join('Desktop')
+        d = 'Desktop'
         data_source = os.path.join(home, d)
         if not os.path.isdir(data_source):
             data_source = OutputFunctions.select_fileio_directory()
@@ -177,11 +159,11 @@ class Director:
         for i in self.get_master_list():
             fasta_list.append(i.format("fasta"))
         prepped_request = self.analysis["fells"].prepare_request(fasta_list)
-        s = r.Session()
-        response = s.send(request=prepped_request)
-        json_content = json.loads(response.content.decode('utf-8'))
-        jobid = json_content['jobid']
-        json_obj = self.analysis["fells"].check_request_status(jobid)
+        session = r.Session()
+        response = session.send(request=prepped_request)
+        jobid = AnalysisBuilder.get_jobid(response)
+        response_str = self.analysis["fells"].check_request_submission(jobid)
+        json_obj = AnalysisBuilder.get_data_as_json(response_str)
         complete = self.analysis["fells"].check_processing_status(json_obj['names'][0][1])
         if complete:
             data = self.analysis["fells"].retrieve_response_data(json_obj['names'])
@@ -228,6 +210,13 @@ class Director:
         if 'sec_bias' in kwargs:
             pass
 
+    def convert_json_to_seqrecord(self, json_dict: dict):
+        key_list = json_dict.keys()
+        attr_list = [attr for attr in dir(SeqRecord.SeqRecord) if not callable(getattr(SeqRecord.SeqRecord, attr)) and not attr.startswith("__") and not attr.startswith("_")]
+        for k in key_list:
+            seqrecord_info = json_dict.get(k)
+
+
     def store_all_data(self):
         file_name = os.path.join(self.file_out_dir, 'data_persistence{}'.format(datetime.date.today()))
         counter = 0
@@ -246,13 +235,88 @@ class Director:
                 SeqIO.write(sequences=self.master_list, handle=file, format='seqxml')
             except TypeError as type_e:
                 for i in range(len(self.master_list)):
-                    seq_obj = Bio.Seq.Seq(data=str(self.master_list[i].seq), alphabet=Alphabet.ProteinAlphabet())
+                    seq_obj = Bio.Seq.Seq(data=str(self.master_list[i].seq), alphabet=Alphabet.generic_protein)
                     self.master_list[i].seq = seq_obj
             except AttributeError as att_err:
                 for i in range(len(self.master_list)):
-                    seq_obj = Bio.Seq.Seq(data=str(self.master_list[i].seq), alphabet=Alphabet.ProteinAlphabet())
+                    seq_obj = Bio.Seq.Seq(data=str(self.master_list[i].seq), alphabet=Alphabet.generic_protein)
                     self.master_list[i].seq = seq_obj
                 SeqIO.write(sequences=self.master_list, handle=file, format='seqxml')
+
+    def export_to_csv(self, seq_dict: dict):
+        file_o_path = os.path.join(self.file_out_dir + self.make_original_file_name() + ".csv")
+
+        with open(file_o_path, "w") as f:
+            csv.DictWriter(f=f, fieldnames=dir(seq_dict.values()))
+
+    # def handle_manual_input(self):
+    #     """
+    #     Uses 'representation' to prompt user for file path and prints information to the screen
+    #
+    #
+    #     :returns:
+    #
+    #
+    #     """
+    #     file_name = self.representation.manual_sequence_entry()
+    #     self.set_file_in_path(os.path.join(self.file_out_dir, file_name))
+    #     with open(self.file_in_path, 'rU') as file:
+    #         lines = []
+    #         for line in file:
+    #             lines.append(line)
+    #     list_in = Builder.create_seqrecord_object_from_csv(lines)
+    #     # run function to return master list
+    #     return list_in
+
+    def file_output(self, sequences: dict or list):
+        if isinstance(sequences, list):
+            file_o_path = os.path.join(self.file_out_dir + self.make_original_file_name() + ".faa")
+            with open(file_o_path, "w") as f:
+                    SeqIO.write(sequences, f, "fasta")
+        elif isinstance(sequences, dict):
+            file_o_path = os.path.join(self.file_out_dir + self.make_original_file_name() + ".json")
+            with open(file_o_path, "w") as f:
+                json.dump(sequences, f)
+
+    def file_input(self, full_file_path: str):
+        if ".faa" in full_file_path:
+            with open(full_file_path, "rU") as f:
+                return SeqIO.parse(f, "fasta", Alphabet.generic_protein)
+
+        elif ".json" in full_file_path:
+            with open(full_file_path, "rU") as f:
+                return json.load(f)
+        else:
+            print("Unsupported file-in format!")
+
+    def make_original_file_name(self):
+        counter = 0
+        if os.path.isdir(self.file_out_dir):
+            new_file_name = "PAM_Output_{}".format(counter)
+            new_file_path = self.file_out_dir + new_file_name
+            while os.path.exists(new_file_path):
+                counter += 1
+                if counter < 11:
+                    new_file_path = new_file_path[:-1]
+                elif counter > 10:
+                    new_file_path = new_file_path[:-2]
+                elif counter > 100:
+                    new_file_path = new_file_path[:-3]
+
+                new_file_path = new_file_path + str(counter)
+            return os.path.join(new_file_name)
+
+    @staticmethod
+    def seq_record_to_dict(seq_list: [SeqRecord.SeqRecord]):
+        """
+        For rich output. Creates a dict where key = SeqRecord.id, value = the rest of the info
+        Args:
+            seq_list:
+
+        Returns:
+
+        """
+        return SeqIO.to_dict(seq_list)
 
     def get_master_list(self):
         return self.master_list

@@ -2,48 +2,200 @@
 <project version="4">
   <component name="ChangeListManager">
     <list default="true" id="d7bbb029-bcaf-48ad-b10b-48c7b7feb115" name="Default" comment="commit all">
+      <change beforePath="$PROJECT_DIR$/.idea/PAM.iml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/PAM.iml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/misc.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/misc.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Builder.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/Director.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Director.py" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/Source/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/BuilderTests/FELLSAPITester.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/BuilderTests/FELLSAPITester.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/BuilderTests/FELLSAPITester.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/BuilderTests/PredictionAPITester.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/Tests/BuilderTests/SecondaryBiasTester.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/BuilderTests/SecondaryBiasTester.py" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/activate" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/activate.csh" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/activate.fish" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/chardetect" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/easy_install" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/easy_install-3.6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/epylint" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/f2py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/isort" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/pip" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/pip3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/pip3.6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/pybabel" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/pygmentize" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/pylint" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/pylupdate5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/pyrcc5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/pyreverse" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/python" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/python3" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/python3.6" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/pyuic5" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/rst2html.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/rst2html4.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/rst2html5.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/rst2latex.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/rst2man.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/rst2odt.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/rst2odt_prepstyles.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/rst2pseudoxml.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/rst2s5.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/rst2xetex.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/rst2xml.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/rstpep2html.py" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/sphinx-apidoc" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/sphinx-autogen" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/sphinx-build" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/sphinx-quickstart" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/symilar" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/bin/wheel" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/pip-selfcheck.json" beforeDir="false" />
+      <change beforePath="$PROJECT_DIR$/venv1/pyvenv.cfg" beforeDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
-    <option name="TRACKING_ENABLED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
     <option name="HIGHLIGHT_NON_ACTIVE_CHANGELIST" value="false" />
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
+  <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Protein_Analysis_Manager$Unittests_for_PredictionAPITester_FELLSAPITester.coverage" NAME="Unittests for PredictionAPITester.FELLSAPITester Coverage Results" MODIFIED="1540919274777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tests/BuilderTests" />
+    <SUITE FILE_PATH="coverage/Protein_Analysis_Manager$Unittests_for_SecondaryBiasTester_SequenceBiasIOTests_test_seqbias_to_file.coverage" NAME="Unittests for SecondaryBiasTester.SequenceBiasIOTests.test_seqbias_to_file Coverage Results" MODIFIED="1540919438944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tests/BuilderTests" />
+    <SUITE FILE_PATH="coverage/Protein_Analysis_Manager$Unittests_for_PredictionAPITester_FELLSAPITester_test_preparring_request.coverage" NAME="Unittests for PredictionAPITester.FELLSAPITester.test_preparring_request Coverage Results" MODIFIED="1540942785791" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tests/BuilderTests" />
+    <SUITE FILE_PATH="coverage/Protein_Analysis_Manager$Unittests_for_PredictionAPITester_FELLSAPITester_test_check_submission_status.coverage" NAME="Unittests for PredictionAPITester.FELLSAPITester.test_check_submission_status Coverage Results" MODIFIED="1540919943630" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tests/BuilderTests" />
+    <SUITE FILE_PATH="coverage/Protein_Analysis_Manager$Unittests_for_SecondaryBiasTester_InductiveBiasFinderTest.coverage" NAME="Unittests for SecondaryBiasTester.InductiveBiasFinderTest Coverage Results" MODIFIED="1540919323767" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tests/BuilderTests" />
+    <SUITE FILE_PATH="coverage/Protein_Analysis_Manager$Unittests_in_PredictionAPITester_py.coverage" NAME="Unittests in PredictionAPITester.py Coverage Results" MODIFIED="1540919475319" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tests/BuilderTests" />
+    <SUITE FILE_PATH="coverage/Protein_Analysis_Manager$Unittests_for_SecondaryBiasTester_CheckAATests.coverage" NAME="Unittests for SecondaryBiasTester.CheckAATests Coverage Results" MODIFIED="1540919430431" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tests/BuilderTests" />
+    <SUITE FILE_PATH="coverage/Protein_Analysis_Manager$Unittests_for_PredictionAPITester_FELLSAPITester_test_check_processing_status.coverage" NAME="Unittests for PredictionAPITester.FELLSAPITester.test_check_processing_status Coverage Results" MODIFIED="1541000296799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tests/BuilderTests" />
+    <SUITE FILE_PATH="coverage/Protein_Analysis_Manager$Unittests_for_SecondaryBiasTester_BiasFinderTest.coverage" NAME="Unittests for SecondaryBiasTester.BiasFinderTest Coverage Results" MODIFIED="1540919345182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tests/BuilderTests" />
+    <SUITE FILE_PATH="coverage/Protein_Analysis_Manager$Python3_6_interpreter.coverage" NAME="Python3.6 interpreter Coverage Results" MODIFIED="1541100580673" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+  </component>
+  <component name="DatabaseView">
+    <option name="SHOW_INTERMEDIATE" value="true" />
+    <option name="GROUP_DATA_SOURCES" value="true" />
+    <option name="GROUP_SCHEMA" value="true" />
+    <option name="GROUP_CONTENTS" value="false" />
+    <option name="SORT_POSITIONED" value="false" />
+    <option name="SHOW_EMPTY_GROUPS" value="false" />
+    <option name="AUTO_SCROLL_FROM_SOURCE" value="false" />
+    <option name="HIDDEN_KINDS">
+      <set />
+    </option>
+    <expand />
+    <select />
+  </component>
+  <component name="FUSProjectUsageTrigger">
+    <session id="903025967">
+      <usages-collector id="statistics.lifecycle.project">
+        <counts>
+          <entry key="project.closed" value="1" />
+          <entry key="project.open.time.4" value="1" />
+          <entry key="project.open.time.6" value="1" />
+          <entry key="project.opened" value="2" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.extensions.edit">
+        <counts>
+          <entry key="Python Console" value="1380" />
+          <entry key="py" value="6328" />
+          <entry key="txt" value="45" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.file.types.edit">
+        <counts>
+          <entry key="PLAIN_TEXT" value="45" />
+          <entry key="Python" value="7708" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.js.language.service.starts" />
+      <usages-collector id="statistics.file.extensions.open">
+        <counts>
+          <entry key="cfg" value="1" />
+          <entry key="py" value="24" />
+        </counts>
+      </usages-collector>
+      <usages-collector id="statistics.vcs.git.usages" />
+      <usages-collector id="statistics.file.types.open">
+        <counts>
+          <entry key="Ini" value="1" />
+          <entry key="Python" value="24" />
+        </counts>
+      </usages-collector>
+    </session>
+  </component>
+  <component name="FavoritesManager">
+    <favorites_list name="Protein-Analysis-Manager" />
+  </component>
   <component name="FileEditorManager">
     <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-      <file leaf-file-name="main.py" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="true">
         <entry file="file://$PROJECT_DIR$/Source/main.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="646">
-              <caret line="78" column="7" lean-forward="true" selection-start-line="78" selection-start-column="7" selection-end-line="78" selection-end-column="7" />
+            <state relative-caret-position="435">
+              <caret line="112" column="29" selection-start-line="112" selection-start-column="29" selection-end-line="112" selection-end-column="29" />
               <folding>
-                <element signature="e#1#36#0" expanded="true" />
+                <element signature="e#39#54#0" expanded="true" />
               </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Builder.py" pinned="false" current-in-tab="true">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/Builder.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="244">
-              <caret line="90" selection-start-line="90" selection-end-line="90" />
+            <state relative-caret-position="789">
+              <caret line="183" column="24" lean-forward="true" selection-start-line="183" selection-start-column="24" selection-end-line="183" selection-end-column="24" />
+              <folding>
+                <element signature="e#40#51#0" expanded="true" />
+                <marker date="1541094953201" expanded="true" signature="3574:4363" ph="..." />
+                <marker date="1541094953201" expanded="true" signature="4428:4779" ph="..." />
+              </folding>
             </state>
           </provider>
         </entry>
       </file>
-      <file leaf-file-name="Director.py" pinned="false" current-in-tab="false">
+      <file pinned="false" current-in-tab="false">
         <entry file="file://$PROJECT_DIR$/Source/Director.py">
           <provider selected="true" editor-type-id="text-editor">
-            <state relative-caret-position="416">
-              <caret line="179" column="23" lean-forward="true" selection-start-line="179" selection-start-column="23" selection-end-line="179" selection-end-column="23" />
+            <state relative-caret-position="299">
+              <caret line="216" column="45" selection-start-line="216" selection-start-column="45" selection-end-line="216" selection-end-column="45" />
               <folding>
                 <element signature="e#0#22#0" expanded="true" />
+                <marker date="1541100450716" expanded="true" signature="3116:3122" ph="..." />
+                <marker date="1541100450716" expanded="true" signature="3462:3468" ph="..." />
+                <marker date="1541100450716" expanded="true" signature="3515:3524" ph="..." />
+                <marker date="1541100450716" expanded="true" signature="8461:8541" ph="..." />
+                <marker date="1541100450716" expanded="true" signature="9999:10849" ph="..." />
+                <marker date="1541100450716" expanded="true" signature="11414:11770" ph="..." />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tests/BuilderTests/SecondaryBiasTester.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="1036">
+              <caret line="228" column="45" lean-forward="true" selection-start-line="228" selection-start-column="45" selection-end-line="228" selection-end-column="45" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+              </folding>
+            </state>
+          </provider>
+        </entry>
+      </file>
+      <file pinned="false" current-in-tab="false">
+        <entry file="file://$PROJECT_DIR$/Tests/BuilderTests/PredictionAPITester.py">
+          <provider selected="true" editor-type-id="text-editor">
+            <state relative-caret-position="-780">
+              <caret line="34" column="57" selection-start-line="34" selection-start-column="57" selection-end-line="34" selection-end-column="57" />
+              <folding>
+                <element signature="e#0#15#0" expanded="true" />
+                <marker date="1541005065652" expanded="true" signature="285:297" ph="..." />
+                <marker date="1541005065652" expanded="true" signature="338:343" ph="..." />
+                <marker date="1541005065652" expanded="true" signature="528:533" ph="..." />
+                <marker date="1541005065652" expanded="true" signature="5210:5231" ph="..." />
               </folding>
             </state>
           </provider>
@@ -63,12 +215,6 @@
   </component>
   <component name="FindInProjectRecents">
     <findStrings>
-      <find>sequence</find>
-      <find>ID</find>
-      <find>p_dis</find>
-      <find>pos</find>
-      <find>hyd</find>
-      <find>\n</find>
       <find>stats</find>
       <find>1.97</find>
       <find>[</find>
@@ -93,6 +239,12 @@
       <find>file</find>
       <find>xml</find>
       <find>Sequence Analyzer</find>
+      <find>github</find>
+      <find>alph</find>
+      <find>alphabe</find>
+      <find>json</find>
+      <find>none</find>
+      <find>to_dic</find>
     </findStrings>
     <replaceStrings>
       <replace />
@@ -107,15 +259,6 @@
   <component name="IdeDocumentHistory">
     <option name="CHANGED_PATHS">
       <list>
-        <option value="$PROJECT_DIR$/Source/SpreadsheetIO.py" />
-        <option value="$PROJECT_DIR$/Source/Operation.py" />
-        <option value="$PROJECT_DIR$/Source/Sequence.py" />
-        <option value="$PROJECT_DIR$/Source/DatabaseAPIs.py" />
-        <option value="$PROJECT_DIR$/Source/UserInterface.py" />
-        <option value="$PROJECT_DIR$/docs/.buildinfo" />
-        <option value="$PROJECT_DIR$/sphinx/build/html/Builder.html" />
-        <option value="$PROJECT_DIR$/sphinx/build/html/search.html" />
-        <option value="$PROJECT_DIR$/sphinx/build/html/searchindex.js" />
         <option value="$PROJECT_DIR$/sphinx/build/html/_modules/index.html" />
         <option value="$PROJECT_DIR$/.gitignore" />
         <option value="$PROJECT_DIR$/References/docstring_example_google.py" />
@@ -147,7 +290,6 @@
         <option value="$PROJECT_DIR$/sphinx/Documentation Resources.rst" />
         <option value="$PROJECT_DIR$/.readthedocs.yml" />
         <option value="$PROJECT_DIR$/Source/___init___.py" />
-        <option value="$PROJECT_DIR$/venv1/pyvenv.cfg" />
         <option value="$PROJECT_DIR$/Source/OutputFunctions.py" />
         <option value="$PROJECT_DIR$/sphinx/Makefile" />
         <option value="$PROJECT_DIR$/sphinx/index.rst" />
@@ -155,11 +297,27 @@
         <option value="$PROJECT_DIR$/README.md" />
         <option value="$PROJECT_DIR$/sphinx/conf.py" />
         <option value="$PROJECT_DIR$/Tests/BuilderTests/FELLSAPITester.py" />
-        <option value="$PROJECT_DIR$/Source/Director.py" />
+        <option value="$PROJECT_DIR$/venv1/pyvenv.cfg" />
+        <option value="$PROJECT_DIR$/venv1/bin/activate" />
+        <option value="$PROJECT_DIR$/venv1/bin/pip" />
+        <option value="$PROJECT_DIR$/venv1/bin/pip3.6" />
+        <option value="$PROJECT_DIR$/venv1/bin/pip3" />
+        <option value="$PROJECT_DIR$/venv1/bin/activate.csh" />
+        <option value="$PROJECT_DIR$/pyvenv.cfg" />
+        <option value="$PROJECT_DIR$/Source/DataGraphing.py" />
+        <option value="$PROJECT_DIR$/Tests/BuilderTests/SecondaryBiasTester.py" />
+        <option value="$PROJECT_DIR$/Tests/BuilderTests/PredictionAPITester.py" />
         <option value="$PROJECT_DIR$/Source/Builder.py" />
+        <option value="$PROJECT_DIR$/Source/Director.py" />
         <option value="$PROJECT_DIR$/Source/main.py" />
       </list>
     </option>
+  </component>
+  <component name="JsBuildToolGruntFileManager" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsBuildToolPackageJson" detection-done="true" sorting="DEFINITION_ORDER" />
+  <component name="JsGulpfileManager">
+    <detection-done>true</detection-done>
+    <sorting>DEFINITION_ORDER</sorting>
   </component>
   <component name="ProjectFrameBounds" fullScreen="true">
     <option name="x" value="-1440" />
@@ -252,24 +410,25 @@
     <property name="ChangesTree.GroupingKeys" value="directory&#10;module" />
     <property name="DefaultHtmlFileTemplate" value="HTML File" />
     <property name="SearchEverywhereHistoryKey" value="&#9;FILE&#9;file:///Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/Source/SecondaryBiasFinder.py&#10;'&#9;ACTION&#9;EditorBreadcrumbsHideBoth&#10;user&#9;FILE&#9;file:///Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/sphinx/build/html/_modules/UserInterface.html&#10;UserInterface&#9;FILE&#9;file:///Users/coltongarelli/SequenceAnalyzer/SequenceAnalyzer2.1/sphinx/build/html/_modules/UserInterface.html&#10;self.maxDiff&#9;null&#9;null&#10;{&#9;null&#9;null" />
+    <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="run.code.analysis.last.selected.profile" value="pProject Default" />
-    <property name="settings.editor.selected.configurable" value="project.propVCSSupport.Mappings" />
+    <property name="settings.editor.selected.configurable" value="preferences.general" />
   </component>
   <component name="RecentsManager">
-    <key name="MoveFile.RECENT_KEYS">
-      <recent name="$PROJECT_DIR$/sphinx/Source" />
-      <recent name="$PROJECT_DIR$" />
-      <recent name="$PROJECT_DIR$/SequenceAnalyzer2.1" />
-      <recent name="$PROJECT_DIR$/Tests/BuilderTests" />
-      <recent name="$PROJECT_DIR$/BuilderTests" />
-    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="$PROJECT_DIR$/docs" />
       <recent name="$PROJECT_DIR$/Tests" />
       <recent name="$PROJECT_DIR$/References" />
       <recent name="$PROJECT_DIR$" />
       <recent name="$PROJECT_DIR$/sphinx/build/html" />
+    </key>
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="$PROJECT_DIR$/sphinx/Source" />
+      <recent name="$PROJECT_DIR$" />
+      <recent name="$PROJECT_DIR$/SequenceAnalyzer2.1" />
+      <recent name="$PROJECT_DIR$/Tests/BuilderTests" />
+      <recent name="$PROJECT_DIR$/BuilderTests" />
     </key>
   </component>
   <component name="RunDashboard">
@@ -297,11 +456,15 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Source/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="csvIO" type="PythonConfigurationType" factoryName="Python">
       <module name="Protein-Analysis-Manager" />
@@ -315,11 +478,15 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/References/CSV-IO.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration name="main" type="PythonConfigurationType" factoryName="Python">
       <module name="Protein-Analysis-Manager" />
@@ -333,11 +500,15 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="SCRIPT_NAME" value="$PROJECT_DIR$/Source/main.py" />
       <option name="PARAMETERS" value="" />
       <option name="SHOW_COMMAND_LINE" value="false" />
       <option name="EMULATE_TERMINAL" value="false" />
       <option name="MODULE_MODE" value="false" />
+      <option name="REDIRECT_INPUT" value="false" />
+      <option name="INPUT_FILE" value="" />
+      <method v="2" />
     </configuration>
     <configuration default="true" type="docs" factoryName="Sphinx task">
       <module name="Protein-Analysis-Manager" />
@@ -348,28 +519,16 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="docutils_input_file" value="$PROJECT_DIR$" />
       <option name="docutils_output_file" value="$USER_HOME$/Desktop" />
       <option name="docutils_params" value="" />
       <option name="docutils_task" value="html" />
       <option name="docutils_open_in_browser" value="false" />
-    </configuration>
-    <configuration name="FellsAPITest" type="tests" factoryName="Unittests">
-      <module name="Protein-Analysis-Manager" />
-      <option name="INTERPRETER_OPTIONS" value="" />
-      <option name="PARENT_ENVS" value="true" />
-      <option name="SDK_HOME" value="$PROJECT_DIR$/venv/bin/python" />
-      <option name="WORKING_DIRECTORY" value="" />
-      <option name="IS_MODULE_SDK" value="false" />
-      <option name="ADD_CONTENT_ROOTS" value="true" />
-      <option name="ADD_SOURCE_ROOTS" value="true" />
-      <option name="_new_pattern" value="&quot;&quot;" />
-      <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/BuilderTests/FELLSAPITester.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
     </configuration>
     <configuration name="SecondaryBiasTester" type="tests" factoryName="Unittests">
-      <module name="Protein-Analysis-Manager" />
+      <module name="PAM" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
@@ -377,10 +536,12 @@
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_pattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;$PROJECT_DIR$/BuilderTests/SecondaryBiasTester.py&quot;" />
-      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <option name="_new_target" value="&quot;Tests.BuilderTests.SecondaryBiasTester&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
     </configuration>
     <configuration name="UniprotTest" type="tests" factoryName="Unittests">
       <module name="Protein-Analysis-Manager" />
@@ -391,96 +552,139 @@
       <option name="IS_MODULE_SDK" value="false" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_pattern" value="&quot;&quot;" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
       <option name="_new_target" value="&quot;$PROJECT_DIR$/Tests&quot;" />
       <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
     </configuration>
-    <configuration name="Unittests for Tests.BuilderTests.SecondaryBiasTester.BiasFinderTest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="Protein-Analysis-Manager" />
+    <configuration name="Unittests for PredictionAPITester.FELLSAPITester.test_check_processing_status" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PAM" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests/BuilderTests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;Tests.BuilderTests.SecondaryBiasTester.BiasFinderTest&quot;" />
+      <option name="_new_target" value="&quot;PredictionAPITester.FELLSAPITester.test_check_processing_status&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
     </configuration>
-    <configuration name="Unittests for Tests.BuilderTests.SecondaryBiasTester.BiasFinderTest.test_secondary_bias_finder" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="Protein-Analysis-Manager" />
+    <configuration name="Unittests for PredictionAPITester.FELLSAPITester.test_check_submission_status" type="tests" factoryName="Unittests" nameIsGenerated="true">
+      <module name="PAM" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests/BuilderTests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;Tests.BuilderTests.SecondaryBiasTester.BiasFinderTest.test_secondary_bias_finder&quot;" />
+      <option name="_new_target" value="&quot;PredictionAPITester.FELLSAPITester.test_check_submission_status&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
     </configuration>
-    <configuration name="Unittests for Tests.BuilderTests.SecondaryBiasTester.InductiveBiasFinderTest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="Protein-Analysis-Manager" />
+    <configuration name="Unittests for PredictionAPITester.FELLSAPITester.test_preparring_request" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PAM" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests/BuilderTests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;Tests.BuilderTests.SecondaryBiasTester.InductiveBiasFinderTest&quot;" />
+      <option name="_new_target" value="&quot;PredictionAPITester.FELLSAPITester.test_preparring_request&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
     </configuration>
-    <configuration name="Unittests for Tests.BuilderTests.SecondaryBiasTester.SequenceBiasIOTests.test_file_to_seqbias" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="Protein-Analysis-Manager" />
+    <configuration name="Unittests for SecondaryBiasTester.BiasFinderTest" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PAM" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests/BuilderTests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;Tests.BuilderTests.SecondaryBiasTester.SequenceBiasIOTests.test_file_to_seqbias&quot;" />
+      <option name="_new_target" value="&quot;SecondaryBiasTester.BiasFinderTest&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
     </configuration>
-    <configuration name="Unittests for Tests.BuilderTests.SecondaryBiasTester.SequenceBiasIOTests.test_seqbias_to_file" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
-      <module name="Protein-Analysis-Manager" />
+    <configuration name="Unittests for SecondaryBiasTester.CheckAATests" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PAM" />
       <option name="INTERPRETER_OPTIONS" value="" />
       <option name="PARENT_ENVS" value="true" />
       <option name="SDK_HOME" value="" />
-      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests/BuilderTests" />
       <option name="IS_MODULE_SDK" value="true" />
       <option name="ADD_CONTENT_ROOTS" value="true" />
       <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
       <option name="_new_additionalArguments" value="&quot;&quot;" />
-      <option name="_new_target" value="&quot;Tests.BuilderTests.SecondaryBiasTester.SequenceBiasIOTests.test_seqbias_to_file&quot;" />
+      <option name="_new_target" value="&quot;SecondaryBiasTester.CheckAATests&quot;" />
       <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests for SecondaryBiasTester.SequenceBiasIOTests.test_seqbias_to_file" type="tests" factoryName="Unittests" temporary="true" nameIsGenerated="true">
+      <module name="PAM" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests/BuilderTests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;SecondaryBiasTester.SequenceBiasIOTests.test_seqbias_to_file&quot;" />
+      <option name="_new_targetType" value="&quot;PYTHON&quot;" />
+      <method v="2" />
+    </configuration>
+    <configuration name="Unittests in PredictionAPITester.py" type="tests" factoryName="Unittests" nameIsGenerated="true">
+      <module name="PAM" />
+      <option name="INTERPRETER_OPTIONS" value="" />
+      <option name="PARENT_ENVS" value="true" />
+      <option name="SDK_HOME" value="" />
+      <option name="WORKING_DIRECTORY" value="$PROJECT_DIR$/Tests/BuilderTests" />
+      <option name="IS_MODULE_SDK" value="true" />
+      <option name="ADD_CONTENT_ROOTS" value="true" />
+      <option name="ADD_SOURCE_ROOTS" value="true" />
+      <EXTENSION ID="PythonCoverageRunConfigurationExtension" runner="coverage.py" />
+      <option name="_new_additionalArguments" value="&quot;&quot;" />
+      <option name="_new_target" value="&quot;$PROJECT_DIR$/Tests/BuilderTests/PredictionAPITester.py&quot;" />
+      <option name="_new_targetType" value="&quot;PATH&quot;" />
+      <method v="2" />
     </configuration>
     <list>
+      <item itemvalue="Python tests.Unittests for PredictionAPITester.FELLSAPITester.test_check_submission_status" />
       <item itemvalue="Python.Python3.6 interpreter" />
       <item itemvalue="Python.csvIO" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python tests.UniprotTest" />
       <item itemvalue="Python tests.SecondaryBiasTester" />
-      <item itemvalue="Python tests.FellsAPITest" />
-      <item itemvalue="Python tests.Unittests for Tests.BuilderTests.SecondaryBiasTester.BiasFinderTest.test_secondary_bias_finder" />
-      <item itemvalue="Python tests.Unittests for Tests.BuilderTests.SecondaryBiasTester.BiasFinderTest" />
-      <item itemvalue="Python tests.Unittests for Tests.BuilderTests.SecondaryBiasTester.InductiveBiasFinderTest" />
-      <item itemvalue="Python tests.Unittests for Tests.BuilderTests.SecondaryBiasTester.SequenceBiasIOTests.test_file_to_seqbias" />
-      <item itemvalue="Python tests.Unittests for Tests.BuilderTests.SecondaryBiasTester.SequenceBiasIOTests.test_seqbias_to_file" />
+      <item itemvalue="Python tests.Unittests in PredictionAPITester.py" />
+      <item itemvalue="Python tests.Unittests for SecondaryBiasTester.BiasFinderTest" />
+      <item itemvalue="Python tests.Unittests for SecondaryBiasTester.CheckAATests" />
+      <item itemvalue="Python tests.Unittests for SecondaryBiasTester.SequenceBiasIOTests.test_seqbias_to_file" />
+      <item itemvalue="Python tests.Unittests for PredictionAPITester.FELLSAPITester.test_preparring_request" />
+      <item itemvalue="Python tests.Unittests for PredictionAPITester.FELLSAPITester.test_check_processing_status" />
     </list>
     <recent_temporary>
       <list>
-        <item itemvalue="Python tests.Unittests for Tests.BuilderTests.SecondaryBiasTester.SequenceBiasIOTests.test_seqbias_to_file" />
-        <item itemvalue="Python tests.Unittests for Tests.BuilderTests.SecondaryBiasTester.SequenceBiasIOTests.test_file_to_seqbias" />
-        <item itemvalue="Python tests.Unittests for Tests.BuilderTests.SecondaryBiasTester.InductiveBiasFinderTest" />
-        <item itemvalue="Python tests.Unittests for Tests.BuilderTests.SecondaryBiasTester.BiasFinderTest.test_secondary_bias_finder" />
-        <item itemvalue="Python tests.Unittests for Tests.BuilderTests.SecondaryBiasTester.BiasFinderTest" />
+        <item itemvalue="Python tests.Unittests for PredictionAPITester.FELLSAPITester.test_check_processing_status" />
+        <item itemvalue="Python tests.Unittests for PredictionAPITester.FELLSAPITester.test_preparring_request" />
+        <item itemvalue="Python tests.Unittests for SecondaryBiasTester.SequenceBiasIOTests.test_seqbias_to_file" />
+        <item itemvalue="Python tests.Unittests for SecondaryBiasTester.CheckAATests" />
+        <item itemvalue="Python tests.Unittests for SecondaryBiasTester.BiasFinderTest" />
       </list>
     </recent_temporary>
   </component>
@@ -498,35 +702,35 @@
     <servers />
   </component>
   <component name="TestHistory">
-    <history-entry file="SecondaryBiasTester - 2018.07.20 at 19h 49m 58s.xml">
-      <configuration name="SecondaryBiasTester" configurationId="tests" />
+    <history-entry file="Unittests_for_PredictionAPITester_FELLSAPITester_test_preparring_request - 2018.10.30 at 19h 23m 53s.xml">
+      <configuration name="Unittests for PredictionAPITester.FELLSAPITester.test_preparring_request" configurationId="tests" />
     </history-entry>
-    <history-entry file="SecondaryBiasTester - 2018.07.20 at 19h 49m 59s.xml">
-      <configuration name="SecondaryBiasTester" configurationId="tests" />
+    <history-entry file="Unittests_for_PredictionAPITester_FELLSAPITester_test_preparring_request - 2018.10.30 at 19h 25m 29s.xml">
+      <configuration name="Unittests for PredictionAPITester.FELLSAPITester.test_preparring_request" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_SecondaryBiasTester_SequenceBiasIOTests_test_file_to_seqbias - 2018.07.20 at 19h 53m 15s.xml">
-      <configuration name="Unittests for SecondaryBiasTester.SequenceBiasIOTests.test_file_to_seqbias" configurationId="tests" />
+    <history-entry file="Unittests_for_PredictionAPITester_FELLSAPITester_test_preparring_request - 2018.10.30 at 19h 25m 40s.xml">
+      <configuration name="Unittests for PredictionAPITester.FELLSAPITester.test_preparring_request" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_SecondaryBiasTester_SequenceBiasIOTests_test_seqbias_to_file - 2018.07.20 at 19h 53m 18s.xml">
-      <configuration name="Unittests for SecondaryBiasTester.SequenceBiasIOTests.test_seqbias_to_file" configurationId="tests" />
+    <history-entry file="Unittests_for_PredictionAPITester_FELLSAPITester_test_preparring_request - 2018.10.30 at 19h 27m 08s.xml">
+      <configuration name="Unittests for PredictionAPITester.FELLSAPITester.test_preparring_request" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_SecondaryBiasTester_SequenceBiasIOTests_test_seqbias_to_file - 2018.07.20 at 19h 53m 34s.xml">
-      <configuration name="Unittests for SecondaryBiasTester.SequenceBiasIOTests.test_seqbias_to_file" configurationId="tests" />
+    <history-entry file="Unittests_for_PredictionAPITester_FELLSAPITester_test_preparring_request - 2018.10.30 at 19h 27m 47s.xml">
+      <configuration name="Unittests for PredictionAPITester.FELLSAPITester.test_preparring_request" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_SecondaryBiasTester_SequenceBiasIOTests_test_seqbias_to_file - 2018.07.20 at 19h 54m 12s.xml">
-      <configuration name="Unittests for SecondaryBiasTester.SequenceBiasIOTests.test_seqbias_to_file" configurationId="tests" />
+    <history-entry file="Unittests_for_PredictionAPITester_FELLSAPITester_test_preparring_request - 2018.10.30 at 19h 28m 42s.xml">
+      <configuration name="Unittests for PredictionAPITester.FELLSAPITester.test_preparring_request" configurationId="tests" />
     </history-entry>
-    <history-entry file="Unittests_for_SecondaryBiasTester_SequenceBiasIOTests_test_seqbias_to_file - 2018.07.20 at 19h 57m 25s.xml">
-      <configuration name="Unittests for SecondaryBiasTester.SequenceBiasIOTests.test_seqbias_to_file" configurationId="tests" />
+    <history-entry file="Unittests_for_PredictionAPITester_FELLSAPITester_test_preparring_request - 2018.10.30 at 19h 38m 40s.xml">
+      <configuration name="Unittests for PredictionAPITester.FELLSAPITester.test_preparring_request" configurationId="tests" />
     </history-entry>
-    <history-entry file="SecondaryBiasTester - 2018.07.23 at 13h 51m 27s.xml">
-      <configuration name="SecondaryBiasTester" configurationId="tests" />
+    <history-entry file="Unittests_for_PredictionAPITester_FELLSAPITester_test_preparring_request - 2018.10.30 at 19h 39m 47s.xml">
+      <configuration name="Unittests for PredictionAPITester.FELLSAPITester.test_preparring_request" configurationId="tests" />
     </history-entry>
-    <history-entry file="SecondaryBiasTester - 2018.07.23 at 13h 51m 46s.xml">
-      <configuration name="SecondaryBiasTester" configurationId="tests" />
+    <history-entry file="Unittests_for_PredictionAPITester_FELLSAPITester_test_check_processing_status - 2018.10.30 at 23h 22m 03s.xml">
+      <configuration name="Unittests for PredictionAPITester.FELLSAPITester.test_check_processing_status" configurationId="tests" />
     </history-entry>
-    <history-entry file="SecondaryBiasTester - 2018.07.23 at 13h 54m 17s.xml">
-      <configuration name="SecondaryBiasTester" configurationId="tests" />
+    <history-entry file="Unittests_for_PredictionAPITester_FELLSAPITester_test_check_processing_status - 2018.10.31 at 11h 38m 19s.xml">
+      <configuration name="Unittests for PredictionAPITester.FELLSAPITester.test_check_processing_status" configurationId="tests" />
     </history-entry>
   </component>
   <component name="TodoView">
@@ -540,49 +744,55 @@
   </component>
   <component name="ToolWindowManager">
     <frame x="-1440" y="-169" width="1440" height="900" extended-state="0" />
-    <editor active="true" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" visible="true" weight="0.1602289" />
-      <window_info anchor="bottom" id="TODO" order="4" weight="0.32848486" />
-      <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.50771606" side_tool="true" weight="0.19358975" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32364598" />
-      <window_info active="true" anchor="right" id="Run" order="3" sideWeight="0.80548626" side_tool="true" visible="true" weight="0.27753934" />
-      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32820514" />
-      <window_info anchor="bottom" id="Python Console" order="8" sideWeight="0.49598163" weight="0.33076924" />
+      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4993804" visible="true" weight="0.043633763" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24907522" />
-      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.49228394" weight="0.19286658" />
-      <window_info anchor="right" id="Debug" order="4" sideWeight="0.19451371" weight="0.27753934" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info id="Favorites" order="2" sideWeight="0.5006196" side_tool="true" weight="0.3297568" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32342008" />
+      <window_info anchor="bottom" id="Cvs" order="2" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="3" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="4" weight="0.32848486" />
+      <window_info anchor="bottom" id="Messages" order="5" />
+      <window_info anchor="bottom" id="Event Log" order="6" sideWeight="0.509299" side_tool="true" weight="0.18503937" />
+      <window_info anchor="bottom" id="Version Control" order="7" weight="0.32820514" />
+      <window_info anchor="bottom" id="Python Console" order="8" sideWeight="0.49598163" visible="true" weight="0.26270136" />
+      <window_info anchor="bottom" id="Terminal" order="9" sideWeight="0.490701" weight="0.1747212" />
+      <window_info anchor="bottom" id="Inspection Results" order="10" weight="0.32889965" />
+      <window_info anchor="bottom" id="Docker" order="11" show_stripe_button="false" />
+      <window_info anchor="bottom" id="Database Changes" order="12" show_stripe_button="false" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection Results" order="10" weight="0.32889965" />
-      <window_info anchor="bottom" id="Messages" order="5" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Inspection" order="3" weight="0.4" />
-      <window_info anchor="bottom" id="Cvs" order="2" weight="0.25" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
+      <window_info active="true" anchor="right" id="Run" order="3" sideWeight="0.25042018" side_tool="true" visible="true" weight="0.46852645" />
+      <window_info anchor="right" id="Debug" order="4" sideWeight="0.74957985" weight="0.46852645" />
+      <window_info anchor="right" x="-1252" y="-18" width="1063" height="621" id="SciView" internal_type="SLIDING" order="5" sideWeight="0.49919486" weight="0.39914164" />
+      <window_info anchor="right" id="Database" order="6" weight="0.3297568" />
     </layout>
     <layout-to-restore>
-      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
-      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
       <window_info active="true" content_ui="combo" id="Project" order="0" visible="true" weight="0.2231579" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24907522" />
+      <window_info id="Favorites" order="2" side_tool="true" />
+      <window_info anchor="bottom" id="Message" order="0" />
+      <window_info anchor="bottom" id="Find" order="1" weight="0.32564104" />
+      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4856487" weight="0.32435897" />
+      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49500385" weight="0.3602564" />
+      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
+      <window_info anchor="bottom" id="Inspection" order="5" weight="0.4" />
+      <window_info anchor="bottom" id="TODO" order="6" />
+      <window_info anchor="bottom" id="Messages" order="7" />
+      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5049962" side_tool="true" weight="0.10128205" />
+      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32992327" />
+      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49598163" weight="0.32889965" />
+      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4909091" weight="0.33717948" />
+      <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.32889965" />
       <window_info anchor="right" id="Commander" order="0" weight="0.4" />
       <window_info anchor="right" id="Ant Build" order="1" weight="0.25" />
-      <window_info anchor="bottom" id="TODO" order="6" />
-      <window_info anchor="bottom" id="Version Control" order="9" weight="0.32992327" />
-      <window_info anchor="bottom" id="Run" order="2" sideWeight="0.4856487" weight="0.32435897" />
-      <window_info anchor="bottom" id="Inspection Results" order="12" weight="0.32889965" />
-      <window_info anchor="bottom" id="Message" order="0" />
-      <window_info anchor="bottom" id="Debug" order="3" sideWeight="0.49500385" weight="0.3602564" />
-      <window_info anchor="bottom" id="Terminal" order="11" sideWeight="0.4909091" weight="0.33717948" />
-      <window_info anchor="bottom" id="Event Log" order="8" sideWeight="0.5049962" side_tool="true" weight="0.10128205" />
-      <window_info anchor="bottom" id="Cvs" order="4" weight="0.25" />
-      <window_info id="Favorites" order="2" side_tool="true" />
-      <window_info anchor="bottom" id="Find" order="1" weight="0.32564104" />
-      <window_info anchor="bottom" id="Messages" order="7" />
-      <window_info anchor="bottom" id="Python Console" order="10" sideWeight="0.49598163" weight="0.32889965" />
+      <window_info anchor="right" content_ui="combo" id="Hierarchy" order="2" weight="0.25" />
     </layout-to-restore>
+  </component>
+  <component name="TypeScriptGeneratedFilesManager">
+    <option name="version" value="1" />
   </component>
   <component name="VcsContentAnnotationSettings">
     <option name="myLimit" value="2678400000" />
@@ -606,64 +816,39 @@
           <option name="timeStamp" value="238" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Director.py</url>
-          <line>245</line>
-          <option name="timeStamp" value="524" />
+          <url>file://$PROJECT_DIR$/Source/Builder.py</url>
+          <line>112</line>
+          <option name="timeStamp" value="634" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Director.py</url>
-          <line>248</line>
-          <option name="timeStamp" value="526" />
+          <url>file://$PROJECT_DIR$/Source/Builder.py</url>
+          <line>113</line>
+          <option name="timeStamp" value="635" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Director.py</url>
-          <line>249</line>
-          <option name="timeStamp" value="527" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Director.py</url>
-          <line>180</line>
-          <option name="timeStamp" value="553" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Director.py</url>
-          <line>178</line>
-          <option name="timeStamp" value="554" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Director.py</url>
-          <line>179</line>
-          <option name="timeStamp" value="555" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Director.py</url>
-          <line>182</line>
-          <option name="timeStamp" value="556" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Director.py</url>
-          <line>184</line>
-          <option name="timeStamp" value="557" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Director.py</url>
-          <line>181</line>
-          <option name="timeStamp" value="558" />
-        </line-breakpoint>
-        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
-          <url>file://$PROJECT_DIR$/Source/Director.py</url>
-          <line>183</line>
-          <option name="timeStamp" value="559" />
+          <url>file://$PROJECT_DIR$/Source/Builder.py</url>
+          <line>114</line>
+          <option name="timeStamp" value="636" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Source/main.py</url>
-          <line>35</line>
-          <option name="timeStamp" value="574" />
+          <line>46</line>
+          <option name="timeStamp" value="660" />
         </line-breakpoint>
         <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
           <url>file://$PROJECT_DIR$/Source/main.py</url>
-          <line>34</line>
-          <option name="timeStamp" value="575" />
+          <line>47</line>
+          <option name="timeStamp" value="661" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Source/main.py</url>
+          <line>48</line>
+          <option name="timeStamp" value="662" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" suspend="THREAD" type="python-line">
+          <url>file://$PROJECT_DIR$/Source/Builder.py</url>
+          <line>185</line>
+          <option name="timeStamp" value="666" />
         </line-breakpoint>
       </breakpoints>
       <breakpoints-dialog>
@@ -676,142 +861,9 @@
           </properties>
         </breakpoint>
       </default-breakpoints>
-      <option name="time" value="576" />
     </breakpoint-manager>
   </component>
   <component name="editorHistoryManager">
-    <entry file="file://$PROJECT_DIR$/Source/Representation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="1650">
-          <caret line="110" column="8" selection-start-line="110" selection-start-column="8" selection-end-line="110" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/Bio/SeqIO/SeqXmlIO.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="348" selection-start-line="348" selection-end-line="348" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/Bio/Alphabet/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="500">
-          <caret line="461" column="45" selection-start-line="461" selection-start-column="45" selection-end-line="461" selection-end-column="45" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/Bio/Seq.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="200">
-          <caret line="88" column="8" selection-start-line="88" selection-start-column="8" selection-end-line="88" selection-end-column="8" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/Bio/Alphabet/IUPAC.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="251">
-          <caret line="55" selection-start-line="55" selection-end-line="55" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/Bio/SeqIO/__init__.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="390">
-          <caret line="516" selection-start-line="516" selection-end-line="516" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/__init__.py" />
-    <entry file="file://$PROJECT_DIR$/sphinx/build/html/Source.html" />
-    <entry file="file://$PROJECT_DIR$/sphinx/Source.Director.rst" />
-    <entry file="file://$PROJECT_DIR$/sphinx/Source.Builder.rst" />
-    <entry file="file://$PROJECT_DIR$/sphinx/Source.rst" />
-    <entry file="file://$PROJECT_DIR$/sphinx/build/html/Builder.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sphinx/Director.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sphinx/docstring_example_google.rst" />
-    <entry file="file://$PROJECT_DIR$/sphinx/build/html/Director.html">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/docs/main.html" />
-    <entry file="file://$PROJECT_DIR$/.gitignore">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Python Resources.html" />
-    <entry file="file://$PROJECT_DIR$/docs/_modules/main.html" />
-    <entry file="file://$PROJECT_DIR$/Source/___init___.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/venv1/pyvenv.cfg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state>
-          <caret column="7" selection-start-column="7" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sphinx/Builder.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="1" column="14" lean-forward="true" selection-start-line="1" selection-start-column="14" selection-end-line="1" selection-end-column="14" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sphinx/main.rst">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sphinx/Documentation Resources.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="332">
-          <caret line="31" column="29" selection-start-line="31" selection-start-column="29" selection-end-line="31" selection-end-column="29" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sphinx/Representation.rst">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="75">
-          <caret line="5" column="19" selection-start-line="5" selection-start-column="19" selection-end-line="5" selection-end-column="19" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/sphinx/SecondaryBiasFinder.rst">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
-    <entry file="file://$PROJECT_DIR$/setup.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="225">
-          <caret line="15" lean-forward="true" selection-start-line="15" selection-end-line="15" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/OutputFunctions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="370">
-          <caret line="187" column="5" selection-start-line="187" selection-start-column="5" selection-end-line="187" selection-end-column="5" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/.idea/workspace.xml">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="525">
-          <caret line="35" column="13" selection-start-line="35" selection-start-column="13" selection-end-line="35" selection-end-column="13" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/SecondaryBiasFinder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="15">
-          <caret line="9" selection-start-line="9" selection-end-line="9" />
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$PROJECT_DIR$/docs/.buildinfo" />
     <entry file="file://$PROJECT_DIR$/docs/doctrees/main.doctree">
       <provider selected="true" editor-type-id="text-editor" />
@@ -827,13 +879,6 @@
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="165">
           <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/pyvenv.cfg">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="45">
-          <caret line="3" selection-start-line="3" selection-end-line="3" />
         </state>
       </provider>
     </entry>
@@ -898,16 +943,6 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Tests/BuilderTests/FELLSAPITester.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="287">
-          <caret line="45" column="20" selection-start-line="45" selection-start-column="20" selection-end-line="45" selection-end-column="20" />
-          <folding>
-            <element signature="e#0#15#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
     <entry file="file://$USER_HOME$/Library/Caches/PyCharmCE2018.1/python_stubs/-2100763944/time.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="259">
@@ -915,30 +950,177 @@
         </state>
       </provider>
     </entry>
+    <entry file="file:///System/Library/Frameworks/Python.framework/Versions/2.7/lib/python2.7/shutil.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="123">
+          <caret line="249" selection-start-line="249" selection-end-line="249" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/setuptools.pth" />
+    <entry file="file://$PROJECT_DIR$/venv1/bin/activate" />
+    <entry file="file://$PROJECT_DIR$/venv1/bin/isort" />
+    <entry file="file://$PROJECT_DIR$/venv1/bin/pip" />
+    <entry file="file://$PROJECT_DIR$/venv1/bin/pip3" />
+    <entry file="file://$PROJECT_DIR$/venv1/bin/activate.csh" />
+    <entry file="file://$PROJECT_DIR$/venv1/bin/pip3.6" />
+    <entry file="file://$PROJECT_DIR$/venv1/pyvenv.cfg" />
+    <entry file="file://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/six.py" />
+    <entry file="file://$PROJECT_DIR$/venv1/pip-selfcheck.json" />
+    <entry file="file://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/easy-install.pth" />
+    <entry file="jar://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/setuptools-28.8.0-py3.6.egg!/EGG-INFO/dependency_links.txt" />
+    <entry file="jar://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/setuptools-28.8.0-py3.6.egg!/EGG-INFO/entry_points.txt" />
+    <entry file="jar://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/setuptools-28.8.0-py3.6.egg!/EGG-INFO/PKG-INFO" />
+    <entry file="jar://$PROJECT_DIR$/venv1/lib/python3.6/site-packages/setuptools-28.8.0-py3.6.egg!/EGG-INFO/SOURCES.txt" />
+    <entry file="file://$USER_HOME$/anaconda3/envs/PAM/lib/python3.6/site-packages/matplotlib/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-83">
+          <caret line="1325" column="4" selection-start-line="1325" selection-start-column="4" selection-end-line="1325" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Representation.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/OutputFunctions.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$APPLICATION_HOME_DIR$/helpers/python-skeletons/numpy/core/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-756">
+          <caret line="3899" column="9" selection-start-line="3899" selection-start-column="9" selection-end-line="3899" selection-end-column="9" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/PAM/lib/python3.6/site-packages/scipy/stats/stats.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="491">
+          <caret line="1712" column="21" selection-start-line="1712" selection-start-column="21" selection-end-line="1712" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/pyvenv.cfg">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="45">
+          <caret line="3" selection-start-line="3" selection-end-line="3" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/DataGraphing.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state>
+          <caret selection-end-line="2" selection-end-column="21" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/PAM/lib/python3.6/unittest/loader.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="213">
+          <caret line="196" selection-start-line="196" selection-end-line="196" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/PAM/lib/python3.6/site-packages/Bio/SeqIO/FastaIO.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="346" column="4" selection-start-line="346" selection-start-column="4" selection-end-line="346" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/PAM/lib/python3.6/site-packages/Bio/Alphabet/__init__.py">
+      <provider selected="true" editor-type-id="text-editor" />
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/PAM/lib/python3.6/filecmp.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="195">
+          <caret line="286" column="33" selection-start-line="286" selection-start-column="33" selection-end-line="286" selection-end-column="33" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.2/python_stubs/522289597/builtins.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="260">
+          <caret line="5110" column="20" selection-start-line="5110" selection-start-column="8" selection-end-line="5110" selection-end-column="20" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/BuilderTests/SecondaryBiasTester.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1036">
+          <caret line="228" column="45" lean-forward="true" selection-start-line="228" selection-start-column="45" selection-end-line="228" selection-end-column="45" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Tests/BuilderTests/PredictionAPITester.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-780">
+          <caret line="34" column="57" selection-start-line="34" selection-start-column="57" selection-end-line="34" selection-end-column="57" />
+          <folding>
+            <element signature="e#0#15#0" expanded="true" />
+            <marker date="1541005065652" expanded="true" signature="285:297" ph="..." />
+            <marker date="1541005065652" expanded="true" signature="338:343" ph="..." />
+            <marker date="1541005065652" expanded="true" signature="528:533" ph="..." />
+            <marker date="1541005065652" expanded="true" signature="5210:5231" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/PAM/lib/python3.6/site-packages/Bio/SeqIO/__init__.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="-128">
+          <caret line="655" column="4" selection-start-line="655" selection-start-column="4" selection-end-line="655" selection-end-column="4" />
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Builder.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="789">
+          <caret line="183" column="24" lean-forward="true" selection-start-line="183" selection-start-column="24" selection-end-line="183" selection-end-column="24" />
+          <folding>
+            <element signature="e#40#51#0" expanded="true" />
+            <marker date="1541094953201" expanded="true" signature="3574:4363" ph="..." />
+            <marker date="1541094953201" expanded="true" signature="4428:4779" ph="..." />
+          </folding>
+        </state>
+      </provider>
+    </entry>
+    <entry file="file://$USER_HOME$/anaconda3/envs/PAM/lib/python3.6/site-packages/Bio/SeqRecord.py">
+      <provider selected="true" editor-type-id="text-editor">
+        <state relative-caret-position="1463">
+          <caret line="437" column="57" selection-start-line="437" selection-start-column="53" selection-end-line="437" selection-end-column="57" />
+        </state>
+      </provider>
+    </entry>
     <entry file="file://$PROJECT_DIR$/Source/Director.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="416">
-          <caret line="179" column="23" lean-forward="true" selection-start-line="179" selection-start-column="23" selection-end-line="179" selection-end-column="23" />
+        <state relative-caret-position="299">
+          <caret line="216" column="45" selection-start-line="216" selection-start-column="45" selection-end-line="216" selection-end-column="45" />
           <folding>
             <element signature="e#0#22#0" expanded="true" />
+            <marker date="1541100450716" expanded="true" signature="3116:3122" ph="..." />
+            <marker date="1541100450716" expanded="true" signature="3462:3468" ph="..." />
+            <marker date="1541100450716" expanded="true" signature="3515:3524" ph="..." />
+            <marker date="1541100450716" expanded="true" signature="8461:8541" ph="..." />
+            <marker date="1541100450716" expanded="true" signature="9999:10849" ph="..." />
+            <marker date="1541100450716" expanded="true" signature="11414:11770" ph="..." />
           </folding>
         </state>
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/Source/main.py">
       <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="646">
-          <caret line="78" column="7" lean-forward="true" selection-start-line="78" selection-start-column="7" selection-end-line="78" selection-end-column="7" />
+        <state relative-caret-position="435">
+          <caret line="112" column="29" selection-start-line="112" selection-start-column="29" selection-end-line="112" selection-end-column="29" />
           <folding>
-            <element signature="e#1#36#0" expanded="true" />
+            <element signature="e#39#54#0" expanded="true" />
           </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Builder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="244">
-          <caret line="90" selection-start-line="90" selection-end-line="90" />
         </state>
       </provider>
     </entry>

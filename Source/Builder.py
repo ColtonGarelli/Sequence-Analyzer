@@ -7,7 +7,11 @@ import requests as r
 from Bio import SeqIO, SeqRecord, Seq
 from Bio.Alphabet import IUPAC
 from SecondaryBiasFinder import SecondaryBias
+import datetime
 
+import numpy as np
+import matplotlib.pyplot as plt
+import seaborn as sns
 
 class Builder:
     """
@@ -43,6 +47,36 @@ class AnalysisBuilder(Builder):
         job_id = json_obj.get('jobid')
         return job_id
 
+    @staticmethod
+    def get_jobid(response_str):
+        json_content = json.loads(response_str.content.decode('utf-8'))
+        return json_content['jobid']
+
+    @staticmethod
+    def get_data_as_json(response_str):
+        return json.loads(response_str.content.decode('utf-8'))
+
+    # @staticmethod
+    # def make_original_file_name():
+    #     home = os.path.join(os.path.expanduser('~'))
+    #     d = 'Desktop'
+    #     data_source = os.path.join(home, d)
+    #     new_dir_name = os.path.join(data_source, "PAM_Output_{}".format(datetime.date.today()))
+    #     counter = 0
+    #     if os.path.isdir(new_dir_name):
+    #         new_dir_name = new_dir_name + "_{}".format(counter)
+    #         while os.path.isdir(new_dir_name):
+    #             counter += 1
+    #             if counter < 11:
+    #                 new_dir_name = new_dir_name[:-1]
+    #             elif counter > 10:
+    #                 new_dir_name = new_dir_name[:-2]
+    #             elif counter > 100:
+    #                 new_dir_name = new_dir_name[:-3]
+    #             new_dir_name = new_dir_name + str(counter)
+    #             os.path.join(new_dir_name)
+    #         os.mkdir(new_dir_name)
+
 
 # ***MAX # of sequences = 15000
 class FELLSAnalysisBuilder(AnalysisBuilder):
@@ -50,7 +84,7 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
     _post_url = "http://protein.bio.unipd.it/fellsws/submit"
     _status_url = "http://protein.bio.unipd.it/fellsws/status/"
     _get_url = "http://protein.bio.unipd.it/fellsws/result/"
-    _headers = {'Content-Type': 'application/json'}
+    _headers = {'Content-Type': 'application/json; charset=utf-8'}
     _body_beginning = '\nContent-Disposition: application/json; name="sequence"'
 
     def __init__(self):
@@ -61,38 +95,54 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
         self.job_id: str = None
 
     def prepare_request(self, seq_list):
-        working_list = list()
-        for i in range(len(seq_list)):
-            working_list.append(seq_list[i])
-        if isinstance(working_list[0], SeqRecord.SeqRecord):
-            try:
-                for i in range(len(working_list)):
-                    working_list[i] = working_list[i].format("fasta")
-            except TypeError as type_e:
-                for i in range(len(working_list)):
-                    working_list[i].seq = Seq.Seq(working_list[i].seq, IUPAC.IUPACProtein)
+        working_list = self.sequence_list_to_fasta(seq_list)
+        formatted = self.format_body_for_processing(working_list)
+        json_body = json.dumps({"sequence": formatted}).encode()
+        prepped_request = r.Request(method='POST', url=self.get_post_url(),
+                                    headers=self.get_headers(), data=json_body).prepare()
+        return prepped_request
 
+    @staticmethod
+    def sequence_list_to_fasta(seq_list: list):
+        working_list = list()
+        if isinstance(seq_list[0], SeqRecord.SeqRecord):
+            try:
+                for i in range(len(seq_list)):
+                    working_list.append(seq_list[i].format("fasta"))
+            except TypeError as type_e:
+                for i in range(len(seq_list)):
+                    working_list[i].seq = Seq.Seq(data=working_list[i].seq, alphabet=IUPAC.IUPACProtein())
                     working_list[i] = working_list[i].format("fasta")
-        headers = {'Content-Type': 'application/json; charset=utf-8'}
-        formatted = ""
-        for i in working_list:
+        elif isinstance(seq_list[0], str):
+            for i in range(len(seq_list)):
+                temp_seqrecord = SeqRecord.SeqRecord(description="", id="ID_{}".format(i), seq=Seq.Seq(seq_list[i]))
+                working_list.append(temp_seqrecord.format("fasta"))
+        return working_list
+
+    @staticmethod
+    def format_body_for_processing(fasta_str_list):
+        formatted = str()
+        for i in fasta_str_list:
             if "\n\n>" not in i:
-                formatted = formatted + "\n\n"+i
+                if "\n>" in i:
+                    formatted = "\n" + formatted + i
+                else:
+                    formatted = formatted + "\n\n" + i
             else:
                 formatted = formatted + i
-        json_body = json.dumps({"sequence": formatted}).encode()
-        prepped_request = r.Request(method='POST', url=self.get_post_url(), headers=headers, data=json_body).prepare()
-
-        return prepped_request
+        return formatted + "\n"
 
     def check_request_submission(self, jobid):
         check_status = r.get(url=self._status_url+jobid)
         json_obj = json.loads(check_status.content)
-        while json_obj.get('status') != 'done':
-            time.sleep(5.00)
-            check_status = r.get(url=self._status_url + jobid)
-            json_obj = json.loads(check_status.content)
-        return json_obj
+        if json_obj.get('status') != 'error':
+            while json_obj.get('status') != 'done':
+                time.sleep(5.00)
+                check_status = r.get(url=self._status_url + jobid)
+                json_obj = json.loads(check_status.content)
+            return check_status
+        else:
+            return False
 
     def check_processing_status(self, ID):
         processing = r.get(self._get_url+ID)
@@ -117,6 +167,7 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
     def update_annotations(master_list, data_list):
         for i in range(len(master_list)):
             all_list = data_list[i]['all']
+            comp = all_list["composition"]
             entropy = all_list['entropy']
             hydrophobic = all_list['hyd']
             pos_charge = all_list['pos']
@@ -126,24 +177,23 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
             percent_helix = data_list[i]['p_h']
             percent_coil = data_list[i]['p_c']
             order_disorder = data_list[i]['state_dis']
-            comp = ['composition']
             aggregation = data_list[i]['pasta_energy']
             # comp is a list of dictionaries for each domain
             # all the above are lists of per residue
 
             # complexity
-            master_list[i].annotations.update({'complexity': entropy})
-            master_list[i].annotations.update({'pos_charge': pos_charge})
-            master_list[i].annotations.update({'neg_charge': neg_charge})
-            master_list[i].annotations.update({'hydro_cluster': hydro_cluster})
-            master_list[i].annotations.update({'percent_dis': percent_dis})
-            master_list[i].annotations.update({'percent_helix': percent_helix})
-            master_list[i].annotations.update({'percent_coil': percent_coil})
-            master_list[i].annotations.update({'hydro': hydrophobic})
+            master_list[i].letter_annotations.update({'entropy': entropy})
+            master_list[i].letter_annotations.update({'pos_charge': pos_charge})
+            master_list[i].letter_annotations.update({'neg_charge': neg_charge})
+            master_list[i].letter_annotations.update({'hydro_cluster': hydro_cluster})
+            master_list[i].letter_annotations.update({'percent_dis': percent_dis})
+            master_list[i].letter_annotations.update({'percent_helix': percent_helix})
+            master_list[i].letter_annotations.update({'percent_coil': percent_coil})
+            master_list[i].letter_annotations.update({'hydro': hydrophobic})
             # comp has to do with at least charge
-            master_list[i].annotations.update({'comp': comp})
-            master_list[i].annotations.update({'aggregation': aggregation})
-            master_list[i].annotations.update({'order_disorder': order_disorder})
+            master_list[i].letter_annotations.update({'composition': comp})
+            master_list[i].letter_annotations.update({'aggregation': aggregation})
+            master_list[i].letter_annotations.update({'order_disorder': order_disorder})
             try:
                 pfam = data_list[i]['pfam']
                 master_list[i].annotations.update({'pfam': pfam})
@@ -151,7 +201,8 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
                 pass
         return master_list
 
-    def prep_for_file_output(self):
+    def prep_for_file_output(self, seq_record_list):
+
         pass
 
     def prep_for_viewing(self):
@@ -171,6 +222,9 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
 
     def get_status_url(self):
         return self._status_url
+
+    def get_headers(self):
+        return self._headers
 
 
 class SODAAnalysisBuilder(AnalysisBuilder):

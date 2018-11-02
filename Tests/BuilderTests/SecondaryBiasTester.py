@@ -2,7 +2,7 @@ import unittest
 
 import OutputFunctions
 import SecondaryBiasFinder
-from SecondaryBiasFinder import SecondaryBias, Sequence
+from SecondaryBiasFinder import SecondaryBias
 from Director import Director, AnalysisBuilder
 import Representation
 from Bio import SeqRecord
@@ -197,17 +197,17 @@ class BiasFinderTest(unittest.TestCase):
 
     list_q_content = [12, 4, 5, 10, 28, 0, 7, 1, 47]
 
-    def run_pre_sec_bias1_test(self):
+    def test_run_pre_sec_bias1(self):
         self.test_one_away.primary_bias = "Q"
         self.test_one_away.seq_len = len(self.test_one_away.seq)
         self.test_one_away.bias_finder("Q")
 
-    def run_pre_sec_bias2_test(self):
+    def test_run_pre_sec_bias2(self):
         self.test_two_away.primary_bias = "Q"
         self.test_two_away.seq_len = len(self.test_two_away.seq)
         self.test_two_away.bias_finder("Q")
 
-    def run_pre_sec_bias3_test(self):
+    def test_run_pre_sec_bias3(self):
         self.test_three_away.primary_bias = "Q"
         self.test_three_away.seq_len = len(self.test_three_away.seq)
         self.test_three_away.bias_finder("Q")
@@ -215,13 +215,13 @@ class BiasFinderTest(unittest.TestCase):
     def test_secondary_bias_finder(self):
         keylist = ["I", "C", "S"]
 
-        self.run_pre_sec_bias1_test()
+        self.test_run_pre_sec_bias1()
         self.assertEqual(2, self.test_one_away.one_away[7] / self.test_one_away.Q_content)
 
-        self.run_pre_sec_bias2_test()
+        self.test_run_pre_sec_bias2()
         self.assertEqual(2, self.test_two_away.two_away[1] / self.test_two_away.Q_content)
 
-        self.run_pre_sec_bias3_test()
+        self.test_run_pre_sec_bias3()
         threeaway = self.test_three_away.three_away[15]
         self.assertEqual(2, (threeaway / self.test_three_away.Q_content))
 
