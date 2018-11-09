@@ -8,6 +8,8 @@ from Bio import SeqIO, Seq, Alphabet, SeqRecord
 import json
 import requests as r
 import csv
+import collections
+import jsonpickle
 
 # room for addition of BLAST, alignment, other tools as run_x_analysis methods
 # run_x_analysis methods communicate directly with self.AnalysisBuilder obj and self.DatabaseBuilder
@@ -47,56 +49,14 @@ class Director:
         # master list contains seq_record objects. Initially should contain id-seq but
         # annotations and letter annotations should be updated w new values
         self.master_list: list = None
-        self.analysis = {"fells": FELLSAnalysisBuilder(), "soda": SODAAnalysisBuilder(), "seqbias": SequenceBiasBuilder()}
+        self.analysis = {"fells": FELLSAnalysisBuilder(), "soda": SODAAnalysisBuilder(), "sec_bias": SequenceBiasBuilder()}
         # directory where input file resides and where output directory will be created
         self.file_out_dir: str = None
         self.file_in_path: str = None
 
     def start_up(self):
-        new_dir_name = os.path.join(self.find_desktop_dir(), "PAM_Output_{}".format(datetime.date.today()))
-        counter = 0
-        if os.path.isdir(new_dir_name):
-            new_dir_name = new_dir_name + "_{}".format(counter)
-            while os.path.isdir(new_dir_name):
-                counter += 1
-                if counter < 11:
-                    new_dir_name = new_dir_name[:-1]
-                elif counter > 10:
-                    new_dir_name = new_dir_name[:-2]
-                elif counter > 100:
-                    new_dir_name = new_dir_name[:-3]
 
-                new_dir_name = new_dir_name + str(counter)
-                os.path.join(new_dir_name)
-            os.mkdir(new_dir_name)
-        else:
-            os.makedirs(new_dir_name)
-        self.file_out_dir = new_dir_name
         return self.representation.introduction()
-
-    @staticmethod
-    def find_desktop_dir():
-        """
-
-        :return:
-        """
-        home = os.path.join(os.path.expanduser('~'))
-        d = 'Desktop'
-        data_source = os.path.join(home, d)
-        if not os.path.isdir(data_source):
-            data_source = OutputFunctions.select_fileio_directory()
-        return data_source
-
-    def analysis_helper(self, bias_analysis: bool):
-        """
-        Does the work prior to analysis. Handles file-in path, creating file-out path,
-
-        """
-        # todo: select primary bias
-        this = bias_analysis
-        slash_list = self.file_in_path.rsplit("/", 1)
-        new_path = str(slash_list[0])
-        self.set_io_directory(new_path)
 
     def db_access(self):
         """
@@ -140,6 +100,7 @@ class Director:
             return "a"
 
     def view_analysis(self):
+        # TODO: some viewing options other than printing
         print(self.master_list)
 
     def quit_or_continue(self):
@@ -155,10 +116,10 @@ class Director:
     #   while loop to check for updates
     #   director holds onto FELLS, where data is stored
     #   builder objects own data and send translations to director
-        fasta_list = []
-        for i in self.get_master_list():
-            fasta_list.append(i.format("fasta"))
-        prepped_request = self.analysis["fells"].prepare_request(fasta_list)
+    #     fasta_list = []
+    #     for i in self.get_master_list():
+    #         fasta_list.append(i.format("fasta"))
+        prepped_request = self.analysis["fells"].prepare_request(self.get_master_list())
         session = r.Session()
         response = session.send(request=prepped_request)
         jobid = AnalysisBuilder.get_jobid(response)
@@ -166,9 +127,14 @@ class Director:
         json_obj = AnalysisBuilder.get_data_as_json(response_str)
         complete = self.analysis["fells"].check_processing_status(json_obj['names'][0][1])
         if complete:
-            data = self.analysis["fells"].retrieve_response_data(json_obj['names'])
-            data = json.loads(data)
-            return data
+            id_list = list()
+            for i in json_obj["names"]:
+                id_list.append(i[1])
+            data_list = self.analysis["fells"].retrieve_response_data(id_list)
+            json_list = list()
+            for data in data_list:
+                json_list.append(json.loads(data))
+            return json_list
         else:
             return "an error occured"
     # todo: do something with the data (store and plot)
@@ -179,10 +145,11 @@ class Director:
         :returns:
         """
         processed_list = list()
+        s = r.Session()
         for i in self.master_list:
             prepped_request = self.analysis['soda'].prepare_request_object(str(i.seq))
-            response = prepped_request.send()
-            jobid = response.jobid
+            response = s.send(prepped_request)
+            jobid = AnalysisBuilder.get_jobid(response)
             json_obj = self.analysis['soda'].check_request_status(jobid)
             jobid = json_obj['jobid']
             data = self.analysis['soda'].retrieve_response_data(jobid)
@@ -206,48 +173,28 @@ class Director:
         if 'fells' in kwargs:
             self.master_list = FELLSAnalysisBuilder.update_annotations(self.master_list, kwargs['fells'])
         if 'soda' in kwargs:
-            self.master_list = SODAAnalysisBuilder.update_annotations(self.master_list, kwargs['soda'])
+            for i in range(len(self.master_list)):
+                self.master_list[i] = SODAAnalysisBuilder.update_annotations(self.master_list[i], kwargs['soda'][i])
         if 'sec_bias' in kwargs:
             pass
 
-    def convert_json_to_seqrecord(self, json_dict: dict):
-        key_list = json_dict.keys()
-        attr_list = [attr for attr in dir(SeqRecord.SeqRecord) if not callable(getattr(SeqRecord.SeqRecord, attr)) and not attr.startswith("__") and not attr.startswith("_")]
-        for k in key_list:
-            seqrecord_info = json_dict.get(k)
+    def get_master_list(self):
+        return self.master_list
 
+    def set_master_list(self, new_list):
+        self.master_list = new_list
 
-    def store_all_data(self):
-        file_name = os.path.join(self.file_out_dir, 'data_persistence{}'.format(datetime.date.today()))
-        counter = 0
-        if os.path.exists(file_name):
-            os.path.exists(file_name+"_{}".format(counter))
-            while os.path.isdir(file_name):
-                counter += 1
-                if counter < 11:
-                    file_name = os.path.join(file_name[:-1] + str(counter))
-                elif counter > 10:
-                    file_name = os.path.join(file_name[:-2] + str(counter))
-                elif counter > 100:
-                    file_name = os.path.join(file_name[:-3] + str(counter))
-        with open(file_name, 'w') as file:
-            try:
-                SeqIO.write(sequences=self.master_list, handle=file, format='seqxml')
-            except TypeError as type_e:
-                for i in range(len(self.master_list)):
-                    seq_obj = Bio.Seq.Seq(data=str(self.master_list[i].seq), alphabet=Alphabet.generic_protein)
-                    self.master_list[i].seq = seq_obj
-            except AttributeError as att_err:
-                for i in range(len(self.master_list)):
-                    seq_obj = Bio.Seq.Seq(data=str(self.master_list[i].seq), alphabet=Alphabet.generic_protein)
-                    self.master_list[i].seq = seq_obj
-                SeqIO.write(sequences=self.master_list, handle=file, format='seqxml')
+    def get_file_in_path(self):
+        return self.file_in_path
 
-    def export_to_csv(self, seq_dict: dict):
-        file_o_path = os.path.join(self.file_out_dir + self.make_original_file_name() + ".csv")
+    def set_file_in_path(self, new_in_path):
+        self.file_in_path = new_in_path
 
-        with open(file_o_path, "w") as f:
-            csv.DictWriter(f=f, fieldnames=dir(seq_dict.values()))
+    def get_io_directory(self):
+        return self.file_out_dir
+
+    def set_io_directory(self, new_out_dir):
+        self.file_out_dir = new_out_dir
 
     # def handle_manual_input(self):
     #     """
@@ -268,70 +215,10 @@ class Director:
     #     # run function to return master list
     #     return list_in
 
-    def file_output(self, sequences: dict or list):
-        if isinstance(sequences, list):
-            file_o_path = os.path.join(self.file_out_dir + self.make_original_file_name() + ".faa")
-            with open(file_o_path, "w") as f:
-                    SeqIO.write(sequences, f, "fasta")
-        elif isinstance(sequences, dict):
-            file_o_path = os.path.join(self.file_out_dir + self.make_original_file_name() + ".json")
-            with open(file_o_path, "w") as f:
-                json.dump(sequences, f)
+    # def convert_json_to_seqrecord(self, json_dict: dict):
+    #     key_list = json_dict.keys()
+    #     attr_list = [attr for attr in dir(SeqRecord.SeqRecord) if not callable(getattr(SeqRecord.SeqRecord, attr)) and not attr.startswith("__") and not attr.startswith("_")]
+    #     for k in key_list:
+    #         seqrecord_info = json_dict.get(k)
 
-    def file_input(self, full_file_path: str):
-        if ".faa" in full_file_path:
-            with open(full_file_path, "rU") as f:
-                return SeqIO.parse(f, "fasta", Alphabet.generic_protein)
 
-        elif ".json" in full_file_path:
-            with open(full_file_path, "rU") as f:
-                return json.load(f)
-        else:
-            print("Unsupported file-in format!")
-
-    def make_original_file_name(self):
-        counter = 0
-        if os.path.isdir(self.file_out_dir):
-            new_file_name = "PAM_Output_{}".format(counter)
-            new_file_path = self.file_out_dir + new_file_name
-            while os.path.exists(new_file_path):
-                counter += 1
-                if counter < 11:
-                    new_file_path = new_file_path[:-1]
-                elif counter > 10:
-                    new_file_path = new_file_path[:-2]
-                elif counter > 100:
-                    new_file_path = new_file_path[:-3]
-
-                new_file_path = new_file_path + str(counter)
-            return os.path.join(new_file_name)
-
-    @staticmethod
-    def seq_record_to_dict(seq_list: [SeqRecord.SeqRecord]):
-        """
-        For rich output. Creates a dict where key = SeqRecord.id, value = the rest of the info
-        Args:
-            seq_list:
-
-        Returns:
-
-        """
-        return SeqIO.to_dict(seq_list)
-
-    def get_master_list(self):
-        return self.master_list
-
-    def set_master_list(self, new_list):
-        self.master_list = new_list
-
-    def get_file_in_path(self):
-        return self.file_in_path
-
-    def set_file_in_path(self, new_in_path):
-        self.file_in_path = new_in_path
-
-    def get_io_directory(self):
-        return self.file_out_dir
-
-    def set_io_directory(self, new_out_dir):
-        self.file_out_dir = new_out_dir

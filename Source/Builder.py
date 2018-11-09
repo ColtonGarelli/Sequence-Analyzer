@@ -7,11 +7,12 @@ import requests as r
 from Bio import SeqIO, SeqRecord, Seq
 from Bio.Alphabet import IUPAC
 from SecondaryBiasFinder import SecondaryBias
-import datetime
+# import datetime
+#
+# import numpy as np
+# import matplotlib.pyplot as plt
+# import seaborn as sns
 
-import numpy as np
-import matplotlib.pyplot as plt
-import seaborn as sns
 
 class Builder:
     """
@@ -98,7 +99,7 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
         working_list = self.sequence_list_to_fasta(seq_list)
         formatted = self.format_body_for_processing(working_list)
         json_body = json.dumps({"sequence": formatted}).encode()
-        prepped_request = r.Request(method='POST', url=self.get_post_url(),
+        prepped_request = r.Request(method='POST', url=self.get_submission_url(),
                                     headers=self.get_headers(), data=json_body).prepare()
         return prepped_request
 
@@ -114,6 +115,11 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
                     working_list[i].seq = Seq.Seq(data=working_list[i].seq, alphabet=IUPAC.IUPACProtein())
                     working_list[i] = working_list[i].format("fasta")
         elif isinstance(seq_list[0], str):
+            try:
+                for record in seq_list:
+                    working_list.append(SeqIO.parse(record, "fasta", Seq.Alphabet.generic_protein))
+            except:
+                pass
             for i in range(len(seq_list)):
                 temp_seqrecord = SeqRecord.SeqRecord(description="", id="ID_{}".format(i), seq=Seq.Seq(seq_list[i]))
                 working_list.append(temp_seqrecord.format("fasta"))
@@ -137,7 +143,7 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
         json_obj = json.loads(check_status.content)
         if json_obj.get('status') != 'error':
             while json_obj.get('status') != 'done':
-                time.sleep(5.00)
+                time.sleep(2.00)
                 check_status = r.get(url=self._status_url + jobid)
                 json_obj = json.loads(check_status.content)
             return check_status
@@ -148,7 +154,7 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
         processing = r.get(self._get_url+ID)
         processing = json.loads(processing.content)
         while processing['status'] == 'running':
-            time.sleep(5.00)
+            time.sleep(2.00)
             processing = r.get(self._get_url + ID)
             processing = json.loads(processing.content)
         if processing['status'] == 'done':
@@ -158,9 +164,11 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
 
     def retrieve_response_data(self, id_list):
         return_data = []
+        temp_list = list()
         for i in id_list:
-            request_data = r.get(self._get_url + i[1]).content.decode()
-            return_data.append(json.loads(request_data))
+            temp_list.append(r.get(self._get_url + i))
+        for i in temp_list:
+            return_data.append(i.content)
         return return_data
 
     @staticmethod
@@ -182,6 +190,9 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
             # all the above are lists of per residue
 
             # complexity
+            # for i in master_list:
+            #     i.letter_annotations.update({'entropy': entropy})
+
             master_list[i].letter_annotations.update({'entropy': entropy})
             master_list[i].letter_annotations.update({'pos_charge': pos_charge})
             master_list[i].letter_annotations.update({'neg_charge': neg_charge})
@@ -214,7 +225,7 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
         # if implemented with kwargs, could make class level
         pass
 
-    def get_post_url(self):
+    def get_submission_url(self):
         return self._post_url
 
     def get_processed_data_url(self):
@@ -254,7 +265,7 @@ class SODAAnalysisBuilder(AnalysisBuilder):
         check_status = r.get(url=self._status_url+ID)
         json_obj = json.loads(check_status.content)
         while json_obj.get('status') != 'done':
-            time.sleep(5.00)
+            time.sleep(1.00)
             check_status = r.get(url=self._status_url + ID)
             json_obj = json.loads(check_status.content)
         return json_obj
@@ -275,7 +286,10 @@ class SODAAnalysisBuilder(AnalysisBuilder):
             pass
         try:
             seq_data = json_info["parsed_soda_output"]["MySequence"]
+            seq_data.pop('title')
             seqrecord.annotations.update(seq_data)
+            return seqrecord
+
         except KeyError as key_e:
             print('oopsies! error accessing data from SODA!!\n\n{}'.format(key_e.__cause__))
 

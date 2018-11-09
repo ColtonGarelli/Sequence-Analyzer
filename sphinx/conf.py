@@ -105,7 +105,7 @@ html_static_path = []
 # -- Options for HTMLHelp output ---------------------------------------------
 
 # Output file base name for HTML help builder.
-htmlhelp_basename = 'ProteinAnalysisManagerdocs'
+htmlhelp_basename = 'pydoc'
 
 
 # -- Options for LaTeX output ------------------------------------------------

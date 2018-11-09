@@ -112,7 +112,6 @@ class Representation:
         for i in data_list:
             print(i)
 
-
     def choose_database(self):
         """
         Relays which database is being accessed so Director can access that database through its builder

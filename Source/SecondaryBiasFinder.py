@@ -9,6 +9,8 @@ import os
 from Bio.SeqRecord import SeqRecord
 
 
+# TODO: Update this module
+
 
 '''
 This class takes a seq, counts Q total and Q stretch, a.a. occurance around Qs

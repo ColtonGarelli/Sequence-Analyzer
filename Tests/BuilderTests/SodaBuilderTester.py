@@ -2,130 +2,12 @@ import unittest
 from requests import post, get
 import json
 import requests as r
-from urllib import parse
-from threading import Timer
 from Builder import AnalysisBuilder, FELLSAnalysisBuilder, SODAAnalysisBuilder
 from Bio import SeqRecord, Seq
 
 
-class AnalysisTester(unittest.TestCase):
-    pass
-
-
-class FELLSAPITester(unittest.TestCase):
-
-    fells_builder = FELLSAnalysisBuilder()
-    test_jobid = "5acb64e20fe7e54308d3f853"
-
-    # tests formatting from a list of seq_records
-    # need to test converting strings to seqrecords
-    def test_preparring_request(self):
-        headers = {'Content-Type': 'application/json; charset=utf-8'}
-        seq_record1 = SeqRecord.SeqRecord(description="", id="ID_0", seq=Seq.Seq("MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR"))
-        seq_record2 = SeqRecord.SeqRecord(description="", id="ID_1", seq=Seq.Seq("MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR"))
-        seq_record3 = SeqRecord.SeqRecord(description="", id="ID_2", seq=Seq.Seq("ASDFASDFSDFASDFAFSDFSDFSDAFSDFFSD"))
-        seq_record_list = [seq_record1, seq_record2, seq_record3]
-
-        formatted = "\n>ID_0\nMVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR" \
-                    "\n>ID_1\nMVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR" \
-                    "\n>ID_2\nASDFASDFSDFASDFAFSDFSDFSDAFSDFFSD"
-        test_body_str = "\n\n"
-        for i in seq_record_list:
-            test_body_str = test_body_str + i.format("fasta") + "\n\n"
-        test_body_str = test_body_str[0:(test_body_str.__len__()-1)]
-        # self.assertEqual(test_format_str, formatted, "The manually formatted strings do not match those outputted")
-        json_str = json.dumps({"sequence": test_body_str}).encode()
-        prepped_req = self.fells_builder.prepare_request(seq_record_list)
-        test_prepped = r.Request(method='POST', headers=headers, data=json_str, url="http://protein.bio.unipd.it/fellsws/submit")
-        test_prepped = test_prepped.prepare()
-        self.assertEqual(json_str, prepped_req.body)
-        self.assertEqual(test_prepped.headers, prepped_req.headers, "Error formatting headers")
-        json_body = json.loads(prepped_req.body)
-        self.assertEqual(test_body_str, json_body['sequence'], "Test req body not equal to body created by method")
-
-        fasta_list = ["MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR",
-                      "MVLSPADKTNVKAAWGKVGAHAGEYGAEALERMFLSFPTTKTYFPHFDLSHGSAQVKGHGKKVADALTNAVAHVDDMPNALSALSDLHAHKLRVDPVNFKLLSHCLLVTLAAHLPAEFTPAVHASLDKFLASVSTVLTSKYR",
-                      "ASDFASDFSDFASDFAFSDFSDFSDAFSDFFSD"]
-
-        prepped_req = self.fells_builder.prepare_request(fasta_list)
-        self.assertEqual(test_prepped.body, prepped_req.body)
-
-    def test_check_submission_status(self):
-        """
-        Checks an existing job to ensure
-
-        Returns:
-
-        """
-        fells_builder = FELLSAnalysisBuilder()
-        base_url = "http://protein.bio.unipd.it/fellsws/status/"
-        check_status = self.fells_builder.check_request_submission(self.test_jobid)
-        # ensures that existing request is accessed correctly (and still exists)
-        self.assertTrue(check_status.ok)
-        json_data = check_status.content.decode('utf-8')
-        json_parsed = json.loads(json_data)
-        if 'status' in json_parsed:
-            status = True
-        else:
-            status = False
-        self.assertTrue(status, "response object does not contain 'status' field. ")
-        status = json_parsed['status']
-        # check to make sure status is done (which it should barring an issue)
-        self.assertEqual("done", status)
-        check_status.close()
-
-    def test_check_processing_status(self):
-        check_status = self.fells_builder.check_request_submission(self.test_jobid)
-        json_data = check_status.content.decode('utf-8')
-        json_parsed = json.loads(json_data)
-        if ['names'][0][0] in json_parsed:
-            has_names = True
-        else:
-            has_names = False
-        self.assertTrue(has_names, "The response has no 'names' field")
-        names = json_parsed['names'][0][1]
-        processing_status = self.fells_builder.check_processing_status(names)
-        self.assertTrue(processing_status, "Processing status came back false. Problem with format of request sent")
-
-
-
-    # make a sequence object and translate to fasta
-    # or make fasta strings for testing
-    # check that the response is good (200) and make sure it contains a request ID
-    # def test_prepare_request
-
-    # TODO: test transferring data to SeqRecord annotations
-    def test_update_annotations(self):
-        self.assertEqual(True, True)
-
-    def test_sequence_list_to_fasta(self):
-        pass
-
-    def test_format_body_for_processing(self):
-        pass
-
-
-
-    # def test_send_request(self):
-    #     request_url = "http://protein.bio.unipd.it/fellsws/submit"
-    #
-    #     necessary_header = {'Content-Type': 'multipart/form-data; boundary=XXX'}
-    #     request_body_begin = '--XXX\nContent-Disposition: form-data; name="sequence"' \
-    #                          '\n\n>myseq\nMVHLTPEEKSAVTALWGKVNVDEVGG\n--XXX--'
-    #     # parse out id
-    #     url_body = parse.quote(request_body_begin)
-    #     sent_request = r.Request(headers=necessary_header, method='POST', url=request_url, data=url_body)
-    #     s = r.Session()
-    #     prep = sent_request.prepare()
-    #     response = s.send(prep)
-    #     status = response.content
-    #     print(status)
-    #     s.close()
-    #
-    #     # self.assertEqual(True, False)
-
-
 class SODAAPITester(unittest.TestCase):
+    # TODO: Write tests and precondition functions for testing
 
     def test_return_request_status(self):
         request_url = "http://protein.bio.unipd.it/sodaws/submitsoda"
@@ -133,11 +15,11 @@ class SODAAPITester(unittest.TestCase):
         # necessary_header = {'Content-Type': 'multipart/form-data; boundary=XXX'}
         request_body = {'sequence': 'MVHLTPEEKSAVTALWGKVNVDEVGG'}
 
-        sent_request = requests.Request(method='POST', url=request_url, data=request_body)
+        sent_request = r.Request(method='POST', url=request_url, data=request_body)
         prep = sent_request.prepare()
         # print(prep.headers)
         # print(prep.body)
-        session = requests.Session()
+        session = r.Session()
         response = session.send(prep)
         json_response = response.json()
         response_json = json_response['jobid']
@@ -154,7 +36,7 @@ class SODAAPITester(unittest.TestCase):
         data = get(url)
         json_parsed = json.loads(data.content.decode('utf-8'))
         status = json_parsed['status']
-        self.timer(status, url)
+        # self.timer(status, url)
         return True
 
 

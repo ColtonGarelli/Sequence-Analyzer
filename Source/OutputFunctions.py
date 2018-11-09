@@ -45,7 +45,7 @@ def access_databases():
         string code for database choice
     """
     print("Enter the corresponding number to access a database:\n\n")
-    database_choice = input("1. UniProt\n2. EMBL-EBI\n3. Some other one??\n\n0. Return to start")
+    database_choice = input("1. UniProt\n2. EMBL-EBI\n3. Some other one??\n\n0. Return to start\n")
     return database_choice
 
 
