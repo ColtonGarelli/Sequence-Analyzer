@@ -21,6 +21,7 @@
     <option name="LAST_RESOLUTION" value="IGNORE" />
   </component>
   <component name="CoverageDataManager">
+    <SUITE FILE_PATH="coverage/Protein_Analysis_Manager$SecondaryBiasTester.coverage" NAME="SecondaryBiasTester Coverage Results" MODIFIED="1542124340600" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
     <SUITE FILE_PATH="coverage/Protein_Analysis_Manager$Sphinx.coverage" NAME="Sphinx Coverage Results" MODIFIED="1541442805423" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/sphinx" />
     <SUITE FILE_PATH="coverage/Protein_Analysis_Manager$Unittests_for_PredictionAPITester_FELLSAPITester.coverage" NAME="Unittests for PredictionAPITester.FELLSAPITester Coverage Results" MODIFIED="1540919274777" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tests/BuilderTests" />
     <SUITE FILE_PATH="coverage/Protein_Analysis_Manager$Unittests_for_SecondaryBiasTester_SequenceBiasIOTests_test_seqbias_to_file.coverage" NAME="Unittests for SecondaryBiasTester.SequenceBiasIOTests.test_seqbias_to_file Coverage Results" MODIFIED="1540919438944" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tests/BuilderTests" />
@@ -31,7 +32,7 @@
     <SUITE FILE_PATH="coverage/Protein_Analysis_Manager$Unittests_for_SecondaryBiasTester_CheckAATests.coverage" NAME="Unittests for SecondaryBiasTester.CheckAATests Coverage Results" MODIFIED="1540919430431" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tests/BuilderTests" />
     <SUITE FILE_PATH="coverage/Protein_Analysis_Manager$Unittests_for_PredictionAPITester_FELLSAPITester_test_check_processing_status.coverage" NAME="Unittests for PredictionAPITester.FELLSAPITester.test_check_processing_status Coverage Results" MODIFIED="1541000296799" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tests/BuilderTests" />
     <SUITE FILE_PATH="coverage/Protein_Analysis_Manager$Unittests_for_SecondaryBiasTester_BiasFinderTest.coverage" NAME="Unittests for SecondaryBiasTester.BiasFinderTest Coverage Results" MODIFIED="1540919345182" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$/Tests/BuilderTests" />
-    <SUITE FILE_PATH="coverage/Protein_Analysis_Manager$Python3_6_interpreter.coverage" NAME="Python3.6 interpreter Coverage Results" MODIFIED="1541614348574" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
+    <SUITE FILE_PATH="coverage/Protein_Analysis_Manager$Python3_6_interpreter.coverage" NAME="Python3.6 interpreter Coverage Results" MODIFIED="1542314632700" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="true" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="" />
   </component>
   <component name="DatabaseView">
     <option name="SHOW_INTERMEDIATE" value="true" />
@@ -696,14 +697,12 @@
       <item itemvalue="Python.csvIO" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python docs.Sphinx" />
-      <item itemvalue="Python tests.Unittests for Tests.BuilderTests.SodaBuilderTester" />
       <item itemvalue="Python tests.UniprotTest" />
       <item itemvalue="Python tests.SecondaryBiasTester" />
       <item itemvalue="Python tests.Unittests in SodaBuilderTester.py" />
       <item itemvalue="Python tests.Unittests for SecondaryBiasTester.BiasFinderTest" />
       <item itemvalue="Python tests.Unittests for SecondaryBiasTester.CheckAATests" />
       <item itemvalue="Python tests.Unittests for SecondaryBiasTester.SequenceBiasIOTests.test_seqbias_to_file" />
-      <item itemvalue="Python tests.Unittests for Tests.BuilderTests.SodaBuilderTester" />
       <item itemvalue="Python tests.Unittests for Tests.BuilderTests.SodaBuilderTester" />
     </list>
     <recent_temporary>
