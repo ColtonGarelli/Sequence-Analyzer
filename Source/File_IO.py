@@ -12,6 +12,9 @@ from datetime import date
 json text files stored with .jtxt extension
 '''
 
+# TODO: Test file-out as dict format
+# TODO: Update to output objects to files as pickles for improved speed w large sets of data
+# TODO: implement output as csv (write functions for outputting specific data)
 
 def dict_to_seqrecord(seq_dict):
     seqrecord_list = list()

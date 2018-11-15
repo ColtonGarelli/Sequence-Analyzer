@@ -5,14 +5,16 @@ import os
 import time
 import requests as r
 from Bio import SeqIO, SeqRecord, Seq
-from Bio.Alphabet import IUPAC
+from Bio.Alphabet import generic_protein
 from SecondaryBiasFinder import SecondaryBias
+import numpy as np
 # import datetime
 #
 # import numpy as np
 # import matplotlib.pyplot as plt
 # import seaborn as sns
 
+# TODO: Update all docstrings and move static methods to parent classes
 
 class Builder:
     """
@@ -57,26 +59,122 @@ class AnalysisBuilder(Builder):
     def get_data_as_json(response_str):
         return json.loads(response_str.content.decode('utf-8'))
 
-    # @staticmethod
-    # def make_original_file_name():
-    #     home = os.path.join(os.path.expanduser('~'))
-    #     d = 'Desktop'
-    #     data_source = os.path.join(home, d)
-    #     new_dir_name = os.path.join(data_source, "PAM_Output_{}".format(datetime.date.today()))
-    #     counter = 0
-    #     if os.path.isdir(new_dir_name):
-    #         new_dir_name = new_dir_name + "_{}".format(counter)
-    #         while os.path.isdir(new_dir_name):
-    #             counter += 1
-    #             if counter < 11:
-    #                 new_dir_name = new_dir_name[:-1]
-    #             elif counter > 10:
-    #                 new_dir_name = new_dir_name[:-2]
-    #             elif counter > 100:
-    #                 new_dir_name = new_dir_name[:-3]
-    #             new_dir_name = new_dir_name + str(counter)
-    #             os.path.join(new_dir_name)
-    #         os.mkdir(new_dir_name)
+
+class SequenceBiasBuilder(AnalysisBuilder):
+    """
+    In an effort to reduce overhead, going to transition SecondaryBiasFinder to SeqeuenceBiasBuilder. SequenceBiasBuilder
+    will
+    """
+    @staticmethod
+    def convert_to_tuple(seqrecord_list):
+        return_list = list()
+        for i in seqrecord_list:
+            return_list.append((i.id, str(i.seq)))
+        return return_list
+
+    # To get ID,seq pairs correctly:
+    # new_list =[['id1', 'ASDFSDFADSFDS'], ['id2', 'ASDFSDFASDFSD'], ['id3', 'FSDSFSASDFSDDFSDDFDSFWQQWQWQ'], ['id1', 'ASDFSDFADSFDS'], ['id2', 'ASDFSDFASDFSD'], ['id3', 'FSDSFSASDFSDDFSDDFDSFWQQWQWQ']]
+    # l = [tuple(new_list[0]), tuple(new_list[1]), tuple(new_list[2])]
+    # h = np.array(l, dtype=dtype)
+
+    def __init__(self, seqrecord_list: [SeqRecord.SeqRecord], primary_bias='Q'):
+        """
+
+
+        """
+        super().__init__()
+        self.amino_acid_dict = dict(A=0, C=1, D=2, E=3, F=4, G=5, H=6, I=7, K=8, L=9,
+                                    M=10, N=11, P=12, Q=13, R=14, S=15, T=16, V=17, W=18, Y=19)
+        seq_list = self.convert_to_tuple(seqrecord_list)
+        self.seq_array = np.array(seq_list, dtype=[('id', 'O'), ('sequence', 'O')])
+        self.primary_bias = primary_bias
+        # self.sequence_len = 0
+        self.prim_bias_indices: np.ndarray     # (dtype=[('id', 'object'), ('prim_indices', 'object')])
+        # self.prim_bias_content = np.recarray(shape=(len(self.seqrecord_list), 1),
+        #                                      dtype=[('id', 'object'), ('prim_content', '<i4')])
+
+        self.one_away: np.ndarray  # dtype=[('id', 'object',), ('1_away', 'object')])
+        self.two_away: np.ndarray  # dtype=[('id', 'object',), ('1_away', 'object')])
+
+        self.three_away: np.ndarray  # dtype=[('id', 'object',), ('1_away', 'object')])
+        self.local_bias: np.ndarray  # dtype=[('id', 'object',), ('1_away', 'object')])
+        self.one_away_avg: np.ndarray  # dtype=[('id', 'object',), ('1_away', 'object')])
+        self.two_away_avg: np.ndarray  # dtype=[('id', 'object',), ('1_away', 'object')])
+        self.three_away_avg: np.ndarray  # dtype=[('id', 'object',), ('1_away', 'object')])
+        self.local_avg: np.ndarray  # dtype=[('id', 'object',), ('1_away', 'object')])
+
+    def find_avg_occurances(self, array_to_avg, primary_content, secondary_location: str or int):
+        if secondary_location is isinstance(secondary_location, str):
+            location = 'local_avg'
+        else:
+            location = str(secondary_location) + '_avg'
+        secondary_avg_array = np.array(array_to_avg['id'], dtype=[('id', 'O'), (location, 'O')])
+        for i in range(len(array_to_avg)):
+            secondary_avg_array[i][location] = array_to_avg[i][1] / primary_content
+        return secondary_avg_array
+
+    def find_a_bias(self, id_seq_array, prim_bias_location, secondary_location: int):
+        location = str(secondary_location) + '_away'
+        secondary_bias_array = np.array(id_seq_array['id'], dtype=[('id', 'O'), (location, 'O')])
+
+        for i in range(len(id_seq_array)):
+            # the sequence being worked on
+            current_sequence = id_seq_array[i]['sequence']
+            secondary_data_array = np.zeros(dtype=[(location, np.uint32)], shape=[len(id_seq_array), 20])
+            for primary in np.nditer(prim_bias_location[i]['prim_indices'], flags=['refs_ok']):
+                # find the minus 1 aa
+                aa_to_increment = self.amino_acid_dict[current_sequence[primary[0] - secondary_location]]
+                # increment the respective aa count
+                to_increment = secondary_data_array[i][aa_to_increment]
+                to_increment[0] += 1
+                secondary_data_array[i, aa_to_increment] = to_increment
+                # find the plus 1 aa
+                aa_to_increment = self.amino_acid_dict[current_sequence[primary[0] + secondary_location]]
+                # increment the respective aa count
+                to_increment = secondary_data_array[i][aa_to_increment]
+                to_increment[0] += 1
+                secondary_data_array[i, aa_to_increment] = to_increment
+            secondary_bias_array[location] = secondary_data_array
+        return secondary_bias_array
+
+    def sum_secondary_biases(self, one_away: np.recarray, two_away, three_away):
+        local_bias = np.recarray(shape=(len(one_away), 1),
+                                 dtype=[('id', 'object',), ('local_away', 'object')])
+        for i in np.nditer(one_away):
+            local_bias[i]['id'] = one_away[i]['id']
+            local_data_array = one_away[i]['1_away'] + two_away[i]['2_away'] + three_away[i]['3_away']
+            local_bias['local_away'] = local_data_array
+        return local_bias
+
+    def find_primary_bias(self, seq_array: np.recarray, primary_bias="Q"):
+        """
+        Finds the primary bias defined by the user. Ignores first and last three aa in seq for primary bias calculation.
+        Stores the index of each primary bias residue in the sequence string in self.primary_bias
+
+        :returns: updates prim_bias_indices list (no return)
+        """
+
+        prim_location = np.array(seq_array['id'], dtype=[('id', 'O'), ('prim_indices', 'O')])
+        for i in range(seq_array.size):
+            current_sequence = seq_array[i]['sequence']
+            seq_str = current_sequence[3:-3]
+            # seq_to_check = list(seq_str)
+            if primary_bias in seq_str:
+                location_arr = list([i1 for i1, item in enumerate(seq_str) if primary_bias in item])
+                prim_location[i]['prim_indices'] = location_arr
+            else:
+                prim_location[i]['prim_indices'] = None
+        return prim_location
+
+    @staticmethod
+    def find_sec_bias(primary_bias, seq_record_list):
+        sec_bias_list = list()
+        for i in seq_record_list:
+            sec_bias_list.append(SecondaryBias(i.seq))
+        for i in sec_bias_list:
+            i.bias_finder(primary_bias)
+            i.update_annotations()
+        return sec_bias_list
 
 
 # ***MAX # of sequences = 15000
@@ -112,7 +210,7 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
                     working_list.append(seq_list[i].format("fasta"))
             except TypeError as type_e:
                 for i in range(len(seq_list)):
-                    working_list[i].seq = Seq.Seq(data=working_list[i].seq, alphabet=IUPAC.IUPACProtein())
+                    working_list[i].seq = Seq.Seq(data=working_list[i].seq, alphabet=generic_protein)
                     working_list[i] = working_list[i].format("fasta")
         elif isinstance(seq_list[0], str):
             try:
@@ -301,26 +399,6 @@ class SODAAnalysisBuilder(AnalysisBuilder):
 
     def get_post_url(self):
         return self._post_url
-
-
-class SequenceBiasBuilder(AnalysisBuilder):
-
-    def __init__(self):
-        """
-
-
-        """
-        super().__init__()
-
-    @staticmethod
-    def find_sec_bias(primary_bias, seq_record_list):
-        sec_bias_list = list()
-        for i in seq_record_list:
-            sec_bias_list.append(SecondaryBias(i.seq))
-        for i in sec_bias_list:
-            i.bias_finder(primary_bias)
-            i.update_annotations()
-        return sec_bias_list
 
 
 class DatabaseBuilder(Builder):

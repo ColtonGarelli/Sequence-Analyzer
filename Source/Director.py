@@ -7,6 +7,7 @@ import Bio
 from Bio import SeqIO, Seq, Alphabet, SeqRecord
 import json
 import requests as r
+import File_IO
 import csv
 import collections
 import jsonpickle
@@ -18,6 +19,7 @@ import jsonpickle
 
 # ***IMPORTANT DECISIONS***
 # Start by passing only in xml, always pass in file paths, update the master_list at the end of each analysis run
+
 
 
 class Director:
@@ -49,9 +51,10 @@ class Director:
         # master list contains seq_record objects. Initially should contain id-seq but
         # annotations and letter annotations should be updated w new values
         self.master_list: list = None
-        self.analysis = {"fells": FELLSAnalysisBuilder(), "soda": SODAAnalysisBuilder(), "sec_bias": SequenceBiasBuilder()}
+        self.analysis = {"fells": FELLSAnalysisBuilder(), "soda": SODAAnalysisBuilder()}
+                         # "sec_bias": SequenceBiasBuilder(seq_list=self.master_list)}
         # directory where input file resides and where output directory will be created
-        self.file_out_dir: str = None
+        self.file_out_dir: str = File_IO.find_desktop_dir()
         self.file_in_path: str = None
 
     def start_up(self):
@@ -104,9 +107,12 @@ class Director:
         print(self.master_list)
 
     def quit_or_continue(self):
+        # TODO: Update to actually provide a choice (after data persistence is supported)
+        # TODO: allow option to delete past job and to keep and append new data
         return True
 
     def run_FELLS_analysis(self):
+        # TODO:
         """
 
         :returns:
@@ -165,9 +171,14 @@ class Director:
 
         :returns: List of fully processed SecondaryBias objects
         """
-        updated_list = self.analysis['sec_bias'].find_sec_bias("Q", self.master_list)
-
-        return updated_list
+        sec_bias_analysis = SequenceBiasBuilder(self.master_list)
+        sec_bias_analysis.prim_bias_indices = sec_bias_analysis.find_primary_bias(seq_array=sec_bias_analysis.seq_array,
+                                                                                  primary_bias=sec_bias_analysis.primary_bias)
+        bias = sec_bias_analysis.find_a_bias(sec_bias_analysis.seq_array, sec_bias_analysis.prim_bias_indices, 1)
+        print(bias)
+        # updated_list = self.analysis['sec_bias'].find_sec_bias("Q", self.master_list)
+        #
+        # return updated_list
 
     def update_seq_data(self, **kwargs):
         if 'fells' in kwargs:

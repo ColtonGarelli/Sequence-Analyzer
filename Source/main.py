@@ -39,8 +39,16 @@ def UI_main(director):
         else:
             break
 
+            
+def sec_bias_test():
+    direct = Director.Director()
+    s_list = direct.db_access()
+    direct.set_master_list(s_list)
+    direct.run_bias_analysis()
+
 
 if __name__ == '__main__':
-    main_director = Director.Director()
-
-    UI_main(main_director)
+    sec_bias_test()
+    # main_director = Director.Director()
+    #
+    # UI_main(main_director)

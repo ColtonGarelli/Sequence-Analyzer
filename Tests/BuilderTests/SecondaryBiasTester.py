@@ -237,7 +237,7 @@ class SequenceBiasIOTests(unittest.TestCase):
 
         director = Director()
         director.file_in_path = path_in
-        returned = director.analysis_helper()
+        director.start_up()
         seq_record_list = []
         for i in seq_list:
             seq_record_list.append(SeqRecord.SeqRecord(id=i[0], seq=i[1]))

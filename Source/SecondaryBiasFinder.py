@@ -7,6 +7,7 @@ import abc
 from OutputFunctions import sec_bias_file_o
 import os
 from Bio.SeqRecord import SeqRecord
+from Bio.Alphabet import generic_protein
 
 
 # TODO: Update this module
@@ -75,6 +76,8 @@ class SecondaryBias(SeqRecord):
         raise NotImplementedError(_NO_SEQRECORD_COMPARISON)
 
     def __init__(self, *args):
+        # TODO: Should probably require a sequence for this
+        # TODO: Reconsider the use of inheritance here (extending SeqRecord class)
         super().__init__(seq=None)
         if args:
             self.seq = args
@@ -141,7 +144,7 @@ class SecondaryBias(SeqRecord):
         else:
             return False
 
-    # should split into 5 separate methods
+    # TODO: split into 5 separate methods
     def secondary_bias_finder(self):
         """
         Finds amino acids at one, two, and three residues from the desired primary bias. A local tally is also computed.
@@ -285,14 +288,6 @@ def processed_data_in(general_path, file_beginning):
     return seq_object_list
 
 
-# def initialize_processed_sec_bias(id_list, seq_list, one_away, two_away, three_away, local_seq):
-#     seq_obj_list = []
-#     for i in range(len(seq_list)):
-#         create_obj = SecondaryBias()
-#         create_obj.id = id_list[i]
-#     return seq_obj_list
-
-
 def sec_bias_to_string(obj_to_copy, list_to_copy):
     string_to_return = obj_to_copy.id
     string_to_return += ","
@@ -304,6 +299,8 @@ def sec_bias_to_string(obj_to_copy, list_to_copy):
 
 
 def export_sec_bias_files(sequence_list):
+    # TODO: This function is out of date and not necessary
+
     path = "/Users/coltongarelli/Desktop/"
     file_name = sequence_list[1].id
 
