@@ -319,7 +319,7 @@
     <detection-done>true</detection-done>
     <sorting>DEFINITION_ORDER</sorting>
   </component>
-  <component name="ProjectFrameBounds" extendedState="6" fullScreen="true">
+  <component name="ProjectFrameBounds" fullScreen="true">
     <option name="x" value="-1440" />
     <option name="y" value="-169" />
     <option name="width" value="1440" />
@@ -696,14 +696,12 @@
       <item itemvalue="Python.csvIO" />
       <item itemvalue="Python.main" />
       <item itemvalue="Python docs.Sphinx" />
-      <item itemvalue="Python tests.Unittests for Tests.BuilderTests.SodaBuilderTester" />
       <item itemvalue="Python tests.UniprotTest" />
       <item itemvalue="Python tests.SecondaryBiasTester" />
       <item itemvalue="Python tests.Unittests in SodaBuilderTester.py" />
       <item itemvalue="Python tests.Unittests for SecondaryBiasTester.BiasFinderTest" />
       <item itemvalue="Python tests.Unittests for SecondaryBiasTester.CheckAATests" />
       <item itemvalue="Python tests.Unittests for SecondaryBiasTester.SequenceBiasIOTests.test_seqbias_to_file" />
-      <item itemvalue="Python tests.Unittests for Tests.BuilderTests.SodaBuilderTester" />
       <item itemvalue="Python tests.Unittests for Tests.BuilderTests.SodaBuilderTester" />
     </list>
     <recent_temporary>
