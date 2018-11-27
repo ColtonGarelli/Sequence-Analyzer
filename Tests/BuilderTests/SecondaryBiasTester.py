@@ -197,7 +197,7 @@ class BiasFinderTest(unittest.TestCase):
 
     list_q_content = [12, 4, 5, 10, 28, 0, 7, 1, 47]
 
-    def test_run_pre_sec_bias1(self):
+    def setUp(self):
         self.test_one_away.primary_bias = "Q"
         self.test_one_away.seq_len = len(self.test_one_away.seq)
         self.test_one_away.bias_finder("Q")
@@ -215,7 +215,7 @@ class BiasFinderTest(unittest.TestCase):
     def test_secondary_bias_finder(self):
         keylist = ["I", "C", "S"]
 
-        self.test_run_pre_sec_bias1()
+        self.setUp()
         self.assertEqual(2, self.test_one_away.one_away[7] / self.test_one_away.Q_content)
 
         self.test_run_pre_sec_bias2()

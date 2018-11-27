@@ -7,11 +7,7 @@ import requests as r
 from Bio import SeqIO, SeqRecord, Seq
 from Bio.Alphabet import IUPAC
 from SecondaryBiasFinder import SecondaryBias
-# import datetime
-#
-# import numpy as np
-# import matplotlib.pyplot as plt
-# import seaborn as sns
+import File_IO
 
 
 class Builder:
@@ -57,27 +53,6 @@ class AnalysisBuilder(Builder):
     def get_data_as_json(response_str):
         return json.loads(response_str.content.decode('utf-8'))
 
-    # @staticmethod
-    # def make_original_file_name():
-    #     home = os.path.join(os.path.expanduser('~'))
-    #     d = 'Desktop'
-    #     data_source = os.path.join(home, d)
-    #     new_dir_name = os.path.join(data_source, "PAM_Output_{}".format(datetime.date.today()))
-    #     counter = 0
-    #     if os.path.isdir(new_dir_name):
-    #         new_dir_name = new_dir_name + "_{}".format(counter)
-    #         while os.path.isdir(new_dir_name):
-    #             counter += 1
-    #             if counter < 11:
-    #                 new_dir_name = new_dir_name[:-1]
-    #             elif counter > 10:
-    #                 new_dir_name = new_dir_name[:-2]
-    #             elif counter > 100:
-    #                 new_dir_name = new_dir_name[:-3]
-    #             new_dir_name = new_dir_name + str(counter)
-    #             os.path.join(new_dir_name)
-    #         os.mkdir(new_dir_name)
-
 
 # ***MAX # of sequences = 15000
 class FELLSAnalysisBuilder(AnalysisBuilder):
@@ -109,6 +84,9 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
         if isinstance(seq_list[0], SeqRecord.SeqRecord):
             try:
                 for i in range(len(seq_list)):
+                    minimal_id = seq_list[i].id.split('|')
+                    seq_list[i].id = minimal_id[1]
+                    seq_list[i].description = ""
                     working_list.append(seq_list[i].format("fasta"))
             except TypeError as type_e:
                 for i in range(len(seq_list)):
@@ -127,8 +105,8 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
 
     @staticmethod
     def format_body_for_processing(fasta_str_list):
-        formatted = str()
-        for i in fasta_str_list:
+        formatted = fasta_str_list[0]
+        for i in fasta_str_list[1:]:
             if "\n\n>" not in i:
                 if "\n>" in i:
                     formatted = "\n" + formatted + i
@@ -173,6 +151,7 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
 
     @staticmethod
     def update_annotations(master_list, data_list):
+        # TODO: a more concise method for this operation
         for i in range(len(master_list)):
             all_list = data_list[i]['all']
             comp = all_list["composition"]
@@ -193,18 +172,18 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
             # for i in master_list:
             #     i.letter_annotations.update({'entropy': entropy})
 
-            master_list[i].letter_annotations.update({'entropy': entropy})
-            master_list[i].letter_annotations.update({'pos_charge': pos_charge})
-            master_list[i].letter_annotations.update({'neg_charge': neg_charge})
-            master_list[i].letter_annotations.update({'hydro_cluster': hydro_cluster})
-            master_list[i].letter_annotations.update({'percent_dis': percent_dis})
-            master_list[i].letter_annotations.update({'percent_helix': percent_helix})
-            master_list[i].letter_annotations.update({'percent_coil': percent_coil})
-            master_list[i].letter_annotations.update({'hydro': hydrophobic})
+            master_list[i].annotations.update({'entropy': entropy})
+            master_list[i].annotations.update({'pos_charge': pos_charge})
+            master_list[i].annotations.update({'neg_charge': neg_charge})
+            master_list[i].annotations.update({'hydro_cluster': hydro_cluster})
+            master_list[i].annotations.update({'percent_dis': percent_dis})
+            master_list[i].annotations.update({'percent_helix': percent_helix})
+            master_list[i].annotations.update({'percent_coil': percent_coil})
+            master_list[i].annotations.update({'hydro': hydrophobic})
             # comp has to do with at least charge
-            master_list[i].letter_annotations.update({'composition': comp})
-            master_list[i].letter_annotations.update({'aggregation': aggregation})
-            master_list[i].letter_annotations.update({'order_disorder': order_disorder})
+            master_list[i].annotations.update({'composition': comp})
+            master_list[i].annotations.update({'aggregation': aggregation})
+            master_list[i].annotations.update({'order_disorder': order_disorder})
             try:
                 pfam = data_list[i]['pfam']
                 master_list[i].annotations.update({'pfam': pfam})
@@ -217,12 +196,6 @@ class FELLSAnalysisBuilder(AnalysisBuilder):
         pass
 
     def prep_for_viewing(self):
-        pass
-
-    def create_seqrecord_object(self):
-        # create seqrecord objects with annotations
-        # consider using **kwargs to pass in different annotation lists
-        # if implemented with kwargs, could make class level
         pass
 
     def get_submission_url(self):
@@ -265,7 +238,7 @@ class SODAAnalysisBuilder(AnalysisBuilder):
         check_status = r.get(url=self._status_url+ID)
         json_obj = json.loads(check_status.content)
         while json_obj.get('status') != 'done':
-            time.sleep(1.00)
+            time.sleep(3.00)
             check_status = r.get(url=self._status_url + ID)
             json_obj = json.loads(check_status.content)
         return json_obj
@@ -311,16 +284,139 @@ class SequenceBiasBuilder(AnalysisBuilder):
 
         """
         super().__init__()
+        self.id_seq = dict()
+        self.prim_indices = dict()
+        self.one_away = dict()
+        self.two_away = dict()
+        self.three_away = dict()
+        self.local_sequence = dict()
+        self.one_away_avg = dict()
+        self.two_away_avg = dict()
+        self.three_away_avg = dict()
+        self.local_avg = dict()
+        self.amino_acid_dict = dict(A=0, C=1, D=2, E=3, F=4, G=5, H=6, I=7, K=8, L=9,
+                                    M=10, N=11, P=12, Q=13, R=14, S=15, T=16, V=17, W=18, Y=19)
+        self.primary_bias: str
+        self.amino_acids = "ACDEFGHIKLMNPQRSTVWY"
 
     @staticmethod
-    def find_sec_bias(primary_bias, seq_record_list):
-        sec_bias_list = list()
-        for i in seq_record_list:
-            sec_bias_list.append(SecondaryBias(i.seq))
-        for i in sec_bias_list:
-            i.bias_finder(primary_bias)
-            i.update_annotations()
-        return sec_bias_list
+    def primary_bias_finder(seq, primary_bias='Q'):
+        """
+        Finds the primary bias defined by the user. Ignores first and last three aa in seq for primary bias calculation.
+        Stores the index of each primary bias residue in the sequence string in self.primary_bias
+
+        :returns: updates self.Q_index list (no return)
+        """
+        primary_indices = list()
+        # might have to change this if
+        if primary_bias in seq:
+            working_sequence = seq[3:-3]
+            for i in range(len(working_sequence)):
+                if working_sequence[i] == primary_bias:
+                    # if statement should ignore Q. Could split loops so if isn't read outside
+                    # the first three and last three indexes. Range b/t could be very large
+                    primary_indices.append(i)
+            return primary_indices
+
+        else:
+            return None
+
+    def populate_SequenceBiasBuilder(self, seqrecord_list):
+        for i in seqrecord_list:
+            self.id_seq.update({i.id: str(i.seq)})
+            self.prim_indices.update({i.id: []})
+            self.one_away.update({i.id: [0] * 20})
+            self.two_away.update({i.id: [0] * 20})
+            self.three_away.update({i.id: [0] * 20})
+            self.local_sequence.update({i.id: [0] * 20})
+            self.one_away_avg.update({i.id: [None] * 20})
+            self.two_away_avg.update({i.id: [None] * 20})
+            self.three_away_avg.update({i.id: [None] * 20})
+            self.local_avg.update({i.id: [None] * 20})
+
+    def secondary_bias_finder(self, sequence, bias_location: int, prim_indices):
+        """
+        Finds amino acids at one, two, and three residues from the desired primary bias. A local tally is also computed.
+
+        Modified:
+            self.one_away, self.two_away,self.three_away, self.three_away_avg, self.local_sequence: get updated
+        """
+        secbias_list = [0] * 20
+        for i in prim_indices:
+            prim_minus = i - bias_location
+            aa_to_increment = self.amino_acid_dict[sequence[prim_minus]]
+            secbias_list[aa_to_increment] += 1
+            prim_plus = i + bias_location
+            aa_to_increment = self.amino_acid_dict[sequence[prim_plus]]
+            secbias_list[aa_to_increment] += 1
+        return secbias_list
+
+    def calc_local_bias(self, one_away=None, two_away=None, three_away=None):
+        """
+
+        Args:
+            one_away:
+            two_away:
+            three_away:
+
+        Returns:
+
+        """
+        if one_away is None:
+            one_away = list(self.one_away.values())
+        if two_away is None:
+            two_away = list(self.two_away.values())
+        if three_away is None:
+            three_away = list(self.three_away.values())
+        local_seq = [0] * 20
+        for i in range(20):
+            local_seq[i] = one_away[i] + two_away[i] + three_away[i]
+        self.local_sequence = local_seq
+        return local_seq
+
+    def find_avg_occurrence(self, bias_list, primary_content=None):
+        """
+        Divides each index of +/- 1, 2, 3 and local lists by the total primary bias residue content (average)
+
+        Modified:
+            updates +/- 1, 2, 3, and local avg lists
+        """
+        if primary_content is None:
+            primary_content = len(self.prim_indices)
+        bias_avg = list()
+        if primary_content != 0:
+            for i in range(20):
+                bias_avg.append(bias_list[i] / primary_content)
+        return bias_avg
+
+    def update_annotations(self, seqrecord_to_update, update_data: dict):
+        """
+
+        Args:
+            seqrecord_to_update:
+            update_data:
+
+        Returns:
+
+        """
+        try:
+            assert(None not in update_data)
+            seqrecord_to_update.annotations.update(update_data)
+            return seqrecord_to_update
+        except AssertionError as ae:
+            print("The average hasn't been calculated!!")
+            return seqrecord_to_update
+
+
+    # @staticmethod
+    # def find_sec_bias(primary_bias, seq_record_list):
+    #     sec_bias_list = list()
+    #     for i in seq_record_list:
+    #         sec_bias_list.append(SecondaryBias(i.seq))
+    #     for i in sec_bias_list:
+    #         i.bias_finder(primary_bias)
+    #         i.update_annotations()
+    #     return sec_bias_list
 
 
 class DatabaseBuilder(Builder):
@@ -338,8 +434,7 @@ class UniprotBuilder(DatabaseBuilder):
 
     """
     _base_url = "https://www.uniprot.org/uniprot/?query="
-    url_extension = "&limit=5&format="
-    column_dict = {'id': 'id', 'entry': 'entry name', 'Organism': 'organism', 'prot name': "protein name",
+    column_dict = {'ID': 'id', 'entry': 'entry name', 'Organism': 'organism', 'prot name': "protein name",
                    'seq': 'sequence', 'mass': 'mass', 'abs': 'comment(ABSORPTION)', 'pH': 'comment(PH DEPENDENCE)',
                    'domain': 'comment(DOMAIN)', 'comp_bias': 'feature(COMPOSITIONAL BIAS)',
                    'temp': 'comment(TEMPERATURE DEPENDENCE'}
@@ -354,42 +449,38 @@ class UniprotBuilder(DatabaseBuilder):
         super(UniprotBuilder, self).__init__()
         self.request_url = None
         self.keyword = None
+        self.limit = "&limit="
+        # TODO: set format = fasta if just for sequence processing, or as xml for more info
+        self.format = "&format="
 
     def get_base_url(self):
         return self._base_url
 
     def construct_column_string(self, columns):
-        column_string = "&columns=reviewed"
-        for i in range(len(self.column_dict)):
-            if i in columns:
-                column_string += (',' + self.column_dict[i])
+        column_string = columns[0] + "&columns=reviewed"
+        for column in columns:
+            if column in self.column_dict.keys():
+                column_string += (',' + self.column_dict[column])
         return column_string
 
-    def create_request_url(self, response_format, column_string):
-        self.request_url = self.get_base_url() + self.url_extension + response_format + column_string
+    def create_request_url(self, response_format, column_string, limit):
+        self.request_url = self.get_base_url() + column_string + ('&limit=' + limit) + ('&format=' + response_format)
         return self.request_url
 
     def make_request_get_response(self, search_url):
         new_request = r.get(search_url)
         return new_request.content.decode('utf-8')
 
-    def uniprot_xml_to_seqrecord(self, uniprot_xml, storage_dir):
-        file_name = os.path.join(storage_dir, "uniprot_data{}.xml".format(str(time.clock())[2:]))
-        if os.path.exists(file_name):
-            counter = 0
-            os.path.exists(file_name+"_{}".format(counter))
-            while os.path.isdir(file_name):
-                counter += 1
-                if counter < 11:
-                    file_name = os.path.join(file_name[:-1] + str(counter))
-                elif counter > 10:
-                    file_name = os.path.join(file_name[:-2] + str(counter))
-                elif counter > 100:
-                    file_name = os.path.join(file_name[:-3] + str(counter))
+    def uniprot_to_seqrecord(self, data, storage_dir, data_format):
+        if data_format == 'fasta':
+            file_extension = '.faa'
+        else:
+            file_extension = '.xml'
+        file_name = File_IO.make_original_file_name(file_out_dir=storage_dir, file_name="uniprot_data",  file_extension=file_extension)
         with open(file_name, 'w') as file:
-            file.write(uniprot_xml)
+            file.write(data)
         seq_record_list = list()
         with open(file_name, 'rU') as file:
-            for sequence in SeqIO.parse(file, "uniprot-xml"):
+            for sequence in SeqIO.parse(file, data_format):
                 seq_record_list.append(sequence)
         return seq_record_list

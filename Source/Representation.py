@@ -53,8 +53,14 @@ class Representation:
 
         return self.file_in_name
 
+    def extended_information(self):
+        return OutputFunctions.select_db_format()
+
+    def select_db_limit(self):
+        return OutputFunctions.db_entry_limit()
+
     # handles calling desired DB, representing responses,
-    def db_options(self):
+    def db_options(self, extended_opts: bool):
         """
         Relays an ordered tuple to the director containing request information.
         Request information in this tuple contains keywords, query options,
@@ -66,13 +72,20 @@ class Representation:
         keyword = OutputFunctions.keyword_query_uniprot()
         if keyword is "":
             options = OutputFunctions.data_options()
+            if extended_opts:
+                options.append(OutputFunctions.extended_data_options())
             return options
 
         else:
             option_list = list()
             option_list.append(keyword)
-            options = OutputFunctions.data_options()
-            option_list.append(options)
+            temp = OutputFunctions.data_options()
+            for i in temp:
+                option_list.append(i)
+            if extended_opts:
+                temp = OutputFunctions.extended_data_options()
+                for i in temp:
+                    option_list.append(i)
             return option_list
 
     def decide_viewing_or_analysis(self):

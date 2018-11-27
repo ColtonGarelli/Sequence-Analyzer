@@ -31,7 +31,8 @@ def UI_main(director):
             bias_data = director.run_bias_analysis()
             fells_data = director.run_FELLS_analysis()
             soda_data = director.run_SODA_analysis()
-            director.update_seq_data(fells=fells_data, soda=soda_data, sec_bias=bias_data)
+            if not isinstance(fells_data, dict):
+                director.update_seq_data(fells=fells_data, soda=soda_data, sec_bias=bias_data)
             director.view_analysis()
             write_dict = director.seqrecord_to_dict(seq_list)
             file_path = director.write_dict_to_file(write_dict)

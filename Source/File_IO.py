@@ -1,6 +1,6 @@
-import json
+from json import loads, load, dump
 from jsonpickle import encode as jsonpickle_encode
-import csv
+from csv import DictWriter
 import os
 from collections import namedtuple as collections_namedtuple
 from Bio import SeqIO
@@ -15,9 +15,9 @@ json text files stored with .jtxt extension
 
 def dict_to_seqrecord(seq_dict):
     seqrecord_list = list()
-    seq_dict = json.loads(seq_dict)
+    seq_dict = loads(seq_dict)
     for k in seq_dict:
-        temp = (collections_namedtuple("SeqRecord", seq_dict.keys())(*seq_dict.values()))
+        temp = (collections_namedtuple("SeqRecord", seq_dict[k])(*seq_dict.values()))
         seqrecord_list.append(SeqRecord(temp))
     return seqrecord_list
 
@@ -35,11 +35,11 @@ def seqrecord_to_dict(seq_list: [SeqRecord]):
     return jsonpickle_encode(seq_list)
 
 
-def export_to_csv(self, seq_dict: dict):
+def export_to_csv(file_out_dir, seq_dict: dict):
     # TODO: should have an option as to what data to output (from letter annotations and annotations)
-    file_o_path = os.path.join(self.file_out_dir + self.make_original_file_name() + ".csv")
-    with open(file_o_path, "w") as f:
-        csv.DictWriter(f=f, fieldnames=dir(seq_dict.values()))
+    file_o_path = os.path.join(make_original_file_name(file_out_dir) + ".csv")
+    with open(file_o_path, "w") as file:
+        DictWriter(f=file, fieldnames=dir(seq_dict.values()))
 
 
 def write_dict_to_file(write_str, file_out_dir):
@@ -48,26 +48,31 @@ def write_dict_to_file(write_str, file_out_dir):
 
     file_o_path = os.path.join(make_original_file_name(file_out_dir) + ".jtxt")
     with open(file_o_path, "w") as f:
-        json.dump(write_str, f)
+        dump(write_str, f)
         f.close()
     return file_o_path
 
 
-def make_original_file_name(file_out_dir):
+def make_original_file_name(file_out_dir, file_extension, file_name=None):
     counter = 0
-    if os.path.isdir(file_out_dir):
+    if not os.path.isdir(file_out_dir):
+        desktop = find_desktop_dir()
+        file_out_dir = create_new_file_dir(desktop)
+    if file_name is not None:
+        new_file_name = file_name + "_PAM_Output_{}".format(counter)
+    else:
         new_file_name = "PAM_Output_{}".format(counter)
-        new_file_path = os.path.join(file_out_dir, new_file_name)
-        while os.path.exists(new_file_path):
-            counter += 1
-            if counter < 11:
-                new_file_path = new_file_path[:-1]
-            elif counter > 10:
-                new_file_path = new_file_path[:-2]
-            elif counter > 100:
-                new_file_path = new_file_path[:-3]
-            new_file_path = new_file_path + "_" + str(counter)
-        return os.path.join(new_file_path)
+    new_file_path = os.path.join(file_out_dir, new_file_name)
+    while os.path.exists(new_file_path):
+        counter += 1
+        if counter < 11:
+            new_file_path = new_file_path[:-1]
+        elif counter > 10:
+            new_file_path = new_file_path[:-2]
+        elif counter > 100:
+            new_file_path = new_file_path[:-3]
+        new_file_path = new_file_path + "_" + str(counter)
+    return os.path.join(new_file_path + file_extension)
 
 
 def create_new_file_dir(desktop_dir):
@@ -88,7 +93,7 @@ def create_new_file_dir(desktop_dir):
             os.path.join(new_dir_name)
         os.mkdir(new_dir_name)
     else:
-        os.makedirs(new_dir_name)
+        os.mkdir(new_dir_name)
     return new_dir_name
 
 
@@ -113,7 +118,7 @@ def file_input(full_file_path: str):
                 seqrecord_list.append(record)
     elif ".jtxt" in full_file_path:
         with open(full_file_path, "rU") as f:
-            seqrecord_dict = json.load(f)
+            seqrecord_dict = load(f)
             seqrecord_list = dict_to_seqrecord(seqrecord_dict)
     else:
         print("Unsupported file-in format!")

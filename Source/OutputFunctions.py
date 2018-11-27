@@ -9,6 +9,18 @@ def print_data(print_string):
     print(print_string)
 
 
+def db_entry_limit():
+    int_input = False
+    while not int_input:
+        limit = input("Please enter the number of entries you'd like returned: ")
+        try:
+            int(limit)
+            int_input = True
+        except ValueError as ve:
+            pass
+    return limit
+
+
 def select_fileio_directory():
     home = os.path.expanduser('~')
     check_dir = home + "/" + input("Please input a directory name for data storage.\n"
@@ -25,9 +37,9 @@ def select_fileio_directory():
 
 
 def select_db_format():
-    input_type = input("If you would like to simply import IDs and sequences for analysis, enter 1\n\n"
-                       "If you would like additional information for viewing, enter 2")
-    while input_type != "1" or input_type != "2":
+    input_type = input("If you would like to simply import IDs and sequences for analysis, enter 1\n"
+                       "If you would like additional information, enter 2\n")
+    while input_type != "1" and input_type != "2":
         input_type = input("*****Please enter a valid response.*****\n\n\n"
                            "If you would like to simply import IDs and sequences for analysis, enter 1\n"
                            "If you would like additional information for viewing, enter 2")
@@ -254,6 +266,31 @@ def keyword_query_uniprot():
     return query
 
 
+def extended_data_options():
+    extended_column_dict = dict(genes=None, abs=None, organism=None, mass=None, domain=None, pH=None,
+                                comp_bias=None, temp=None)
+    extended_column_dict['genes'] = input("Genes? ")
+    extended_column_dict['abs'] = input("Absorption? ")
+    extended_column_dict['temp'] = input("Temperature dependence? ")
+    extended_column_dict['pH'] = input("pH dependence? ")
+    extended_column_dict['domain'] = input("Subunits? ")
+    extended_column_dict['comp_bias'] = input("Compositional bias(es)? ")
+    extended_column_dict['mass'] = input("Mass? ")
+    extended_column_dict['organism'] = input("Organism? ")
+    # structure = input("3D structure? ")
+    # domain = input("Domain? ")
+    # binding_site = input("Binding site? ")
+    # dna_domain = input("DNA-binding domain? ")
+    # redox_pot = input("Redox potential? (disulfides) ")
+    # limit_entries = input("Limit the number of sequences returned: ")
+    # offset_entries = "offset????"
+    column_list = list()
+    for column in extended_column_dict:
+        if extended_column_dict[column] == 'y':
+            column_list.append(column)
+    return column_list
+
+
 def data_options():
     """
     Column options for Uniprot database. Prompts user for which columns they would like to receive
@@ -271,30 +308,10 @@ def data_options():
     columns['seq'] = input("Sequence? ")
     columns['entry_names'] = input("Entry name? ")
     columns['prot_names'] = input("Protein name(s)? ")
-    extended_options = input("Would you like to import more information? ")
-    if extended_options == "y":
-        extended_column_dict = dict(genes=None, abs=None, organism=None, mass=None, domain=None, pH=None,
-                                    comp_bias=None, temp=None)
-        extended_column_dict['genes'] = input("Genes? ")
-        extended_column_dict['abs'] = input("Absorption? ")
-        extended_column_dict['temp'] = input("Temperature dependence? ")
-        extended_column_dict['pH'] = input("pH dependence? ")
-        binding_site = input("Binding site? ")
-        dna_domain = input("DNA-binding domain? ")
-        redox_pot = input("Redox potential? (disulfides) ")
-        extended_column_dict['domain'] = input("Subunits? ")
-        structure = input("3D structure? ")
-        domain = input("Domain? ")
-        extended_column_dict['comp_bias'] = input("Compositional bias(es)? ")
-        extended_column_dict['mass'] = input("Mass? ")
-        extended_column_dict['organism'] = input("Organism? ")
-        limit_entries = input("Limit the number of sequences returned: ")
-        offset_entries = "offset????"
-        columns.update(extended_column_dict)
     column_list = list()
-    for i in columns:
-        if columns[i] == 'y':
-            column_list.append(i)
+    for column in columns:
+        if columns[column] == 'y':
+            column_list.append(column)
     return column_list
 
 

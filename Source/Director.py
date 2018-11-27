@@ -1,15 +1,10 @@
-import OutputFunctions
 import Representation
 from Builder import AnalysisBuilder, UniprotBuilder, SequenceBiasBuilder, DatabaseBuilder, FELLSAnalysisBuilder, SODAAnalysisBuilder
-import os.path
-import datetime
-import Bio
-from Bio import SeqIO, Seq, Alphabet, SeqRecord
+import File_IO
 import json
 import requests as r
-import csv
-import collections
-import jsonpickle
+from urllib3 import connection as connection
+
 
 # room for addition of BLAST, alignment, other tools as run_x_analysis methods
 # run_x_analysis methods communicate directly with self.AnalysisBuilder obj and self.DatabaseBuilder
@@ -49,9 +44,9 @@ class Director:
         # master list contains seq_record objects. Initially should contain id-seq but
         # annotations and letter annotations should be updated w new values
         self.master_list: list = None
-        self.analysis = {"fells": FELLSAnalysisBuilder(), "soda": SODAAnalysisBuilder(), "sec_bias": SequenceBiasBuilder()}
+        self.analyses = {"fells": FELLSAnalysisBuilder(), "soda": SODAAnalysisBuilder(), "sec_bias": SequenceBiasBuilder()}
         # directory where input file resides and where output directory will be created
-        self.file_out_dir: str = None
+        self.file_out_dir = File_IO.create_new_file_dir(File_IO.find_desktop_dir())
         self.file_in_path: str = None
 
     def start_up(self):
@@ -69,18 +64,19 @@ class Director:
             self.database = UniprotBuilder()
         else:
             self.database = UniprotBuilder()
-        db_options = self.representation.db_options()
+        response_format = self.representation.extended_information()
+        data_format = 'fasta'
+        if response_format == 'xml':
+            db_options = self.representation.db_options(extended_opts=True)
+            data_format = 'uniprot-xml'
+        else:
+            db_options = self.representation.db_options(extended_opts=False)
         response_opts = self.database.construct_column_string(db_options)
-        response_format = "xml"
-        request_url = self.database.create_request_url(response_format, response_opts)
+        limit = self.representation.select_db_limit()
+        request_url = self.database.create_request_url(response_format=response_format, column_string=response_opts,
+                                                       limit=limit)
         response_info = self.database.make_request_get_response(request_url)
-        seq_list = self.database.uniprot_xml_to_seqrecord(response_info, self.file_out_dir)
-        # elif response_format == "fasta":
-        #     seq_list = self.database.uniprot_data_to_seqrecord(response_info, self.file_in_path, 'fasta')
-        # elif response_format == "tab":
-        #     seq_list = self.database.uniprot_data_to_seqrecord(response_info, self.file_in_path, 'tab')
-        # else:
-        #     seq_list = None
+        seq_list = self.database.uniprot_to_seqrecord(data=response_info, storage_dir=self.file_out_dir, data_format=data_format)
         # database object should contain list of seqrecord objects
         # call database to make list and set master list equal to
         return seq_list
@@ -119,24 +115,33 @@ class Director:
     #     fasta_list = []
     #     for i in self.get_master_list():
     #         fasta_list.append(i.format("fasta"))
-        prepped_request = self.analysis["fells"].prepare_request(self.get_master_list())
+        prepped_request = self.analyses["fells"].prepare_request(self.get_master_list())
         session = r.Session()
-        response = session.send(request=prepped_request)
-        jobid = AnalysisBuilder.get_jobid(response)
-        response_str = self.analysis["fells"].check_request_submission(jobid)
-        json_obj = AnalysisBuilder.get_data_as_json(response_str)
-        complete = self.analysis["fells"].check_processing_status(json_obj['names'][0][1])
-        if complete:
-            id_list = list()
-            for i in json_obj["names"]:
-                id_list.append(i[1])
-            data_list = self.analysis["fells"].retrieve_response_data(id_list)
-            json_list = list()
-            for data in data_list:
-                json_list.append(json.loads(data))
-            return json_list
+        succesful_connection = True
+
+        try:
+            response = session.send(request=prepped_request)
+        except Exception:
+            print("Could not connect to FELLS server!!")
+            succesful_connection = False
+        if succesful_connection:
+            jobid = AnalysisBuilder.get_jobid(response)
+            response_str = self.analyses["fells"].check_request_submission(jobid)
+            json_obj = AnalysisBuilder.get_data_as_json(response_str)
+            complete = self.analyses["fells"].check_processing_status(json_obj['names'][0][1])
+            if complete:
+                id_list = list()
+                for i in json_obj["names"]:
+                    id_list.append(i[1])
+                data_list = self.analyses["fells"].retrieve_response_data(id_list)
+                json_list = list()
+                for data in data_list:
+                    json_list.append(json.loads(data))
+                return json_list
+            else:
+                return "an error occurred!!"
         else:
-            return "an error occured"
+            return "an error occurred!!"
     # todo: do something with the data (store and plot)
 
     def run_SODA_analysis(self):
@@ -146,15 +151,23 @@ class Director:
         """
         processed_list = list()
         s = r.Session()
+        successful_connection = True
         for i in self.master_list:
-            prepped_request = self.analysis['soda'].prepare_request_object(str(i.seq))
-            response = s.send(prepped_request)
-            jobid = AnalysisBuilder.get_jobid(response)
-            json_obj = self.analysis['soda'].check_request_status(jobid)
-            jobid = json_obj['jobid']
-            data = self.analysis['soda'].retrieve_response_data(jobid)
-            data = json.loads(data)
-            processed_list.append(data)
+            if successful_connection:
+                prepped_request = self.analyses['soda'].prepare_request_object(str(i.seq))
+                try:
+                    response = s.send(prepped_request)
+                    jobid = AnalysisBuilder.get_jobid(response)
+                    json_obj = self.analyses['soda'].check_request_status(jobid)
+                    jobid = json_obj['jobid']
+                    data = self.analyses['soda'].retrieve_response_data(jobid)
+                    data = json.loads(data)
+                    processed_list.append(data)
+                except Exception:
+                    print("Could not connect to SODA server!!")
+                    successful_connection = False
+            else:
+                break
         return processed_list
     # todo: do something with the data (store and plot)
 
@@ -165,18 +178,69 @@ class Director:
 
         :returns: List of fully processed SecondaryBias objects
         """
-        updated_list = self.analysis['sec_bias'].find_sec_bias("Q", self.master_list)
+        # TODO: prompt to input a primary bias
+        primary_bias = "Q"
+        bias_analysis = self.analyses['sec_bias']
+        bias_analysis.populate_SequenceBiasBuilder(self.master_list)
+        keys = bias_analysis.id_seq.keys()
+        for key in keys:
+            bias_analysis.prim_indices[key] = bias_analysis.primary_bias_finder(seq=bias_analysis.id_seq[key],
+                                                                                aaprimary_bias=primary_bias)
+            bias_analysis.one_away[key] = bias_analysis.secondary_bias_finder(sequence=bias_analysis.id_seq[key],
+                                                                              bias_location=1,
+                                                                              prim_indices=bias_analysis.prim_indices[key])
+            bias_analysis.two_away[key] = bias_analysis.secondary_bias_finder(sequence=bias_analysis.id_seq[key],
+                                                                              bias_location=2,
+                                                                              prim_indices=bias_analysis.prim_indices[key])
+            bias_analysis.three_away[key] = bias_analysis.secondary_bias_finder(sequence=bias_analysis.id_seq[key],
+                                                                                bias_location=3,
+                                                                                prim_indices=
+                                                                                bias_analysis.prim_indices[key])
 
-        return updated_list
+            bias_analysis.local_sequence[key] = bias_analysis.calc_local_bias(one_away=bias_analysis.one_away[key],
+                                                                              two_away=bias_analysis.two_away[key],
+                                                                              three_away=bias_analysis.three_away[key])
+        #         # TODO: prompt about calculating avg occurrences
+        avg = True
+        if avg:
+            for i in bias_analysis.one_away.keys():
+                bias_analysis.one_away_avg[i] = bias_analysis.find_avg_occurrence(
+                    bias_list=bias_analysis.one_away_avg[i], primary_content=len(bias_analysis.prim_indices))
+            for i in bias_analysis.two_away.keys():
+                bias_analysis.two_away_avg[i] = bias_analysis.find_avg_occurrence(
+                    bias_list=bias_analysis.two_away_avg[i])
+            for i in bias_analysis.three_away.keys():
+                bias_analysis.three_away_avg[i] = bias_analysis.find_avg_occurrence(
+                    bias_list=bias_analysis.three_away_avg[i])
+            for i in bias_analysis.local_sequence.keys():
+                bias_analysis.local_avg[i] = bias_analysis.find_avg_occurrence(bias_list=bias_analysis.local_avg[i])
+
+        return bias_analysis
 
     def update_seq_data(self, **kwargs):
         if 'fells' in kwargs:
-            self.master_list = FELLSAnalysisBuilder.update_annotations(self.master_list, kwargs['fells'])
+            fells_analysis = self.analyses['fells']
+            self.master_list = self.analyses['fells'].update_annotations(self.master_list, kwargs['fells'])
         if 'soda' in kwargs:
-            for i in range(len(self.master_list)):
-                self.master_list[i] = SODAAnalysisBuilder.update_annotations(self.master_list[i], kwargs['soda'][i])
+            soda_analysis = self.analyses['soda']
+            # for i in range(len(self.master_list)):
+            #     self.master_list[i] = soda_analysis.update_annotations(self.master_list[i], kwargs['soda'][i])
         if 'sec_bias' in kwargs:
-            pass
+            bias_analysis = self.analyses['sec_bias']
+            for i in self.master_list:
+                i = bias_analysis.update_annotations(seqrecord_to_update=i,
+                                                     update_data={'one_away': bias_analysis.one_away[i.id],
+                                                                  'two_away': bias_analysis.two_away[i.id],
+                                                                  'three_away': bias_analysis.three_away[i.id],
+                                                                  'local_sequence': bias_analysis.local_sequence[i.id]})
+            for i in self.master_list:
+                i = bias_analysis.update_annotations(seqrecord_to_update=i,
+                                                     update_data={'one_away_avg': bias_analysis.one_away_avg[i.id],
+                                                                  'two_away_avg': bias_analysis.two_away_avg[i.id],
+                                                                  'three_away_avg': bias_analysis.three_away_avg[i.id],
+                                                                  'local_avg': bias_analysis.local_avg[i.id]})
+
+
 
     def get_master_list(self):
         return self.master_list
