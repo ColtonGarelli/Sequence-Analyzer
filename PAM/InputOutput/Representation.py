@@ -1,4 +1,5 @@
-import OutputFunctions
+from InputOutput import OutputFunctions
+
 """
 Representation.py contains Representation class and UI functions
 

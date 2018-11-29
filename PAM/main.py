@@ -5,7 +5,6 @@ def UI_main(director):
     done = False
     input_source = director.start_up()
     first_time = True
-    seq_list: list
     while not done:
         # while loop terminates when done = True
         if first_time:
@@ -14,7 +13,7 @@ def UI_main(director):
                 seq_list = director.db_access()
                 director.set_master_list(seq_list)
             elif input_source == "2":
-                seq_list = director.handle_manual_input()
+                seq_list = director.get_seq_records_from_file()
                 director.set_master_list(seq_list)
             elif input_source == "0":
                 break
@@ -34,8 +33,9 @@ def UI_main(director):
             if not isinstance(fells_data, dict):
                 director.update_seq_data(fells=fells_data, soda=soda_data, sec_bias=bias_data)
             director.view_analysis()
-            write_dict = director.seqrecord_to_dict(seq_list)
-            file_path = director.write_dict_to_file(write_dict)
+            director.export_to_universal_file()
+            director.store_analyzed_data()
+
             done = director.quit_or_continue()
         else:
             break

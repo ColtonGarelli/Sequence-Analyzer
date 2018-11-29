@@ -324,11 +324,23 @@ def manual_sequence_input():
     """
     # Option to query sequence/id in databases????
     home = os.path.join(os.path.expanduser('~'))
-    file_dir = os.path.join("/", input("Refer to ***documentation_url*** for proper formatting\n\n"
-                                       "---> If the file is in the Desktop folder, enter the file name.\n"
-                                       "---> Otherwise enter the full file path beyond {}: ".format(home)))
-    if "/" in file_dir:
-        file_dir = os.path.join(home, "/Desktop", file_dir)
+    usr_input = input("Refer to ***documentation_url*** for proper formatting\n\n"
+                      "---> If the file is in the Desktop folder, enter the file name.\n\n"
+                      "---> Otherwise enter the full file path beyond {}: \n".format(home))
+
+    if "/" in usr_input:
+        file_dir = os.path.join(home, usr_input)
+    else:
+        file_dir = os.path.join(home, 'Desktop', usr_input)
+    while not os.path.exists(file_dir):
+        usr_input =input("*****File not found!!*****\nRefer to ***documentation_url*** for proper formatting\n\n"
+                                           "---> If the file is in the Desktop folder, enter the file name.\n\n"
+                                           "---> Otherwise enter the full file path beyond {}: \n".format(home))
+        if "/" in usr_input:
+            file_dir = os.path.join(home, usr_input)
+        else:
+            file_dir = os.path.join(home, 'Desktop', file_dir)
+
     return file_dir
 
     # return a tuple containing answers to options

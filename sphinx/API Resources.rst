@@ -13,3 +13,6 @@ Uniprot
  5. Retrieval+mapping: https://www.uniprot.org/help/uploadlists
  6. Query example: https://www.uniprot.org/help/api_idmapping ---for crossreferencing databases
  7. EMBL-uniprot: https://www.ebi.ac.uk/uniprot
+ 8. xsl sheet to convert uniprot-xml to fasta: https://github.com/lindenb/xslt-sandbox/blob/master/stylesheets/bio/uniprot/uniprot2fasta.xsl
+ 9. text search help: https://www.uniprot.org/help/text-search
+

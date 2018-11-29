@@ -14,7 +14,10 @@
 #
 import os
 import sys
-sys.path.insert(0, os.path.abspath('../Source'))
+sys.path.insert(0, os.path.abspath('../'))
+sys.path.insert(0, os.path.abspath('../PAM'))
+sys.path.insert(0, os.path.abspath('../PAM/Builders'))
+sys.path.insert(0, os.path.abspath('../PAM/InputOutput'))
 autodoc_mock_imports = ['PyQt5', 'Bio']
 
 # -- Project information -----------------------------------------------------

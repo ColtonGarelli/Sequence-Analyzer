@@ -1,13 +1,16 @@
 from json import loads, load, dump
 from jsonpickle import encode as jsonpickle_encode
-from csv import DictWriter
+from jsonpickle import decode
+# from csv import DictWriter
 import os
 from collections import namedtuple as collections_namedtuple
 from Bio import SeqIO
 from Bio.Alphabet import generic_protein as gen_prot_alaphabet
 from Bio.SeqRecord import SeqRecord
 from datetime import date
-
+import pandas as pd
+from json import loads
+import jsonpickle
 '''
 json text files stored with .jtxt extension
 '''
@@ -15,9 +18,9 @@ json text files stored with .jtxt extension
 
 def dict_to_seqrecord(seq_dict):
     seqrecord_list = list()
-    seq_dict = loads(seq_dict)
+    decoded_dict = decode(seq_dict)
     for k in seq_dict:
-        temp = (collections_namedtuple("SeqRecord", seq_dict[k])(*seq_dict.values()))
+        temp = (collections_namedtuple("SeqRecord", decoded_dict[k])(*decoded_dict.values()))
         seqrecord_list.append(SeqRecord(temp))
     return seqrecord_list
 
@@ -31,26 +34,58 @@ def seqrecord_to_dict(seq_list: [SeqRecord]):
     Returns:
 
     """
+
     seq_list = SeqIO.to_dict(seq_list)
     return jsonpickle_encode(seq_list)
 
 
-def export_to_csv(file_out_dir, seq_dict: dict):
-    # TODO: should have an option as to what data to output (from letter annotations and annotations)
-    file_o_path = os.path.join(make_original_file_name(file_out_dir) + ".csv")
-    with open(file_o_path, "w") as file:
-        DictWriter(f=file, fieldnames=dir(seq_dict.values()))
+# def export_to_csv(file_out_dir, seq_dict: dict):
+#     # TODO: should have an option as to what data to output (from letter annotations and annotations)
+#
+#     file_o_path = make_original_file_name(file_out_dir, '.csv')
+#     with open(file_o_path, "w") as file:
+#         fields = list(seq_dict.keys())
+#         writer = DictWriter(f=file, fieldnames=fields)
+#         writer.writeheader()
+#         data_to_print = zip(*seq_dict.values())
+#         for data in data_to_print:
+#             writer.writerow(data)
+#     return file_o_path
+
+
+def export_df_to_csv(pandas_df: pd.DataFrame, file_out_dir):
+    file_o_path = make_original_file_name(file_out_dir, '.csv')
+    pandas_df.to_csv(path_or_buf=file_o_path)
+
+    return file_o_path
+
+
+def create_pandas_df(dict, id_list, columns):
+    df = pd.DataFrame.from_dict(data=dict, orient='index')
+    return df
+
+
+def pandas_df_to_html(df, file_o_dir):
+    html_df = df.to_html()
+    file_o_path = make_original_file_name(file_o_dir, '.html')
+    with open(file_o_path, 'w') as f:
+        f.write(html_df)
+    return file_o_path
 
 
 def write_dict_to_file(write_str, file_out_dir):
     # TODO: consider writing using pickle module (for large dataset data persistence)
     # ****BEFORE WRITING PICKLING FUNCTION**** test this and all other modules.
 
-    file_o_path = os.path.join(make_original_file_name(file_out_dir) + ".jtxt")
+    file_o_path = make_original_file_name(file_out_dir, ".jtxt")
     with open(file_o_path, "w") as f:
         dump(write_str, f)
         f.close()
     return file_o_path
+
+
+def curr_working_dir():
+    return os.getcwd()
 
 
 def make_original_file_name(file_out_dir, file_extension, file_name=None):
@@ -75,8 +110,11 @@ def make_original_file_name(file_out_dir, file_extension, file_name=None):
     return os.path.join(new_file_path + file_extension)
 
 
-def create_new_file_dir(desktop_dir):
-    new_dir_name = os.path.join(desktop_dir, "PAM_Output_{}".format(date.today()))
+def create_new_file_dir(desktop_dir, dirname=None):
+    if dirname is None:
+        new_dir_name = os.path.join(desktop_dir, "PAM_Output_{}".format(date.today()))
+    else:
+        new_dir_name = os.path.join(desktop_dir, dirname)
     counter = 0
     if os.path.isdir(new_dir_name):
         new_dir_name = new_dir_name + "_{}".format(counter)
@@ -116,14 +154,17 @@ def file_input(full_file_path: str):
         with open(full_file_path, "rU") as f:
             for record in SeqIO.parse(f, "fasta", gen_prot_alaphabet):
                 seqrecord_list.append(record)
+                return seqrecord_list
     elif ".jtxt" in full_file_path:
         with open(full_file_path, "rU") as f:
             seqrecord_dict = load(f)
             seqrecord_list = dict_to_seqrecord(seqrecord_dict)
+        return seqrecord_list
     else:
         print("Unsupported file-in format!")
+        return None
 
-    return seqrecord_list
+
 
     # def analysis_helper(self, bias_analysis: bool):
     #     """

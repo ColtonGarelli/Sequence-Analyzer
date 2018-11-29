@@ -1,10 +1,12 @@
-import Representation
-from Builder import AnalysisBuilder, UniprotBuilder, SequenceBiasBuilder, DatabaseBuilder, FELLSAnalysisBuilder, SODAAnalysisBuilder
-import File_IO
+from Builders.AnalysisBuilders import AnalysisBuilder, FELLSAnalysisBuilder, SODAAnalysisBuilder, SequenceBiasBuilder
+from Builders.DatabaseBuilders import DatabaseBuilder, UniprotBuilder
+from InputOutput import File_IO, Representation
 import json
 import requests as r
-from urllib3 import connection as connection
-
+from Bio import SeqIO
+# import urllib.request
+# import webbrowser
+# import subprocess
 
 # room for addition of BLAST, alignment, other tools as run_x_analysis methods
 # run_x_analysis methods communicate directly with self.AnalysisBuilder obj and self.DatabaseBuilder
@@ -52,6 +54,11 @@ class Director:
     def start_up(self):
 
         return self.representation.introduction()
+
+    def get_seq_records_from_file(self):
+        file_in_path = self.representation.manual_sequence_entry()
+        self.master_list = File_IO.file_input(file_in_path)
+        return self.master_list
 
     def db_access(self):
         """
@@ -112,9 +119,6 @@ class Director:
     #   while loop to check for updates
     #   director holds onto FELLS, where data is stored
     #   builder objects own data and send translations to director
-    #     fasta_list = []
-    #     for i in self.get_master_list():
-    #         fasta_list.append(i.format("fasta"))
         prepped_request = self.analyses["fells"].prepare_request(self.get_master_list())
         session = r.Session()
         succesful_connection = True
@@ -185,36 +189,39 @@ class Director:
         keys = bias_analysis.id_seq.keys()
         for key in keys:
             bias_analysis.prim_indices[key] = bias_analysis.primary_bias_finder(seq=bias_analysis.id_seq[key],
-                                                                                aaprimary_bias=primary_bias)
+                                                                                primary_bias=primary_bias)
             bias_analysis.one_away[key] = bias_analysis.secondary_bias_finder(sequence=bias_analysis.id_seq[key],
                                                                               bias_location=1,
                                                                               prim_indices=bias_analysis.prim_indices[key])
             bias_analysis.two_away[key] = bias_analysis.secondary_bias_finder(sequence=bias_analysis.id_seq[key],
                                                                               bias_location=2,
                                                                               prim_indices=bias_analysis.prim_indices[key])
-            bias_analysis.three_away[key] = bias_analysis.secondary_bias_finder(sequence=bias_analysis.id_seq[key],
-                                                                                bias_location=3,
-                                                                                prim_indices=
-                                                                                bias_analysis.prim_indices[key])
 
-            bias_analysis.local_sequence[key] = bias_analysis.calc_local_bias(one_away=bias_analysis.one_away[key],
-                                                                              two_away=bias_analysis.two_away[key],
-                                                                              three_away=bias_analysis.three_away[key])
-        #         # TODO: prompt about calculating avg occurrences
+            bias_analysis.three_away[key] = bias_analysis.secondary_bias_finder(sequence=bias_analysis.id_seq[key],
+                                                             bias_location=3,
+                                                             prim_indices=bias_analysis.prim_indices[key])
+
+            bias_analysis.local_seq[key] = bias_analysis.calc_local_bias(one_away=bias_analysis.one_away[key],
+                                                                         two_away=bias_analysis.two_away[key],
+                                                                         three_away=bias_analysis.three_away[key])
+
+
+        # TODO: prompt about calculating avg occurrences
         avg = True
         if avg:
             for i in bias_analysis.one_away.keys():
                 bias_analysis.one_away_avg[i] = bias_analysis.find_avg_occurrence(
-                    bias_list=bias_analysis.one_away_avg[i], primary_content=len(bias_analysis.prim_indices))
+                    bias_list=bias_analysis.one_away[i], primary_content=len(bias_analysis.prim_indices))
             for i in bias_analysis.two_away.keys():
                 bias_analysis.two_away_avg[i] = bias_analysis.find_avg_occurrence(
-                    bias_list=bias_analysis.two_away_avg[i])
+                    bias_list=bias_analysis.two_away[i])
             for i in bias_analysis.three_away.keys():
                 bias_analysis.three_away_avg[i] = bias_analysis.find_avg_occurrence(
-                    bias_list=bias_analysis.three_away_avg[i])
-            for i in bias_analysis.local_sequence.keys():
-                bias_analysis.local_avg[i] = bias_analysis.find_avg_occurrence(bias_list=bias_analysis.local_avg[i])
-
+                    bias_list=bias_analysis.three_away[i])
+            for i in bias_analysis.local_seq.keys():
+                bias_analysis.local_avg[i] = bias_analysis.find_avg_occurrence(bias_list=bias_analysis.local_seq[i]
+                                                                               ,primary_content=
+                                                                               len(bias_analysis.prim_indices))
         return bias_analysis
 
     def update_seq_data(self, **kwargs):
@@ -232,15 +239,13 @@ class Director:
                                                      update_data={'one_away': bias_analysis.one_away[i.id],
                                                                   'two_away': bias_analysis.two_away[i.id],
                                                                   'three_away': bias_analysis.three_away[i.id],
-                                                                  'local_sequence': bias_analysis.local_sequence[i.id]})
+                                                                  'local_sequence': bias_analysis.local_seq[i.id]})
             for i in self.master_list:
                 i = bias_analysis.update_annotations(seqrecord_to_update=i,
                                                      update_data={'one_away_avg': bias_analysis.one_away_avg[i.id],
                                                                   'two_away_avg': bias_analysis.two_away_avg[i.id],
                                                                   'three_away_avg': bias_analysis.three_away_avg[i.id],
                                                                   'local_avg': bias_analysis.local_avg[i.id]})
-
-
 
     def get_master_list(self):
         return self.master_list
@@ -259,6 +264,33 @@ class Director:
 
     def set_io_directory(self, new_out_dir):
         self.file_out_dir = new_out_dir
+
+    def store_analyzed_data(self, seq_list=None, file_out_dir=None):
+        if seq_list is None:
+            seq_list = self.master_list
+        if file_out_dir is None:
+            file_out_dir = self.file_out_dir
+        write_dict = File_IO.seqrecord_to_dict(seq_list)
+        file_path = File_IO.write_dict_to_file(write_dict, file_out_dir)
+        return file_path
+
+    def export_to_universal_file(self):
+        seq_dict = SeqIO.to_dict(self.master_list)
+        ann_dict = self.get_annotations_from_seqrecord_list(self.master_list, 'entropy')
+        df = File_IO.create_pandas_df(dict=ann_dict, id_list=seq_dict.keys(), columns=vars(self.master_list[0]).keys())
+        path_o = File_IO.export_df_to_csv(file_out_dir=self.file_out_dir, pandas_df=df)
+        html = File_IO.pandas_df_to_html(df, self.file_out_dir)
+        return path_o
+
+    def get_annotations_from_seqrecord_list(self, seqrecord_list, desired_annotation=None):
+        id_ann = dict()
+        if desired_annotation is None:
+            for i in seqrecord_list:
+                id_ann.update({i.id: i.annotations})
+        else:
+            for i in seqrecord_list:
+                id_ann.update({i.id: i.annotations[desired_annotation]})
+        return id_ann
 
     # def handle_manual_input(self):
     #     """
