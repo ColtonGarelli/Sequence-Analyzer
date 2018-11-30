@@ -29,14 +29,12 @@ class Director:
         Creates 'representation' object to manage user interface and output
 
 
-        :cvar self.analysis: each director object contains an analysis object that run the desired set of analyses
-        :cvar self.representation: each director object contains an representation object to litigate data output
-        :cvar self.master_list: master sequence-id list. saved after file is first read in
+        :ivar: self.analysis: each director object contains an analysis object that run the desired set of analyses
+        :ivar: self.representation: each director object contains an representation object to litigate data output
+        :ivar: self.master_list: master sequence-id list. saved after file is first read in
               the master list should be updated after analysis
-        :cvar self.file_in_path: path for sequence-id file in csv format
-        :cvar self.file_out_path: path for directory where files can be output
-
-
+        :ivar: self.file_in_path: path for sequence-id file in csv format
+        :ivar: self.file_out_path: path for directory where files can be output
 
         """
 
@@ -125,27 +123,34 @@ class Director:
 
         try:
             response = session.send(request=prepped_request)
+
         except Exception:
-            print("Could not connect to FELLS server!!")
-            succesful_connection = False
-        if succesful_connection:
-            jobid = AnalysisBuilder.get_jobid(response)
-            response_str = self.analyses["fells"].check_request_submission(jobid)
-            json_obj = AnalysisBuilder.get_data_as_json(response_str)
-            complete = self.analyses["fells"].check_processing_status(json_obj['names'][0][1])
-            if complete:
+            return "Could not connect to FELLS server!!"
+
+        jobid = AnalysisBuilder.get_jobid(response)
+        json_obj = AnalysisBuilder.check_status(jobid, self.analyses['fells'].get_status_url())
+
+        if json_obj is None:
+            return "an error occurred in sending the request!!"
+
+        else:
+            processing_id = json_obj['names'][0][1]
+            complete = self.analyses["fells"].check_status(processing_id, self.analyses["fells"].get_submission_url())
+
+            if complete is dict:
                 id_list = list()
                 for i in json_obj["names"]:
                     id_list.append(i[1])
-                data_list = self.analyses["fells"].retrieve_response_data(id_list)
+                data_list = self.analyses["fells"].retrieve_response_data(ID=id_list,
+                                                                          url=self.analyses['fells'].get_processed_data_url())
                 json_list = list()
                 for data in data_list:
                     json_list.append(json.loads(data))
                 return json_list
+
             else:
-                return "an error occurred!!"
-        else:
-            return "an error occurred!!"
+                return "an error occurred because of formatting!!"
+
     # todo: do something with the data (store and plot)
 
     def run_SODA_analysis(self):
@@ -155,23 +160,22 @@ class Director:
         """
         processed_list = list()
         s = r.Session()
-        successful_connection = True
+
         for i in self.master_list:
-            if successful_connection:
-                prepped_request = self.analyses['soda'].prepare_request_object(str(i.seq))
-                try:
-                    response = s.send(prepped_request)
-                    jobid = AnalysisBuilder.get_jobid(response)
-                    json_obj = self.analyses['soda'].check_request_status(jobid)
-                    jobid = json_obj['jobid']
-                    data = self.analyses['soda'].retrieve_response_data(jobid)
-                    data = json.loads(data)
-                    processed_list.append(data)
-                except Exception:
-                    print("Could not connect to SODA server!!")
-                    successful_connection = False
-            else:
-                break
+            prepped_request = self.analyses['soda'].prepare_request_object(str(i.seq))
+            try:
+                response = s.send(prepped_request)
+                jobid = AnalysisBuilder.get_jobid(response)
+                json_obj = self.analyses['soda'].check_status(jobid, self.analyses['soda'].get_status_url())
+                if json_obj is None:
+                    return "an error occurred because of formatting!!"
+                jobid = json_obj['jobid']
+                data = self.analyses['soda'].retrieve_response_data(jobid,
+                                                                    self.analyses['soda'].get_processed_data_url())
+                data = json.loads(data)
+                processed_list.append(data)
+            except Exception:
+                return "Could not connect to SODA server!!"
         return processed_list
     # todo: do something with the data (store and plot)
 
@@ -227,25 +231,26 @@ class Director:
     def update_seq_data(self, **kwargs):
         if 'fells' in kwargs:
             fells_analysis = self.analyses['fells']
-            self.master_list = self.analyses['fells'].update_annotations(self.master_list, kwargs['fells'])
+            for i in range(len(self.master_list)):
+                self.master_list[i] = fells_analysis.update_annotations(self.master_list[i], kwargs['fells'][i])
         if 'soda' in kwargs:
             soda_analysis = self.analyses['soda']
-            # for i in range(len(self.master_list)):
-            #     self.master_list[i] = soda_analysis.update_annotations(self.master_list[i], kwargs['soda'][i])
+            for i in range(len(self.master_list)):
+                self.master_list[i] = soda_analysis.update_annotations(self.master_list[i], kwargs['soda'][i])
         if 'sec_bias' in kwargs:
             bias_analysis = self.analyses['sec_bias']
-            for i in self.master_list:
-                i = bias_analysis.update_annotations(seqrecord_to_update=i,
-                                                     update_data={'one_away': bias_analysis.one_away[i.id],
-                                                                  'two_away': bias_analysis.two_away[i.id],
-                                                                  'three_away': bias_analysis.three_away[i.id],
-                                                                  'local_sequence': bias_analysis.local_seq[i.id]})
-            for i in self.master_list:
-                i = bias_analysis.update_annotations(seqrecord_to_update=i,
-                                                     update_data={'one_away_avg': bias_analysis.one_away_avg[i.id],
-                                                                  'two_away_avg': bias_analysis.two_away_avg[i.id],
-                                                                  'three_away_avg': bias_analysis.three_away_avg[i.id],
-                                                                  'local_avg': bias_analysis.local_avg[i.id]})
+            for i in range(len(self.master_list)):
+                self.master_list[i] = bias_analysis.update_annotations(seqrecord_to_update=self.master_list[i],
+                                                                       update_data={'one_away': bias_analysis.one_away[self.master_list[i].id],
+                                                                       'two_away': bias_analysis.two_away[self.master_list[i].id],
+                                                                       'three_away': bias_analysis.three_away[self.master_list[i].id],
+                                                                       'local_sequence': bias_analysis.local_seq[self.master_list[i].id]})
+            for i in range(len(self.master_list)):
+                self.master_list[i] = bias_analysis.update_annotations(seqrecord_to_update=self.master_list[i],
+                                                                       update_data={'one_away_avg': bias_analysis.one_away_avg[self.master_list[i].id],
+                                                                       'two_away_avg': bias_analysis.two_away_avg[self.master_list[i].id],
+                                                                       'three_away_avg': bias_analysis.three_away_avg[self.master_list[i].id],
+                                                                       'local_avg': bias_analysis.local_avg[self.master_list[i].id]})
 
     def get_master_list(self):
         return self.master_list

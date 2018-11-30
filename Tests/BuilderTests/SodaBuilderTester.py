@@ -1,9 +1,7 @@
 import unittest
-from requests import post, get
+from requests import get
 import json
 import requests as r
-from Builder import AnalysisBuilder, FELLSAnalysisBuilder, SODAAnalysisBuilder
-from Bio import SeqRecord, Seq
 
 
 class SODAAPITester(unittest.TestCase):

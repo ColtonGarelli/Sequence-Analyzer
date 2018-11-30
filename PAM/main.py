@@ -30,7 +30,7 @@ def UI_main(director):
             bias_data = director.run_bias_analysis()
             fells_data = director.run_FELLS_analysis()
             soda_data = director.run_SODA_analysis()
-            if not isinstance(fells_data, dict):
+            if isinstance(fells_data, list):
                 director.update_seq_data(fells=fells_data, soda=soda_data, sec_bias=bias_data)
             director.view_analysis()
             director.export_to_universal_file()

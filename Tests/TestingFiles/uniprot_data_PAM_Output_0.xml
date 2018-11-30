@@ -1,0 +1,526 @@
+<?xml version='1.0' encoding='UTF-8'?>
+<?xml-stylesheet type="text/xsl" href="../../PAM/uniprot_xml_stylesheet.xsl"?>
+<uniprot xmlns="http://uniprot.org/uniprot" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://uniprot.org/uniprot http://www.uniprot.org/support/docs/uniprot.xsd">
+<entry dataset="Swiss-Prot" created="2017-06-07" modified="2018-05-23" version="6">
+<accession>A0A1D1V3Z0</accession>
+<accession>A0A0E4FH01</accession>
+<name>MAHS_RAMVA</name>
+<protein>
+<recommendedName>
+<fullName evidence="3">Mitochondrial-abundant heat soluble protein</fullName>
+<shortName evidence="3">MAHS</shortName>
+</recommendedName>
+</protein>
+<gene>
+<name type="primary" evidence="3">MAHS</name>
+<name type="ORF">RvY_05157</name>
+</gene>
+<organism>
+<name type="scientific">Ramazzottius varieornatus</name>
+<name type="common">Water bear</name>
+<name type="synonym">Tardigrade</name>
+<dbReference type="NCBI Taxonomy" id="947166"/>
+<lineage>
+<taxon>Eukaryota</taxon>
+<taxon>Metazoa</taxon>
+<taxon>Ecdysozoa</taxon>
+<taxon>Tardigrada</taxon>
+<taxon>Eutardigrada</taxon>
+<taxon>Parachela</taxon>
+<taxon>Ramazzottiidae</taxon>
+<taxon>Ramazzottius</taxon>
+</lineage>
+</organism>
+<reference key="1">
+<citation type="journal article" date="2015" name="PLoS ONE" volume="10" first="E0118272" last="E0118272">
+<title>Novel mitochondria-targeted heat-soluble proteins identified in the anhydrobiotic Tardigrade improve osmotic tolerance of human cells.</title>
+<authorList>
+<person name="Tanaka S."/>
+<person name="Tanaka J."/>
+<person name="Miwa Y."/>
+<person name="Horikawa D.D."/>
+<person name="Katayama T."/>
+<person name="Arakawa K."/>
+<person name="Toyoda A."/>
+<person name="Kubo T."/>
+<person name="Kunieda T."/>
+</authorList>
+<dbReference type="PubMed" id="25675104"/>
+<dbReference type="DOI" id="10.1371/journal.pone.0118272"/>
+</citation>
+<scope>NUCLEOTIDE SEQUENCE [MRNA]</scope>
+<scope>FUNCTION</scope>
+<scope>SUBCELLULAR LOCATION</scope>
+<scope>DOMAIN</scope>
+<source>
+<strain>YOKOZUNA-1</strain>
+</source>
+</reference>
+<reference key="2">
+<citation type="journal article" date="2016" name="Nat. Commun." volume="7" first="12808" last="12808">
+<title>Extremotolerant tardigrade genome and improved radiotolerance of human cultured cells by tardigrade-unique protein.</title>
+<authorList>
+<person name="Hashimoto T."/>
+<person name="Horikawa D.D."/>
+<person name="Saito Y."/>
+<person name="Kuwahara H."/>
+<person name="Kozuka-Hata H."/>
+<person name="Shin-I T."/>
+<person name="Minakuchi Y."/>
+<person name="Ohishi K."/>
+<person name="Motoyama A."/>
+<person name="Aizu T."/>
+<person name="Enomoto A."/>
+<person name="Kondo K."/>
+<person name="Tanaka S."/>
+<person name="Hara Y."/>
+<person name="Koshikawa S."/>
+<person name="Sagara H."/>
+<person name="Miura T."/>
+<person name="Yokobori S."/>
+<person name="Miyagawa K."/>
+<person name="Suzuki Y."/>
+<person name="Kubo T."/>
+<person name="Oyama M."/>
+<person name="Kohara Y."/>
+<person name="Fujiyama A."/>
+<person name="Arakawa K."/>
+<person name="Katayama T."/>
+<person name="Toyoda A."/>
+<person name="Kunieda T."/>
+</authorList>
+<dbReference type="PubMed" id="27649274"/>
+<dbReference type="DOI" id="10.1038/ncomms12808"/>
+</citation>
+<scope>NUCLEOTIDE SEQUENCE [LARGE SCALE GENOMIC DNA]</scope>
+<source>
+<strain>YOKOZUNA-1</strain>
+</source>
+</reference>
+<comment type="function">
+<text evidence="2">Mitochondrial heat soluble protein acting as a molecular shield in water-deficient condition.</text>
+</comment>
+<comment type="subcellular location">
+<subcellularLocation>
+<location evidence="2">Mitochondrion</location>
+</subcellularLocation>
+</comment>
+<comment type="domain">
+<text evidence="5">The MAHS motif is conserved in tardigrade MAHS proteins and forms a predicted amphipathic helix (PubMed:25675104).</text>
+</comment>
+<comment type="miscellaneous">
+<text evidence="2">Improves osmotic tolerance of human cells (PubMed:25675104).</text>
+</comment>
+<comment type="sequence caution" evidence="4">
+<conflict type="erroneous initiation">
+<sequence resource="EMBL-CDS" id="GAU93178" version="1"/>
+</conflict>
+<text>Translation N-terminally shortened.</text>
+</comment>
+<dbReference type="EMBL" id="LC002822">
+<property type="protein sequence ID" value="BAQ94587.1"/>
+<property type="molecule type" value="mRNA"/>
+</dbReference>
+<dbReference type="EMBL" id="BDGG01000002">
+<property type="protein sequence ID" value="GAU93178.1"/>
+<property type="status" value="ALT_INIT"/>
+<property type="molecule type" value="Genomic_DNA"/>
+</dbReference>
+<dbReference type="Proteomes" id="UP000186922">
+<property type="component" value="Unassembled WGS sequence"/>
+</dbReference>
+<dbReference type="GO" id="GO:0005739">
+<property type="term" value="C:mitochondrion"/>
+<property type="evidence" value="ECO:0000501"/>
+<property type="project" value="UniProtKB-SubCell"/>
+</dbReference>
+<proteinExistence type="evidence at transcript level"/>
+<keyword id="KW-0181">Complete proteome</keyword>
+<keyword id="KW-0496">Mitochondrion</keyword>
+<keyword id="KW-1185">Reference proteome</keyword>
+<keyword id="KW-0346">Stress response</keyword>
+<keyword id="KW-0809">Transit peptide</keyword>
+<feature type="transit peptide" description="Mitochondrion" evidence="1">
+<location>
+<begin position="1"/>
+<end position="73"/>
+</location>
+</feature>
+<feature type="chain" description="Mitochondrial-abundant heat soluble protein" id="PRO_0000440200">
+<location>
+<begin position="74"/>
+<end position="236"/>
+</location>
+</feature>
+<feature type="short sequence motif" description="MAHS motif" evidence="5">
+<location>
+<begin position="126"/>
+<end position="143"/>
+</location>
+</feature>
+<evidence key="1" type="ECO:0000255"/>
+<evidence key="2" type="ECO:0000269">
+<source>
+<dbReference type="PubMed" id="25675104"/>
+</source>
+</evidence>
+<evidence key="3" type="ECO:0000303">
+<source>
+<dbReference type="PubMed" id="25675104"/>
+</source>
+</evidence>
+<evidence key="4" type="ECO:0000305"/>
+<evidence key="5" type="ECO:0000305">
+<source>
+<dbReference type="PubMed" id="25675104"/>
+</source>
+</evidence>
+<sequence length="236" mass="25410" checksum="610C20421A42CA91" modified="2017-06-07" version="2" precursor="true">
+MSRYLLRDVQAVLRGVRKVAESSLKLETEKVSLRLGDFRSQPSLRSVPASLTSRSQAFSL
+QEIAARAGVVLRGVQQQFRNVTGVNAAPVVAFDNGSVLYSERIHSQSSQKQAPTTVPTGS
+VSNSPQPEGKANEAAERAKQFMNPPVAPMDPVDKNEFVAMPEMGRSNGNGENKQAADFMK
+NQGDTDMDSQYAPDSSKNTKSVPTKEIVAEDGSMSIEDIKKATQVTPGVAVKNEGV
+</sequence>
+</entry>
+<entry dataset="Swiss-Prot" created="2008-12-16" modified="2018-11-07" version="21">
+<accession>P0C8L6</accession>
+<name>PHS_HYPDU</name>
+<protein>
+<recommendedName>
+<fullName>Probable pterin-4-alpha-carbinolamine dehydratase</fullName>
+<shortName>PHS</shortName>
+<ecNumber>4.2.1.96</ecNumber>
+</recommendedName>
+<alternativeName>
+<fullName>4-alpha-hydroxy-tetrahydropterin dehydratase</fullName>
+</alternativeName>
+<alternativeName>
+<fullName>Pterin carbinolamine dehydratase</fullName>
+<shortName>PCD</shortName>
+</alternativeName>
+</protein>
+<gene>
+<name type="primary">Pcd</name>
+</gene>
+<organism>
+<name type="scientific">Hypsibius dujardini</name>
+<name type="common">Water bear</name>
+<name type="synonym">Macrobiotus dujardini</name>
+<dbReference type="NCBI Taxonomy" id="232323"/>
+<lineage>
+<taxon>Eukaryota</taxon>
+<taxon>Metazoa</taxon>
+<taxon>Ecdysozoa</taxon>
+<taxon>Tardigrada</taxon>
+<taxon>Eutardigrada</taxon>
+<taxon>Parachela</taxon>
+<taxon>Hypsibiidae</taxon>
+<taxon>Hypsibius</taxon>
+</lineage>
+</organism>
+<reference key="1">
+<citation type="submission" date="2003-12" db="EMBL/GenBank/DDBJ databases">
+<title>A survey of genes expressed in the tardigrade Hypsibius dujardini.</title>
+<authorList>
+<person name="Daub J."/>
+<person name="Thomas F."/>
+<person name="Aboobaker A."/>
+<person name="Blaxter M.L."/>
+</authorList>
+</citation>
+<scope>NUCLEOTIDE SEQUENCE [LARGE SCALE MRNA]</scope>
+<source>
+<strain>Sciento Z151</strain>
+</source>
+</reference>
+<comment type="function">
+<text evidence="1">Involved in tetrahydrobiopterin biosynthesis.</text>
+</comment>
+<comment type="catalytic activity">
+<text>(6R)-6-(L-erythro-1,2-dihydroxypropyl)-5,6,7,8-tetrahydro-4a-hydroxypterin = (6R)-6-(L-erythro-1,2-dihydroxypropyl)-7,8-dihydro-6H-pterin + H(2)O.</text>
+</comment>
+<comment type="similarity">
+<text evidence="2">Belongs to the pterin-4-alpha-carbinolamine dehydratase family.</text>
+</comment>
+<dbReference type="EC" id="4.2.1.96"/>
+<dbReference type="EMBL" id="CK326948">
+<property type="status" value="NOT_ANNOTATED_CDS"/>
+<property type="molecule type" value="mRNA"/>
+</dbReference>
+<dbReference type="SMR" id="P0C8L6"/>
+<dbReference type="OMA" id="AVGWNEV"/>
+<dbReference type="GO" id="GO:0008124">
+<property type="term" value="F:4-alpha-hydroxytetrahydrobiopterin dehydratase activity"/>
+<property type="evidence" value="ECO:0000501"/>
+<property type="project" value="UniProtKB-EC"/>
+</dbReference>
+<dbReference type="GO" id="GO:0006729">
+<property type="term" value="P:tetrahydrobiopterin biosynthetic process"/>
+<property type="evidence" value="ECO:0000501"/>
+<property type="project" value="UniProtKB-KW"/>
+</dbReference>
+<dbReference type="Gene3D" id="3.30.1360.20">
+<property type="match status" value="1"/>
+</dbReference>
+<dbReference type="HAMAP" id="MF_00434">
+<property type="entry name" value="Pterin_4_alpha"/>
+<property type="match status" value="1"/>
+</dbReference>
+<dbReference type="InterPro" id="IPR036428">
+<property type="entry name" value="PCD_sf"/>
+</dbReference>
+<dbReference type="InterPro" id="IPR001533">
+<property type="entry name" value="Pterin_deHydtase"/>
+</dbReference>
+<dbReference type="PANTHER" id="PTHR12599">
+<property type="entry name" value="PTHR12599"/>
+<property type="match status" value="1"/>
+</dbReference>
+<dbReference type="Pfam" id="PF01329">
+<property type="entry name" value="Pterin_4a"/>
+<property type="match status" value="1"/>
+</dbReference>
+<dbReference type="SUPFAM" id="SSF55248">
+<property type="entry name" value="SSF55248"/>
+<property type="match status" value="1"/>
+</dbReference>
+<proteinExistence type="inferred from homology"/>
+<keyword id="KW-0456">Lyase</keyword>
+<keyword id="KW-0783">Tetrahydrobiopterin biosynthesis</keyword>
+<feature type="chain" description="Probable pterin-4-alpha-carbinolamine dehydratase" id="PRO_0000357456">
+<location>
+<begin position="1"/>
+<end position="103"/>
+</location>
+</feature>
+<evidence key="1" type="ECO:0000250"/>
+<evidence key="2" type="ECO:0000305"/>
+<sequence length="103" mass="11706" checksum="EB5ECBADB3987B8C" modified="2008-12-16" version="1">
+MDPRLTHEDRILHLAPLTEKGWLLVEGRDAIHKEFKFKDFNAAFGFMTRVALLAEKMDHH
+PEWFNVYNKVQITLSSHDVAGLSQRDIKLASFIEKAAVGASTS
+</sequence>
+</entry>
+<entry dataset="Swiss-Prot" created="2017-06-07" modified="2018-01-31" version="25">
+<accession>G5CTG4</accession>
+<name>AQP7_MILTA</name>
+<protein>
+<recommendedName>
+<fullName evidence="4">Aquaporin-7</fullName>
+<shortName evidence="4">AQP-7</shortName>
+</recommendedName>
+</protein>
+<gene>
+<name type="primary" evidence="4">AQP7</name>
+</gene>
+<organism>
+<name type="scientific">Milnesium tardigradum</name>
+<name type="common">Water bear</name>
+<name type="synonym">Tardigrade</name>
+<dbReference type="NCBI Taxonomy" id="46460"/>
+<lineage>
+<taxon>Eukaryota</taxon>
+<taxon>Metazoa</taxon>
+<taxon>Ecdysozoa</taxon>
+<taxon>Tardigrada</taxon>
+<taxon>Eutardigrada</taxon>
+<taxon>Apochela</taxon>
+<taxon>Milnesiidae</taxon>
+<taxon>Milnesium</taxon>
+</lineage>
+</organism>
+<reference key="1">
+<citation type="journal article" date="2013" name="Bioinf. Biol. Insights" volume="7" first="153" last="165">
+<title>The aquaporin channel repertoire of the tardigrade Milnesium tardigradum.</title>
+<authorList>
+<person name="Grohme M.A."/>
+<person name="Mali B."/>
+<person name="Welnicz W."/>
+<person name="Michel S."/>
+<person name="Schill R.O."/>
+<person name="Frohme M."/>
+</authorList>
+<dbReference type="PubMed" id="23761966"/>
+<dbReference type="DOI" id="10.4137/BBI.S11497"/>
+</citation>
+<scope>NUCLEOTIDE SEQUENCE [MRNA]</scope>
+<scope>DOMAIN</scope>
+<scope>INDUCTION</scope>
+</reference>
+<comment type="function">
+<text evidence="6">Aquaglyceroporin that may modulate the water content and osmolytes during anhydrobiosis (PubMed:23761966).</text>
+</comment>
+<comment type="subcellular location">
+<subcellularLocation>
+<location evidence="5">Cell membrane</location>
+<topology evidence="1">Multi-pass membrane protein</topology>
+</subcellularLocation>
+</comment>
+<comment type="induction">
+<text evidence="3">Transcript abundance is medium and expression levels are not significantly affected by desiccation or rehydratation (PubMed:23761966).</text>
+</comment>
+<comment type="domain">
+<text evidence="6">Aquaporins contain two tandem repeats each containing three membrane-spanning domains and a pore-forming loop with the signature motif Asn-Pro-Ala (NPA).</text>
+</comment>
+<comment type="similarity">
+<text evidence="5">Belongs to the MIP/aquaporin (TC 1.A.8) family.</text>
+</comment>
+<dbReference type="EMBL" id="JN378742">
+<property type="protein sequence ID" value="AEP14561.1"/>
+<property type="molecule type" value="mRNA"/>
+</dbReference>
+<dbReference type="ProteinModelPortal" id="G5CTG4"/>
+<dbReference type="SMR" id="G5CTG4"/>
+<dbReference type="GO" id="GO:0016021">
+<property type="term" value="C:integral component of membrane"/>
+<property type="evidence" value="ECO:0000501"/>
+<property type="project" value="UniProtKB-KW"/>
+</dbReference>
+<dbReference type="GO" id="GO:0005886">
+<property type="term" value="C:plasma membrane"/>
+<property type="evidence" value="ECO:0000501"/>
+<property type="project" value="UniProtKB-SubCell"/>
+</dbReference>
+<dbReference type="GO" id="GO:0015267">
+<property type="term" value="F:channel activity"/>
+<property type="evidence" value="ECO:0000501"/>
+<property type="project" value="InterPro"/>
+</dbReference>
+<dbReference type="CDD" id="cd00333">
+<property type="entry name" value="MIP"/>
+<property type="match status" value="1"/>
+</dbReference>
+<dbReference type="Gene3D" id="1.20.1080.10">
+<property type="match status" value="1"/>
+</dbReference>
+<dbReference type="InterPro" id="IPR023271">
+<property type="entry name" value="Aquaporin-like"/>
+</dbReference>
+<dbReference type="InterPro" id="IPR000425">
+<property type="entry name" value="MIP"/>
+</dbReference>
+<dbReference type="InterPro" id="IPR022357">
+<property type="entry name" value="MIP_CS"/>
+</dbReference>
+<dbReference type="Pfam" id="PF00230">
+<property type="entry name" value="MIP"/>
+<property type="match status" value="1"/>
+</dbReference>
+<dbReference type="PRINTS" id="PR00783">
+<property type="entry name" value="MINTRINSICP"/>
+</dbReference>
+<dbReference type="SUPFAM" id="SSF81338">
+<property type="entry name" value="SSF81338"/>
+<property type="match status" value="1"/>
+</dbReference>
+<dbReference type="TIGRFAMs" id="TIGR00861">
+<property type="entry name" value="MIP"/>
+<property type="match status" value="1"/>
+</dbReference>
+<dbReference type="PROSITE" id="PS00221">
+<property type="entry name" value="MIP"/>
+<property type="match status" value="1"/>
+</dbReference>
+<proteinExistence type="evidence at transcript level"/>
+<keyword id="KW-1003">Cell membrane</keyword>
+<keyword id="KW-0325">Glycoprotein</keyword>
+<keyword id="KW-0472">Membrane</keyword>
+<keyword id="KW-0677">Repeat</keyword>
+<keyword id="KW-0346">Stress response</keyword>
+<keyword id="KW-0812">Transmembrane</keyword>
+<keyword id="KW-1133">Transmembrane helix</keyword>
+<keyword id="KW-0813">Transport</keyword>
+<feature type="chain" description="Aquaporin-7" id="PRO_0000440208">
+<location>
+<begin position="1"/>
+<end position="315"/>
+</location>
+</feature>
+<feature type="transmembrane region" description="Helical" evidence="1">
+<location>
+<begin position="31"/>
+<end position="51"/>
+</location>
+</feature>
+<feature type="transmembrane region" description="Helical" evidence="1">
+<location>
+<begin position="58"/>
+<end position="78"/>
+</location>
+</feature>
+<feature type="transmembrane region" description="Helical" evidence="1">
+<location>
+<begin position="105"/>
+<end position="125"/>
+</location>
+</feature>
+<feature type="transmembrane region" description="Helical" evidence="1">
+<location>
+<begin position="157"/>
+<end position="177"/>
+</location>
+</feature>
+<feature type="transmembrane region" description="Helical" evidence="1">
+<location>
+<begin position="189"/>
+<end position="209"/>
+</location>
+</feature>
+<feature type="transmembrane region" description="Helical" evidence="1">
+<location>
+<begin position="248"/>
+<end position="268"/>
+</location>
+</feature>
+<feature type="short sequence motif" description="NPA 1">
+<location>
+<begin position="85"/>
+<end position="87"/>
+</location>
+</feature>
+<feature type="short sequence motif" description="NPA 2">
+<location>
+<begin position="215"/>
+<end position="217"/>
+</location>
+</feature>
+<feature type="glycosylation site" description="N-linked (GlcNAc...) asparagine" evidence="2">
+<location>
+<position position="136"/>
+</location>
+</feature>
+<evidence key="1" type="ECO:0000255"/>
+<evidence key="2" type="ECO:0000255">
+<source>
+<dbReference type="PROSITE-ProRule" id="PRU00498"/>
+</source>
+</evidence>
+<evidence key="3" type="ECO:0000269">
+<source>
+<dbReference type="PubMed" id="23761966"/>
+</source>
+</evidence>
+<evidence key="4" type="ECO:0000303">
+<source>
+<dbReference type="PubMed" id="23761966"/>
+</source>
+</evidence>
+<evidence key="5" type="ECO:0000305"/>
+<evidence key="6" type="ECO:0000305">
+<source>
+<dbReference type="PubMed" id="23761966"/>
+</source>
+</evidence>
+<sequence length="315" mass="34796" checksum="8E5C81026309A6CB" modified="2011-12-14" version="1">
+MAHNEKDPSSVEPIKRKRFSNEYVRLFLAEFLGTFILIVFGCGTVAVTILSKHQSQDFFS
+VNVGFFLGIAFGVFIAGGVSGGHLNPAVTLAFAVINKCKWRKVPVYMAAQYLGAWVGSAI
+LTAIYYDALHNHDQGNRTIETAGIYASYPQEFLTWQGGLADQIFATLLLMMGILALTDER
+NMVGPTGRAYVPLLVGLLVLAIGLAFGFNCGYPINPARDFGPRLFTAMAGWGTQVFSEPR
+GTYNWWWIPIIGPHVGAIIGALAYNFFIGYHWPKERDDVQLQSPSSPIVIVKNDAYQPLR
+PSRSVYSEELRITTS
+</sequence>
+</entry>
+<copyright>
+Copyrighted by the UniProt Consortium, see https://www.uniprot.org/terms
+Distributed under the Creative Commons Attribution (CC BY 4.0) License
+</copyright>
+</uniprot>

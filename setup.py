@@ -6,7 +6,7 @@ s.setup(
     name='PAM',
     version='1.1',
     packages=s.find_packages(),
-    package_dir={'': 'Source'},
+    package_dir={'': 'PAM'},
     url='https://sequence-analyzer.readthedocs.io/en/latest/',
     license='',
     author='Colton Garelli',
