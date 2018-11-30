@@ -8,6 +8,12 @@ Some links to relevant Python resources
    :maxdepth: 2
 
 
+=====================================
+Object-Oriented Programming in Python
+=====================================
+
+https://python-textbok.readthedocs.io/en/1.0/index.html
+
 ==============
 Built-in types
 ==============

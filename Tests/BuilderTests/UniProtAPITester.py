@@ -1,7 +1,8 @@
 import unittest
 import sys
 sys.path.append('/Users/coltongarelli/SequenceAnalyzer/PAM')
-from Builder import DatabaseBuilder
+from Builders.DatabaseBuilders import DatabaseBuilder
+
 
 # test sending request, checking request,
 # receiving request, converting to object

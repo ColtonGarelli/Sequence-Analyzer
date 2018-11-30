@@ -1,10 +1,9 @@
 import unittest
 
-import OutputFunctions
-import SecondaryBiasFinder
-from SecondaryBiasFinder import SecondaryBias
-from Director import Director, AnalysisBuilder
-import Representation
+from InputOutput import OutputFunctions
+from Archived import SecondaryBiasFinder
+from Archived.SecondaryBiasFinder import SecondaryBias
+from Director import Director
 from Bio import SeqRecord
 
 

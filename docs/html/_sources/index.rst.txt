@@ -10,7 +10,7 @@ Welcome to the Protein Analysis Manager documentation!
 
 
 .. toctree::
-   :maxdepth: 2
+   :maxdepth: 1
    :Caption: Contents :
 
    intro

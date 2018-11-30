@@ -1,7 +1,7 @@
 import unittest
 import json
 import requests as r
-from Builder import FELLSAnalysisBuilder
+from Builders.AnalysisBuilders import FELLSAnalysisBuilder
 from Bio import Seq
 from Bio.SeqRecord import SeqRecord
 
@@ -102,7 +102,7 @@ class FELLSAPITester(unittest.TestCase):
         """
         base_url = "http://protein.bio.unipd.it/fellsws/status/"
         # TODO: Make a precondition function that checks the status of the job and returns the response content
-        check_status = self.fells_builder.check_request_submission(self.test_jobid)
+        check_status = self.fells_builder.check_status(self.test_jobid)
         # ensures that existing request is accessed correctly (and still exists)
         self.assertTrue(check_status.ok)
         json_data = check_status.content.decode('utf-8')
@@ -123,7 +123,7 @@ class FELLSAPITester(unittest.TestCase):
         Returns:
 
         """
-        check_status = self.fells_builder.check_request_submission(self.test_jobid)
+        check_status = self.fells_builder.check_status(self.test_jobid)
         json_data = check_status.content.decode('utf-8')
         json_parsed = json.loads(json_data)
         if ['names'][0][0] in json_parsed:

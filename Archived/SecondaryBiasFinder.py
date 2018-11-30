@@ -1,10 +1,6 @@
-from typing import List
+from InputOutput import OutputFunctions
 
-import OutputFunctions
-import Representation
-
-import abc
-from OutputFunctions import sec_bias_file_o
+from InputOutput.OutputFunctions import sec_bias_file_o
 import os
 from Bio.SeqRecord import SeqRecord
 
