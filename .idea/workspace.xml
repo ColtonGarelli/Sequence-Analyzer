@@ -1,16 +1,7 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
   <component name="ChangeListManager">
-    <list default="true" id="d7bbb029-bcaf-48ad-b10b-48c7b7feb115" name="Default" comment="commit all">
-      <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Builder.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Builder.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Director.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Director.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/File_IO.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/File_IO.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/OutputFunctions.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/OutputFunctions.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/Representation.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/Representation.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Source/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/Source/main.py" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/Tests/BuilderTests/SecondaryBiasTester.py" beforeDir="false" afterPath="$PROJECT_DIR$/Tests/BuilderTests/SecondaryBiasTester.py" afterDir="false" />
-    </list>
+    <list default="true" id="d7bbb029-bcaf-48ad-b10b-48c7b7feb115" name="Default" comment="commit all" />
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,11 +39,11 @@
     <session id="903025967">
       <usages-collector id="statistics.lifecycle.project">
         <counts>
-          <entry key="project.closed" value="3" />
-          <entry key="project.open.time.0" value="1" />
+          <entry key="project.closed" value="4" />
+          <entry key="project.open.time.0" value="2" />
           <entry key="project.open.time.4" value="2" />
           <entry key="project.open.time.6" value="1" />
-          <entry key="project.opened" value="4" />
+          <entry key="project.opened" value="5" />
         </counts>
       </usages-collector>
       <usages-collector id="statistics.file.extensions.edit">
@@ -108,52 +99,7 @@
     <favorites_list name="Protein-Analysis-Manager" />
   </component>
   <component name="FileEditorManager">
-    <splitter split-orientation="horizontal" split-proportion="0.44612476">
-      <split-first>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="false">
-            <entry file="file://$PROJECT_DIR$/Source/File_IO.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="990">
-                  <caret line="74" column="39" selection-start-line="74" selection-start-column="39" selection-end-line="74" selection-end-column="39" />
-                  <folding>
-                    <marker date="1542741108628" expanded="true" signature="1321:1326" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/Source/Builder.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="119">
-                  <caret line="345" selection-start-line="345" selection-end-line="345" />
-                  <folding>
-                    <marker date="1543277383068" expanded="true" signature="11604:12186" ph="..." />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-first>
-      <split-second>
-        <leaf SIDE_TABS_SIZE_LIMIT_KEY="300">
-          <file pinned="false" current-in-tab="true">
-            <entry file="file://$PROJECT_DIR$/Source/Director.py">
-              <provider selected="true" editor-type-id="text-editor">
-                <state relative-caret-position="290">
-                  <caret line="203" column="18" lean-forward="true" selection-start-line="203" selection-start-column="18" selection-end-line="203" selection-end-column="18" />
-                  <folding>
-                    <element signature="e#0#21#0" expanded="true" />
-                  </folding>
-                </state>
-              </provider>
-            </entry>
-          </file>
-        </leaf>
-      </split-second>
-    </splitter>
+    <leaf SIDE_TABS_SIZE_LIMIT_KEY="300" />
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -303,37 +249,6 @@
       <foldersAlwaysOnTop value="true" />
     </navigator>
     <panes>
-      <pane id="ProjectPane">
-        <subPane>
-          <expand>
-            <path>
-              <item name="Protein-Analysis-Manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PAM" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Protein-Analysis-Manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PAM" type="462c0819:PsiDirectoryNode" />
-              <item name="Source" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Protein-Analysis-Manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PAM" type="462c0819:PsiDirectoryNode" />
-              <item name="Tests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Protein-Analysis-Manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="PAM" type="462c0819:PsiDirectoryNode" />
-              <item name="Tests" type="462c0819:PsiDirectoryNode" />
-              <item name="BuilderTests" type="462c0819:PsiDirectoryNode" />
-            </path>
-            <path>
-              <item name="Protein-Analysis-Manager" type="b2602c69:ProjectViewProjectNode" />
-              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
-            </path>
-          </expand>
-          <select />
-        </subPane>
-      </pane>
       <pane id="Scope">
         <subPane subId="Project Files">
           <expand>
@@ -355,6 +270,37 @@
               <item name="Root" type="cbb8eebc:String" user="Root" />
               <item name="PAM" type="cbb8eebc:String" user="PAM" />
               <item name="Tests" type="cbb8eebc:String" user="Tests" />
+            </path>
+          </expand>
+          <select />
+        </subPane>
+      </pane>
+      <pane id="ProjectPane">
+        <subPane>
+          <expand>
+            <path>
+              <item name="Protein-Analysis-Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PAM" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Protein-Analysis-Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PAM" type="462c0819:PsiDirectoryNode" />
+              <item name="docs" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Protein-Analysis-Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PAM" type="462c0819:PsiDirectoryNode" />
+              <item name="Tests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Protein-Analysis-Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="PAM" type="462c0819:PsiDirectoryNode" />
+              <item name="Tests" type="462c0819:PsiDirectoryNode" />
+              <item name="BuilderTests" type="462c0819:PsiDirectoryNode" />
+            </path>
+            <path>
+              <item name="Protein-Analysis-Manager" type="b2602c69:ProjectViewProjectNode" />
+              <item name="External Libraries" type="cb654da1:ExternalLibrariesNode" />
             </path>
           </expand>
           <select />
@@ -716,7 +662,7 @@
   <component name="ToolWindowManager">
     <frame x="-1440" y="-169" width="1440" height="900" extended-state="0" />
     <layout>
-      <window_info content_ui="combo" id="Project" order="0" sideWeight="0.4993804" visible="true" weight="0.032904148" />
+      <window_info active="true" content_ui="combo" id="Project" order="0" sideWeight="0.4993804" visible="true" weight="0.21888413" />
       <window_info id="Structure" order="1" side_tool="true" weight="0.24907522" />
       <window_info id="Favorites" order="2" sideWeight="0.5006196" side_tool="true" weight="0.3297568" />
       <window_info anchor="bottom" id="Message" order="0" />
@@ -727,7 +673,7 @@
       <window_info anchor="bottom" id="Event Log" order="5" sideWeight="0.50500715" side_tool="true" weight="0.26641884" />
       <window_info anchor="bottom" id="Version Control" order="6" weight="0.32820514" />
       <window_info anchor="bottom" id="Python Console" order="7" sideWeight="0.49499285" weight="0.26270136" />
-      <window_info active="true" anchor="bottom" id="Terminal" order="8" sideWeight="0.4899857" visible="true" weight="0.14498141" />
+      <window_info anchor="bottom" id="Terminal" order="8" sideWeight="0.4899857" visible="true" weight="0.14498141" />
       <window_info anchor="bottom" id="Inspection Results" order="9" weight="0.32889965" />
       <window_info anchor="bottom" id="Docker" order="10" show_stripe_button="false" />
       <window_info anchor="bottom" id="Database Changes" order="11" show_stripe_button="false" />
@@ -891,32 +837,25 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/sphinx/OutputFunctions.rst">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="7" lean-forward="true" selection-start-line="7" selection-end-line="7" />
-        </state>
-      </provider>
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/sphinx/OutputFunctions.rst" />
     <entry file="file://$PROJECT_DIR$/sphinx/Python Resources.rst">
+      <provider selected="true" editor-type-id="restructured-text-editor" />
       <provider editor-type-id="text-editor">
         <state relative-caret-position="499">
           <caret line="78" column="18" selection-start-line="78" selection-start-column="18" selection-end-line="78" selection-end-column="18" />
         </state>
       </provider>
-      <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
     <entry file="file://$PROJECT_DIR$/README.md">
-      <provider editor-type-id="text-editor">
-        <state relative-caret-position="165">
-          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
-        </state>
-      </provider>
       <provider selected="true" editor-type-id="split-provider[text-editor;markdown-preview-editor]">
         <state split_layout="SPLIT">
           <first_editor />
           <second_editor />
+        </state>
+      </provider>
+      <provider editor-type-id="text-editor">
+        <state relative-caret-position="165">
+          <caret line="11" lean-forward="true" selection-start-line="11" selection-end-line="11" />
         </state>
       </provider>
     </entry>
@@ -938,13 +877,7 @@
       </provider>
     </entry>
     <entry file="file://$PROJECT_DIR$/sphinx/build/html/main.html" />
-    <entry file="file://$PROJECT_DIR$/Source/DataGraphing.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="90">
-          <caret line="6" lean-forward="true" selection-start-line="6" selection-end-line="6" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/DataGraphing.py" />
     <entry file="file://$PROJECT_DIR$/sphinx/conf.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="227">
@@ -959,15 +892,11 @@
     <entry file="file://$PROJECT_DIR$/sphinx/_build/html/Director.html" />
     <entry file="file://$PROJECT_DIR$/sphinx/_build/html/searchindex.js" />
     <entry file="file://$PROJECT_DIR$/sphinx/_build/html/search.html" />
-    <entry file="file://$PROJECT_DIR$/sphinx/Builder.rst">
-      <provider selected="true" editor-type-id="restructured-text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/sphinx/Builder.rst" />
     <entry file="file://$PROJECT_DIR$/sphinx/Documentation Resources.rst">
       <provider selected="true" editor-type-id="restructured-text-editor" />
     </entry>
-    <entry file="file://$PROJECT_DIR$/Bio_SQL_DB.py">
-      <provider selected="true" editor-type-id="text-editor" />
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Bio_SQL_DB.py" />
     <entry file="file://$USER_HOME$/anaconda3/envs/PAM/lib/python3.6/site-packages/Bio/SeqRecord.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="-20">
@@ -1021,13 +950,7 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/SecondaryBiasFinder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="-970">
-          <caret line="107" column="37" selection-start-line="107" selection-start-column="37" selection-end-line="107" selection-end-column="37" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/SecondaryBiasFinder.py" />
     <entry file="file://$APPLICATION_HOME_DIR$/helpers/pydev/pydevd.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="677">
@@ -1065,26 +988,8 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Representation.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="266">
-          <caret line="59" column="39" lean-forward="true" selection-start-line="59" selection-start-column="39" selection-end-line="59" selection-end-column="39" />
-          <folding>
-            <element signature="e#968#1059#0" />
-            <element signature="e#1374#1766#0" />
-            <marker date="1542991559951" expanded="true" signature="1803:1939" ph="..." />
-            <marker date="1542991559951" expanded="true" signature="1885:1939" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/main.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="452">
-          <caret line="31" column="43" selection-start-line="31" selection-start-column="43" selection-end-line="31" selection-end-column="43" />
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/Representation.py" />
+    <entry file="file://$PROJECT_DIR$/Source/main.py" />
     <entry file="file://$USER_HOME$/Library/Caches/PyCharm2018.2/python_stubs/522289597/builtins.py">
       <provider selected="true" editor-type-id="text-editor">
         <state relative-caret-position="260">
@@ -1092,42 +997,9 @@
         </state>
       </provider>
     </entry>
-    <entry file="file://$PROJECT_DIR$/Source/OutputFunctions.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="105">
-          <caret line="12" column="21" lean-forward="true" selection-start-line="12" selection-start-column="21" selection-end-line="12" selection-end-column="21" />
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/File_IO.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="990">
-          <caret line="74" column="39" selection-start-line="74" selection-start-column="39" selection-end-line="74" selection-end-column="39" />
-          <folding>
-            <marker date="1542741108628" expanded="true" signature="1321:1326" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Builder.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="119">
-          <caret line="345" selection-start-line="345" selection-end-line="345" />
-          <folding>
-            <marker date="1543277383068" expanded="true" signature="11604:12186" ph="..." />
-          </folding>
-        </state>
-      </provider>
-    </entry>
-    <entry file="file://$PROJECT_DIR$/Source/Director.py">
-      <provider selected="true" editor-type-id="text-editor">
-        <state relative-caret-position="290">
-          <caret line="203" column="18" lean-forward="true" selection-start-line="203" selection-start-column="18" selection-end-line="203" selection-end-column="18" />
-          <folding>
-            <element signature="e#0#21#0" expanded="true" />
-          </folding>
-        </state>
-      </provider>
-    </entry>
+    <entry file="file://$PROJECT_DIR$/Source/OutputFunctions.py" />
+    <entry file="file://$PROJECT_DIR$/Source/File_IO.py" />
+    <entry file="file://$PROJECT_DIR$/Source/Builder.py" />
+    <entry file="file://$PROJECT_DIR$/Source/Director.py" />
   </component>
 </project>
