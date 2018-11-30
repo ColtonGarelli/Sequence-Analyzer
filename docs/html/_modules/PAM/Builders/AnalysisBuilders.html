@@ -1,0 +1,599 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PAM.Builders.AnalysisBuilders &mdash; Protein Analysis Manager (PAM) 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Protein Analysis Manager (PAM)
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents :</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Python Resources.html">Python Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Documentation Resources.html">Documentation Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../API Resources.html">UniProt and Prediction Resources</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Protein Analysis Manager (PAM)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>PAM.Builders.AnalysisBuilders</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for PAM.Builders.AnalysisBuilders</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">json</span>
+<span class="kn">import</span> <span class="nn">time</span>
+<span class="kn">import</span> <span class="nn">requests</span> <span class="k">as</span> <span class="nn">r</span>
+<span class="kn">from</span> <span class="nn">Bio</span> <span class="k">import</span> <span class="n">SeqRecord</span><span class="p">,</span> <span class="n">Seq</span><span class="p">,</span> <span class="n">SeqIO</span>
+
+
+<div class="viewcode-block" id="AnalysisBuilder"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.AnalysisBuilder">[docs]</a><span class="k">class</span> <span class="nc">AnalysisBuilder</span><span class="p">:</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="sd">        :param: self.sec_bias_list: a list of Sequence objects instantiated from file</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">AnalysisBuilder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+
+<div class="viewcode-block" id="AnalysisBuilder.send_request"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.AnalysisBuilder.send_request">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">send_request</span><span class="p">(</span><span class="n">post_url</span><span class="p">,</span> <span class="n">headers</span><span class="p">,</span> <span class="n">json_body</span><span class="p">):</span>
+        <span class="n">response</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">post</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="n">post_url</span><span class="p">,</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json_body</span><span class="p">)</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">())</span>
+        <span class="n">job_id</span> <span class="o">=</span> <span class="n">json_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;jobid&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">job_id</span></div>
+
+<div class="viewcode-block" id="AnalysisBuilder.get_jobid"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.AnalysisBuilder.get_jobid">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_jobid</span><span class="p">(</span><span class="n">response_str</span><span class="p">):</span>
+        <span class="n">json_content</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response_str</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">json_content</span><span class="p">[</span><span class="s1">&#39;jobid&#39;</span><span class="p">]</span></div>
+
+<div class="viewcode-block" id="AnalysisBuilder.get_data_as_json"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.AnalysisBuilder.get_data_as_json">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">get_data_as_json</span><span class="p">(</span><span class="n">response_str</span><span class="p">):</span>
+        <span class="k">return</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">response_str</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">))</span></div></div>
+
+
+<span class="c1"># ***MAX # of sequences = 15000</span>
+<div class="viewcode-block" id="FELLSAnalysisBuilder"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.FELLSAnalysisBuilder">[docs]</a><span class="k">class</span> <span class="nc">FELLSAnalysisBuilder</span><span class="p">(</span><span class="n">AnalysisBuilder</span><span class="p">):</span>
+    <span class="n">_base_url</span> <span class="o">=</span> <span class="s2">&quot;http://protein.bio.unipd.it/fellsws&quot;</span>
+    <span class="n">_post_url</span> <span class="o">=</span> <span class="s2">&quot;http://protein.bio.unipd.it/fellsws/submit&quot;</span>
+    <span class="n">_status_url</span> <span class="o">=</span> <span class="s2">&quot;http://protein.bio.unipd.it/fellsws/status/&quot;</span>
+    <span class="n">_get_url</span> <span class="o">=</span> <span class="s2">&quot;http://protein.bio.unipd.it/fellsws/result/&quot;</span>
+    <span class="n">_headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json; charset=utf-8&#39;</span><span class="p">}</span>
+    <span class="n">_body_beginning</span> <span class="o">=</span> <span class="s1">&#39;</span><span class="se">\n</span><span class="s1">Content-Disposition: application/json; name=&quot;sequence&quot;&#39;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">FELLSAnalysisBuilder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+
+<div class="viewcode-block" id="FELLSAnalysisBuilder.prepare_request"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.FELLSAnalysisBuilder.prepare_request">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_request</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq_list</span><span class="p">):</span>
+        <span class="n">working_list</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">sequence_list_to_fasta</span><span class="p">(</span><span class="n">seq_list</span><span class="p">)</span>
+        <span class="n">formatted</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">format_body_for_processing</span><span class="p">(</span><span class="n">working_list</span><span class="p">)</span>
+        <span class="n">json_body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">({</span><span class="s2">&quot;sequence&quot;</span><span class="p">:</span> <span class="n">formatted</span><span class="p">})</span><span class="o">.</span><span class="n">encode</span><span class="p">()</span>
+        <span class="n">prepped_request</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_submission_url</span><span class="p">(),</span>
+                                    <span class="n">headers</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_headers</span><span class="p">(),</span> <span class="n">data</span><span class="o">=</span><span class="n">json_body</span><span class="p">)</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">prepped_request</span></div>
+
+<div class="viewcode-block" id="FELLSAnalysisBuilder.sequence_list_to_fasta"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.FELLSAnalysisBuilder.sequence_list_to_fasta">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">sequence_list_to_fasta</span><span class="p">(</span><span class="n">seq_list</span><span class="p">:</span> <span class="nb">list</span><span class="p">):</span>
+        <span class="n">working_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="k">if</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seq_list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="n">SeqRecord</span><span class="o">.</span><span class="n">SeqRecord</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq_list</span><span class="p">)):</span>
+                    <span class="k">if</span> <span class="s1">&#39;|&#39;</span> <span class="ow">in</span> <span class="n">seq_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="p">:</span>
+                        <span class="n">minimal_id</span> <span class="o">=</span> <span class="n">seq_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span><span class="o">.</span><span class="n">split</span><span class="p">(</span><span class="s1">&#39;|&#39;</span><span class="p">)</span>
+                        <span class="n">temp_id_persistence</span> <span class="o">=</span> <span class="n">seq_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span>
+                        <span class="n">seq_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">minimal_id</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span>
+                        <span class="n">seq_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">description</span> <span class="o">=</span> <span class="s2">&quot;&quot;</span>
+                        <span class="n">working_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;fasta&quot;</span><span class="p">))</span>
+                        <span class="n">seq_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">id</span> <span class="o">=</span> <span class="n">temp_id_persistence</span>
+                    <span class="k">else</span><span class="p">:</span>
+                        <span class="n">working_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">seq_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;fasta&quot;</span><span class="p">))</span>
+            <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">type_e</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq_list</span><span class="p">)):</span>
+                    <span class="n">working_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">seq</span> <span class="o">=</span> <span class="n">Seq</span><span class="o">.</span><span class="n">Seq</span><span class="p">(</span><span class="n">data</span><span class="o">=</span><span class="n">working_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">seq</span><span class="p">,</span> <span class="n">alphabet</span><span class="o">=</span><span class="n">Seq</span><span class="o">.</span><span class="n">Alphabet</span><span class="o">.</span><span class="n">generic_protein</span><span class="p">())</span>
+                    <span class="n">working_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">working_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;fasta&quot;</span><span class="p">)</span>
+        <span class="k">elif</span> <span class="nb">isinstance</span><span class="p">(</span><span class="n">seq_list</span><span class="p">[</span><span class="mi">0</span><span class="p">],</span> <span class="nb">str</span><span class="p">):</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="k">for</span> <span class="n">record</span> <span class="ow">in</span> <span class="n">seq_list</span><span class="p">:</span>
+                    <span class="n">working_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">SeqIO</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">record</span><span class="p">,</span> <span class="s2">&quot;fasta&quot;</span><span class="p">,</span> <span class="n">Seq</span><span class="o">.</span><span class="n">Alphabet</span><span class="o">.</span><span class="n">generic_protein</span><span class="p">))</span>
+            <span class="k">except</span><span class="p">:</span>
+                <span class="k">pass</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">seq_list</span><span class="p">)):</span>
+                <span class="n">temp_seqrecord</span> <span class="o">=</span> <span class="n">SeqRecord</span><span class="o">.</span><span class="n">SeqRecord</span><span class="p">(</span><span class="n">description</span><span class="o">=</span><span class="s2">&quot;&quot;</span><span class="p">,</span> <span class="nb">id</span><span class="o">=</span><span class="s2">&quot;ID_</span><span class="si">{}</span><span class="s2">&quot;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">i</span><span class="p">),</span> <span class="n">seq</span><span class="o">=</span><span class="n">Seq</span><span class="o">.</span><span class="n">Seq</span><span class="p">(</span><span class="n">seq_list</span><span class="p">[</span><span class="n">i</span><span class="p">]))</span>
+                <span class="n">working_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">temp_seqrecord</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="s2">&quot;fasta&quot;</span><span class="p">))</span>
+        <span class="k">return</span> <span class="n">working_list</span></div>
+
+<div class="viewcode-block" id="FELLSAnalysisBuilder.format_body_for_processing"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.FELLSAnalysisBuilder.format_body_for_processing">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">format_body_for_processing</span><span class="p">(</span><span class="n">fasta_str_list</span><span class="p">):</span>
+        <span class="n">formatted</span> <span class="o">=</span> <span class="n">fasta_str_list</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">fasta_str_list</span><span class="p">[</span><span class="mi">1</span><span class="p">:]:</span>
+            <span class="k">if</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&gt;&quot;</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
+                <span class="k">if</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&gt;&quot;</span> <span class="ow">in</span> <span class="n">i</span><span class="p">:</span>
+                    <span class="n">formatted</span> <span class="o">=</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">formatted</span> <span class="o">+</span> <span class="n">i</span>
+                <span class="k">else</span><span class="p">:</span>
+                    <span class="n">formatted</span> <span class="o">=</span> <span class="n">formatted</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n\n</span><span class="s2">&quot;</span> <span class="o">+</span> <span class="n">i</span>
+            <span class="k">else</span><span class="p">:</span>
+                <span class="n">formatted</span> <span class="o">=</span> <span class="n">formatted</span> <span class="o">+</span> <span class="n">i</span>
+        <span class="k">return</span> <span class="n">formatted</span> <span class="o">+</span> <span class="s2">&quot;</span><span class="se">\n</span><span class="s2">&quot;</span></div>
+
+<div class="viewcode-block" id="FELLSAnalysisBuilder.check_request_submission"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.FELLSAnalysisBuilder.check_request_submission">[docs]</a>    <span class="k">def</span> <span class="nf">check_request_submission</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">jobid</span><span class="p">):</span>
+        <span class="n">check_status</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_status_url</span><span class="o">+</span><span class="n">jobid</span><span class="p">)</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">check_status</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">json_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;error&#39;</span><span class="p">:</span>
+            <span class="k">while</span> <span class="n">json_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;done&#39;</span><span class="p">:</span>
+                <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">2.00</span><span class="p">)</span>
+                <span class="n">check_status</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_status_url</span> <span class="o">+</span> <span class="n">jobid</span><span class="p">)</span>
+                <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">check_status</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">check_status</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="FELLSAnalysisBuilder.check_processing_status"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.FELLSAnalysisBuilder.check_processing_status">[docs]</a>    <span class="k">def</span> <span class="nf">check_processing_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ID</span><span class="p">):</span>
+        <span class="n">processing</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_url</span><span class="o">+</span><span class="n">ID</span><span class="p">)</span>
+        <span class="n">processing</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">processing</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">while</span> <span class="n">processing</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;running&#39;</span><span class="p">:</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">2.00</span><span class="p">)</span>
+            <span class="n">processing</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_url</span> <span class="o">+</span> <span class="n">ID</span><span class="p">)</span>
+            <span class="n">processing</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">processing</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">if</span> <span class="n">processing</span><span class="p">[</span><span class="s1">&#39;status&#39;</span><span class="p">]</span> <span class="o">==</span> <span class="s1">&#39;done&#39;</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">True</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">False</span></div>
+
+<div class="viewcode-block" id="FELLSAnalysisBuilder.retrieve_response_data"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.FELLSAnalysisBuilder.retrieve_response_data">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve_response_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">id_list</span><span class="p">):</span>
+        <span class="n">return_data</span> <span class="o">=</span> <span class="p">[]</span>
+        <span class="n">temp_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">id_list</span><span class="p">:</span>
+            <span class="n">temp_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_url</span> <span class="o">+</span> <span class="n">i</span><span class="p">))</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">temp_list</span><span class="p">:</span>
+            <span class="n">return_data</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">return_data</span></div>
+
+<div class="viewcode-block" id="FELLSAnalysisBuilder.update_annotations"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.FELLSAnalysisBuilder.update_annotations">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">update_annotations</span><span class="p">(</span><span class="n">master_list</span><span class="p">,</span> <span class="n">data_list</span><span class="p">):</span>
+        <span class="c1"># TODO: a more concise method for this operation</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">master_list</span><span class="p">)):</span>
+            <span class="n">all_list</span> <span class="o">=</span> <span class="n">data_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;all&#39;</span><span class="p">]</span>
+            <span class="n">comp</span> <span class="o">=</span> <span class="n">all_list</span><span class="p">[</span><span class="s2">&quot;composition&quot;</span><span class="p">]</span>
+            <span class="n">entropy</span> <span class="o">=</span> <span class="n">all_list</span><span class="p">[</span><span class="s1">&#39;entropy&#39;</span><span class="p">]</span>
+            <span class="n">hydrophobic</span> <span class="o">=</span> <span class="n">all_list</span><span class="p">[</span><span class="s1">&#39;hyd&#39;</span><span class="p">]</span>
+            <span class="n">pos_charge</span> <span class="o">=</span> <span class="n">all_list</span><span class="p">[</span><span class="s1">&#39;pos&#39;</span><span class="p">]</span>
+            <span class="n">neg_charge</span> <span class="o">=</span> <span class="n">all_list</span><span class="p">[</span><span class="s1">&#39;neg&#39;</span><span class="p">]</span>
+            <span class="n">hydro_cluster</span> <span class="o">=</span> <span class="n">data_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;hca&#39;</span><span class="p">]</span>
+            <span class="n">percent_dis</span> <span class="o">=</span> <span class="n">data_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;p_dis&#39;</span><span class="p">]</span>
+            <span class="n">percent_helix</span> <span class="o">=</span> <span class="n">data_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;p_h&#39;</span><span class="p">]</span>
+            <span class="n">percent_coil</span> <span class="o">=</span> <span class="n">data_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;p_c&#39;</span><span class="p">]</span>
+            <span class="n">order_disorder</span> <span class="o">=</span> <span class="n">data_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;state_dis&#39;</span><span class="p">]</span>
+            <span class="n">aggregation</span> <span class="o">=</span> <span class="n">data_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;pasta_energy&#39;</span><span class="p">]</span>
+            <span class="c1"># comp is a list of dictionaries for each domain</span>
+            <span class="c1"># all the above are lists of per residue</span>
+
+            <span class="c1"># complexity</span>
+            <span class="c1"># for i in master_list:</span>
+            <span class="c1">#     i.letter_annotations.update({&#39;entropy&#39;: entropy})</span>
+
+            <span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;entropy&#39;</span><span class="p">:</span> <span class="n">entropy</span><span class="p">})</span>
+            <span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;pos_charge&#39;</span><span class="p">:</span> <span class="n">pos_charge</span><span class="p">})</span>
+            <span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;neg_charge&#39;</span><span class="p">:</span> <span class="n">neg_charge</span><span class="p">})</span>
+            <span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;hydro_cluster&#39;</span><span class="p">:</span> <span class="n">hydro_cluster</span><span class="p">})</span>
+            <span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;percent_dis&#39;</span><span class="p">:</span> <span class="n">percent_dis</span><span class="p">})</span>
+            <span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;percent_helix&#39;</span><span class="p">:</span> <span class="n">percent_helix</span><span class="p">})</span>
+            <span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;percent_coil&#39;</span><span class="p">:</span> <span class="n">percent_coil</span><span class="p">})</span>
+            <span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;hydro&#39;</span><span class="p">:</span> <span class="n">hydrophobic</span><span class="p">})</span>
+            <span class="c1"># comp has to do with at least charge</span>
+            <span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;composition&#39;</span><span class="p">:</span> <span class="n">comp</span><span class="p">})</span>
+            <span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;aggregation&#39;</span><span class="p">:</span> <span class="n">aggregation</span><span class="p">})</span>
+            <span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;order_disorder&#39;</span><span class="p">:</span> <span class="n">order_disorder</span><span class="p">})</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">pfam</span> <span class="o">=</span> <span class="n">data_list</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="s1">&#39;pfam&#39;</span><span class="p">]</span>
+                <span class="n">master_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="s1">&#39;pfam&#39;</span><span class="p">:</span> <span class="n">pfam</span><span class="p">})</span>
+            <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+                <span class="k">pass</span>
+        <span class="k">return</span> <span class="n">master_list</span></div>
+
+<div class="viewcode-block" id="FELLSAnalysisBuilder.prep_for_file_output"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.FELLSAnalysisBuilder.prep_for_file_output">[docs]</a>    <span class="k">def</span> <span class="nf">prep_for_file_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq_record_list</span><span class="p">):</span>
+
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="FELLSAnalysisBuilder.prep_for_viewing"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.FELLSAnalysisBuilder.prep_for_viewing">[docs]</a>    <span class="k">def</span> <span class="nf">prep_for_viewing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="FELLSAnalysisBuilder.get_submission_url"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.FELLSAnalysisBuilder.get_submission_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_submission_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post_url</span></div>
+
+<div class="viewcode-block" id="FELLSAnalysisBuilder.get_processed_data_url"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.FELLSAnalysisBuilder.get_processed_data_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_processed_data_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_get_url</span></div>
+
+<div class="viewcode-block" id="FELLSAnalysisBuilder.get_status_url"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.FELLSAnalysisBuilder.get_status_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_status_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_status_url</span></div>
+
+<div class="viewcode-block" id="FELLSAnalysisBuilder.get_headers"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.FELLSAnalysisBuilder.get_headers">[docs]</a>    <span class="k">def</span> <span class="nf">get_headers</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_headers</span></div></div>
+
+
+<div class="viewcode-block" id="SODAAnalysisBuilder"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.SODAAnalysisBuilder">[docs]</a><span class="k">class</span> <span class="nc">SODAAnalysisBuilder</span><span class="p">(</span><span class="n">AnalysisBuilder</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_post_url</span> <span class="o">=</span> <span class="s2">&quot;http://protein.bio.unipd.it/sodaws/submitsoda&quot;</span>
+    <span class="n">_status_url</span> <span class="o">=</span> <span class="s2">&quot;http://protein.bio.unipd.it/sodaws/status/&quot;</span>
+    <span class="n">_get_url</span> <span class="o">=</span> <span class="s2">&quot;http://protein.bio.unipd.it/sodaws/result/&quot;</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">job_id</span><span class="p">:</span> <span class="nb">str</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">json_obj</span> <span class="o">=</span> <span class="kc">None</span>  <span class="c1"># a json dictionary</span>
+
+<div class="viewcode-block" id="SODAAnalysisBuilder.prepare_request_object"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.SODAAnalysisBuilder.prepare_request_object">[docs]</a>    <span class="k">def</span> <span class="nf">prepare_request_object</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seq</span><span class="p">):</span>
+        <span class="n">headers</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;Content-Type&#39;</span><span class="p">:</span> <span class="s1">&#39;application/json; charset=utf-8&#39;</span><span class="p">}</span>
+        <span class="n">body</span> <span class="o">=</span> <span class="p">{</span><span class="s2">&quot;sequence&quot;</span><span class="p">:</span> <span class="n">seq</span><span class="p">}</span>
+        <span class="n">json_body</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">dumps</span><span class="p">(</span><span class="n">body</span><span class="p">)</span>
+        <span class="n">prepped_request</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">Request</span><span class="p">(</span><span class="n">method</span><span class="o">=</span><span class="s1">&#39;POST&#39;</span><span class="p">,</span> <span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">get_post_url</span><span class="p">(),</span> <span class="n">headers</span><span class="o">=</span><span class="n">headers</span><span class="p">,</span> <span class="n">data</span><span class="o">=</span><span class="n">json_body</span><span class="p">)</span><span class="o">.</span><span class="n">prepare</span><span class="p">()</span>
+        <span class="k">return</span> <span class="n">prepped_request</span></div>
+
+<div class="viewcode-block" id="SODAAnalysisBuilder.check_request_status"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.SODAAnalysisBuilder.check_request_status">[docs]</a>    <span class="k">def</span> <span class="nf">check_request_status</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ID</span><span class="p">):</span>
+        <span class="n">check_status</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_status_url</span><span class="o">+</span><span class="n">ID</span><span class="p">)</span>
+        <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">check_status</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">while</span> <span class="n">json_obj</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="s1">&#39;status&#39;</span><span class="p">)</span> <span class="o">!=</span> <span class="s1">&#39;done&#39;</span><span class="p">:</span>
+            <span class="n">time</span><span class="o">.</span><span class="n">sleep</span><span class="p">(</span><span class="mf">3.00</span><span class="p">)</span>
+            <span class="n">check_status</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">url</span><span class="o">=</span><span class="bp">self</span><span class="o">.</span><span class="n">_status_url</span> <span class="o">+</span> <span class="n">ID</span><span class="p">)</span>
+            <span class="n">json_obj</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">check_status</span><span class="o">.</span><span class="n">content</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">json_obj</span></div>
+
+<div class="viewcode-block" id="SODAAnalysisBuilder.retrieve_response_data"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.SODAAnalysisBuilder.retrieve_response_data">[docs]</a>    <span class="k">def</span> <span class="nf">retrieve_response_data</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">ID</span><span class="p">):</span>
+        <span class="nb">filter</span> <span class="o">=</span> <span class="s2">&quot;?filter={</span><span class="se">\&quot;</span><span class="s2">parsed_soda_output</span><span class="se">\&quot;</span><span class="s2">: 1}&quot;</span>
+        <span class="n">request_data</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">_get_url</span><span class="o">+</span><span class="n">ID</span><span class="o">+</span><span class="nb">filter</span><span class="p">)</span>
+        <span class="n">request_str</span> <span class="o">=</span> <span class="n">request_data</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">request_str</span></div>
+
+<div class="viewcode-block" id="SODAAnalysisBuilder.update_annotations"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.SODAAnalysisBuilder.update_annotations">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">update_annotations</span><span class="p">(</span><span class="n">seqrecord</span><span class="p">,</span> <span class="n">json_info</span><span class="p">):</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">json_info</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_info</span><span class="p">)</span>
+            <span class="k">if</span> <span class="n">json_info</span> <span class="ow">is</span> <span class="ow">not</span> <span class="nb">dict</span><span class="p">:</span>
+                <span class="n">json_info</span> <span class="o">=</span> <span class="n">json</span><span class="o">.</span><span class="n">loads</span><span class="p">(</span><span class="n">json_info</span><span class="p">)</span>
+        <span class="k">except</span> <span class="ne">TypeError</span> <span class="k">as</span> <span class="n">e</span><span class="p">:</span>
+            <span class="k">pass</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="n">seq_data</span> <span class="o">=</span> <span class="n">json_info</span><span class="p">[</span><span class="s2">&quot;parsed_soda_output&quot;</span><span class="p">][</span><span class="s2">&quot;MySequence&quot;</span><span class="p">]</span>
+            <span class="n">seq_data</span><span class="o">.</span><span class="n">pop</span><span class="p">(</span><span class="s1">&#39;title&#39;</span><span class="p">)</span>
+            <span class="n">seqrecord</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">seq_data</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">seqrecord</span>
+
+        <span class="k">except</span> <span class="ne">KeyError</span> <span class="k">as</span> <span class="n">key_e</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s1">&#39;oopsies! error accessing data from SODA!!</span><span class="se">\n\n</span><span class="si">{}</span><span class="s1">&#39;</span><span class="o">.</span><span class="n">format</span><span class="p">(</span><span class="n">key_e</span><span class="o">.</span><span class="n">__cause__</span><span class="p">))</span></div>
+
+<div class="viewcode-block" id="SODAAnalysisBuilder.prep_for_file_output"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.SODAAnalysisBuilder.prep_for_file_output">[docs]</a>    <span class="k">def</span> <span class="nf">prep_for_file_output</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">json_format_obj</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="SODAAnalysisBuilder.prep_for_viewing"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.SODAAnalysisBuilder.prep_for_viewing">[docs]</a>    <span class="k">def</span> <span class="nf">prep_for_viewing</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+<div class="viewcode-block" id="SODAAnalysisBuilder.get_post_url"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.SODAAnalysisBuilder.get_post_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_post_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_post_url</span></div></div>
+
+
+<div class="viewcode-block" id="SequenceBiasBuilder"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.SequenceBiasBuilder">[docs]</a><span class="k">class</span> <span class="nc">SequenceBiasBuilder</span><span class="p">(</span><span class="n">AnalysisBuilder</span><span class="p">):</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">()</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">id_seq</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">prim_indices</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">one_away</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">two_away</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">three_away</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">local_seq</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">one_away_avg</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">two_away_avg</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">three_away_avg</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">local_avg</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span> <span class="o">=</span> <span class="nb">dict</span><span class="p">(</span><span class="n">A</span><span class="o">=</span><span class="mi">0</span><span class="p">,</span> <span class="n">C</span><span class="o">=</span><span class="mi">1</span><span class="p">,</span> <span class="n">D</span><span class="o">=</span><span class="mi">2</span><span class="p">,</span> <span class="n">E</span><span class="o">=</span><span class="mi">3</span><span class="p">,</span> <span class="n">F</span><span class="o">=</span><span class="mi">4</span><span class="p">,</span> <span class="n">G</span><span class="o">=</span><span class="mi">5</span><span class="p">,</span> <span class="n">H</span><span class="o">=</span><span class="mi">6</span><span class="p">,</span> <span class="n">I</span><span class="o">=</span><span class="mi">7</span><span class="p">,</span> <span class="n">K</span><span class="o">=</span><span class="mi">8</span><span class="p">,</span> <span class="n">L</span><span class="o">=</span><span class="mi">9</span><span class="p">,</span>
+                                    <span class="n">M</span><span class="o">=</span><span class="mi">10</span><span class="p">,</span> <span class="n">N</span><span class="o">=</span><span class="mi">11</span><span class="p">,</span> <span class="n">P</span><span class="o">=</span><span class="mi">12</span><span class="p">,</span> <span class="n">Q</span><span class="o">=</span><span class="mi">13</span><span class="p">,</span> <span class="n">R</span><span class="o">=</span><span class="mi">14</span><span class="p">,</span> <span class="n">S</span><span class="o">=</span><span class="mi">15</span><span class="p">,</span> <span class="n">T</span><span class="o">=</span><span class="mi">16</span><span class="p">,</span> <span class="n">V</span><span class="o">=</span><span class="mi">17</span><span class="p">,</span> <span class="n">W</span><span class="o">=</span><span class="mi">18</span><span class="p">,</span> <span class="n">Y</span><span class="o">=</span><span class="mi">19</span><span class="p">)</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">primary_bias</span><span class="p">:</span> <span class="nb">str</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">amino_acids</span> <span class="o">=</span> <span class="s2">&quot;ACDEFGHIKLMNPQRSTVWY&quot;</span>
+
+<div class="viewcode-block" id="SequenceBiasBuilder.primary_bias_finder"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.SequenceBiasBuilder.primary_bias_finder">[docs]</a>    <span class="nd">@staticmethod</span>
+    <span class="k">def</span> <span class="nf">primary_bias_finder</span><span class="p">(</span><span class="n">seq</span><span class="p">,</span> <span class="n">primary_bias</span><span class="o">=</span><span class="s1">&#39;Q&#39;</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Finds the primary bias defined by the user. Ignores first and last three aa in seq for primary bias calculation.</span>
+<span class="sd">        Stores the index of each primary bias residue in the sequence string in self.primary_bias</span>
+
+<span class="sd">        :returns: updates self.Q_index list (no return)</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">primary_indices</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="c1"># might have to change this if</span>
+        <span class="k">if</span> <span class="n">primary_bias</span> <span class="ow">in</span> <span class="n">seq</span><span class="p">:</span>
+            <span class="n">working_sequence</span> <span class="o">=</span> <span class="n">seq</span><span class="p">[</span><span class="mi">3</span><span class="p">:</span><span class="o">-</span><span class="mi">3</span><span class="p">]</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">working_sequence</span><span class="p">)):</span>
+                <span class="k">if</span> <span class="n">working_sequence</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">==</span> <span class="n">primary_bias</span><span class="p">:</span>
+                    <span class="c1"># if statement should ignore Q. Could split loops so if isn&#39;t read outside</span>
+                    <span class="c1"># the first three and last three indexes. Range b/t could be very large</span>
+                    <span class="n">primary_indices</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">i</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">primary_indices</span>
+
+        <span class="k">else</span><span class="p">:</span>
+            <span class="k">return</span> <span class="kc">None</span></div>
+
+<div class="viewcode-block" id="SequenceBiasBuilder.populate_SequenceBiasBuilder"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.SequenceBiasBuilder.populate_SequenceBiasBuilder">[docs]</a>    <span class="k">def</span> <span class="nf">populate_SequenceBiasBuilder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seqrecord_list</span><span class="p">):</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">seqrecord_list</span><span class="p">:</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">id_seq</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">i</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="nb">str</span><span class="p">(</span><span class="n">i</span><span class="o">.</span><span class="n">seq</span><span class="p">)})</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">prim_indices</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">i</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="p">[]})</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">one_away</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">i</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">20</span><span class="p">})</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">two_away</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">i</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">20</span><span class="p">})</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">three_away</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">i</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">20</span><span class="p">})</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">local_seq</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">i</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">20</span><span class="p">})</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">one_away_avg</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">i</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">20</span><span class="p">})</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">two_away_avg</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">i</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">20</span><span class="p">})</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">three_away_avg</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">i</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">20</span><span class="p">})</span>
+            <span class="bp">self</span><span class="o">.</span><span class="n">local_avg</span><span class="o">.</span><span class="n">update</span><span class="p">({</span><span class="n">i</span><span class="o">.</span><span class="n">id</span><span class="p">:</span> <span class="p">[</span><span class="kc">None</span><span class="p">]</span> <span class="o">*</span> <span class="mi">20</span><span class="p">})</span></div>
+
+<div class="viewcode-block" id="SequenceBiasBuilder.secondary_bias_finder"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.SequenceBiasBuilder.secondary_bias_finder">[docs]</a>    <span class="k">def</span> <span class="nf">secondary_bias_finder</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">sequence</span><span class="p">,</span> <span class="n">bias_location</span><span class="p">:</span> <span class="nb">int</span><span class="p">,</span> <span class="n">prim_indices</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Finds amino acids at one, two, and three residues from the desired primary bias. A local tally is also computed.</span>
+
+<span class="sd">        Modified:</span>
+<span class="sd">            self.one_away, self.two_away,self.three_away, self.three_away_avg, self.local_sequence: get updated</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="n">secbias_list</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">20</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">prim_indices</span><span class="p">:</span>
+            <span class="n">prim_minus</span> <span class="o">=</span> <span class="n">i</span> <span class="o">-</span> <span class="n">bias_location</span>
+            <span class="n">aa_to_increment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="n">sequence</span><span class="p">[</span><span class="n">prim_minus</span><span class="p">]]</span>
+            <span class="n">secbias_list</span><span class="p">[</span><span class="n">aa_to_increment</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+            <span class="n">prim_plus</span> <span class="o">=</span> <span class="n">i</span> <span class="o">+</span> <span class="n">bias_location</span>
+            <span class="n">aa_to_increment</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">amino_acid_dict</span><span class="p">[</span><span class="n">sequence</span><span class="p">[</span><span class="n">prim_plus</span><span class="p">]]</span>
+            <span class="n">secbias_list</span><span class="p">[</span><span class="n">aa_to_increment</span><span class="p">]</span> <span class="o">+=</span> <span class="mi">1</span>
+        <span class="k">return</span> <span class="n">secbias_list</span></div>
+
+<div class="viewcode-block" id="SequenceBiasBuilder.calc_local_bias"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.SequenceBiasBuilder.calc_local_bias">[docs]</a>    <span class="k">def</span> <span class="nf">calc_local_bias</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">one_away</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">two_away</span><span class="o">=</span><span class="kc">None</span><span class="p">,</span> <span class="n">three_away</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            one_away:</span>
+<span class="sd">            two_away:</span>
+<span class="sd">            three_away:</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">one_away</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">one_away</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">one_away</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">two_away</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">two_away</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">two_away</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="k">if</span> <span class="n">three_away</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">three_away</span> <span class="o">=</span> <span class="nb">list</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">three_away</span><span class="o">.</span><span class="n">values</span><span class="p">())</span>
+        <span class="n">local_seq</span> <span class="o">=</span> <span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="mi">20</span>
+        <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+            <span class="n">local_seq</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">=</span> <span class="n">one_away</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">two_away</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">+</span> <span class="n">three_away</span><span class="p">[</span><span class="n">i</span><span class="p">]</span>
+        <span class="k">return</span> <span class="n">local_seq</span></div>
+
+<div class="viewcode-block" id="SequenceBiasBuilder.find_avg_occurrence"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.SequenceBiasBuilder.find_avg_occurrence">[docs]</a>    <span class="k">def</span> <span class="nf">find_avg_occurrence</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">bias_list</span><span class="p">,</span> <span class="n">primary_content</span><span class="o">=</span><span class="kc">None</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">        Divides each index of +/- 1, 2, 3 and local lists by the total primary bias residue content (average)</span>
+
+<span class="sd">        Modified:</span>
+<span class="sd">            updates +/- 1, 2, 3, and local avg lists</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">if</span> <span class="n">primary_content</span> <span class="ow">is</span> <span class="kc">None</span><span class="p">:</span>
+            <span class="n">primary_content</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="bp">self</span><span class="o">.</span><span class="n">prim_indices</span><span class="p">)</span>
+        <span class="n">bias_avg</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="k">if</span> <span class="n">primary_content</span> <span class="o">!=</span> <span class="mi">0</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="nb">range</span><span class="p">(</span><span class="mi">20</span><span class="p">):</span>
+                <span class="n">bias_avg</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">bias_list</span><span class="p">[</span><span class="n">i</span><span class="p">]</span> <span class="o">/</span> <span class="n">primary_content</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">bias_avg</span></div>
+
+<div class="viewcode-block" id="SequenceBiasBuilder.update_annotations"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.AnalysisBuilders.SequenceBiasBuilder.update_annotations">[docs]</a>    <span class="k">def</span> <span class="nf">update_annotations</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">seqrecord_to_update</span><span class="p">,</span> <span class="n">update_data</span><span class="p">:</span> <span class="nb">dict</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        Args:</span>
+<span class="sd">            seqrecord_to_update:</span>
+<span class="sd">            update_data:</span>
+
+<span class="sd">        Returns:</span>
+
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="k">try</span><span class="p">:</span>
+            <span class="k">assert</span><span class="p">(</span><span class="kc">None</span> <span class="ow">not</span> <span class="ow">in</span> <span class="n">update_data</span><span class="p">)</span>
+            <span class="n">seqrecord_to_update</span><span class="o">.</span><span class="n">annotations</span><span class="o">.</span><span class="n">update</span><span class="p">(</span><span class="n">update_data</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">seqrecord_to_update</span>
+        <span class="k">except</span> <span class="ne">AssertionError</span> <span class="k">as</span> <span class="n">ae</span><span class="p">:</span>
+            <span class="nb">print</span><span class="p">(</span><span class="s2">&quot;The average hasn&#39;t been calculated!!&quot;</span><span class="p">)</span>
+            <span class="k">return</span> <span class="n">seqrecord_to_update</span></div></div>
+
+
+    <span class="c1"># @staticmethod</span>
+    <span class="c1"># def find_sec_bias(primary_bias, seq_record_list):</span>
+    <span class="c1">#     sec_bias_list = list()</span>
+    <span class="c1">#     for i in seq_record_list:</span>
+    <span class="c1">#         sec_bias_list.append(SecondaryBias(i.seq))</span>
+    <span class="c1">#     for i in sec_bias_list:</span>
+    <span class="c1">#         i.bias_finder(primary_bias)</span>
+    <span class="c1">#         i.update_annotations()</span>
+    <span class="c1">#     return sec_bias_list</span>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Colton Garelli and Jamie Paule Ellis
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

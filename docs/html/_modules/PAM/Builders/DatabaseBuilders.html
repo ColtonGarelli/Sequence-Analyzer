@@ -1,0 +1,270 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PAM.Builders.DatabaseBuilders &mdash; Protein Analysis Manager (PAM) 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="../../../_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" /> 
+
+  
+  <script src="../../../_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="../../../index.html" class="icon icon-home"> Protein Analysis Manager (PAM)
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="../../../search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents :</span></p>
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../intro.html">Introduction</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">Source</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Python Resources.html">Python Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../Documentation Resources.html">Documentation Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../API Resources.html">UniProt and Prediction Resources</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="../../../index.html">Protein Analysis Manager (PAM)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="../../../index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="../../index.html">Module code</a> &raquo;</li>
+        
+      <li>PAM.Builders.DatabaseBuilders</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <h1>Source code for PAM.Builders.DatabaseBuilders</h1><div class="highlight"><pre>
+<span></span><span class="kn">import</span> <span class="nn">requests</span> <span class="k">as</span> <span class="nn">r</span>
+<span class="kn">from</span> <span class="nn">Bio</span> <span class="k">import</span> <span class="n">SeqIO</span>
+
+<span class="kn">from</span> <span class="nn">InputOutput</span> <span class="k">import</span> <span class="n">File_IO</span>
+
+
+<div class="viewcode-block" id="DatabaseBuilder"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.DatabaseBuilders.DatabaseBuilder">[docs]</a><span class="k">class</span> <span class="nc">DatabaseBuilder</span><span class="p">:</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">pass</span></div>
+
+
+<div class="viewcode-block" id="UniprotBuilder"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.DatabaseBuilders.UniprotBuilder">[docs]</a><span class="k">class</span> <span class="nc">UniprotBuilder</span><span class="p">(</span><span class="n">DatabaseBuilder</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">_base_url</span> <span class="o">=</span> <span class="s2">&quot;https://www.uniprot.org/uniprot/?query=&quot;</span>
+    <span class="n">column_dict</span> <span class="o">=</span> <span class="p">{</span><span class="s1">&#39;ID&#39;</span><span class="p">:</span> <span class="s1">&#39;id&#39;</span><span class="p">,</span> <span class="s1">&#39;entry&#39;</span><span class="p">:</span> <span class="s1">&#39;entry name&#39;</span><span class="p">,</span> <span class="s1">&#39;Organism&#39;</span><span class="p">:</span> <span class="s1">&#39;organism&#39;</span><span class="p">,</span> <span class="s1">&#39;prot name&#39;</span><span class="p">:</span> <span class="s2">&quot;protein name&quot;</span><span class="p">,</span>
+                   <span class="s1">&#39;seq&#39;</span><span class="p">:</span> <span class="s1">&#39;sequence&#39;</span><span class="p">,</span> <span class="s1">&#39;mass&#39;</span><span class="p">:</span> <span class="s1">&#39;mass&#39;</span><span class="p">,</span> <span class="s1">&#39;abs&#39;</span><span class="p">:</span> <span class="s1">&#39;comment(ABSORPTION)&#39;</span><span class="p">,</span> <span class="s1">&#39;pH&#39;</span><span class="p">:</span> <span class="s1">&#39;comment(PH DEPENDENCE)&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;domain&#39;</span><span class="p">:</span> <span class="s1">&#39;comment(DOMAIN)&#39;</span><span class="p">,</span> <span class="s1">&#39;comp_bias&#39;</span><span class="p">:</span> <span class="s1">&#39;feature(COMPOSITIONAL BIAS)&#39;</span><span class="p">,</span>
+                   <span class="s1">&#39;temp&#39;</span><span class="p">:</span> <span class="s1">&#39;comment(TEMPERATURE DEPENDENCE&#39;</span><span class="p">}</span>
+
+    <span class="k">def</span> <span class="nf">__init__</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="sd">&quot;&quot;&quot;</span>
+
+<span class="sd">        :param:</span>
+
+<span class="sd">        :returns:</span>
+<span class="sd">        &quot;&quot;&quot;</span>
+        <span class="nb">super</span><span class="p">(</span><span class="n">UniprotBuilder</span><span class="p">,</span> <span class="bp">self</span><span class="p">)</span><span class="o">.</span><span class="fm">__init__</span><span class="p">()</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request_url</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">keyword</span> <span class="o">=</span> <span class="kc">None</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">limit</span> <span class="o">=</span> <span class="s2">&quot;&amp;limit=&quot;</span>
+        <span class="c1"># TODO: set format = fasta if just for sequence processing, or as xml for more info</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">format</span> <span class="o">=</span> <span class="s2">&quot;&amp;format=&quot;</span>
+
+<div class="viewcode-block" id="UniprotBuilder.get_base_url"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.DatabaseBuilders.UniprotBuilder.get_base_url">[docs]</a>    <span class="k">def</span> <span class="nf">get_base_url</span><span class="p">(</span><span class="bp">self</span><span class="p">):</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">_base_url</span></div>
+
+<div class="viewcode-block" id="UniprotBuilder.construct_column_string"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.DatabaseBuilders.UniprotBuilder.construct_column_string">[docs]</a>    <span class="k">def</span> <span class="nf">construct_column_string</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">columns</span><span class="p">):</span>
+        <span class="n">column_string</span> <span class="o">=</span> <span class="n">columns</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span> <span class="o">+</span> <span class="s2">&quot;&amp;columns=reviewed&quot;</span>
+        <span class="k">for</span> <span class="n">column</span> <span class="ow">in</span> <span class="n">columns</span><span class="p">:</span>
+            <span class="k">if</span> <span class="n">column</span> <span class="ow">in</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_dict</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+                <span class="n">column_string</span> <span class="o">+=</span> <span class="p">(</span><span class="s1">&#39;,&#39;</span> <span class="o">+</span> <span class="bp">self</span><span class="o">.</span><span class="n">column_dict</span><span class="p">[</span><span class="n">column</span><span class="p">])</span>
+        <span class="k">return</span> <span class="n">column_string</span></div>
+
+<div class="viewcode-block" id="UniprotBuilder.create_request_url"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.DatabaseBuilders.UniprotBuilder.create_request_url">[docs]</a>    <span class="k">def</span> <span class="nf">create_request_url</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">response_format</span><span class="p">,</span> <span class="n">column_string</span><span class="p">,</span> <span class="n">limit</span><span class="p">):</span>
+        <span class="bp">self</span><span class="o">.</span><span class="n">request_url</span> <span class="o">=</span> <span class="bp">self</span><span class="o">.</span><span class="n">get_base_url</span><span class="p">()</span> <span class="o">+</span> <span class="n">column_string</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39;&amp;limit=&#39;</span> <span class="o">+</span> <span class="n">limit</span><span class="p">)</span> <span class="o">+</span> <span class="p">(</span><span class="s1">&#39;&amp;format=&#39;</span> <span class="o">+</span> <span class="n">response_format</span><span class="p">)</span>
+        <span class="k">return</span> <span class="bp">self</span><span class="o">.</span><span class="n">request_url</span></div>
+
+<div class="viewcode-block" id="UniprotBuilder.make_request_get_response"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.DatabaseBuilders.UniprotBuilder.make_request_get_response">[docs]</a>    <span class="k">def</span> <span class="nf">make_request_get_response</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">search_url</span><span class="p">):</span>
+        <span class="n">new_request</span> <span class="o">=</span> <span class="n">r</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">search_url</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">new_request</span><span class="o">.</span><span class="n">content</span><span class="o">.</span><span class="n">decode</span><span class="p">(</span><span class="s1">&#39;utf-8&#39;</span><span class="p">)</span></div>
+
+<div class="viewcode-block" id="UniprotBuilder.uniprot_to_seqrecord"><a class="viewcode-back" href="../../../PAM.Builders.html#PAM.Builders.DatabaseBuilders.UniprotBuilder.uniprot_to_seqrecord">[docs]</a>    <span class="k">def</span> <span class="nf">uniprot_to_seqrecord</span><span class="p">(</span><span class="bp">self</span><span class="p">,</span> <span class="n">data</span><span class="p">,</span> <span class="n">storage_dir</span><span class="p">,</span> <span class="n">data_format</span><span class="p">):</span>
+        <span class="k">if</span> <span class="n">data_format</span> <span class="o">==</span> <span class="s1">&#39;fasta&#39;</span><span class="p">:</span>
+            <span class="n">file_extension</span> <span class="o">=</span> <span class="s1">&#39;.faa&#39;</span>
+        <span class="k">else</span><span class="p">:</span>
+            <span class="n">file_extension</span> <span class="o">=</span> <span class="s1">&#39;.xml&#39;</span>
+        <span class="n">file_name</span> <span class="o">=</span> <span class="n">File_IO</span><span class="o">.</span><span class="n">make_original_file_name</span><span class="p">(</span><span class="n">file_out_dir</span><span class="o">=</span><span class="n">storage_dir</span><span class="p">,</span> <span class="n">file_name</span><span class="o">=</span><span class="s2">&quot;uniprot_data&quot;</span><span class="p">,</span> <span class="n">file_extension</span><span class="o">=</span><span class="n">file_extension</span><span class="p">)</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;w&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="n">file</span><span class="o">.</span><span class="n">write</span><span class="p">(</span><span class="n">data</span><span class="p">)</span>
+        <span class="n">seq_record_list</span> <span class="o">=</span> <span class="nb">list</span><span class="p">()</span>
+        <span class="k">with</span> <span class="nb">open</span><span class="p">(</span><span class="n">file_name</span><span class="p">,</span> <span class="s1">&#39;rU&#39;</span><span class="p">)</span> <span class="k">as</span> <span class="n">file</span><span class="p">:</span>
+            <span class="k">for</span> <span class="n">sequence</span> <span class="ow">in</span> <span class="n">SeqIO</span><span class="o">.</span><span class="n">parse</span><span class="p">(</span><span class="n">file</span><span class="p">,</span> <span class="n">data_format</span><span class="p">):</span>
+                <span class="n">seq_record_list</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sequence</span><span class="p">)</span>
+        <span class="k">return</span> <span class="n">seq_record_list</span></div></div>
+</pre></div>
+
+           </div>
+           
+          </div>
+          <footer>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Colton Garelli and Jamie Paule Ellis
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+        <script type="text/javascript" src="../../../_static/jquery.js"></script>
+        <script type="text/javascript" src="../../../_static/underscore.js"></script>
+        <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="../../../_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>

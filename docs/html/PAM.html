@@ -1,0 +1,425 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>PAM package &mdash; Protein Analysis Manager (PAM) 1.0 documentation</title>
+  
+
+  
+  
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="next" title="PAM.Builders package" href="PAM.Builders.html" />
+    <link rel="prev" title="Source" href="modules.html" /> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav">
+
+   
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Protein Analysis Manager (PAM)
+          
+
+          
+          </a>
+
+          
+            
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+              
+            
+            
+              <p class="caption"><span class="caption-text">Contents :</span></p>
+<ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Introduction</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">Source</a><ul class="current">
+<li class="toctree-l2 current"><a class="current reference internal" href="#">PAM package</a><ul>
+<li class="toctree-l3"><a class="reference internal" href="#module-PAM">Module contents</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#subpackages">Subpackages</a><ul>
+<li class="toctree-l4"><a class="reference internal" href="PAM.Builders.html">PAM.Builders package</a></li>
+<li class="toctree-l4"><a class="reference internal" href="PAM.InputOutput.html">PAM.InputOutput package</a></li>
+</ul>
+</li>
+<li class="toctree-l3"><a class="reference internal" href="#submodules">Submodules</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-PAM.Director">PAM.Director module</a></li>
+<li class="toctree-l3"><a class="reference internal" href="#module-PAM.main">PAM.main module</a></li>
+</ul>
+</li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="Python Resources.html">Python Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="Documentation Resources.html">Documentation Resources</a></li>
+<li class="toctree-l1"><a class="reference internal" href="API Resources.html">UniProt and Prediction Resources</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" aria-label="top navigation">
+        
+          <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+          <a href="index.html">Protein Analysis Manager (PAM)</a>
+        
+      </nav>
+
+
+      <div class="wy-nav-content">
+        
+        <div class="rst-content">
+        
+          
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+
+  <ul class="wy-breadcrumbs">
+    
+      <li><a href="index.html">Docs</a> &raquo;</li>
+        
+          <li><a href="modules.html">Source</a> &raquo;</li>
+        
+      <li>PAM package</li>
+    
+    
+      <li class="wy-breadcrumbs-aside">
+        
+            
+            <a href="_sources/PAM.rst.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+    
+  </ul>
+
+  
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="pam-package">
+<h1>PAM package<a class="headerlink" href="#pam-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="module-PAM">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-PAM" title="Permalink to this headline">¶</a></h2>
+<p>The PAM package contains everything needed to run ProteinAnalysisManager.</p>
+<p>–&gt; Director module: Contains the Director class which orchestrates the processes contained in PAM.Builders and PAM.InputOutput</p>
+<p>–&gt; main module: Contains the UI_main(director) function, which runs PAM</p>
+<p>–&gt; PAM.Builders</p>
+<p>–&gt; PAM.InputOutput</p>
+</div>
+<div class="section" id="subpackages">
+<h2>Subpackages<a class="headerlink" href="#subpackages" title="Permalink to this headline">¶</a></h2>
+<div class="toctree-wrapper compound">
+<ul>
+<li class="toctree-l1"><a class="reference internal" href="PAM.Builders.html">PAM.Builders package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="PAM.Builders.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PAM.Builders.html#module-PAM.Builders">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PAM.Builders.html#module-PAM.Builders.AnalysisBuilders">PAM.Builders.AnalysisBuilders module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PAM.Builders.html#module-PAM.Builders.DatabaseBuilders">PAM.Builders.DatabaseBuilders module</a></li>
+</ul>
+</li>
+<li class="toctree-l1"><a class="reference internal" href="PAM.InputOutput.html">PAM.InputOutput package</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="PAM.InputOutput.html#module-PAM.InputOutput">Module contents</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PAM.InputOutput.html#submodules">Submodules</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PAM.InputOutput.html#module-PAM.InputOutput.DataGraphing">PAM.InputOutput.DataGraphing module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PAM.InputOutput.html#module-PAM.InputOutput.File_IO">PAM.InputOutput.File_IO module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PAM.InputOutput.html#module-PAM.InputOutput.OutputFunctions">PAM.InputOutput.OutputFunctions module</a></li>
+<li class="toctree-l2"><a class="reference internal" href="PAM.InputOutput.html#module-PAM.InputOutput.Representation">PAM.InputOutput.Representation module</a></li>
+</ul>
+</li>
+</ul>
+</div>
+</div>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-PAM.Director">
+<span id="pam-director-module"></span><h2>PAM.Director module<a class="headerlink" href="#module-PAM.Director" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="PAM.Director.Director">
+<em class="property">class </em><code class="descclassname">PAM.Director.</code><code class="descname">Director</code><a class="reference internal" href="_modules/PAM/Director.html#Director"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.Director.Director" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></p>
+<dl class="docutils">
+<dt>The Director class manages file input, analysis, and data outputting and formatting.</dt>
+<dd><ul class="first last simple">
+<li>Contains methods to execute tasks</li>
+</ul>
+</dd>
+</dl>
+<dl class="method">
+<dt id="PAM.Director.Director.db_access">
+<code class="descname">db_access</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PAM/Director.html#Director.db_access"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.Director.Director.db_access" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="PAM.Director.Director.export_to_universal_file">
+<code class="descname">export_to_universal_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PAM/Director.html#Director.export_to_universal_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.Director.Director.export_to_universal_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PAM.Director.Director.get_annotations_from_seqrecord_list">
+<code class="descname">get_annotations_from_seqrecord_list</code><span class="sig-paren">(</span><em>seqrecord_list</em>, <em>desired_annotation=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PAM/Director.html#Director.get_annotations_from_seqrecord_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.Director.Director.get_annotations_from_seqrecord_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PAM.Director.Director.get_file_in_path">
+<code class="descname">get_file_in_path</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PAM/Director.html#Director.get_file_in_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.Director.Director.get_file_in_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PAM.Director.Director.get_io_directory">
+<code class="descname">get_io_directory</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PAM/Director.html#Director.get_io_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.Director.Director.get_io_directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PAM.Director.Director.get_master_list">
+<code class="descname">get_master_list</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PAM/Director.html#Director.get_master_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.Director.Director.get_master_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PAM.Director.Director.get_seq_records_from_file">
+<code class="descname">get_seq_records_from_file</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PAM/Director.html#Director.get_seq_records_from_file"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.Director.Director.get_seq_records_from_file" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PAM.Director.Director.quit_or_continue">
+<code class="descname">quit_or_continue</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PAM/Director.html#Director.quit_or_continue"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.Director.Director.quit_or_continue" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PAM.Director.Director.run_FELLS_analysis">
+<code class="descname">run_FELLS_analysis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PAM/Director.html#Director.run_FELLS_analysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.Director.Director.run_FELLS_analysis" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="PAM.Director.Director.run_SODA_analysis">
+<code class="descname">run_SODA_analysis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PAM/Director.html#Director.run_SODA_analysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.Director.Director.run_SODA_analysis" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="PAM.Director.Director.run_bias_analysis">
+<code class="descname">run_bias_analysis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PAM/Director.html#Director.run_bias_analysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.Director.Director.run_bias_analysis" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reads file in and creates a master list of id-sequence lists. It then creates SecondaryBias objects and runs the
+analysis using its self.analysis object</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body">List of fully processed SecondaryBias objects</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="PAM.Director.Director.set_file_in_path">
+<code class="descname">set_file_in_path</code><span class="sig-paren">(</span><em>new_in_path</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PAM/Director.html#Director.set_file_in_path"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.Director.Director.set_file_in_path" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PAM.Director.Director.set_io_directory">
+<code class="descname">set_io_directory</code><span class="sig-paren">(</span><em>new_out_dir</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PAM/Director.html#Director.set_io_directory"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.Director.Director.set_io_directory" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PAM.Director.Director.set_master_list">
+<code class="descname">set_master_list</code><span class="sig-paren">(</span><em>new_list</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PAM/Director.html#Director.set_master_list"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.Director.Director.set_master_list" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PAM.Director.Director.start_up">
+<code class="descname">start_up</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PAM/Director.html#Director.start_up"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.Director.Director.start_up" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PAM.Director.Director.store_analyzed_data">
+<code class="descname">store_analyzed_data</code><span class="sig-paren">(</span><em>seq_list=None</em>, <em>file_out_dir=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PAM/Director.html#Director.store_analyzed_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.Director.Director.store_analyzed_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PAM.Director.Director.update_seq_data">
+<code class="descname">update_seq_data</code><span class="sig-paren">(</span><em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PAM/Director.html#Director.update_seq_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.Director.Director.update_seq_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PAM.Director.Director.view_analysis">
+<code class="descname">view_analysis</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PAM/Director.html#Director.view_analysis"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.Director.Director.view_analysis" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="PAM.Director.Director.view_or_process">
+<code class="descname">view_or_process</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/PAM/Director.html#Director.view_or_process"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.Director.Director.view_or_process" title="Permalink to this definition">¶</a></dt>
+<dd><table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-PAM.main">
+<span id="pam-main-module"></span><h2>PAM.main module<a class="headerlink" href="#module-PAM.main" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="PAM.main.UI_main">
+<code class="descclassname">PAM.main.</code><code class="descname">UI_main</code><span class="sig-paren">(</span><em>director</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/PAM/main.html#UI_main"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#PAM.main.UI_main" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+</div>
+
+
+           </div>
+           
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="PAM.Builders.html" class="btn btn-neutral float-right" title="PAM.Builders package" accesskey="n" rel="next">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="modules.html" class="btn btn-neutral" title="Source" accesskey="p" rel="prev"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2018, Colton Garelli and Jamie Paule Ellis
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/rtfd/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    
+    
+      <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+        <script type="text/javascript" src="_static/jquery.js"></script>
+        <script type="text/javascript" src="_static/underscore.js"></script>
+        <script type="text/javascript" src="_static/doctools.js"></script>
+    
+
+  
+
+  <script type="text/javascript" src="_static/js/theme.js"></script>
+
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.Navigation.enable(true);
+      });
+  </script> 
+
+</body>
+</html>
